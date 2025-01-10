@@ -27,7 +27,7 @@ public class Weapon : ItemBase
 
     private void CreateAttackObject(Vector2 attackDirection)
     {
-        var attack = Instantiate(attackPrefab);
+        var attack = Instantiate(attackPrefab, ParticleContainer.instance.transform);
         attack.transform.position = (Vector2)transform.position + attackDirection * attackRadius;
         attack.transform.localScale *= attackRadius;
     }

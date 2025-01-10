@@ -1,12 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IControllable, IDamageable
+public class Player : CreatureBase, IControllable
 {
     [SerializeField] private float speed = 15f;
-    [SerializeField] private float health = 20f;
-
-    [SerializeField] private ItemBase hand;
 
     private Rigidbody2D rb;
 
@@ -32,12 +29,5 @@ public class Player : MonoBehaviour, IControllable, IDamageable
     {
         Vector2 movement = rb.position + _movement.normalized * speed * Time.fixedDeltaTime;
         rb.MovePosition(movement);
-    }
-
-    public void Damage(float damage)
-    {
-        health -= damage;
-        if (health <= 0)
-            Destroy(gameObject);
     }
 }
