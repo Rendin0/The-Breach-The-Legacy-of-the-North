@@ -12,11 +12,6 @@ public class CreatureBase : MonoBehaviour, IDamageable
 
     private Slider healthSlider;
 
-    private void Awake()
-    {
-        healthSlider = GetComponentInChildren<Slider>();
-    }
-
     public virtual void Damage(float damage)
     {
         health -= damage;
@@ -49,6 +44,9 @@ public class CreatureBase : MonoBehaviour, IDamageable
 
     private void UpdateHealth()
     {
+        if (healthSlider == null)
+            healthSlider = GetComponentInChildren<Slider>();
+
         if (healthSlider != null)
         {
             healthSlider.value = health / maxHealth;

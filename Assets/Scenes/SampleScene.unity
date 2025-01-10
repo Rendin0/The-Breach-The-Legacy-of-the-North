@@ -3925,6 +3925,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 558378853}
     - target: {fileID: 780612312165233676, guid: 41427bc1e80f32f46b9a9d21d7db6fb4, type: 3}
+      propertyPath: maxHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 780612312165233676, guid: 41427bc1e80f32f46b9a9d21d7db6fb4, type: 3}
       propertyPath: damagePopUpPrefab
       value: 
       objectReference: {fileID: 746081206273944795, guid: 77c220a668e0b0044ba3a951d01f168c, type: 3}
