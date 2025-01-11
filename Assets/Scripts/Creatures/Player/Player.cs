@@ -12,10 +12,11 @@ public class Player : CreatureBase, IControllable
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        spellBook = new SpellBase[5];
     }
-    public void Use(Vector2 mousePosition)
+    public void UseHand(Vector2 mousePosition)
     {
-        hand.Use(mousePosition);
+        hand.Use(gameObject, mousePosition);
     }
     public void Move(Vector2 direction)
     {
@@ -29,5 +30,13 @@ public class Player : CreatureBase, IControllable
     {
         Vector2 movement = rb.position + _movement.normalized * speed * Time.fixedDeltaTime;
         rb.MovePosition(movement);
+    }
+
+    public void UseSpell(int index, Vector2 mousePosition)
+    {
+        if (spellBook[index] != null)
+        {
+            spellBook[index].Use(gameObject, mousePosition);
+        }
     }
 }

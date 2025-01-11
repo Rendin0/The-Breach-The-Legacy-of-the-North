@@ -28,6 +28,6 @@ public class EnemySkeleton : EnemyBase
 
     private void Attack(Vector2 direction)
     {
-        hand.Use(direction);
+        hand.Use(gameObject, direction);
     }
 }

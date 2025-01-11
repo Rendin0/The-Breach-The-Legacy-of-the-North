@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private void OnAttackPerformed(InputAction.CallbackContext obj)
     {
         var mousePos = Camera.main.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
-        controllable.Use(mousePos);
+        controllable.UseHand(mousePos);
     }
 
     private void Update()
@@ -34,10 +35,18 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         input.Gameplay.Attack.performed += OnAttackPerformed;
+        input.Gameplay.SpellBook.performed += OnSpellBookPerformed;
     }
+
+    private void OnSpellBookPerformed(InputAction.CallbackContext obj)
+    {
+        var mousePos = Camera.main.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
+        controllable.UseSpell(Int32.Parse(obj.control.displayName) - 1, mousePos);
+    }
+
     private void OnDisable()
     {
         input.Gameplay.Attack.performed -= OnAttackPerformed;
-        
+        input.Gameplay.SpellBook.performed -= OnSpellBookPerformed;
     }
 }

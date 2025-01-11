@@ -6,11 +6,13 @@ public class CreatureBase : MonoBehaviour, IDamageable
 {
     [SerializeField] protected float maxHealth = 100f;
     [SerializeField] protected float health = 100f;
-    [SerializeField] protected ItemBase hand;
 
     [SerializeField] private GameObject damagePopUpPrefab;
 
     private Slider healthSlider;
+
+    public ItemBase hand;
+    public SpellBase[] spellBook;
 
     public virtual void Damage(float damage)
     {
@@ -50,6 +52,7 @@ public class CreatureBase : MonoBehaviour, IDamageable
         if (healthSlider != null)
         {
             healthSlider.value = health / maxHealth;
+            Debug.Log($"{health} / {maxHealth} = {healthSlider.value}");
         }
     }
 }

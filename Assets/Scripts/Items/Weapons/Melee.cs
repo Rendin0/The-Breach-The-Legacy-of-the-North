@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Weapon : ItemBase
+public class Melee : ItemBase
 {
     [SerializeField] private float damage;
     [SerializeField] private float attackRadius;
@@ -9,7 +9,7 @@ public class Weapon : ItemBase
 
     [SerializeField] private Attack attackPrefab;
 
-    public override void Use(Vector2 direction)
+    public override void Use(GameObject user, Vector2 direction)
     {
         Vector2 attackDirection = (direction - (Vector2)transform.position).normalized;
         var attackPos = (Vector2)transform.position + attackDirection * attackRadius;
