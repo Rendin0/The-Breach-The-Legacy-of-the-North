@@ -52,7 +52,6 @@ public class CreatureBase : MonoBehaviour, IDamageable
         if (healthSlider != null)
         {
             healthSlider.value = health / maxHealth;
-            Debug.Log($"{health} / {maxHealth} = {healthSlider.value}");
         }
     }
 }

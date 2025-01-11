@@ -25,6 +25,19 @@ public class Player : CreatureBase, IControllable
     private void Update()
     {
         hand.transform.position = transform.position + new Vector3(0.5f, 0.5f, 0);
+
+        for (int i = 0; i < spellBook.Length; i++)
+        {
+            if (spellBook[i] != null)
+            {
+                var sprite = spellBook[i].GetComponent<SpriteRenderer>().sprite;
+                SpellBar.instance.slots[i].sprite = sprite;
+            }
+            else
+            {
+                SpellBar.instance.slots[i].sprite = null;
+            }
+        }
     }
     private void FixedUpdate()
     {
