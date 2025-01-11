@@ -6,19 +6,14 @@ public class Heal : SpellBase
 
     public override void Use(GameObject caster, Vector2 direction)
     {
-        var creature = caster.GetComponent<CreatureBase>();
-
-        if (creature != null)
+        if (CheckCaster(caster))
         {
-            if (creature.hand.weaponType == weaponRestriction)
-            {
-                creature.Heal(healPower);
-            }
-            else
-            {
-                Debug.Log("Wrong weapon type");
-            }
+            var creature = caster.GetComponent<CreatureBase>();
+            creature.Heal(healPower);
         }
-
+        else
+        {
+            Debug.Log("Wrong weapon type");
+        }
     }
 }
