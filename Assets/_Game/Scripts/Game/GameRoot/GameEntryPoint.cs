@@ -23,7 +23,7 @@ public class GameEntryPoint
         _coroutines = new GameObject("[COROUTINES]").AddComponent<Coroutines>();
         Object.DontDestroyOnLoad(_coroutines.gameObject);
 
-        var prefabUIRoot = Resources.Load<UIRootView>("Prefabs/UI/UIRoot");
+        var prefabUIRoot = Resources.Load<UIRootView>("UIRoot");
         Debug.Log(prefabUIRoot);
         _uiRoot = Object.Instantiate(prefabUIRoot);
         Object.DontDestroyOnLoad(_uiRoot.gameObject);
@@ -39,12 +39,18 @@ public class GameEntryPoint
             return;
         }
 
+        if (sceneName == Scenes.MAINMENU)
+        {
+            _coroutines.StartCoroutine(LoadAndStartMainMenu());
+            return;
+        }
+
         if (sceneName != Scenes.BOOT)
         {
             return;
         }
 #endif
-        _coroutines.StartCoroutine(LoadAndStartGameplay());
+        _coroutines.StartCoroutine(LoadAndStartMainMenu());
     }
 
     private IEnumerator LoadAndStartGameplay()
@@ -54,11 +60,37 @@ public class GameEntryPoint
         yield return LoadScene(Scenes.BOOT);
         yield return LoadScene(Scenes.GAMEPLAY);
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
 
         // TODO: DI Container
         var sceneEntryPoint = Object.FindFirstObjectByType<GameplayEntryPoint>();
-        sceneEntryPoint.Run();
+        sceneEntryPoint.Run(_uiRoot);
+
+        sceneEntryPoint.GoToMainMenuSceneRequested += () =>
+        {
+            _coroutines.StartCoroutine(LoadAndStartMainMenu());
+        };
+
+        _uiRoot.HideLoadingScreen();
+    }
+
+    private IEnumerator LoadAndStartMainMenu()
+    {
+        _uiRoot.ShowLoadingScreen();
+
+        yield return LoadScene(Scenes.BOOT);
+        yield return LoadScene(Scenes.MAINMENU);
+
+        yield return new WaitForSeconds(1);
+
+        // TODO: DI Container
+        var sceneEntryPoint = Object.FindFirstObjectByType<MainMenuEntryPoint>();
+        sceneEntryPoint.Run(_uiRoot);
+
+        sceneEntryPoint.GoToGameplaySceneRequested += () =>
+        {
+            _coroutines.StartCoroutine(LoadAndStartGameplay());
+        };
 
         _uiRoot.HideLoadingScreen();
     }

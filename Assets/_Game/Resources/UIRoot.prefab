@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 6394156114955110611}
+  _uiSceneContainer: {fileID: 7077151868666016298}
 --- !u!1 &6394156114955110611
 GameObject:
   m_ObjectHideFlags: 0

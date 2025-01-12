@@ -49,4 +49,10 @@ public class PlayerController : MonoBehaviour
         input.Gameplay.Attack.performed -= OnAttackPerformed;
         input.Gameplay.SpellBook.performed -= OnSpellBookPerformed;
     }
+
+    private void OnDestroy()
+    {
+        input.Gameplay.Disable();
+        input.UI.Disable();
+    }
 }
