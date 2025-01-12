@@ -55,7 +55,7 @@ public class DIContainer
 
         _registrations[key] = new DIRegistration
         {
-            Factory = c => factory,
+            Factory = c => factory(c),
             IsSingleton = isSingleton
         };
 
