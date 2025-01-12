@@ -1,107 +1,90 @@
-using System.Collections.Generic;
-using UnityEngine;
 using System;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
+using System.Collections.Generic;
 
-public class DIContainer
+namespace BaCon
 {
-    private readonly DIContainer _parrent;
-    private readonly Dictionary<(string, Type), DIRegistration> _registrations = new();
-    private readonly HashSet<(string, Type)> _resolutions = new();
+    public class DIContainer
+    {
+        private readonly DIContainer _parentContainer;
+        private readonly Dictionary<(string, Type), DIEntry> _entriesMap = new();
+        private readonly HashSet<(string, Type)> _resolutionsCache = new();
 
-    public DIContainer(DIContainer parrent)
-    {
-        this._parrent = parrent;
-    }
-
-    public void RegisterSingleton<T>(Func<DIContainer, T> factory)
-    {
-        RegisterSingleton(null, factory);
-    }
-    public void RegisterSingleton<T>(string tag, Func<DIContainer, T> factory)
-    {
-        Register((tag, typeof(T)), factory, true);
-    }
-    public void RegisterTransient<T>(Func<DIContainer, T> factory)
-    {
-        RegisterTransient(null, factory);
-    }
-    public void RegisterTransient<T>(string tag, Func<DIContainer, T> factory)
-    {
-        Register((tag, typeof(T)), factory, false);
-    }
-    public void RegisterInstance<T>(T instance) 
-    {
-        RegisterInstance(null, instance);    
-    }
-    public void RegisterInstance<T>(string tag, T instance) 
-    {
-        var key = (tag, typeof(T));
-
-        if (_registrations.ContainsKey(key))
-            throw new Exception($"Factory with tag {key.Item1} and type {key.Item2.FullName} already exitst");
-
-        _registrations[key] = new DIRegistration
+        public DIContainer(DIContainer parentContainer = null)
         {
-            Instance = instance,
-            IsSingleton = true
-        };
-    }
-    private void Register<T>((string, Type) key, Func<DIContainer, T> factory, bool isSingleton)
-    {
-        if (_registrations.ContainsKey(key))
-            throw new Exception($"Factory with tag {key.Item1} and type {key.Item2.FullName} already exitst");
+            _parentContainer = parentContainer;
+        }
 
-        _registrations[key] = new DIRegistration
+        public DIEntry RegisterFactory<T>(Func<DIContainer, T> factory)
         {
-            Factory = c => factory(c),
-            IsSingleton = isSingleton
-        };
+            return RegisterFactory(null, factory);
+        }
 
-
-    }
-
-    public T Resolve<T>(string tag = null)
-    {
-        var key = (tag, typeof(T));
-
-        if (_resolutions.Contains(key))
-            throw new Exception($"Cyclic dependency with tag {tag} and type {key.Item2.FullName}");
-
-        _resolutions.Add(key);
-
-        var resolveResult = TryResolve<T>(key);
-
-        _resolutions.Remove(key);
-
-        return resolveResult;
-    }
-
-    private T TryResolve<T>((string, Type) key)
-    {
-        if (_registrations.TryGetValue(key, out var registration))
+        public DIEntry RegisterFactory<T>(string tag, Func<DIContainer, T> factory)
         {
-            if (registration.IsSingleton)
+            var key = (tag, typeof(T));
+            
+            if (_entriesMap.ContainsKey(key))
             {
-                if (registration.Instance == null && registration.Factory != null)
-                {
-                    registration.Instance = registration.Factory(this);
-                }
-
-                return (T)registration.Instance;
+                throw new Exception(
+                    $"DI: Factory with tag {key.Item1} and type {key.Item2.FullName} has already registered");
             }
 
-            return (T)registration.Factory(this);
+            var diEntry = new DIEntry<T>(this, factory);
+
+            _entriesMap[key] = diEntry;
+
+            return diEntry;
         }
 
-        if (_parrent != null)
+        public void RegisterInstance<T>(T instance)
         {
-            return _parrent.Resolve<T>(key.Item1);
+            RegisterInstance(null, instance);
         }
 
-        throw new Exception($"Couldnt find dependency with tag {key.Item1} and type {key.Item2.FullName}");
+        public void RegisterInstance<T>(string tag, T instance)
+        {
+            var key = (tag, typeof(T));
+            
+            if (_entriesMap.ContainsKey(key))
+            {
+                throw new Exception(
+                    $"DI: Instance with tag {key.Item1} and type {key.Item2.FullName} has already registered");
+            }
 
+            var diEntry = new DIEntry<T>(instance);
+
+            _entriesMap[key] = diEntry;
+        }
+
+        public T Resolve<T>(string tag = null)
+        {
+            var key = (tag, typeof(T));
+
+            if (_resolutionsCache.Contains(key))
+            {
+                throw new Exception($"DI: Cyclic dependency for tag {key.tag} and type {key.Item2.FullName}");
+            }
+
+            _resolutionsCache.Add(key);
+
+            try
+            {
+                if (_entriesMap.TryGetValue(key, out var diEntry))
+                {
+                    return diEntry.Resolve<T>();
+                }
+
+                if (_parentContainer != null)
+                {
+                    return _parentContainer.Resolve<T>(tag);
+                }
+            }
+            finally
+            {
+                _resolutionsCache.Remove(key);
+            } 
+            
+            throw new Exception($"Couldn't find dependency for tag {tag} and type {key.Item2.FullName}");
+        }
     }
-
 }

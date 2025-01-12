@@ -63,6 +63,9 @@ public class GameEntryPoint
         yield return LoadScene(Scenes.BOOT);
         yield return LoadScene(Scenes.GAMEPLAY);
 
+        // Пропуск кадра, ибо новая сцена может загрузиться до выгрузки старой
+        yield return null;
+
         // TODO: DI Container
         var sceneEntryPoint = Object.FindFirstObjectByType<GameplayEntryPoint>();
         sceneEntryPoint.Run(_uiRoot, gameplayEnterParams).Subscribe(gameplayExitParams =>
@@ -79,6 +82,9 @@ public class GameEntryPoint
 
         yield return LoadScene(Scenes.BOOT);
         yield return LoadScene(Scenes.MAINMENU);
+
+        // Пропуск кадра, ибо новая сцена может загрузиться до выгрузки старой
+        yield return null;
 
         // TODO: DI Container
         var sceneEntryPoint = Object.FindFirstObjectByType<MainMenuEntryPoint>();
