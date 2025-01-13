@@ -12,20 +12,29 @@ public class GameplayEntryPoint : MonoBehaviour
         var gameplayViewModelsContainer = new DIContainer(sceneContainer);
         GameplayViewModelsRegistrations.Register(gameplayViewModelsContainer);
 
+        InitUI(gameplayViewModelsContainer);
 
-        var uiRoot = sceneContainer.Resolve<UIRootView>();
-        var uiScene = Instantiate(_sceneUIRootPrefab);
-        uiRoot.AttachSceneUI(uiScene.gameObject);
-
-        var exitSceneSignalSubject = new Subject<Unit>();
-
-        uiScene.Bind(exitSceneSignalSubject);
-         
         var mainMenuEnterParams = new MainMenuEnterParams("Lul");
         var exitParams = new GameplayExitParams(mainMenuEnterParams);
 
-        var exitToMainMenuSceneSignal = exitSceneSignalSubject.Select(_ => exitParams);
+        var exitSceneRequest = sceneContainer.Resolve<Subject<Unit>>(AppConstants.EXIT_SCENE_REQUEST_TAG);
+        var exitToMainMenuSceneSignal = exitSceneRequest.Select(_ => exitParams);
 
         return exitToMainMenuSceneSignal;
+    }
+
+    private void InitUI(DIContainer viewsContainer)
+    {
+        // Создание юи рут
+        var uiRoot = viewsContainer.Resolve<UIRootView>();
+        var uiScene = Instantiate(_sceneUIRootPrefab);
+        uiRoot.AttachSceneUI(uiScene.gameObject);
+
+        var uiSceneRootViewModel = viewsContainer.Resolve<UIGameplayRootViewModel>();
+        uiScene.Bind(uiSceneRootViewModel);
+
+        // открытие окна
+        var uiManager = viewsContainer.Resolve<GameplayUIManager>();
+        uiManager.OpenScreenGameplayPause();
     }
 }

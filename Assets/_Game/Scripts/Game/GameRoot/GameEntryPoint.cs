@@ -27,7 +27,7 @@ public class GameEntryPoint
         _coroutines = new GameObject("[COROUTINES]").AddComponent<Coroutines>();
         Object.DontDestroyOnLoad(_coroutines.gameObject);
 
-        var prefabUIRoot = Resources.Load<UIRootView>("UIRoot");
+        var prefabUIRoot = Resources.Load<UIRootView>("UI/UIRoot");
         _uiRoot = Object.Instantiate(prefabUIRoot);
         Object.DontDestroyOnLoad(_uiRoot.gameObject);
 
