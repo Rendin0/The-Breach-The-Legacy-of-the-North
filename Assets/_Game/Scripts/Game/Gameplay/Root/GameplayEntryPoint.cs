@@ -6,8 +6,14 @@ public class GameplayEntryPoint : MonoBehaviour
 {
     [SerializeField] private UIGameplayRootBinder _sceneUIRootPrefab;
 
-    public Observable<GameplayExitParams> Run(UIRootView uiRoot, GameplayEnterParams enterParams)
+    public Observable<GameplayExitParams> Run(DIContainer sceneContainer, GameplayEnterParams enterParams)
     {
+        GameplayRegistrations.Register(sceneContainer, enterParams);
+        var gameplayViewModelsContainer = new DIContainer(sceneContainer);
+        GameplayViewModelsRegistrations.Register(gameplayViewModelsContainer);
+
+
+        var uiRoot = sceneContainer.Resolve<UIRootView>();
         var uiScene = Instantiate(_sceneUIRootPrefab);
         uiRoot.AttachSceneUI(uiScene.gameObject);
 
