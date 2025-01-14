@@ -20,7 +20,7 @@ public class GameplayEntryPoint : MonoBehaviour
         var exitToMainMenuSceneSignal = exitSceneRequest.Select(_ => exitParams);
 
         return exitToMainMenuSceneSignal;
-    }
+    } 
 
     private void InitUI(DIContainer viewsContainer)
     {

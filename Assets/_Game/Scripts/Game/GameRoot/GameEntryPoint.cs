@@ -32,11 +32,11 @@ public class GameEntryPoint
         Object.DontDestroyOnLoad(_uiRoot.gameObject);
 
         var gameStateProvider = new PlayerPrefsGameStateProvider();
-        _rootContainer.RegisterInstance<IGameStateProvider>(gameStateProvider);
-        
+
         // Настройки
         gameStateProvider.LoadSettingsState();
-
+        
+        _rootContainer.RegisterInstance<IGameStateProvider>(gameStateProvider);
         _rootContainer.RegisterInstance(_uiRoot);
     }
 
