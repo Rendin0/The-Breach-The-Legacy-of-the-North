@@ -31,6 +31,12 @@ public class GameEntryPoint
         _uiRoot = Object.Instantiate(prefabUIRoot);
         Object.DontDestroyOnLoad(_uiRoot.gameObject);
 
+        var gameStateProvider = new PlayerPrefsGameStateProvider();
+        _rootContainer.RegisterInstance<IGameStateProvider>(gameStateProvider);
+        
+        // Настройки
+        gameStateProvider.LoadSettingsState();
+
         _rootContainer.RegisterInstance(_uiRoot);
     }
 
@@ -72,6 +78,10 @@ public class GameEntryPoint
 
         // Пропуск кадра, ибо новая сцена может загрузиться до выгрузки старой
         yield return null;
+
+        var isGameStateLoaded = false;
+        _rootContainer.Resolve<IGameStateProvider>().LoadGameState().Subscribe(_ => isGameStateLoaded = true);
+        yield return new WaitUntil(() =>  isGameStateLoaded);
 
         var sceneEntryPoint = Object.FindFirstObjectByType<GameplayEntryPoint>();
 
