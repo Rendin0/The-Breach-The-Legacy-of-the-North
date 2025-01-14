@@ -4,32 +4,33 @@ using ObservableCollections;
 
 public class GameStateProxy
 {
+    private readonly GameState _gameState;
+
     public ObservableList<CreatureEntityProxy> Creatures { get; } = new();
 
-    public GameStateProxy(GameState creaturesState)
+    public GameStateProxy(GameState gameState)
     {
-        creaturesState.Creatures.ForEach(c => Creatures.Add(new CreatureEntityProxy(c)));
+        this._gameState = gameState;
+        gameState.Creatures.ForEach(c => Creatures.Add(new CreatureEntityProxy(c)));
 
         Creatures.ObserveAdd().Subscribe(ev =>
         {
             var addedCreatureProxy = ev.Value;
 
-            creaturesState.Creatures.Add(new CreatureEntity
-            {
-                Id = addedCreatureProxy.Id,
-                TypeId = addedCreatureProxy.TypeId,
-                MaxHealth = addedCreatureProxy.MaxHealth.Value,
-                Health = addedCreatureProxy.Health.Value,
-                Position = addedCreatureProxy.Position.Value
-            });
+            gameState.Creatures.Add(addedCreatureProxy.Origin);
         });
 
         Creatures.ObserveRemove().Subscribe(ev =>
         {
             var removedCreatureProxy = ev.Value;
-            var removedCreature = creaturesState.Creatures.FirstOrDefault(c => c.Id == removedCreatureProxy.Id);
+            var removedCreature = gameState.Creatures.FirstOrDefault(c => c.Id == removedCreatureProxy.Id);
 
-            creaturesState.Creatures.Remove(removedCreature);
+            gameState.Creatures.Remove(removedCreature);
         });
+    }
+
+    public int GetEntityId()
+    {
+        return _gameState.GlobalEntityId++;
     }
 }
