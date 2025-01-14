@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using R3;
+using static UnityEngine.ParticleSystem;
 
 public class MainMenuEntryPoint : MonoBehaviour
 {
@@ -12,21 +13,28 @@ public class MainMenuEntryPoint : MonoBehaviour
         var mainMenuViewModelsContainer = new DIContainer(sceneContainer);
         MainMenuViewModelsRegistrations.Register(mainMenuViewModelsContainer);
 
-
-        var uiRoot = sceneContainer.Resolve<UIRootView>();
-        var uiScene = Instantiate(_sceneUIRootPrefab);
-        uiRoot.AttachSceneUI(uiScene.gameObject);
-
-        var exitSubject = new Subject<Unit>();
-        uiScene.Bind(exitSubject);
+        InitUI(mainMenuViewModelsContainer);
 
         var gameplayEnterParams = new GameplayEnterParams();
         var mainMenuExitParams = new MainMenuExitParams(gameplayEnterParams);
 
-        Debug.Log($"Main menu enter params: {enterParams?.EnterParams}");
+        var exitSceneRequest = sceneContainer.Resolve<Subject<Unit>>(AppConstants.EXIT_SCENE_REQUEST_TAG);
+        var exitToMainMenuSceneSignal = exitSceneRequest.Select(_ => mainMenuExitParams);
 
-        var exitScene = exitSubject.Select(_ => mainMenuExitParams);
+        return exitToMainMenuSceneSignal;
+    }
 
-        return exitScene;
+    private void InitUI(DIContainer viewsContainer)
+    {
+        var uiRoot = viewsContainer.Resolve<UIRootView>();
+        var uiScene = Instantiate(_sceneUIRootPrefab);
+        uiRoot.AttachSceneUI(uiScene.gameObject);
+
+        var uiSceneRootViewModel = viewsContainer.Resolve<UIMainMenuRootViewModel>();
+        uiScene.Bind(uiSceneRootViewModel);
+
+        // открытие окон
+        var uiManager = viewsContainer.Resolve<MainMenuUIManager>();
+        uiManager.OpenMainMenu();
     }
 }

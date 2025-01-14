@@ -20,6 +20,16 @@ public class GameplayUIManager : UIManager
         return viewModel;
     }
 
+    public ScreenGameplayViewModel OpenScreenGameplay()
+    {
+        var viewModel = new ScreenGameplayViewModel(this);
+        var rootUI = Container.Resolve<UIGameplayRootViewModel>();
+
+        rootUI.OpenScreen(viewModel);
+
+        return viewModel;
+    }
+
     public PopupSettingsViewModel OpenPopupSettings()
     {
         var viewModel = new PopupSettingsViewModel();

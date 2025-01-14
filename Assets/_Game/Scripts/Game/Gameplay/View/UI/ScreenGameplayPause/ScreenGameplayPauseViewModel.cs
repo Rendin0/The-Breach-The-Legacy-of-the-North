@@ -25,6 +25,6 @@ public class ScreenGameplayPauseViewModel : WindowViewModel
 
     public void RequestResume()
     {
-
+        _uiManager.OpenScreenGameplay();
     }
 }

@@ -1,0 +1,19 @@
+
+using R3;
+
+public class ScreenGameplayViewModel : WindowViewModel
+{
+    private readonly GameplayUIManager _uiManager;
+
+    public override string Id => "ScreenGameplay";
+
+    public ScreenGameplayViewModel(GameplayUIManager uiManager)
+    {
+        this._uiManager = uiManager;
+    }
+
+    public void RequestPause()
+    {
+        _uiManager.OpenScreenGameplayPause();
+    }
+}

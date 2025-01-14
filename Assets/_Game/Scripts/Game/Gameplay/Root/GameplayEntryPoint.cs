@@ -25,7 +25,6 @@ public class GameplayEntryPoint : MonoBehaviour
 
     private void InitUI(DIContainer viewsContainer)
     {
-        // Создание юи рут
         var uiRoot = viewsContainer.Resolve<UIRootView>();
         var uiScene = Instantiate(_sceneUIRootPrefab);
         uiRoot.AttachSceneUI(uiScene.gameObject);
@@ -33,8 +32,8 @@ public class GameplayEntryPoint : MonoBehaviour
         var uiSceneRootViewModel = viewsContainer.Resolve<UIGameplayRootViewModel>();
         uiScene.Bind(uiSceneRootViewModel);
 
-        // открытие окна
+        // открытие окон
         var uiManager = viewsContainer.Resolve<GameplayUIManager>();
-        uiManager.OpenScreenGameplayPause();
+        uiManager.OpenScreenGameplay();
     }
 }
