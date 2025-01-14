@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class UIRootView : MonoBehaviour 
+public class UIRootView : MonoBehaviour
 {
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private Transform _uiSceneContainer;

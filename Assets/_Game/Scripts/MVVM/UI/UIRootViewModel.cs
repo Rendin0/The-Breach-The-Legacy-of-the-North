@@ -45,7 +45,7 @@ public class UIRootViewModel : IDisposable
 
     public void ClosePopup(string id)
     {
-        var openedPopupViewModel = _openedPopups.FirstOrDefault(p  => p.Id == id);
+        var openedPopupViewModel = _openedPopups.FirstOrDefault(p => p.Id == id);
         ClosePopup(openedPopupViewModel);
     }
 

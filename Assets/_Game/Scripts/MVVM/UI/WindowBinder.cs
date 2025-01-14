@@ -1,4 +1,3 @@
-using R3;
 using UnityEngine;
 
 public abstract class WindowBinder<T> : MonoBehaviour, IWindowBinder where T : WindowViewModel

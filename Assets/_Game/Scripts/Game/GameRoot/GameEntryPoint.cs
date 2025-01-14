@@ -1,7 +1,7 @@
+using R3;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using R3;
 
 public class GameEntryPoint
 {
@@ -76,7 +76,7 @@ public class GameEntryPoint
         var sceneEntryPoint = Object.FindFirstObjectByType<GameplayEntryPoint>();
 
         var sceneContainer = _cachedSceneContainer = new DIContainer(_rootContainer);
-        
+
         sceneEntryPoint.Run(sceneContainer, gameplayEnterParams).Subscribe(gameplayExitParams =>
         {
             _coroutines.StartCoroutine(LoadAndStartMainMenu(gameplayExitParams.ExitParams));

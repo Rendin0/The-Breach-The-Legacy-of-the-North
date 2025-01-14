@@ -4,7 +4,7 @@ public class Melee : ItemBase
 {
     [SerializeField] private float damage;
     [SerializeField] private float attackRadius;
-    
+
     [SerializeField] private LayerMask attackLayer;
 
     [SerializeField] private Attack attackPrefab;

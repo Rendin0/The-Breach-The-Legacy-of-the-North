@@ -1,10 +1,10 @@
-using System;
 using R3;
+using System;
 
 public abstract class WindowViewModel : IDisposable
 {
     public Observable<WindowViewModel> CloseRequested => _closeRequested;
-    private readonly Subject<WindowViewModel> _closeRequested = new ();
+    private readonly Subject<WindowViewModel> _closeRequested = new();
 
     public abstract string Id { get; }
 

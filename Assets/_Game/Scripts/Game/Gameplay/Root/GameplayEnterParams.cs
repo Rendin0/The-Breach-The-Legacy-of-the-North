@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class GameplayEnterParams : SceneEnterParams
 {
     // Тут можно хранить параметры запуска геймплея

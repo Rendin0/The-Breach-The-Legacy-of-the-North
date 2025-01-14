@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -50,5 +49,5 @@ public class WindowsContainer : MonoBehaviour
     private static string GetPrefabPath(WindowViewModel viewModel)
     {
         return $"UI/{viewModel.Id}";
-    }   
+    }
 }

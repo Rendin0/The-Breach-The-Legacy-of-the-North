@@ -10,6 +10,6 @@ public class SpellBase : MonoBehaviour, IUsable
     {
         var creature = caster.GetComponent<CreatureBase>();
 
-        return creature != null && creature.hand.weaponType == weaponRestriction; 
+        return creature != null && creature.hand.weaponType == weaponRestriction;
     }
 }

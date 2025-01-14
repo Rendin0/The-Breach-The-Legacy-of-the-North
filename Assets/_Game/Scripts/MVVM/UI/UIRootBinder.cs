@@ -27,7 +27,7 @@ public class UIRootBinder : MonoBehaviour
             _windowsContainer.OpenPopup(e.Value);
         }));
 
-        _subscriptions.Add(viewModel.OpenedPopups.ObserveRemove().Subscribe(e => 
+        _subscriptions.Add(viewModel.OpenedPopups.ObserveRemove().Subscribe(e =>
         {
             _windowsContainer.ClosePopup(e.Value);
         }));

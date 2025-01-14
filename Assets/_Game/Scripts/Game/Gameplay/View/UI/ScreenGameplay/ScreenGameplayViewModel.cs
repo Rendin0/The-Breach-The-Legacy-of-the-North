@@ -1,6 +1,3 @@
-
-using R3;
-
 public class ScreenGameplayViewModel : WindowViewModel
 {
     private readonly GameplayUIManager _uiManager;

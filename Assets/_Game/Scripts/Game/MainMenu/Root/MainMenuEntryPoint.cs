@@ -1,7 +1,5 @@
-using System;
-using UnityEngine;
 using R3;
-using static UnityEngine.ParticleSystem;
+using UnityEngine;
 
 public class MainMenuEntryPoint : MonoBehaviour
 {

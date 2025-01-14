@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class GameplayExitParams
 {
     public MainMenuEnterParams ExitParams { get; }

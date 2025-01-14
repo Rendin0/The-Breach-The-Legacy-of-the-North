@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class MainMenuEnterParams : SceneEnterParams
 {
     public string EnterParams { get; }
