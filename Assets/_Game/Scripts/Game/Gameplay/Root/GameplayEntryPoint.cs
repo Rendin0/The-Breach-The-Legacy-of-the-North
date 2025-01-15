@@ -15,6 +15,9 @@ public class GameplayEntryPoint : MonoBehaviour
         InitUI(gameplayViewModelsContainer);
         _worldBinder.Bind(gameplayViewModelsContainer.Resolve<WorldGameplayRootViewModel>());
 
+        var creaturesSerivce = gameplayViewModelsContainer.Resolve<CreaturesSerivce>();
+        creaturesSerivce.CreateCreature("Skeleton", Vector3.zero);
+
         var mainMenuEnterParams = new MainMenuEnterParams("Lul");
         var exitParams = new GameplayExitParams(mainMenuEnterParams);
 

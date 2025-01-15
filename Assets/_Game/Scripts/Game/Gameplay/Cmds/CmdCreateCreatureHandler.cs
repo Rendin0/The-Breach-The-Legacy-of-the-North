@@ -1,23 +1,34 @@
 
+using System.Collections.Generic;
+using System.Linq;
+
 public class CmdCreateCreatureHandler : ICommandHandler<CmdCreateCreature>
 {
     private readonly GameStateProxy _gameState;
+    private readonly Dictionary<string, CreatureConfig> _configs = new();
 
-    public CmdCreateCreatureHandler(GameStateProxy gameState)
+    public CmdCreateCreatureHandler(GameStateProxy gameState, CreaturesConfig configs)
     {
         _gameState = gameState;
+
+        foreach (var config in configs.Creatures)
+        {
+            _configs[config.TypeId] = config;
+        }
     }
 
     public bool Handle(CmdCreateCreature command)
     {
         var entityId = _gameState.GetEntityId();
+        var creatureConfig = _configs[command.TypeId];
+
         var creature = new CreatureEntity()
         {
             Id = entityId,
             TypeId = command.TypeId,
-            MaxHealth = command.MaxHealth,
-            Health = command.Health,
-            Position = command.Position
+            Position = command.Position,
+            Health = creatureConfig.Health,
+            MaxHealth = creatureConfig.MaxHealth
         };
 
         var creatureProxy = new CreatureEntityProxy(creature);

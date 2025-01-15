@@ -10,12 +10,19 @@ public class CreaturesSerivce
 
     private readonly ObservableList<CreatureViewModel> _creatureViewModels = new();
 
+    private readonly Dictionary<string, CreatureConfig> _creatureConfigMap = new();
+
     public IObservableCollection<CreatureViewModel> CreatureViewModels => _creatureViewModels;
 
 
-    public CreaturesSerivce(IObservableCollection<CreatureEntityProxy> creatures, ICommandProcessor commandProcessor)
+    public CreaturesSerivce(IObservableCollection<CreatureEntityProxy> creatures, CreaturesConfig creaturesConfig,ICommandProcessor commandProcessor)
     {
         _commandProcessor = commandProcessor;
+
+        foreach (var config in creaturesConfig.Creatures)
+        {
+            _creatureConfigMap[config.TypeId] = config;
+        }
 
         foreach (var creature in creatures)
         {
@@ -40,9 +47,9 @@ public class CreaturesSerivce
         return result;
     }
 
-    public bool CreateCreature(string typeId, Vector3 position, float healt, float maxHealth)
+    public bool CreateCreature(string typeId, Vector3 position)
     {
-        var cmd = new CmdCreateCreature(typeId, position, healt, maxHealth);
+        var cmd = new CmdCreateCreature(typeId, position);
         var result = _commandProcessor.Process(cmd);
 
         return result;
@@ -50,7 +57,8 @@ public class CreaturesSerivce
 
     private void CreateCreatureViewModel(CreatureEntityProxy creatureEntityProxy)
     {
-        var creatureViewModel = new CreatureViewModel(creatureEntityProxy, this);
+        var config = _creatureConfigMap[creatureEntityProxy.TypeId];
+        var creatureViewModel = new CreatureViewModel(creatureEntityProxy, config, this);
         _creatureViewModels.Add(creatureViewModel);
         _creaturesMap[creatureViewModel.CreatureId] = creatureViewModel;
     }

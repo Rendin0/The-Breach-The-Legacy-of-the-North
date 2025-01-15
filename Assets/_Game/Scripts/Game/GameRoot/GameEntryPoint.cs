@@ -31,8 +31,10 @@ public class GameEntryPoint
         _uiRoot = Object.Instantiate(prefabUIRoot);
         Object.DontDestroyOnLoad(_uiRoot.gameObject);
 
-        var gameStateProvider = new PlayerPrefsGameStateProvider();
+        var configProvider = new LocalConfigProvider();
+        _rootContainer.RegisterInstance<IConfigProvider>(configProvider);
 
+        var gameStateProvider = new PlayerPrefsGameStateProvider();
         // Настройки
         gameStateProvider.LoadSettingsState();
         
@@ -40,8 +42,10 @@ public class GameEntryPoint
         _rootContainer.RegisterInstance(_uiRoot);
     }
 
-    private void RunGame()
+    private async void RunGame()
     {
+        await _rootContainer.Resolve<IConfigProvider>().LoadGameConfig();
+
 #if UNITY_EDITOR
         var sceneName = SceneManager.GetActiveScene().name;
         if (sceneName == Scenes.GAMEPLAY)

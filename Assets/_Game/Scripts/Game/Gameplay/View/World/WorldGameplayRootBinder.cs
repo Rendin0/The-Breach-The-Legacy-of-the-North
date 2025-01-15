@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class WorldGameplayRootBinder : MonoBehaviour
 {
-    [SerializeField] private CreatureBinder _creaturePrefab;
-
     private readonly Dictionary<int, CreatureBinder> _creatures = new();
     private readonly CompositeDisposable _disposables = new();
 
@@ -41,7 +39,11 @@ public class WorldGameplayRootBinder : MonoBehaviour
 
     private void CreateCreature(CreatureViewModel viewModel)
     {
-        var created = Instantiate(_creaturePrefab);
+        var creatureType = viewModel.TypeId;
+        var creaturePrefabPath = $"Gameplay/Creatures/Creature_{creatureType}";
+        var prefab = Resources.Load<CreatureBinder>(creaturePrefabPath);
+
+        var created = Instantiate(prefab);
         created.Bind(viewModel);
 
         _creatures[viewModel.CreatureId] = created;
