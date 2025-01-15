@@ -1,11 +1,12 @@
 using R3;
 using ObservableCollections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class CreaturesSerivce
 {
     private readonly ICommandProcessor _commandProcessor;
-    private readonly Dictionary<int, CreatureViewModel> _creaturesMap;
+    private readonly Dictionary<int, CreatureViewModel> _creaturesMap = new();
 
     private readonly ObservableList<CreatureViewModel> _creatureViewModels = new();
 
@@ -23,7 +24,7 @@ public class CreaturesSerivce
 
         creatures.ObserveAdd().Subscribe(c =>
         {
-               CreateCreatureViewModel(c.Value);
+            CreateCreatureViewModel(c.Value);
         });
 
         creatures.ObserveRemove().Subscribe(c =>
@@ -39,11 +40,19 @@ public class CreaturesSerivce
         return result;
     }
 
+    public bool CreateCreature(string typeId, Vector3 position, float healt, float maxHealth)
+    {
+        var cmd = new CmdCreateCreature(typeId, position, healt, maxHealth);
+        var result = _commandProcessor.Process(cmd);
+
+        return result;
+    }
+
     private void CreateCreatureViewModel(CreatureEntityProxy creatureEntityProxy)
     {
         var creatureViewModel = new CreatureViewModel(creatureEntityProxy, this);
         _creatureViewModels.Add(creatureViewModel);
-        _creaturesMap[creatureEntityProxy.Id] = creatureViewModel;
+        _creaturesMap[creatureViewModel.CreatureId] = creatureViewModel;
     }
 
     private void RemoveCreatureViewModel(CreatureEntityProxy creatureEntityProxy)

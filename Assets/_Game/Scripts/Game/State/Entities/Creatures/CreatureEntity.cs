@@ -6,7 +6,7 @@ using UnityEngine;
 public class CreatureEntity : Entity
 {
     public string TypeId;
-    public Vector2 Position;
+    public Vector3 Position;
     public float Health;
     public float MaxHealth;
 }

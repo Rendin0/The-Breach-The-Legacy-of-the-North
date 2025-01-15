@@ -31,6 +31,6 @@ public class GameStateProxy
 
     public int GetEntityId()
     {
-        return _gameState.GlobalEntityId++;
+        return _gameState.GetEntityId();
     }
 }

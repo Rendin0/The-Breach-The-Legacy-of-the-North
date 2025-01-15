@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameplayEntryPoint : MonoBehaviour
 {
     [SerializeField] private UIGameplayRootBinder _sceneUIRootPrefab;
+    [SerializeField] private WorldGameplayRootBinder _worldBinder;
 
     public Observable<GameplayExitParams> Run(DIContainer sceneContainer, GameplayEnterParams enterParams)
     {
@@ -12,6 +13,7 @@ public class GameplayEntryPoint : MonoBehaviour
         GameplayViewModelsRegistrations.Register(gameplayViewModelsContainer);
 
         InitUI(gameplayViewModelsContainer);
+        _worldBinder.Bind(gameplayViewModelsContainer.Resolve<WorldGameplayRootViewModel>());
 
         var mainMenuEnterParams = new MainMenuEnterParams("Lul");
         var exitParams = new GameplayExitParams(mainMenuEnterParams);

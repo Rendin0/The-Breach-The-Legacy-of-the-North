@@ -1,11 +1,11 @@
 
 using System.Linq;
 
-public class CmdHandlerDamageCreature : ICommandHandler<CmdDamageCreature>
+public class CmdDamageCreatureHandler : ICommandHandler<CmdDamageCreature>
 {
     private readonly GameStateProxy _gameState;
 
-    public CmdHandlerDamageCreature(GameStateProxy gameState)
+    public CmdDamageCreatureHandler(GameStateProxy gameState)
     {
         this._gameState = gameState;
     }

@@ -7,7 +7,7 @@ public class CreatureEntityProxy : EntityProxy
     public CreatureEntity Origin { get; }
 
     public string TypeId { get; }
-    public ReactiveProperty<Vector2> Position { get; }
+    public ReactiveProperty<Vector3> Position { get; }
     public ReactiveProperty<float> Health { get; }
     public ReactiveProperty<float> MaxHealth { get; }
 
@@ -17,7 +17,7 @@ public class CreatureEntityProxy : EntityProxy
         Origin = creatureEntity;
 
         TypeId = creatureEntity.TypeId;
-        Position = new ReactiveProperty<Vector2>(creatureEntity.Position);
+        Position = new ReactiveProperty<Vector3>(creatureEntity.Position);
         Health = new ReactiveProperty<float>(creatureEntity.Health);
         MaxHealth = new ReactiveProperty<float>(creatureEntity.MaxHealth);
 

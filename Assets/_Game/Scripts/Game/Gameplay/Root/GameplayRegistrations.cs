@@ -8,7 +8,8 @@ public static class GameplayRegistrations
         var gameStateProvider = sceneContainer.Resolve<IGameStateProvider>();
         var gameState = gameStateProvider.GameState;
         var processor = new CommandProcessor(gameStateProvider);
-        processor.RegisterHandler(new CmdHandlerDamageCreature(gameStateProvider.GameState));
+        processor.RegisterHandler(new CmdDamageCreatureHandler(gameState));
+        processor.RegisterHandler(new CmdCreateCreatureHandler(gameState));
 
 
         sceneContainer.RegisterFactory(_ => new CreaturesSerivce(gameState.Creatures, processor)).AsSingle();

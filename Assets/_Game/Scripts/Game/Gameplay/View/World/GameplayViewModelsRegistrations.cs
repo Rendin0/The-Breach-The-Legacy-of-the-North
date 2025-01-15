@@ -5,5 +5,7 @@ public static class GameplayViewModelsRegistrations
         sceneContainer.RegisterFactory(c => new GameplayUIManager(sceneContainer)).AsSingle();
 
         sceneContainer.RegisterFactory(c => new UIGameplayRootViewModel()).AsSingle();
+
+        sceneContainer.RegisterFactory(c => new WorldGameplayRootViewModel(sceneContainer.Resolve<CreaturesSerivce>())).AsSingle();
     }
 }
