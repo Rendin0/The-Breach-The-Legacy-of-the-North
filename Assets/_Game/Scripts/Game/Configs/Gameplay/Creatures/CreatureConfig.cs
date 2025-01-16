@@ -8,7 +8,7 @@ public enum Fractions
 }
 
 
-[CreateAssetMenu(fileName = "CreatureConfig", menuName = "Game Config/Creatures/New Creature Config")]
+[CreateAssetMenu(fileName = "CreatureConfig_", menuName = "Game Config/Creatures/New Creature Config")]
 public class CreatureConfig : ScriptableObject
 {
     public string TypeId;

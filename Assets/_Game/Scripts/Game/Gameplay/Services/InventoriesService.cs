@@ -11,13 +11,20 @@ public class InventoriesService
     private readonly Dictionary<int, PopupInventoryViewModel> _inventoriesMap = new();
     private readonly ObservableList<PopupInventoryViewModel> _inventoryViewModels = new();
 
+    private readonly Dictionary<string, ItemConfig> _itemsConfig = new();
+
     public IObservableCollection<PopupInventoryViewModel> InventoryViewModels => _inventoryViewModels;
 
-    public InventoriesService(IObservableCollection<InventoryGrid> inventories, ICommandProcessor commandProcessor)
+    public InventoriesService(IObservableCollection<InventoryGrid> inventories, ItemsConfig itemsConfig, ICommandProcessor commandProcessor)
     {
         _commandProcessor = commandProcessor;
 
-        foreach (var inventory in  inventories)
+        foreach (var item in itemsConfig.Items)
+        {
+            _itemsConfig[item.ItemId] = item;
+        }
+
+        foreach (var inventory in inventories)
         {
             CreateInventoryViewModel(inventory);
         }

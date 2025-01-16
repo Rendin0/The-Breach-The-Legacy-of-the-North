@@ -6,5 +6,6 @@ public class GameConfig : ScriptableObject
 {
     // Не хранить префабы!
     public CreaturesConfig CreaturesConfig;
+    public ItemsConfig ItemsConfig;
 
 }

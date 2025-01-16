@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class CmdCreateInventoryHandler : ICommandHandler<CmdCreateInventory>
 {
@@ -31,6 +32,7 @@ public class CmdCreateInventoryHandler : ICommandHandler<CmdCreateInventory>
             return true;
         }
 
+        Debug.LogError($"Entity with {command.OwnerId} id aleady have an inventory");
         return false;
     }
 }
