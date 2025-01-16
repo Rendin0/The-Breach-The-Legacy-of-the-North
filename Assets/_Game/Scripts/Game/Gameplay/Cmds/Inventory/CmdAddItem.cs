@@ -1,11 +1,11 @@
 
 public class CmdAddItem : ICommand
 {
-    public readonly string InventoryId;
+    public readonly int InventoryId;
     public readonly string ItemId;
-    public readonly int Amount;
+    public int Amount;
 
-    public CmdAddItem(string inventoryId, string itemId, int amount)
+    public CmdAddItem(int inventoryId, string itemId, int amount)
     {
         InventoryId = inventoryId;
         ItemId = itemId;

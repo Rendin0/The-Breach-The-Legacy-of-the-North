@@ -46,12 +46,23 @@ public class InventoriesService
         var result = _commandProcessor.Process(command);
         return result;
     }
-
     public PopupInventoryViewModel GetInventory(int ownerId)
     {
         return _inventoriesMap[ownerId];
     }
 
+    public bool AddItemInInventorySlot(int slotIndex, int ownerId, string itemId, int amount = 1)
+    {
+        var command = new CmdAddItemInSlot(ownerId, slotIndex, itemId, amount);
+        var result = _commandProcessor.Process(command);
+        return result;
+    }
+    public bool AddItemInInventory(int ownerId, string itemId, int amount = 1)
+    {
+        var command = new CmdAddItem(ownerId, itemId, amount);
+        var result = _commandProcessor.Process(command); 
+        return result;
+    }
 
     private void CreateInventoryViewModel(InventoryGrid inventory)
     {

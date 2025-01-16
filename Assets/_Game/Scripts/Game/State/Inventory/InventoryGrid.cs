@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class InventoryGrid
 {
-    public  readonly InventoryGridData Origin;
+    public readonly InventoryGridData Origin;
 
     public int OwnerId { get; }
     public ObservableList<InventorySlot> Slots { get; } = new();

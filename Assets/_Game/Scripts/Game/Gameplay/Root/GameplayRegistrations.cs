@@ -8,12 +8,14 @@ public static class GameplayRegistrations
         var gameStateProvider = sceneContainer.Resolve<IGameStateProvider>();
         var gameState = gameStateProvider.GameState;
         var processor = new CommandProcessor(gameStateProvider);
-        processor.RegisterHandler(new CmdDamageCreatureHandler(gameState));
-        processor.RegisterHandler(new CmdCreateInventoryHandler(gameState));
-
         var configProvider = sceneContainer.Resolve<IConfigProvider>();
         var gameConfig = configProvider.GameConfig;
+
+        processor.RegisterHandler(new CmdDamageCreatureHandler(gameState));
+        processor.RegisterHandler(new CmdCreateInventoryHandler(gameState));
         processor.RegisterHandler(new CmdCreateCreatureHandler(gameState, gameConfig.CreaturesConfig));
+        processor.RegisterHandler(new CmdAddItemHandler(processor, gameConfig.ItemsConfig, gameState));
+        processor.RegisterHandler(new CmdAddItemInSlotHandler(gameConfig.ItemsConfig, gameState));
 
         sceneContainer.RegisterFactory(_ => new CreaturesSerivce(gameState.Creatures, gameConfig.CreaturesConfig,processor)).AsSingle();
         sceneContainer.RegisterFactory(_ => new InventoriesService(gameState.Inventories, gameConfig.ItemsConfig, processor)).AsSingle();

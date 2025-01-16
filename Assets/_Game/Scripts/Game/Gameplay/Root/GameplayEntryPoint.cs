@@ -20,6 +20,10 @@ public class GameplayEntryPoint : MonoBehaviour
 
         var inventoriesService = gameplayViewModelsContainer.Resolve<InventoriesService>();
         //inventoriesService.CreateInventory(0, 16);
+        inventoriesService.AddItemInInventory(0, "Sword", 1);
+        inventoriesService.AddItemInInventory(0, "Sword", 1);
+        inventoriesService.AddItemInInventory(0, "Lava", 3);
+        inventoriesService.AddItemInInventory(0, "Lava", 3);
 
         var mainMenuEnterParams = new MainMenuEnterParams("Lul");
         var exitParams = new GameplayExitParams(mainMenuEnterParams);
