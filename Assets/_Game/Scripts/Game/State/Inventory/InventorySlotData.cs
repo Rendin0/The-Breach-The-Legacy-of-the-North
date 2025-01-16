@@ -4,6 +4,6 @@ using System;
 [Serializable]
 public class InventorySlotData
 {
-    public string ItemId;
-    public int Amount;
+    public string ItemId = Items.Nothing;
+    public int Amount = 0;
 }
