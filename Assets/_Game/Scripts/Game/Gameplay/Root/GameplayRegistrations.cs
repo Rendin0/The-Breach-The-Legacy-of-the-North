@@ -9,6 +9,7 @@ public static class GameplayRegistrations
         var gameState = gameStateProvider.GameState;
         var processor = new CommandProcessor(gameStateProvider);
         processor.RegisterHandler(new CmdDamageCreatureHandler(gameState));
+        processor.RegisterHandler(new CmdCreateInventoryHandler(gameState));
 
         var configProvider = sceneContainer.Resolve<IConfigProvider>();
         var gameConfig = configProvider.GameConfig;

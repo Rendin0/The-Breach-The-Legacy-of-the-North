@@ -29,6 +29,5 @@ public class PopupInventoryBinder : PopupBinder<PopupInventoryViewModel>
         {
             _slots[i].Bind(viewModel.Slots[i]);
         }
-
     }
 }

@@ -6,8 +6,8 @@ using UnityEngine;
 public class CreaturesSerivce
 {
     private readonly ICommandProcessor _commandProcessor;
-    private readonly Dictionary<int, CreatureViewModel> _creaturesMap = new();
 
+    private readonly Dictionary<int, CreatureViewModel> _creaturesMap = new();
     private readonly ObservableList<CreatureViewModel> _creatureViewModels = new();
 
     private readonly Dictionary<string, CreatureConfig> _creatureConfigMap = new();
