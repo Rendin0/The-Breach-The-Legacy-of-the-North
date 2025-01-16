@@ -40,6 +40,11 @@ public class InventoriesService
         return result;
     }
 
+    public PopupInventoryViewModel GetInventory(int ownerId)
+    {
+        return _inventoriesMap[ownerId];
+    }
+
 
     private void CreateInventoryViewModel(InventoryGrid inventory)
     {

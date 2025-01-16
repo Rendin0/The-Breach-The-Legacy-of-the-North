@@ -13,4 +13,9 @@ public class ScreenGameplayViewModel : WindowViewModel
     {
         _uiManager.OpenScreenGameplayPause();
     }
+
+    public void RequestInventory(int ownerId)
+    {
+        _uiManager.OpenPopupInventory(ownerId);
+    }
 }

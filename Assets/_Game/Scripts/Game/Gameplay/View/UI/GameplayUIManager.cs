@@ -39,4 +39,13 @@ public class GameplayUIManager : UIManager
         return viewModel;
     }
 
+    public PopupInventoryViewModel OpenPopupInventory(int ownerId)
+    {
+        var rootUI = Container.Resolve<UIGameplayRootViewModel>();
+        var inventoryService = Container.Resolve<InventoriesService>();
+        var viewModel = inventoryService.GetInventory(ownerId);
+        rootUI.OpenPopup(viewModel);
+        return viewModel;
+    }
+
 }

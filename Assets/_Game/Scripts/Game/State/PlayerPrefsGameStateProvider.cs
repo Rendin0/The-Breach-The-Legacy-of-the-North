@@ -49,7 +49,8 @@ public class PlayerPrefsGameStateProvider : IGameStateProvider
         // —юда можно записать состо€ние по умолчанию
         _gameStateOrigin = new()
         {
-            Creatures = new()
+            Creatures = new(),
+            Inventories = new()
         };
 
         return new GameStateProxy(_gameStateOrigin);

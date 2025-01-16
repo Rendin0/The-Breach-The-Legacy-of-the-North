@@ -18,6 +18,9 @@ public class GameplayEntryPoint : MonoBehaviour
         var creaturesSerivce = gameplayViewModelsContainer.Resolve<CreaturesSerivce>();
         creaturesSerivce.CreateCreature("Skeleton", Vector3.zero);
 
+        var inventoriesService = gameplayViewModelsContainer.Resolve<InventoriesService>();
+        inventoriesService.CreateInventory(0, 16);
+
         var mainMenuEnterParams = new MainMenuEnterParams("Lul");
         var exitParams = new GameplayExitParams(mainMenuEnterParams);
 

@@ -14,17 +14,19 @@ public class InventorySlotBinder : MonoBehaviour
     {
         viewModel.Amount.Subscribe(amount =>
         {
-            _amount.text = (amount == 0 || amount == 1 ? "" : amount.ToString()); 
+            _amount.text = (amount == 0 || amount == 1 ? "" : amount.ToString());
         });
         viewModel.ItemId.Subscribe(id =>
         {
-            if (id == null)
+            var sprite = Resources.Load<Sprite>($"UI/Items/{id}");
+            _image.sprite = sprite;
+
+            if (sprite == null)
             {
-                _image = null;
+                _image.color = new Color(1, 1, 1, 0);
                 return;
             }
-
-            _image = Resources.Load<Image>($"UI/Items/{id}");
+            _image.color = new Color(1, 1, 1, 1);
         });
     }
 }

@@ -8,7 +8,7 @@ public class PopupInventoryViewModel : WindowViewModel
 {
     public override string Id => "PopupInventory";
 
-    public List<InventorySlotViewModel> Slots { get; }
+    public List<InventorySlotViewModel> Slots { get; } = new();
 
     public PopupInventoryViewModel(InventoryGrid origin)
     {

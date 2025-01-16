@@ -20,8 +20,11 @@ public class CmdCreateInventoryHandler : ICommandHandler<CmdCreateInventory>
             var inventoryData = new InventoryGridData()
             {
                 OwnerId = command.OwnerId,
-                Slots = new List<InventorySlotData>(command.Size)
+                Slots = new List<InventorySlotData>()
             };
+            for (int i = 0; i < command.Size; i++)
+                inventoryData.Slots.Add(new InventorySlotData());
+
             inventory = new InventoryGrid(inventoryData);
             _gameState.Inventories.Add(inventory);
 
