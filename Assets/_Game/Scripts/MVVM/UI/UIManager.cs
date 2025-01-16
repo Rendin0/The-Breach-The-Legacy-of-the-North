@@ -1,4 +1,6 @@
 
+using System;
+
 public abstract class UIManager
 {
     protected readonly DIContainer Container;
@@ -7,4 +9,5 @@ public abstract class UIManager
     {
         Container = container;
     }
+
 }

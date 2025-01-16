@@ -6,7 +6,10 @@ using System;
 
 public class PopupInventoryViewModel : WindowViewModel
 {
+    public GameplayUIManager UIManager;
+
     public override string Id => "PopupInventory";
+    public int OwnerId;
 
     public List<InventorySlotViewModel> Slots { get; } = new();
 
@@ -26,6 +29,8 @@ public class PopupInventoryViewModel : WindowViewModel
         {
             RemoveSlotViewModel(s.Value);
         });
+
+        OwnerId = origin.OwnerId;
     }
 
     private void CreateSlotViewModel(InventorySlot origin)
@@ -38,5 +43,10 @@ public class PopupInventoryViewModel : WindowViewModel
     private void RemoveSlotViewModel(InventorySlot origin)
     {
         throw new NotImplementedException();
+    }
+
+    public void RequestSortInventory()
+    {
+        UIManager.RequestSortInventory(OwnerId);
     }
 }

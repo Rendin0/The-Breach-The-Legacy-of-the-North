@@ -10,11 +10,12 @@ public enum ItemType
 
 public enum ItemRarity
 {
-    Gray,
-    Green,
-    Blue,
-    Yellow,
-    Red
+    Nothing = -1,
+    Gray = 0,
+    Green = 1,
+    Blue = 2,
+    Yellow = 3,
+    Red = 4
 }
 
 public abstract class ItemConfig : ScriptableObject

@@ -18,6 +18,7 @@ public class InventoriesService
     public InventoriesService(IObservableCollection<InventoryGrid> inventories, ItemsConfig itemsConfig, ICommandProcessor commandProcessor)
     {
         _commandProcessor = commandProcessor;
+        
 
         foreach (var item in itemsConfig.Items)
         {
@@ -71,7 +72,6 @@ public class InventoriesService
             Debug.LogError("Trying to add inventory to already existing one");
             return;
         }
-
         var viewModel = new PopupInventoryViewModel(inventory);
         _inventoriesMap[inventory.OwnerId] = viewModel;
         _inventoryViewModels.Add(viewModel);
@@ -84,5 +84,12 @@ public class InventoriesService
             _inventoryViewModels.Remove(viewModel);
         }
 
+    }
+
+    public bool SortInventory(int ownerId)
+    {
+        var cmd = new CmdSortInventory(_inventoriesMap[ownerId]);
+        var result = _commandProcessor.Process(cmd);
+        return result;
     }
 }

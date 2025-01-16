@@ -23,7 +23,9 @@ public class GameplayEntryPoint : MonoBehaviour
         inventoriesService.AddItemInInventory(0, "Sword", 1);
         inventoriesService.AddItemInInventory(0, "Sword", 1);
         inventoriesService.AddItemInInventory(0, "Lava", 3);
-        inventoriesService.AddItemInInventory(0, "Lava", 3);
+        inventoriesService.AddItemInInventory(0, "CoolLava", 6);
+        inventoriesService.AddItemInInventory(0, "MediumLava", 8);
+        inventoriesService.AddItemInInventorySlot(14, 0, "Lava", 2);
 
         var mainMenuEnterParams = new MainMenuEnterParams("Lul");
         var exitParams = new GameplayExitParams(mainMenuEnterParams);

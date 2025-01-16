@@ -16,6 +16,7 @@ public static class GameplayRegistrations
         processor.RegisterHandler(new CmdCreateCreatureHandler(gameState, gameConfig.CreaturesConfig));
         processor.RegisterHandler(new CmdAddItemHandler(processor, gameConfig.ItemsConfig, gameState));
         processor.RegisterHandler(new CmdAddItemInSlotHandler(gameConfig.ItemsConfig, gameState));
+        processor.RegisterHandler(new CmdSortInventoryHandler(gameState, gameConfig.ItemsConfig));
 
         sceneContainer.RegisterFactory(_ => new CreaturesSerivce(gameState.Creatures, gameConfig.CreaturesConfig,processor)).AsSingle();
         sceneContainer.RegisterFactory(_ => new InventoriesService(gameState.Inventories, gameConfig.ItemsConfig, processor)).AsSingle();
