@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 794a5751505515d4f8591fd4136b7031, type: 3}
   m_Name: ItemWeaponConfig_Sword
   m_EditorClassIdentifier: 
+  Rarity: 4
   ItemId: Sword
+  MaxStack: 1
   Damage: 20

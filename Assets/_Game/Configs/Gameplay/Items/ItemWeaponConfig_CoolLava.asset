@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 794a5751505515d4f8591fd4136b7031, type: 3}
   m_Name: ItemWeaponConfig_CoolLava
   m_EditorClassIdentifier: 
-  Rarity: 0
-  ItemId: 
-  MaxStack: 1
+  Rarity: 4
+  ItemId: CoolLava
+  MaxStack: 5
   Damage: 0

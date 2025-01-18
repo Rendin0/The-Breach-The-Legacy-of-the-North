@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 794a5751505515d4f8591fd4136b7031, type: 3}
   m_Name: Nothing
   m_EditorClassIdentifier: 
-  Rarity: 0
-  ItemId: 
+  Rarity: -1
+  ItemId: Nothing
   MaxStack: 1
   Damage: 0

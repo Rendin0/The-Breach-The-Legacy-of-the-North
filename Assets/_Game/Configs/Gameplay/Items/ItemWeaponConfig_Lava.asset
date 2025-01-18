@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ItemWeaponConfig_Lava
   m_EditorClassIdentifier: 
   Rarity: 0
-  ItemId: 
-  MaxStack: 1
+  ItemId: Lava
+  MaxStack: 5
   Damage: 0

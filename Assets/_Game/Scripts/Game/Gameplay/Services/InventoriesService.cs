@@ -3,6 +3,9 @@ using ObservableCollections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using UnityEditor.MPE;
 
 public class InventoriesService
 {
@@ -18,7 +21,7 @@ public class InventoriesService
     public InventoriesService(IObservableCollection<InventoryGrid> inventories, ItemsConfig itemsConfig, ICommandProcessor commandProcessor)
     {
         _commandProcessor = commandProcessor;
-        
+
 
         foreach (var item in itemsConfig.Items)
         {
@@ -52,6 +55,11 @@ public class InventoriesService
         return _inventoriesMap[ownerId];
     }
 
+    private bool AddItemInInventorySlot(CmdAddItemInSlot cmd)
+    {
+        return _commandProcessor.Process(cmd);
+    }
+
     public bool AddItemInInventorySlot(int slotIndex, int ownerId, string itemId, int amount = 1)
     {
         var command = new CmdAddItemInSlot(ownerId, slotIndex, itemId, amount);
@@ -61,7 +69,7 @@ public class InventoriesService
     public bool AddItemInInventory(int ownerId, string itemId, int amount = 1)
     {
         var command = new CmdAddItem(ownerId, itemId, amount);
-        var result = _commandProcessor.Process(command); 
+        var result = _commandProcessor.Process(command);
         return result;
     }
 
@@ -72,10 +80,26 @@ public class InventoriesService
             Debug.LogError("Trying to add inventory to already existing one");
             return;
         }
-        var viewModel = new PopupInventoryViewModel(inventory);
+        var viewModel = new PopupInventoryViewModel(inventory, this);
+
         _inventoriesMap[inventory.OwnerId] = viewModel;
         _inventoryViewModels.Add(viewModel);
     }
+
+    public void SwapSlots(int prev, int curr, PopupInventoryViewModel viewModel)
+    {
+        var cmd = new CmdAddItemInSlot(viewModel.OwnerId, curr, viewModel.Slots[prev].ItemId.Value,
+            viewModel.Slots[prev].Amount.Value);
+        viewModel.Slots[prev].Amount.OnNext(0);
+        viewModel.Slots[prev].ItemId.OnNext(Items.Nothing);
+
+        // Не получилось полостью закинуть, в команде хранится тип и кол-во предмета, кидаем их в предыдущий слот
+        if (!AddItemInInventorySlot(cmd))
+        {
+            AddItemInInventorySlot(prev, viewModel.OwnerId, cmd.ItemId, cmd.Amount);
+        }
+    }
+
     private void RemoveInventoryViewModel(InventoryGrid inventory)
     {
         if (_inventoriesMap.TryGetValue(inventory.OwnerId, out var viewModel))

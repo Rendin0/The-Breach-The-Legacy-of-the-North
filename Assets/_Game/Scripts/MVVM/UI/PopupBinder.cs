@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public abstract class PopupBinder<T> : WindowBinder<T> where T : WindowViewModel
 {
-    [SerializeField] private Button _btnClose;
-    [SerializeField] private Button _btnCloseAlt;
+    [SerializeField] protected Button _btnClose;
+    [SerializeField] protected Button _btnCloseAlt;
 
     protected virtual void Start()
     {
@@ -14,8 +14,8 @@ public abstract class PopupBinder<T> : WindowBinder<T> where T : WindowViewModel
 
     protected virtual void OnDestroy()
     {
-        _btnClose?.onClick.RemoveListener(OnCloseButtonClick);
-        _btnCloseAlt?.onClick.RemoveListener(OnCloseButtonClick);
+        _btnClose?.onClick.RemoveAllListeners();
+        _btnCloseAlt?.onClick.RemoveAllListeners();
     }
 
     protected virtual void OnCloseButtonClick()
