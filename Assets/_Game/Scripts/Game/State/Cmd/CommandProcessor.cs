@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class CommandProcessor : ICommandProcessor
 {
@@ -28,6 +29,8 @@ public class CommandProcessor : ICommandProcessor
 
             return result;
         }
+
+        Debug.LogError($"Handler for {typeof(TCommand)} not found");
         return false;
     }
 

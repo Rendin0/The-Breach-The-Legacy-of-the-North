@@ -39,21 +39,12 @@ public class InventorySlotBinder : Selectable, IPointerDownHandler
         var itemAmountChangedSub =
             viewModel.Amount.Subscribe(amount =>
             {
-                _amount.text = (amount == 0 || amount == 1 ? "" : amount.ToString());
+                ChangeAmount(amount);
             });
         var itemIdChangedSub =
             viewModel.ItemId.Subscribe(id =>
             {
-                var sprite = Resources.Load<Sprite>($"UI/Items/{id}");
-
-                _image.sprite = sprite;
-
-                if (sprite == null)
-                {
-                    _image.color = new Color(1, 1, 1, 0);
-                    return;
-                }
-                _image.color = new Color(1, 1, 1, 1);
+                ChangeImage(id);
             });
 
 
@@ -62,6 +53,25 @@ public class InventorySlotBinder : Selectable, IPointerDownHandler
         _subs.Add(itemIdChangedSub);
 
         _viewModel = viewModel;
+    }
+
+    private void ChangeAmount(int amount)
+    {
+        _amount.text = (amount == 0 || amount == 1 ? "" : amount.ToString());
+    }
+
+    private void ChangeImage(string id)
+    {
+        var sprite = Resources.Load<Sprite>($"UI/Items/{id}");
+
+        _image.sprite = sprite;
+
+        if (sprite == null)
+        {
+            _image.color = new Color(1, 1, 1, 0);
+            return;
+        }
+        _image.color = new Color(1, 1, 1, 1);
     }
 
 }

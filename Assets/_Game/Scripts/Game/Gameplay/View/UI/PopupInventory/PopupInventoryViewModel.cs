@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 public class PopupInventoryViewModel : WindowViewModel
 {
     public GameplayUIManager UIManager;
+    public readonly InventoryGrid Origin;
 
     public override string Id => "PopupInventory";
     public int OwnerId;
@@ -21,6 +22,8 @@ public class PopupInventoryViewModel : WindowViewModel
 
     public PopupInventoryViewModel(InventoryGrid origin, InventoriesService service)
     {
+        Origin = origin;
+
         foreach (var slot in origin.Slots)
         {
             CreateSlotViewModel(slot);

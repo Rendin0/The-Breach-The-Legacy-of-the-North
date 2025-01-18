@@ -19,6 +19,7 @@ public class GameplayEntryPoint : MonoBehaviour
         //creaturesSerivce.CreateCreature("Skeleton", Vector3.zero);
 
         var inventoriesService = gameplayViewModelsContainer.Resolve<InventoriesService>();
+        //inventoriesService.AddSlotsToInventory(0, 16);
         //inventoriesService.CreateInventory(0, 16);
         //inventoriesService.AddItemInInventory(0, "Sword", 1);
         //inventoriesService.AddItemInInventory(0, "Sword", 1);

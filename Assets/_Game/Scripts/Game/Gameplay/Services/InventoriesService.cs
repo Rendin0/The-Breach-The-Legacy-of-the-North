@@ -77,7 +77,7 @@ public class InventoriesService
     {
         if (_inventoriesMap.ContainsKey(inventory.OwnerId))
         {
-            Debug.LogError("Trying to add inventory to already existing one");
+            Debug.LogError("CreateInventoryViewModel: Trying to add inventory to already existing one");
             return;
         }
         var viewModel = new PopupInventoryViewModel(inventory, this);
@@ -98,6 +98,19 @@ public class InventoriesService
         {
             AddItemInInventorySlot(prev, viewModel.OwnerId, cmd.ItemId, cmd.Amount);
         }
+    }
+
+    public bool AddSlotsToInventory(int inventoryId, int amount)
+    {
+        if (_inventoriesMap.TryGetValue(inventoryId, out var viewModel))
+        {
+            var cmd = new CmdAddSlotsToInventory(viewModel, amount);
+            var result = _commandProcessor.Process(cmd);
+            return result;
+        }
+
+        Debug.LogError($"AddSlotsToInventory: Couldnt find inventory with id {inventoryId}");
+        return false;
     }
 
     private void RemoveInventoryViewModel(InventoryGrid inventory)
