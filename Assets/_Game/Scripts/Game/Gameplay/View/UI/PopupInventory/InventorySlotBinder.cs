@@ -7,28 +7,30 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlotBinder : MonoBehaviour
+public class InventorySlotBinder : Selectable, IPointerDownHandler
 {
     [SerializeField] private Image _image;
     [SerializeField] private TMP_Text _amount;
-    [SerializeField] private Button _button;
 
     private InventorySlotViewModel _viewModel;
     private CompositeDisposable _subs = new();
 
-    protected void Start()
+    public override void OnPointerDown(PointerEventData eventData)
     {
-        _button.onClick.AddListener(OnSelected);
-    }
-
-    private void OnSelected()
-    {
+        base.OnPointerDown(eventData);
         _viewModel.RequestSelect();
     }
 
-    protected void OnDestroy()
+    protected override void Start()
     {
-        _button.onClick.RemoveAllListeners();
+        base.Start();
+
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+
         _subs.Dispose();
     }
 

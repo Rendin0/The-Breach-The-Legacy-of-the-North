@@ -147,7 +147,6 @@ GameObject:
   - component: {fileID: 7747489177092717822}
   - component: {fileID: 3301529359436475477}
   - component: {fileID: 1472442890788669248}
-  - component: {fileID: 1821980806610408507}
   m_Layer: 5
   m_Name: InventorySlot
   m_TagString: Untagged
@@ -196,21 +195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f238380926248c34cbd16fdfe6c5139a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 6740587517056265445}
-  _amount: {fileID: 7346355394991199906}
-  _button: {fileID: 1821980806610408507}
---- !u!114 &1821980806610408507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2653282116474731255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
     m_WrapAround: 0
@@ -240,9 +224,8 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 6740587517056265445}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
+  _image: {fileID: 6740587517056265445}
+  _amount: {fileID: 7346355394991199906}
 --- !u!1 &7650540464611288475
 GameObject:
   m_ObjectHideFlags: 0
