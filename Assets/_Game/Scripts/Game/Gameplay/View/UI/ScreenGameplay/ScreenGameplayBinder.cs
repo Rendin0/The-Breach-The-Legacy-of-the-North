@@ -6,6 +6,8 @@ public class ScreenGameplayBinder : WindowBinder<ScreenGameplayViewModel>
     [SerializeField] private Button _btnPause;
     [SerializeField] private Button _btnInventory;
 
+
+
     private void OnEnable()
     {
         _btnPause.onClick.AddListener(OnRequestPause);

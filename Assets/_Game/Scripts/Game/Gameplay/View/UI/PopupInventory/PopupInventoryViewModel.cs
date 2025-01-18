@@ -57,7 +57,7 @@ public class PopupInventoryViewModel : WindowViewModel
                 tmpSelected = currSeleted = -1;
             }
 
-            if (tmpSelected != -1 && Slots[tmpSelected].ItemId.Value != Items.Nothing)
+            if (tmpSelected != -1 && Slots[tmpSelected].ItemId.Value != ItemsTypes.Nothing)
             {
                 _service.SwapSlots(tmpSelected, currSeleted, this);
                 currSeleted = -1;

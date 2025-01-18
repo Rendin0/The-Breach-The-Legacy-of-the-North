@@ -5,22 +5,20 @@ using UnityEngine;
 public class CreatureViewModel
 {
     private readonly CreatureEntityProxy _creatureEntity;
-    private readonly CreatureConfig _creatureConfig;
-    private readonly CreaturesSerivce _creaturesSerivce;
 
     public readonly int CreatureId;
     public readonly string TypeId;
-    public ReactiveProperty<Vector3> Position { get; }
+    public ReactiveProperty<Vector2> Position { get; }
+    public ReactiveProperty<float> Speed { get; }
 
-    public CreatureViewModel(CreatureEntityProxy creatureEntity, CreatureConfig creatureConfig, CreaturesSerivce creaturesSerivce)
+    public CreatureViewModel(CreatureEntityProxy creatureEntity)
     {
-        this._creatureEntity = creatureEntity;
-        this._creatureConfig = creatureConfig;
-        this._creaturesSerivce = creaturesSerivce;
+        _creatureEntity = creatureEntity;
 
-        TypeId = creatureConfig.TypeId;
+        TypeId = _creatureEntity.TypeId;
         CreatureId = _creatureEntity.Id;
         Position = _creatureEntity.Position;
+        Speed = _creatureEntity.Speed;
     }
 
 }

@@ -91,7 +91,7 @@ public class InventoriesService
         var cmd = new CmdAddItemInSlot(viewModel.OwnerId, curr, viewModel.Slots[prev].ItemId.Value,
             viewModel.Slots[prev].Amount.Value);
         viewModel.Slots[prev].Amount.OnNext(0);
-        viewModel.Slots[prev].ItemId.OnNext(Items.Nothing);
+        viewModel.Slots[prev].ItemId.OnNext(ItemsTypes.Nothing);
 
         // Не получилось полостью закинуть, в команде хранится тип и кол-во предмета, кидаем их в предыдущий слот
         if (!AddItemInInventorySlot(cmd))

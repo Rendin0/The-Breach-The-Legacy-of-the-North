@@ -115,7 +115,7 @@ public class PopupInventoryBinder : PopupBinder<PopupInventoryViewModel>
                 _selectedItem = null;
             }
 
-            if (s != -1 && viewModel.Slots[s].ItemId.Value != Items.Nothing)
+            if (s != -1 && viewModel.Slots[s].ItemId.Value != ItemsTypes.Nothing)
             {
                 _selectedItem = Instantiate(_slots[s], _selectedItemContainer);
                 _selectedItem.GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0.6f);

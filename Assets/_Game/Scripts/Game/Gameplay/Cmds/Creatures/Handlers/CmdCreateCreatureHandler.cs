@@ -28,12 +28,13 @@ public class CmdCreateCreatureHandler : ICommandHandler<CmdCreateCreature>
             TypeId = command.TypeId,
             Position = command.Position,
             Health = creatureConfig.Health,
-            MaxHealth = creatureConfig.MaxHealth
+            MaxHealth = creatureConfig.MaxHealth,
+            Speed = creatureConfig.Speed
         };
 
         var creatureProxy = new CreatureEntityProxy(creature);
-
         _gameState.Creatures.Add(creatureProxy);
+
 
         return true;
     }

@@ -1,5 +1,5 @@
 
-public static class Items
+public static class ItemsTypes
 {
     public const string Nothing = nameof(Nothing);
 }

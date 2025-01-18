@@ -12,6 +12,10 @@ public class GameplayUIManager : UIManager
 
     public ScreenGameplayPauseViewModel OpenScreenGameplayPause()
     {
+        var input = Container.Resolve<GameInput>();
+        input.UI.Enable();
+        input.Player.Disable();
+
         var viewModel = new ScreenGameplayPauseViewModel(this, _exitSceneRequest);
         var rootUI = Container.Resolve<UIGameplayRootViewModel>();
 
@@ -22,6 +26,10 @@ public class GameplayUIManager : UIManager
 
     public ScreenGameplayViewModel OpenScreenGameplay()
     {
+        var input = Container.Resolve<GameInput>();
+        input.UI.Disable();
+        input.Player.Enable();
+
         var viewModel = new ScreenGameplayViewModel(this);
         var rootUI = Container.Resolve<UIGameplayRootViewModel>();
 

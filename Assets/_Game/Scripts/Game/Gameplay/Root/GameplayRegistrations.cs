@@ -19,7 +19,11 @@ public static class GameplayRegistrations
         processor.RegisterHandler(new CmdSortInventoryHandler(gameState, gameConfig.ItemsConfig));
         processor.RegisterHandler(new CmdAddSlotsToInventoryHandler());
 
-        sceneContainer.RegisterFactory(_ => new CreaturesSerivce(gameState.Creatures, gameConfig.CreaturesConfig,processor)).AsSingle();
+        var creaturesService = new CreaturesSerivce(gameState.Creatures, gameConfig.CreaturesConfig, processor);
+        var inputController = sceneContainer.Resolve<InputController>();
+        inputController.Bind(creaturesService.GetPlayer());
+
+        sceneContainer.RegisterFactory(_ => creaturesService).AsSingle();
         sceneContainer.RegisterFactory(_ => new InventoriesService(gameState.Inventories, gameConfig.ItemsConfig, processor)).AsSingle();
         sceneContainer.RegisterInstance<ICommandProcessor>(processor);
         sceneContainer.RegisterInstance(AppConstants.EXIT_SCENE_REQUEST_TAG, new Subject<Unit>());

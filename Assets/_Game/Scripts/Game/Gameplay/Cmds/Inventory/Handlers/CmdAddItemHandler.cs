@@ -66,7 +66,7 @@ public class CmdAddItemHandler : ICommandHandler<CmdAddItem>
 
             // Проверка пустых слотов
             for (int i = 0; i < inventory.Slots.Count; i++)
-                if (inventory.Slots[i].ItemId.Value == Items.Nothing)
+                if (inventory.Slots[i].ItemId.Value == ItemsTypes.Nothing)
                     return (i, _itemsConfigMap[itemId].MaxStack);
         }
 

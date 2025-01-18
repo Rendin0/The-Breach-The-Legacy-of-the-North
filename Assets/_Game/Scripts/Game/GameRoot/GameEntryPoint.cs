@@ -40,6 +40,10 @@ public class GameEntryPoint
         
         _rootContainer.RegisterInstance<IGameStateProvider>(gameStateProvider);
         _rootContainer.RegisterInstance(_uiRoot);
+
+        var input = new GameInput();
+        _rootContainer.RegisterInstance(input);
+        _rootContainer.RegisterInstance(new InputController(input));
     }
 
     private async void RunGame()
@@ -76,6 +80,9 @@ public class GameEntryPoint
         _uiRoot.ShowLoadingScreen();
         _cachedSceneContainer?.Dispose();
 
+        var input = _rootContainer.Resolve<GameInput>();
+        input.UI.Disable();
+        input.Player.Enable();
 
         yield return LoadScene(Scenes.BOOT);
         yield return LoadScene(Scenes.GAMEPLAY);
@@ -103,6 +110,10 @@ public class GameEntryPoint
     {
         _uiRoot.ShowLoadingScreen();
         _cachedSceneContainer?.Dispose();
+
+        var input = _rootContainer.Resolve<GameInput>();
+        input.UI.Enable();
+        input.Player.Disable();
 
         yield return LoadScene(Scenes.BOOT);
         yield return LoadScene(Scenes.MAINMENU);

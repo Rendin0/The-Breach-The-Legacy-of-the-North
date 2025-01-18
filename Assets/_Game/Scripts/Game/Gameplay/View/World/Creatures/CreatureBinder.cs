@@ -1,10 +1,21 @@
 
 using UnityEngine;
+using R3;
 
 public class CreatureBinder : MonoBehaviour
 {
-    public void Bind(CreatureViewModel viewModel)
+    protected virtual void OnBind(CreatureViewModel viewModel) { }
+
+    private CreatureViewModel _viewModel;
+
+    private void Update()
     {
-        transform.position = viewModel.Position.CurrentValue;
+        _viewModel.Position.OnNext(transform.position);
+    }
+
+    public virtual void Bind(CreatureViewModel viewModel)
+    {
+        _viewModel = viewModel;
+        OnBind(viewModel);
     }
 }
