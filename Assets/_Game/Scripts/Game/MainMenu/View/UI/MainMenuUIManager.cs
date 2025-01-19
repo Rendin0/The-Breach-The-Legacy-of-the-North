@@ -15,7 +15,7 @@ public class MainMenuUIManager : UIManager
         var viewModel = new PopupSettingsViewModel();
         var rootUI = Container.Resolve<UIMainMenuRootViewModel>();
 
-        rootUI.OpenPopup(viewModel);
+        rootUI.OpenPopup(viewModel, null);
         return viewModel;
     }
 

@@ -1,4 +1,5 @@
 using R3;
+using System;
 
 public class ScreenGameplayPauseViewModel : WindowViewModel
 {
@@ -11,11 +12,12 @@ public class ScreenGameplayPauseViewModel : WindowViewModel
     {
         _exitSceneRequest = exitSceneRequest;
         _uiManager = uiManager;
+        EscapeRequest.Subscribe(_ => RequestResume());
     }
 
     public void RequestOpenPopupSettings()
     {
-        _uiManager.OpenPopupSettings();
+        _uiManager.OpenPopupSettings(this);
     }
 
     public void RequestReturnToMenu()

@@ -13,22 +13,32 @@ public class UIRootViewModel : IDisposable
     private readonly ObservableList<WindowViewModel> _openedPopups = new();
     private readonly Dictionary<WindowViewModel, IDisposable> _subscriptions = new();
 
+    private CompositeDisposable _subs = new();
+    private readonly Stack<WindowViewModel> _prevWindows = new();
+    private Subject<Unit> _focusedEscapeRequest;
+    private Subject<Unit> _focusedTabRequest;
+
+    public UIRootViewModel(Subject<Unit> focusedEscapeRequest, Subject<Unit> focusedTabRequest)
+    {
+        _subs.Add(focusedEscapeRequest.Subscribe(_ => _focusedEscapeRequest.OnNext(Unit.Default)));
+        _subs.Add(focusedTabRequest.Subscribe(_ => _focusedTabRequest.OnNext(Unit.Default)));
+    }
 
     public void OpenScreen(WindowViewModel screenViewModel)
     {
         _openedScreen.Value?.Dispose();
         _openedScreen.Value = screenViewModel;
+        SetWindowBindings(screenViewModel);
     }
 
-    public void OpenPopup(WindowViewModel popupViewModel)
+    public void OpenPopup(WindowViewModel popupViewModel, WindowViewModel prevWindow)
     {
         if (_openedPopups.Contains(popupViewModel)) return;
-
         var sub = popupViewModel.CloseRequested.Subscribe(ClosePopup);
         _subscriptions.Add(popupViewModel, sub);
-
-
         _openedPopups.Add(popupViewModel);
+        _prevWindows.Push(prevWindow);
+        SetWindowBindings(popupViewModel);
     }
 
     public void ClosePopup(WindowViewModel popupViewModel)
@@ -41,6 +51,7 @@ public class UIRootViewModel : IDisposable
         var sub = _subscriptions[popupViewModel];
         sub?.Dispose();
         _subscriptions.Remove(popupViewModel);
+        SetWindowBindings(_prevWindows.Pop());
     }
 
     public void ClosePopup(string id)
@@ -61,5 +72,13 @@ public class UIRootViewModel : IDisposable
     {
         CloseAllPopups();
         _openedScreen.Dispose();
+        _subs.Dispose();
     }
+
+    public void SetWindowBindings(WindowViewModel viewModel)
+    {
+        _focusedEscapeRequest = viewModel?.EscapeRequest;
+        _focusedTabRequest = viewModel?.TabRequest;
+    }
+
 }

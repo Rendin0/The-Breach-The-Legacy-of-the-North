@@ -1,3 +1,6 @@
+using R3;
+using System;
+
 public class ScreenGameplayViewModel : WindowViewModel
 {
     private readonly GameplayUIManager _uiManager;
@@ -7,6 +10,9 @@ public class ScreenGameplayViewModel : WindowViewModel
     public ScreenGameplayViewModel(GameplayUIManager uiManager)
     {
         this._uiManager = uiManager;
+        EscapeRequest.Subscribe(_ => RequestPause());
+        TabRequest.Subscribe(_ => RequestInventory(0));
+        
     }
 
     public void RequestPause()
@@ -16,6 +22,6 @@ public class ScreenGameplayViewModel : WindowViewModel
 
     public void RequestInventory(int ownerId)
     {
-        _uiManager.OpenPopupInventory(ownerId);
+        _uiManager.OpenPopupInventory(ownerId, this);
     }
 }

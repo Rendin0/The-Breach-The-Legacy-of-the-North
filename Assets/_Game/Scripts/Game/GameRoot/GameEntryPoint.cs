@@ -40,10 +40,16 @@ public class GameEntryPoint
         
         _rootContainer.RegisterInstance<IGameStateProvider>(gameStateProvider);
         _rootContainer.RegisterInstance(_uiRoot);
+        var escapeRequest = new Subject<Unit>();
+        var tabRequest = new Subject<Unit>();
 
         var input = new GameInput();
         _rootContainer.RegisterInstance(input);
-        _rootContainer.RegisterInstance(new InputController(input));
+        _rootContainer.RegisterInstance(new GameplayInputController(input, escapeRequest, tabRequest));
+        _rootContainer.RegisterInstance(new UIInputController(input, escapeRequest));
+
+        _rootContainer.RegisterInstance(AppConstants.ESCAPE_REQUEST_TAG, escapeRequest);
+        _rootContainer.RegisterInstance(AppConstants.TAB_REQUEST_TAG, tabRequest);
     }
 
     private async void RunGame()

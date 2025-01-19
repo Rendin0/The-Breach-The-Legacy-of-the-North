@@ -41,6 +41,9 @@ public class PopupInventoryViewModel : WindowViewModel
 
         OwnerId = origin.OwnerId;
         _service = service;
+
+        EscapeRequest.Subscribe(_ => RequestClose());
+        TabRequest.Subscribe(_ => RequestClose());
     }
 
     private void CreateSlotViewModel(InventorySlot origin)

@@ -20,7 +20,7 @@ public static class GameplayRegistrations
         processor.RegisterHandler(new CmdAddSlotsToInventoryHandler());
 
         var creaturesService = new CreaturesSerivce(gameState.Creatures, gameConfig.CreaturesConfig, processor);
-        var inputController = sceneContainer.Resolve<InputController>();
+        var inputController = sceneContainer.Resolve<GameplayInputController>();
         inputController.Bind(creaturesService.GetPlayer());
 
         sceneContainer.RegisterFactory(_ => creaturesService).AsSingle();
