@@ -23,7 +23,7 @@ public class CmdAddItemInSlotHandler : ICommandHandler<CmdAddItemInSlot>
         if (inventory != null)
         {
             // Если слот не пустой
-            if (inventory.Slots[command.SlotIndex].ItemId.Value != ItemsTypes.Nothing)
+            if (inventory.Slots[command.SlotIndex].ItemId.Value != ItemsIDs.Nothing)
             {
                 // Лежит другой предмет, нельзя стакать
                 if (inventory.Slots[command.SlotIndex].ItemId.Value != command.ItemId)

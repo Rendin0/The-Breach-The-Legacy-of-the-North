@@ -5,6 +5,7 @@ using System.Linq;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using JetBrains.Annotations;
 
 public class PopupInventoryViewModel : WindowViewModel
 {
@@ -14,10 +15,12 @@ public class PopupInventoryViewModel : WindowViewModel
     public override string Id => "PopupInventory";
     public int OwnerId;
 
+    public Dictionary<EquipmentType, InventorySlotViewModel> Equipment { get; } = new();
     public List<InventorySlotViewModel> Slots { get; } = new();
-    public Subject<int> SelectedChanged = new();
+    public Subject<InventorySlotViewModel> SelectedChanged = new();
 
-    private int currSeleted = -1;
+    private int currSelectedItem = -1;
+    private EquipmentType? currSelectedEquip = null;
     private readonly InventoriesService _service;
 
     public PopupInventoryViewModel(InventoryGrid origin, InventoriesService service)
@@ -28,15 +31,26 @@ public class PopupInventoryViewModel : WindowViewModel
         {
             CreateSlotViewModel(slot);
         }
-
         origin.Slots.ObserveAdd().Subscribe(s =>
         {
             CreateSlotViewModel(s.Value);
         });
-
         origin.Slots.ObserveRemove().Subscribe(s =>
         {
             RemoveSlotViewModel(s.Value);
+        });
+
+        foreach (var equip in origin.Equipment)
+        {
+            CreateEquipmentViewModel(equip.Value, equip.Key);
+        }
+        origin.Equipment.ObserveAdd().Subscribe(e =>
+        {
+            CreateEquipmentViewModel(e.Value.Value, e.Value.Key);
+        });
+        origin.Equipment.ObserveRemove().Subscribe(e =>
+        {
+            RemoveSlotViewModel(e.Value.Value);
         });
 
         OwnerId = origin.OwnerId;
@@ -46,31 +60,80 @@ public class PopupInventoryViewModel : WindowViewModel
         TabRequest.Subscribe(_ => RequestClose());
     }
 
+    private void CreateEquipmentViewModel(InventorySlot origin, EquipmentType type)
+    {
+        var viewModel = new InventorySlotViewModel(origin);
+
+        viewModel.SelectRequested.Subscribe(s =>
+        {
+            var prevSelected = currSelectedEquip;
+            currSelectedEquip = type;
+
+            SelectedChanged.OnNext(viewModel);
+
+            // Игрок дважды нажал на один слот, хочет отменить действие
+            if (prevSelected == currSelectedEquip)
+            {
+                currSelectedEquip = null;
+                SelectedChanged.OnNext(null);
+                return;
+            }
+
+            if (currSelectedItem == -1 || Slots[currSelectedItem].ItemId.Value == ItemsIDs.Nothing)
+            {
+                SelectedChanged.OnNext(viewModel);
+                return;
+            }
+
+            EquipItem();
+        });
+
+        Equipment[type] = viewModel;
+    }
+
     private void CreateSlotViewModel(InventorySlot origin)
     {
         var viewModel = new InventorySlotViewModel(origin);
         int index = Slots.Count;
         viewModel.SelectRequested.Subscribe(s =>
         {
-            int tmpSelected = currSeleted;
-            currSeleted = index;
+            int tmpSelected = currSelectedItem;
+            currSelectedItem = index;
+            SelectedChanged.OnNext(viewModel);
 
-            if (currSeleted == tmpSelected)
-            {
-                tmpSelected = currSeleted = -1;
-            }
+            if (currSelectedEquip == null)
+                SwapItems(tmpSelected);
+            else
+                EquipItem();
 
-            if (tmpSelected != -1 && Slots[tmpSelected].ItemId.Value != ItemsTypes.Nothing)
-            {
-                _service.SwapSlots(tmpSelected, currSeleted, this);
-                currSeleted = -1;
-            }
-
-            SelectedChanged.OnNext(currSeleted);
         });
 
 
         Slots.Add(viewModel);
+    }
+
+    private void SwapItems(int tmpSelected)
+    {
+        if (currSelectedItem == tmpSelected)
+        {
+            SelectedChanged.OnNext(null);
+            tmpSelected = currSelectedItem = -1;
+        }
+
+        if (tmpSelected != -1 && Slots[tmpSelected].ItemId.Value != ItemsIDs.Nothing)
+        {
+            _service.SwapSlots(tmpSelected, currSelectedItem, this);
+            SelectedChanged.OnNext(null);
+            currSelectedItem = -1;
+        }
+
+    }
+    private void EquipItem()
+    {
+        _service.SwapEquipment(currSelectedItem, (EquipmentType)currSelectedEquip, this);
+        currSelectedEquip = null;
+        currSelectedItem = -1;
+        SelectedChanged.OnNext(null);
     }
 
     private void RemoveSlotViewModel(InventorySlot origin)
@@ -80,16 +143,16 @@ public class PopupInventoryViewModel : WindowViewModel
 
     public void RequestSortInventory()
     {
-        currSeleted = -1;
-        SelectedChanged.OnNext(currSeleted);
+        currSelectedItem = -1;
+        SelectedChanged.OnNext(null);
 
         UIManager.RequestSortInventory(OwnerId);
     }
 
     public void RequestThrow()
     {
-        currSeleted = -1;
-        SelectedChanged.OnNext(currSeleted);
+        currSelectedItem = -1;
+        SelectedChanged.OnNext(null);
 
 
         return;

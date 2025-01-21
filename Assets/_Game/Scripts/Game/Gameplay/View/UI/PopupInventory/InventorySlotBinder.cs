@@ -11,6 +11,8 @@ public class InventorySlotBinder : Selectable, IPointerDownHandler
 {
     [SerializeField] private Image _image;
     [SerializeField] private TMP_Text _amount;
+    public Image Image { get { return _image; } }
+    public TMP_Text Amount { get { return _amount; } }
 
     private InventorySlotViewModel _viewModel;
     private CompositeDisposable _subs = new();
@@ -57,7 +59,8 @@ public class InventorySlotBinder : Selectable, IPointerDownHandler
 
     private void ChangeAmount(int amount)
     {
-        _amount.text = (amount == 0 || amount == 1 ? "" : amount.ToString());
+        if (_amount != null)
+            _amount.text = (amount == 0 || amount == 1 ? "" : amount.ToString());
     }
 
     private void ChangeImage(string id)

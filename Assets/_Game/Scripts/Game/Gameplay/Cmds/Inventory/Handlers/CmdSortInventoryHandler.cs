@@ -43,7 +43,7 @@ public class CmdSortInventoryHandler : ICommandHandler<CmdSortInventory>
     {
         foreach (var comparedSlot in inventory)
         {
-            if (comparedSlot.ItemId.Value == ItemsTypes.Nothing)
+            if (comparedSlot.ItemId.Value == ItemsIDs.Nothing)
                 continue;
 
             foreach (var slot in inventory)
@@ -67,7 +67,7 @@ public class CmdSortInventoryHandler : ICommandHandler<CmdSortInventory>
                     // Найден слот с таким же предметом, поместился весь стак
                     slot.Amount.OnNext(slot.Amount.Value + comparedSlot.Amount.Value);
                     comparedSlot.Amount.OnNext(0);
-                    comparedSlot.ItemId.OnNext(ItemsTypes.Nothing);
+                    comparedSlot.ItemId.OnNext(ItemsIDs.Nothing);
                 }
             }
         }

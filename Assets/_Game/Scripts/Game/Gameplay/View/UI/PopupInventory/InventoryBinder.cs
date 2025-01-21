@@ -1,5 +1,6 @@
 
 using R3;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class InventoryBinder : MonoBehaviour
     [SerializeField] private InventorySlotBinder _slotPrefab;
 
     [SerializeField] private Button _sortInventoryButton;
+    [SerializeField] private Button _equipmentButton;
+
     [SerializeField] private Button _prevPage;
     [SerializeField] private Button _nextPage;
 
@@ -30,18 +33,28 @@ public class InventoryBinder : MonoBehaviour
     private Vector3 _offsetSelectedItem;
 
     private PopupInventoryViewModel _viewModel;
+    private PopupInventoryBinder _parrent;
 
     protected void Start()
     {
         _sortInventoryButton?.onClick.AddListener(OnSortButtonClicked);
         _nextPage.onClick.AddListener(OnNextPageButtonClicked);
         _prevPage.onClick.AddListener(OnPreviousPageButtonClicked);
+        _equipmentButton.onClick.AddListener(OnEquipmentButtonClicked);
+
+        _selectedItem = Instantiate(_slotPrefab, _selectedItemContainer);
+        _selectedItem.GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0.6f);
+        _selectedItem.gameObject.SetActive(false);
+    }
+
+    private void OnEquipmentButtonClicked()
+    {
+        _parrent.ToggleEquipment();
     }
 
     private void Update()
     {
-        if (_selectedItem != null)
-            _selectedItem.transform.position = Input.mousePosition + _offsetSelectedItem;
+        _selectedItem.transform.position = Input.mousePosition + _offsetSelectedItem;
     }
 
     protected void OnDestroy()
@@ -49,6 +62,7 @@ public class InventoryBinder : MonoBehaviour
         _sortInventoryButton.onClick.RemoveAllListeners();
         _nextPage.onClick.RemoveAllListeners();
         _prevPage.onClick.RemoveAllListeners();
+        _equipmentButton.onClick.RemoveAllListeners();
         _disposables.Dispose();
 
     }
@@ -78,8 +92,9 @@ public class InventoryBinder : MonoBehaviour
     }
 
 
-    public void Bind(PopupInventoryViewModel viewModel)
+    public void Bind(PopupInventoryViewModel viewModel, PopupInventoryBinder parrent)
     {
+        _parrent = parrent;
         _viewModel = viewModel;
 
         _maxPages = Mathf.CeilToInt(viewModel.Slots.Count / (float)_slotsPerPage);
@@ -93,6 +108,7 @@ public class InventoryBinder : MonoBehaviour
                 var slot = Instantiate(_slotPrefab, slotsPage.transform);
                 slot.Bind(viewModel.Slots[i * _slotsPerPage + j]);
                 _slots.Add(slot);
+
             }
             _slotsPages.Add(slotsPage);
         }
@@ -104,16 +120,17 @@ public class InventoryBinder : MonoBehaviour
         {
             if (_selectedItem != null)
             {
-                Destroy(_selectedItem.gameObject);
-                _selectedItem = null;
+                _selectedItem.gameObject.SetActive(false);
             }
 
-            if (s != -1 && viewModel.Slots[s].ItemId.Value != ItemsTypes.Nothing)
+            if (s != null && s.ItemId.Value != ItemsIDs.Nothing)
             {
-                _selectedItem = Instantiate(_slots[s], _selectedItemContainer);
-                _selectedItem.GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0.6f);
+                _selectedItem.gameObject.SetActive(true);
+                _selectedItem.Image.sprite = Resources.Load<Sprite>($"UI/Items/{s.ItemId.Value}");
+                _selectedItem.Amount.text = s.Amount.ToString();
+
                 var rect = _selectedItem.GetComponent<RectTransform>();
-                rect.sizeDelta = _slots[s].GetComponent<RectTransform>().sizeDelta;
+                rect.sizeDelta = _slots[0].GetComponent<RectTransform>().sizeDelta;
                 _offsetSelectedItem = rect.sizeDelta * 1.1f;
             }
         }));

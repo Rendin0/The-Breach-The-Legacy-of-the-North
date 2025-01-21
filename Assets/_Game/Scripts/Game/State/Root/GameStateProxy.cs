@@ -12,7 +12,7 @@ public class GameStateProxy
 
     public GameStateProxy(GameState gameState)
     {
-        this._gameState = gameState;
+        _gameState = gameState;
         SubscribeCreatures(gameState);
         SubscribeInventories(gameState);
     }

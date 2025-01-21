@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,10 +7,12 @@ using UnityEngine;
 public class CmdCreateInventoryHandler : ICommandHandler<CmdCreateInventory>
 {
     private readonly GameStateProxy _gameState;
+    private readonly ItemsConfig _itemsConfigs;
 
-    public CmdCreateInventoryHandler(GameStateProxy gameState)
+    public CmdCreateInventoryHandler(GameStateProxy gameState, ItemsConfig itemsConfigs)
     {
         _gameState = gameState;
+        _itemsConfigs = itemsConfigs;
     }
 
     public bool Handle(CmdCreateInventory command)
@@ -21,10 +24,15 @@ public class CmdCreateInventoryHandler : ICommandHandler<CmdCreateInventory>
             var inventoryData = new InventoryGridData()
             {
                 OwnerId = command.OwnerId,
-                Slots = new List<InventorySlotData>()
+                Slots = new List<InventorySlotData>(),
+                Equipment = new List<InventorySlotData>(),
+                ItemsConfig = _itemsConfigs
             };
             for (int i = 0; i < command.Size; i++)
                 inventoryData.Slots.Add(new InventorySlotData());
+
+            for (int i = 0; i < Enum.GetValues(typeof(EquipmentType)).Length; i++)
+                inventoryData.Equipment.Add(new InventorySlotData());
 
             inventory = new InventoryGrid(inventoryData);
             _gameState.Inventories.Add(inventory);

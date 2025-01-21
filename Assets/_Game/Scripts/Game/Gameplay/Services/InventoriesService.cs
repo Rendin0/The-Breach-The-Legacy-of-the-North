@@ -86,12 +86,17 @@ public class InventoriesService
         _inventoryViewModels.Add(viewModel);
     }
 
+    public bool SwapEquipment(int item, EquipmentType slot, PopupInventoryViewModel viewModel)
+    {
+        var cmd = new CmdEquipItem(item, slot, viewModel);
+        return _commandProcessor.Process(cmd);
+    }
     public void SwapSlots(int prev, int curr, PopupInventoryViewModel viewModel)
     {
         var cmd = new CmdAddItemInSlot(viewModel.OwnerId, curr, viewModel.Slots[prev].ItemId.Value,
             viewModel.Slots[prev].Amount.Value);
         viewModel.Slots[prev].Amount.OnNext(0);
-        viewModel.Slots[prev].ItemId.OnNext(ItemsTypes.Nothing);
+        viewModel.Slots[prev].ItemId.OnNext(ItemsIDs.Nothing);
 
         // Не получилось полостью закинуть, в команде хранится тип и кол-во предмета, кидаем их в предыдущий слот
         if (!AddItemInInventorySlot(cmd))

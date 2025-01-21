@@ -3,13 +3,14 @@ using UnityEngine;
 
 public enum ItemType
 {
-    Weapon,
+    Equipment,
     Consumable,
     Quest
 }
 
 public enum ItemRarity
 {
+    Quest = -2,
     Nothing = -1,
     Gray = 0,
     Green = 1,

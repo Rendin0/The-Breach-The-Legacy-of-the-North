@@ -22,13 +22,19 @@ public class PopupInventoryBinder : PopupBinder<PopupInventoryViewModel>
     {
         base.OnBind(viewModel);
 
-        _inventory.Bind(viewModel);
+        _inventory.Bind(viewModel, this);
         _equipment.Bind(viewModel);
+        ToggleEquipment();
     }
 
 
     private void OnExitButtonClicked()
     {
         ViewModel.RequestThrow();
+    }
+
+    public void ToggleEquipment()
+    {
+        _equipment.gameObject.SetActive(!_equipment.gameObject.activeSelf);
     }
 }
