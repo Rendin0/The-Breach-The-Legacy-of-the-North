@@ -157,4 +157,9 @@ public class PopupInventoryViewModel : WindowViewModel
 
         return;
     }
+
+    public void FastUnequipRequest()
+    {
+        _service.FastUnequip(this);
+    }
 }

@@ -15,4 +15,5 @@ MonoBehaviour:
   Rarity: 4
   ItemId: CoolLava
   MaxStack: 5
+  EquipmentType: 1
   Damage: 0

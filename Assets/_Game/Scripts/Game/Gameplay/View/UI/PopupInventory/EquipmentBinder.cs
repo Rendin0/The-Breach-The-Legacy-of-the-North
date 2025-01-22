@@ -15,6 +15,16 @@ public class EquipmentBinder : MonoBehaviour
 
     private Dictionary<EquipmentType, InventorySlotBinder> _equipmentMap = new();
 
+    private void Start()
+    {
+        _fastUnequipButton.onClick.AddListener(OnFastUnequipButtonClick);
+    }
+
+    private void OnFastUnequipButtonClick()
+    {
+        _viewModel.FastUnequipRequest();
+    }
+
     public void Bind(PopupInventoryViewModel viewModel)
     {
         for (int i = 0; i < Enum.GetValues(typeof(EquipmentType)).Length; i++)

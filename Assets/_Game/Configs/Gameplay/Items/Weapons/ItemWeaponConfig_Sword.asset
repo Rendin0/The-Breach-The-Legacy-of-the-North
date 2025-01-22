@@ -15,4 +15,5 @@ MonoBehaviour:
   Rarity: 4
   ItemId: Sword
   MaxStack: 1
+  EquipmentType: 1
   Damage: 20

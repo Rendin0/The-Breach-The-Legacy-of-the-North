@@ -134,4 +134,10 @@ public class InventoriesService
         var result = _commandProcessor.Process(cmd);
         return result;
     }
+
+    public bool FastUnequip(PopupInventoryViewModel popupInventoryViewModel)
+    {
+        var cmd = new CmdFastUnequip(popupInventoryViewModel);
+        return _commandProcessor.Process(cmd);
+    }
 }

@@ -15,4 +15,5 @@ MonoBehaviour:
   Rarity: 2
   ItemId: MediumLava
   MaxStack: 5
+  EquipmentType: 1
   Damage: 0
