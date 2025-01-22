@@ -1,7 +1,5 @@
 
 using R3;
-using R3.Triggers;
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;

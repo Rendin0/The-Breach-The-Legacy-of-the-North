@@ -46,7 +46,7 @@ public class CmdAddItemInSlotHandler : ICommandHandler<CmdAddItemInSlot>
                 if (amountInSlot + command.Amount > maxStack)
                 {
                     inventory.Slots[command.SlotIndex].Amount.OnNext(maxStack);
-                    command.Amount -= maxStack - amountInSlot; 
+                    command.Amount -= maxStack - amountInSlot;
 
                     return false;
                 }

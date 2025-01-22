@@ -3,8 +3,6 @@ using ObservableCollections;
 using R3;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 
 public class InventoryGrid
 {
@@ -23,7 +21,7 @@ public class InventoryGrid
         Origin = grid;
         OwnerId = grid.OwnerId;
 
-        foreach(var item in Origin.ItemsConfig.Items)
+        foreach (var item in Origin.ItemsConfig.Items)
             ItemsConfig[item.ItemId] = item;
 
         grid.Slots.ForEach(i => Slots.Add(new InventorySlot(i)));

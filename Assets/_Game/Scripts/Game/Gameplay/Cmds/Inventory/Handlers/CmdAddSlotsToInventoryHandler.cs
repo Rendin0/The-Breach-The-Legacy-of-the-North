@@ -3,7 +3,7 @@ public class CmdAddSlotsToInventoryHandler : ICommandHandler<CmdAddSlotsToInvent
 {
     public CmdAddSlotsToInventoryHandler()
     {
-        
+
     }
 
     public bool Handle(CmdAddSlotsToInventory command)

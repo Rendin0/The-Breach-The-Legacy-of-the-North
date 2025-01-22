@@ -1,11 +1,7 @@
-using R3;
 using ObservableCollections;
-using System.Collections.Generic;
-using System.Linq;
+using R3;
 using System;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using JetBrains.Annotations;
+using System.Collections.Generic;
 
 public class PopupInventoryViewModel : WindowViewModel
 {

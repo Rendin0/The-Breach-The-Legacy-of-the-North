@@ -1,10 +1,4 @@
-using R3;
-using ObservableCollections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using System;
-using UnityEngine.InputSystem;
 
 public class PopupInventoryBinder : PopupBinder<PopupInventoryViewModel>
 {

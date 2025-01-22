@@ -37,7 +37,7 @@ public class GameEntryPoint
         var gameStateProvider = new PlayerPrefsGameStateProvider();
         // Настройки
         gameStateProvider.LoadSettingsState();
-        
+
         _rootContainer.RegisterInstance<IGameStateProvider>(gameStateProvider);
         _rootContainer.RegisterInstance(_uiRoot);
         var escapeRequest = new Subject<Unit>();
@@ -98,7 +98,7 @@ public class GameEntryPoint
 
         var isGameStateLoaded = false;
         _rootContainer.Resolve<IGameStateProvider>().LoadGameState().Subscribe(_ => isGameStateLoaded = true);
-        yield return new WaitUntil(() =>  isGameStateLoaded);
+        yield return new WaitUntil(() => isGameStateLoaded);
 
         var sceneEntryPoint = Object.FindFirstObjectByType<GameplayEntryPoint>();
 

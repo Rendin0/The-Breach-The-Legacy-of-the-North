@@ -32,7 +32,7 @@ public class EquipmentBinder : MonoBehaviour
             _equipmentMap[(EquipmentType)i] = _equipment[i];
         }
 
-        foreach(var equip in viewModel.Equipment)
+        foreach (var equip in viewModel.Equipment)
         {
             _equipmentMap[equip.Key].Bind(equip.Value);
         }

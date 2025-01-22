@@ -1,6 +1,3 @@
-
-using System;
-
 public abstract class UIManager
 {
     protected readonly DIContainer Container;

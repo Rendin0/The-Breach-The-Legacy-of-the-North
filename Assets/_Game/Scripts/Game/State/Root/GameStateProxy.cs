@@ -1,7 +1,6 @@
+using ObservableCollections;
 using R3;
 using System.Linq;
-using ObservableCollections;
-using System.Collections.Generic;
 
 public class GameStateProxy
 {

@@ -1,4 +1,3 @@
-using R3;
 using UnityEngine;
 
 public class PlayerBinder : CreatureBinder
@@ -20,7 +19,7 @@ public class PlayerBinder : CreatureBinder
     private void FixedUpdate()
     {
         _rb.MovePosition(_rb.position + Time.fixedDeltaTime * _viewModel.Speed.Value * _direction);
-        _viewModel.Position.OnNext(transform.position); 
+        _viewModel.Position.OnNext(transform.position);
     }
 
     protected override void OnBind(CreatureViewModel viewModel)

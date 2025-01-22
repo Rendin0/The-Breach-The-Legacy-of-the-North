@@ -1,6 +1,5 @@
 
 using R3;
-using System;
 
 public class InventorySlotViewModel
 {
@@ -14,7 +13,7 @@ public class InventorySlotViewModel
     public void RequestSelect()
     {
         SelectRequested.OnNext(this);
-        }
+    }
     public InventorySlotViewModel(InventorySlot origin)
     {
         _origin = origin;

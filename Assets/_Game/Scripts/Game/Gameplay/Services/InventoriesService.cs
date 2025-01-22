@@ -1,11 +1,7 @@
-using R3;
 using ObservableCollections;
-using System;
+using R3;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using UnityEditor.MPE;
 
 public class InventoriesService
 {

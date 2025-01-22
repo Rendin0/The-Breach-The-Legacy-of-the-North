@@ -16,9 +16,9 @@ public class WorldGameplayRootBinder : MonoBehaviour
             CreateCreature(creature);
         }
 
-        _disposables.Add(viewModel.CreatureViewModels.ObserveAdd().Subscribe(ev => 
+        _disposables.Add(viewModel.CreatureViewModels.ObserveAdd().Subscribe(ev =>
         {
-            CreateCreature(ev.Value); 
+            CreateCreature(ev.Value);
         }));
 
         _disposables.Add(viewModel.CreatureViewModels.ObserveRemove().Subscribe(ev =>

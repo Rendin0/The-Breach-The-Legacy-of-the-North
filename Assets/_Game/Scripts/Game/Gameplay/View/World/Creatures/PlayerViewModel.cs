@@ -6,7 +6,7 @@ public class PlayerViewModel : CreatureViewModel, IControllable
 {
     public ReactiveProperty<Vector2> Direction { get; } = new();
 
-    public PlayerViewModel(CreatureEntityProxy creatureEntity) 
+    public PlayerViewModel(CreatureEntityProxy creatureEntity)
         : base(creatureEntity)
     {
 

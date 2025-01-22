@@ -1,5 +1,4 @@
 using R3;
-using System;
 
 public class ScreenGameplayViewModel : WindowViewModel
 {
@@ -12,7 +11,7 @@ public class ScreenGameplayViewModel : WindowViewModel
         this._uiManager = uiManager;
         EscapeRequest.Subscribe(_ => RequestPause());
         TabRequest.Subscribe(_ => RequestInventory(0));
-        
+
     }
 
     public void RequestPause()

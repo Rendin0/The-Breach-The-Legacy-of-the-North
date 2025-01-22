@@ -1,5 +1,3 @@
-
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,7 +8,7 @@ public class CmdSortInventoryHandler : ICommandHandler<CmdSortInventory>
 
     public CmdSortInventoryHandler(GameStateProxy gameStateProxy, ItemsConfig itemsConfig)
     {
-        foreach(var itemConfig in itemsConfig.Items)
+        foreach (var itemConfig in itemsConfig.Items)
             _itemsConfigMap[itemConfig.ItemId] = itemConfig;
 
         _gameStateProxy = gameStateProxy;

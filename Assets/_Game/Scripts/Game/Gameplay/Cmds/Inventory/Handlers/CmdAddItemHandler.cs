@@ -1,14 +1,11 @@
-
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 public class CmdAddItemHandler : ICommandHandler<CmdAddItem>
 {
     private readonly ICommandProcessor _commandProcessor;
     private readonly GameStateProxy _gameStateProxy;
-    private readonly Dictionary<string, ItemConfig> _itemsConfigMap = new(); 
+    private readonly Dictionary<string, ItemConfig> _itemsConfigMap = new();
 
 
     public CmdAddItemHandler(ICommandProcessor commandProcessor, ItemsConfig itemsConfig, GameStateProxy gameStateProxy)
@@ -57,10 +54,10 @@ public class CmdAddItemHandler : ICommandHandler<CmdAddItem>
                 if (slot.ItemId.Value == itemId)
                 {
                     var slotAmount = slot.Amount.Value;
-                    var slotMaxStack = _itemsConfigMap[itemId].MaxStack; 
+                    var slotMaxStack = _itemsConfigMap[itemId].MaxStack;
 
                     if (slotAmount < slotMaxStack)
-                        return (i,  slotMaxStack - slotAmount);
+                        return (i, slotMaxStack - slotAmount);
                 }
             }
 
