@@ -1,14 +1,14 @@
 
 public class CmdEquipItem : ICommand
 {
-    public readonly int ItemIndex;
-    public readonly EquipmentType EquipmentIndex;
+    public readonly InventorySlotViewModel Item;
+    public readonly EquipmentType Equipment;
     public readonly PopupInventoryViewModel Inventory;
 
-    public CmdEquipItem(int itemIndex, EquipmentType equipmentIndex, PopupInventoryViewModel inventory)
+    public CmdEquipItem(InventorySlotViewModel item, EquipmentType equipment, PopupInventoryViewModel inventory)
     {
-        ItemIndex = itemIndex;
-        EquipmentIndex = equipmentIndex;
+        Item = item;
+        Equipment = equipment;
         Inventory = inventory;
     }
 }

@@ -4,14 +4,14 @@ using System.Linq;
 public class CmdAddItemHandler : ICommandHandler<CmdAddItem>
 {
     private readonly ICommandProcessor _commandProcessor;
-    private readonly GameStateProxy _gameStateProxy;
+    private readonly InventoriesService _inventoriesService;
     private readonly Dictionary<string, ItemConfig> _itemsConfigMap = new();
 
 
-    public CmdAddItemHandler(ICommandProcessor commandProcessor, ItemsConfig itemsConfig, GameStateProxy gameStateProxy)
+    public CmdAddItemHandler(ICommandProcessor commandProcessor, ItemsConfig itemsConfig, InventoriesService inventoriesService)
     {
         _commandProcessor = commandProcessor;
-        _gameStateProxy = gameStateProxy;
+        _inventoriesService = inventoriesService;
 
         foreach (var itemConfig in itemsConfig.Items)
         {
@@ -23,8 +23,11 @@ public class CmdAddItemHandler : ICommandHandler<CmdAddItem>
     // False - либо получилось закинуть не весь стак, либо не получилось закинуть вовсе
     public bool Handle(CmdAddItem command)
     {
-        var freeSlot = GetFirstFreeSlotIndex(command.InventoryId, command.ItemId);
-        if (freeSlot.Item1 == -1)
+        var storage = _inventoriesService.GetInventory(command.InventoryId).Storage;
+
+
+        var freeSlot = GetFirstFreeSlotIndex(storage, command.ItemId);
+        if (freeSlot.Item1 == null)
             return false;
 
         // ≈сли есть свободный слот, но в нЄм не хватит места на весь стак
@@ -41,32 +44,31 @@ public class CmdAddItemHandler : ICommandHandler<CmdAddItem>
     }
 
     // »ндекс, кол-во свободного места
-    private (int, int) GetFirstFreeSlotIndex(int inventoryId, string itemId)
+    private (InventorySlotViewModel, int) GetFirstFreeSlotIndex(StorageViewModel storage, string itemId)
     {
-        var inventory = _gameStateProxy.Inventories.FirstOrDefault(i => i.OwnerId == inventoryId);
 
-        if (inventory != null)
+        if (storage != null)
         {
             // ѕроверка незаполненных слотов
-            for (int i = 0; i < inventory.Slots.Count; i++)
+            foreach (var slot in storage.Slots)
             {
-                var slot = inventory.Slots[i];
                 if (slot.ItemId.Value == itemId)
                 {
                     var slotAmount = slot.Amount.Value;
                     var slotMaxStack = _itemsConfigMap[itemId].MaxStack;
 
                     if (slotAmount < slotMaxStack)
-                        return (i, slotMaxStack - slotAmount);
+                        return (slot, slotMaxStack - slotAmount);
                 }
             }
 
             // ѕроверка пустых слотов
-            for (int i = 0; i < inventory.Slots.Count; i++)
-                if (inventory.Slots[i].ItemId.Value == ItemsIDs.Nothing)
-                    return (i, _itemsConfigMap[itemId].MaxStack);
+            foreach (var slot in storage.Slots)
+                if (slot.ItemId.Value == ItemsIDs.Nothing)
+                    return (slot, _itemsConfigMap[itemId].MaxStack);
+
         }
 
-        return (-1, -1);
+        return (null, -1);
     }
 }

@@ -1,4 +1,3 @@
-
 using R3;
 
 public class MainMenuUIManager : UIManager
@@ -33,7 +32,7 @@ public class MainMenuUIManager : UIManager
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        Application.Quit();
+        UnityEngine.Application.Quit();
 #endif
     }
 }

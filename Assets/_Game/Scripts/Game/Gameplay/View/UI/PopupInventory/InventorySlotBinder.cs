@@ -15,6 +15,16 @@ public class InventorySlotBinder : Selectable, IPointerDownHandler
     private InventorySlotViewModel _viewModel;
     private CompositeDisposable _subs = new();
 
+
+    private RectTransform _rectTransorfm;
+    public RectTransform RectTransform { get { return _rectTransorfm; } }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _rectTransorfm = GetComponent<RectTransform>();
+    }
+
     public override void OnPointerDown(PointerEventData eventData)
     {
         base.OnPointerDown(eventData);

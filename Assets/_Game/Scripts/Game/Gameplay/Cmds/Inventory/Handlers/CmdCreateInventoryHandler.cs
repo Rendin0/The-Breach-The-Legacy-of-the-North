@@ -21,15 +21,21 @@ public class CmdCreateInventoryHandler : ICommandHandler<CmdCreateInventory>
 
         if (inventory == null)
         {
+            var storage = new StorageData()
+            {
+                Slots = new List<InventorySlotData>()
+            };
+
+
             var inventoryData = new InventoryGridData()
             {
                 OwnerId = command.OwnerId,
-                Slots = new List<InventorySlotData>(),
+                Storage = storage,
                 Equipment = new List<InventorySlotData>(),
                 ItemsConfig = _itemsConfigs
             };
             for (int i = 0; i < command.Size; i++)
-                inventoryData.Slots.Add(new InventorySlotData());
+                inventoryData.Storage.Slots.Add(new InventorySlotData());
 
             for (int i = 0; i < Enum.GetValues(typeof(EquipmentType)).Length; i++)
                 inventoryData.Equipment.Add(new InventorySlotData());

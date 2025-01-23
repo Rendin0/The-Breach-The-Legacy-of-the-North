@@ -12,7 +12,7 @@ public class InventoryGrid
 
     private List<InventorySlot> _equipment = new();
     public ObservableDictionary<EquipmentType, InventorySlot> Equipment { get; } = new();
-    public ObservableList<InventorySlot> Slots { get; } = new();
+    public Storage Storage; 
 
     public readonly Dictionary<string, ItemConfig> ItemsConfig = new();
 
@@ -20,22 +20,10 @@ public class InventoryGrid
     {
         Origin = grid;
         OwnerId = grid.OwnerId;
+        Storage = new Storage(Origin.Storage);
 
         foreach (var item in Origin.ItemsConfig.Items)
             ItemsConfig[item.ItemId] = item;
-
-        grid.Slots.ForEach(i => Slots.Add(new InventorySlot(i)));
-        Slots.ObserveAdd().Subscribe(i =>
-        {
-            var added = i.Value;
-            Origin.Slots.Add(added.Origin);
-        });
-        Slots.ObserveRemove().Subscribe(i =>
-        {
-            // Возможны ошибки, но вообще удалять слоты не надо
-            var removed = i.Value;
-            Origin.Slots.Remove(removed.Origin);
-        });
 
         for (int i = 0; i < Enum.GetValues(typeof(EquipmentType)).Length; i++)
         {

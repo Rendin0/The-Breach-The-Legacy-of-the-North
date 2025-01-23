@@ -16,18 +16,20 @@ public class GameplayEntryPoint : MonoBehaviour
         _worldBinder.Bind(gameplayViewModelsContainer.Resolve<WorldGameplayRootViewModel>());
 
         var creaturesSerivce = gameplayViewModelsContainer.Resolve<CreaturesSerivce>();
-        //creaturesSerivce.CreateCreature("Skeleton", Vector3.zero);
 
         var inventoriesService = gameplayViewModelsContainer.Resolve<InventoriesService>();
         //var player = creaturesSerivce.GetPlayer();
-        //inventoriesService.CreateInventory(0, 16);
+        //inventoriesService.CreateInventory(player.CreatureId, 16);
         //inventoriesService.AddSlotsToInventory(player.CreatureId, 16);
-        //inventoriesService.AddItemInInventory(0, "Sword", 1);
-        //inventoriesService.AddItemInInventory(0, "Sword", 1);
-        //inventoriesService.AddItemInInventory(0, "Lava", 3);
-        //inventoriesService.AddItemInInventory(0, "CoolLava", 6);
-        //inventoriesService.AddItemInInventory(0, "MediumLava", 8);
-        //inventoriesService.AddItemInInventorySlot(14, 0, "Lava", 2);
+        //inventoriesService.AddItemInInventory(player.CreatureId, "Sword", 1);
+        //inventoriesService.AddItemInInventory(player.CreatureId, "Sword", 1);
+        //inventoriesService.AddItemInInventory(player.CreatureId, "Lava", 3);
+        //inventoriesService.AddItemInInventory(player.CreatureId, "CoolLava", 6);
+        //inventoriesService.AddItemInInventory(player.CreatureId, "MediumLava", 8);
+
+        //creaturesSerivce.CreateCreature("Skeleton", Vector3.zero);
+        //inventoriesService.CreateInventory(1, 16);
+        //inventoriesService.AddItemInInventory(1, "CoolLava", 5);
 
         var mainMenuEnterParams = new MainMenuEnterParams("Lul");
         var exitParams = new GameplayExitParams(mainMenuEnterParams);

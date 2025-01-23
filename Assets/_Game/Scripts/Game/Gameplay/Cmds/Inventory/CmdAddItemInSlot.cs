@@ -2,14 +2,14 @@
 public class CmdAddItemInSlot : ICommand
 {
     public readonly int InventoryId;
-    public readonly int SlotIndex;
+    public readonly InventorySlotViewModel Slot;
     public string ItemId;
     public int Amount;
 
-    public CmdAddItemInSlot(int inventoryId, int slotIndex, string itemId, int amount)
+    public CmdAddItemInSlot(int inventoryId, InventorySlotViewModel slot, string itemId, int amount)
     {
         InventoryId = inventoryId;
-        SlotIndex = slotIndex;
+        Slot = slot;
         ItemId = itemId;
         Amount = amount;
     }

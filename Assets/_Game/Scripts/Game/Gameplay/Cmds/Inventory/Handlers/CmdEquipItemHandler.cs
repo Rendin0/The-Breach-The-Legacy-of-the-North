@@ -18,16 +18,16 @@ public class CmdEquipItemHandler : ICommandHandler<CmdEquipItem>
 
     public bool Handle(CmdEquipItem command)
     {
-        var equip = command.Inventory.Equipment[command.EquipmentIndex];
+        var equip = command.Inventory.Equipment[command.Equipment];
         var tmpEquipType = equip.ItemId.Value;
         var tmpEquipAmount = equip.Amount.Value;
 
-        var item = command.Inventory.Slots[command.ItemIndex];
+        var item = command.Item;
 
         // Тип предмета соответствует слоту
         // Либо пустой слот
         if ((_itemsConfig[item.ItemId.Value] is ItemEquipmentConfig e
-            && e.EquipmentType == command.EquipmentIndex)
+            && e.EquipmentType == command.Equipment)
             || item.ItemId.Value == ItemsIDs.Nothing)
         {
 

@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
-public class CmdSortInventoryHandler : ICommandHandler<CmdSortInventory>
+public class CmdSortStorageHandler : ICommandHandler<CmdSortStorage>
 {
     private readonly GameStateProxy _gameStateProxy;
     private readonly Dictionary<string, ItemConfig> _itemsConfigMap = new();
 
-    public CmdSortInventoryHandler(GameStateProxy gameStateProxy, ItemsConfig itemsConfig)
+    public CmdSortStorageHandler(GameStateProxy gameStateProxy, ItemsConfig itemsConfig)
     {
         foreach (var itemConfig in itemsConfig.Items)
             _itemsConfigMap[itemConfig.ItemId] = itemConfig;
@@ -14,15 +14,15 @@ public class CmdSortInventoryHandler : ICommandHandler<CmdSortInventory>
         _gameStateProxy = gameStateProxy;
     }
 
-    public bool Handle(CmdSortInventory command)
+    public bool Handle(CmdSortStorage command)
     {
-        var inventory = command.Inventory;
+        var storage = command.Storage;
 
-        StackItems(inventory.Slots);
+        StackItems(storage.Slots);
 
         List<(string, int)> items = new();
 
-        foreach (var slot in inventory.Slots)
+        foreach (var slot in storage.Slots)
         {
             items.Add((slot.ItemId.Value, slot.Amount.Value));
         }
@@ -31,8 +31,8 @@ public class CmdSortInventoryHandler : ICommandHandler<CmdSortInventory>
 
         for (int i = 0; i < items.Count; i++)
         {
-            inventory.Slots[i].ItemId.OnNext(items[i].Item1);
-            inventory.Slots[i].Amount.OnNext(items[i].Item2);
+            storage.Slots[i].ItemId.OnNext(items[i].Item1);
+            storage.Slots[i].Amount.OnNext(items[i].Item2);
         }
 
         return true;

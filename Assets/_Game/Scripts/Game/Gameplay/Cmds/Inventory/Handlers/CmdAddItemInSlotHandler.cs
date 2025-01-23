@@ -6,11 +6,11 @@ using UnityEngine;
 public class CmdAddItemInSlotHandler : ICommandHandler<CmdAddItemInSlot>
 {
     private readonly Dictionary<string, ItemConfig> _itemsConfigMap = new();
-    private readonly GameStateProxy _gameState;
+    private readonly InventoriesService _inventoriesService;
 
-    public CmdAddItemInSlotHandler(ItemsConfig itemsConfig, GameStateProxy gameState)
+    public CmdAddItemInSlotHandler(ItemsConfig itemsConfig, InventoriesService inventoriesService)
     {
-        _gameState = gameState;
+        _inventoriesService = inventoriesService;
 
         foreach (var item in itemsConfig.Items)
             _itemsConfigMap[item.ItemId] = item;
@@ -18,45 +18,44 @@ public class CmdAddItemInSlotHandler : ICommandHandler<CmdAddItemInSlot>
 
     public bool Handle(CmdAddItemInSlot command)
     {
-        var inventory = _gameState.Inventories.FirstOrDefault(i => i.OwnerId == command.InventoryId);
-
-        if (inventory != null)
+        // Если инвентарь существует
+        if (_inventoriesService.GetInventory(command.InventoryId) != null)
         {
             // Если слот не пустой
-            if (inventory.Slots[command.SlotIndex].ItemId.Value != ItemsIDs.Nothing)
+            if (command.Slot.ItemId.Value != ItemsIDs.Nothing)
             {
                 // Лежит другой предмет, нельзя стакать
-                if (inventory.Slots[command.SlotIndex].ItemId.Value != command.ItemId)
+                if (command.Slot.ItemId.Value != command.ItemId)
                 {
                     // Свап предмета из слота в команду
                     var tmpId = command.ItemId;
                     var tmpAmount = command.Amount;
 
-                    command.ItemId = inventory.Slots[command.SlotIndex].ItemId.Value;
-                    command.Amount = inventory.Slots[command.SlotIndex].Amount.Value;
+                    command.ItemId = command.Slot.ItemId.Value;
+                    command.Amount = command.Slot.Amount.Value;
 
-                    inventory.Slots[command.SlotIndex].ItemId.OnNext(tmpId);
-                    inventory.Slots[command.SlotIndex].Amount.OnNext(tmpAmount);
+                    command.Slot.ItemId.OnNext(tmpId);
+                    command.Slot.Amount.OnNext(tmpAmount);
                     return false;
                 }
 
                 var maxStack = _itemsConfigMap[command.ItemId].MaxStack;
-                var amountInSlot = inventory.Slots[command.SlotIndex].Amount.Value;
+                var amountInSlot = command.Slot.Amount.Value;
                 // Лежит такой же предмет, но не хватает места
                 if (amountInSlot + command.Amount > maxStack)
                 {
-                    inventory.Slots[command.SlotIndex].Amount.OnNext(maxStack);
+                    command.Slot.Amount.OnNext(maxStack);
                     command.Amount -= maxStack - amountInSlot;
 
                     return false;
                 }
 
-                inventory.Slots[command.SlotIndex].Amount.OnNext(amountInSlot + command.Amount);
+                command.Slot.Amount.OnNext(amountInSlot + command.Amount);
                 return true;
             }
 
-            inventory.Slots[command.SlotIndex].ItemId.OnNext(command.ItemId);
-            inventory.Slots[command.SlotIndex].Amount.OnNext(command.Amount);
+            command.Slot.ItemId.OnNext(command.ItemId);
+            command.Slot.Amount.OnNext(command.Amount);
             return true;
         }
 

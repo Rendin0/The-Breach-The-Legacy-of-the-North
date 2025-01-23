@@ -8,7 +8,7 @@ public class CmdAddSlotsToInventoryHandler : ICommandHandler<CmdAddSlotsToInvent
 
     public bool Handle(CmdAddSlotsToInventory command)
     {
-        var slots = command.Inventory.Origin.Slots;
+        var slots = command.Inventory.Origin.Storage.Slots;
 
         for (int i = 0; i < command.Amount; i++)
         {

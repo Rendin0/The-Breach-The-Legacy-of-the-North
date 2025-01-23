@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class InventoryGridData
 {
     public int OwnerId;
-    public List<InventorySlotData> Slots;
+    public StorageData Storage;
     public List<InventorySlotData> Equipment;
     public ItemsConfig ItemsConfig;
 }

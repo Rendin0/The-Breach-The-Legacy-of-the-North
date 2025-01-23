@@ -57,11 +57,25 @@ public class GameplayUIManager : UIManager
     {
         var rootUI = Container.Resolve<UIGameplayRootViewModel>();
         var inventoryService = Container.Resolve<InventoriesService>();
-        var viewModel = inventoryService.GetInventory(ownerId);
+        var inventory = inventoryService.GetInventory(ownerId);
 
-        viewModel.UIManager = this;
-        rootUI.OpenPopup(viewModel, prevWindow);
-        return viewModel;
+        inventory.UIManager = this;
+        rootUI.OpenPopup(inventory, prevWindow);
+
+        OpenStorage(1, inventory);
+
+        return inventory;
+    }
+
+    public StorageViewModel OpenStorage(int storageId, PopupInventoryViewModel parrent)
+    {
+        var rootUI = Container.Resolve<UIGameplayRootViewModel>();
+        var inventoryService = Container.Resolve<InventoriesService>();
+        var storage = inventoryService.GetInventory(storageId).Storage;
+        storage.SetParrent(parrent);
+        parrent.TmpStorage.OnNext(storage);
+        
+        return storage;
     }
 
     public void RequestSortInventory(int ownerId)

@@ -46,6 +46,7 @@ public class InventoriesService
         var result = _commandProcessor.Process(command);
         return result;
     }
+
     public PopupInventoryViewModel GetInventory(int ownerId)
     {
         return _inventoriesMap[ownerId];
@@ -56,9 +57,9 @@ public class InventoriesService
         return _commandProcessor.Process(cmd);
     }
 
-    public bool AddItemInInventorySlot(int slotIndex, int ownerId, string itemId, int amount = 1)
+    public bool AddItemInInventorySlot(InventorySlotViewModel slot, int ownerId, string itemId, int amount = 1)
     {
-        var command = new CmdAddItemInSlot(ownerId, slotIndex, itemId, amount);
+        var command = new CmdAddItemInSlot(ownerId, slot, itemId, amount);
         var result = _commandProcessor.Process(command);
         return result;
     }
@@ -82,17 +83,17 @@ public class InventoriesService
         _inventoryViewModels.Add(viewModel);
     }
 
-    public bool SwapEquipment(int item, EquipmentType slot, PopupInventoryViewModel viewModel)
+    public bool SwapEquipment(InventorySlotViewModel item, EquipmentType slot, PopupInventoryViewModel viewModel)
     {
         var cmd = new CmdEquipItem(item, slot, viewModel);
         return _commandProcessor.Process(cmd);
     }
-    public void SwapSlots(int prev, int curr, PopupInventoryViewModel viewModel)
+    public void SwapSlots(InventorySlotViewModel prev, InventorySlotViewModel curr, PopupInventoryViewModel viewModel)
     {
-        var cmd = new CmdAddItemInSlot(viewModel.OwnerId, curr, viewModel.Slots[prev].ItemId.Value,
-            viewModel.Slots[prev].Amount.Value);
-        viewModel.Slots[prev].Amount.OnNext(0);
-        viewModel.Slots[prev].ItemId.OnNext(ItemsIDs.Nothing);
+        var cmd = new CmdAddItemInSlot(viewModel.OwnerId, curr, prev.ItemId.Value,
+            prev.Amount.Value);
+        prev.Amount.OnNext(0);
+        prev.ItemId.OnNext(ItemsIDs.Nothing);
 
         // Не получилось полостью закинуть, в команде хранится тип и кол-во предмета, кидаем их в предыдущий слот
         if (!AddItemInInventorySlot(cmd))
@@ -126,7 +127,7 @@ public class InventoriesService
 
     public bool SortInventory(int ownerId)
     {
-        var cmd = new CmdSortInventory(_inventoriesMap[ownerId]);
+        var cmd = new CmdSortStorage(_inventoriesMap[ownerId].Storage);
         var result = _commandProcessor.Process(cmd);
         return result;
     }
