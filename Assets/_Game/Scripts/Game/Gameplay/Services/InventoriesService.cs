@@ -10,7 +10,7 @@ public class InventoriesService
     private readonly Dictionary<int, PopupInventoryViewModel> _inventoriesMap = new();
     private readonly ObservableList<PopupInventoryViewModel> _inventoryViewModels = new();
 
-    private readonly Dictionary<string, ItemConfig> _itemsConfig = new();
+    public readonly Dictionary<string, ItemConfig> ItemsConfig = new();
 
     public IObservableCollection<PopupInventoryViewModel> InventoryViewModels => _inventoryViewModels;
 
@@ -21,7 +21,7 @@ public class InventoriesService
 
         foreach (var item in itemsConfig.Items)
         {
-            _itemsConfig[item.ItemId] = item;
+            ItemsConfig[item.ItemId] = item;
         }
 
         foreach (var inventory in inventories)

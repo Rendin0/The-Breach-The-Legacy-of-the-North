@@ -19,6 +19,7 @@ public class PopupInventoryViewModel : WindowViewModel
     public InventorySlotViewModel CurrSelectedItem = null;
     public EquipmentType? CurrSelectedEquip = null;
     private readonly InventoriesService _service;
+    public readonly Dictionary<string, ItemConfig> ItemsConfig;
     public PopupInventoryViewModel(InventoryGrid origin, InventoriesService service)
     {
         Origin = origin;
@@ -41,6 +42,7 @@ public class PopupInventoryViewModel : WindowViewModel
 
         OwnerId = origin.OwnerId;
         _service = service;
+        ItemsConfig = service.ItemsConfig;
 
         EscapeRequest.Subscribe(_ => RequestClose());
         TabRequest.Subscribe(_ => RequestClose());

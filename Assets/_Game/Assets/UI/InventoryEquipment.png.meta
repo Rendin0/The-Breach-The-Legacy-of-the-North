@@ -1,0 +1,465 @@
+fileFormatVersion: 2
+guid: e1084b49ae0948543b4c3ae86a433edb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5659518846004008921
+    second: InventoryEquipment_0
+  - first:
+      213: -5496782260576783311
+    second: InventoryEquipment_1
+  - first:
+      213: 985618403827800068
+    second: InventoryEquipment_2
+  - first:
+      213: -9074789721513593954
+    second: InventoryEquipment_3
+  - first:
+      213: -5469117092573055788
+    second: InventoryEquipment_4
+  - first:
+      213: 6459444419930872810
+    second: InventoryEquipment_5
+  - first:
+      213: 7923009121026420405
+    second: InventoryEquipment_6
+  - first:
+      213: 8643163306755061765
+    second: InventoryEquipment_7
+  - first:
+      213: 4728405791657227430
+    second: InventoryEquipment_8
+  - first:
+      213: -8912018028380907776
+    second: InventoryEquipment_9
+  - first:
+      213: 1443562082433950393
+    second: InventoryEquipment_10
+  - first:
+      213: -6137247703370032097
+    second: InventoryEquipment_11
+  - first:
+      213: -3620228195394546056
+    second: InventoryEquipment_12
+  - first:
+      213: -8239093956610108954
+    second: InventoryEquipment_13
+  - first:
+      213: -2508640406875984135
+    second: InventoryEquipment_14
+  - first:
+      213: 705663170652037565
+    second: InventoryEquipment_15
+  - first:
+      213: 8637459785437584764
+    second: InventoryEquipment_16
+  - first:
+      213: -8531609125662184571
+    second: InventoryEquipment_17
+  - first:
+      213: 7450675123907361192
+    second: InventoryEquipment_18
+  - first:
+      213: 6320482410878383074
+    second: InventoryEquipment_19
+  - first:
+      213: -7950822531685656540
+    second: InventoryEquipment_20
+  - first:
+      213: -705056994995550172
+    second: InventoryEquipment_21
+  - first:
+      213: -8538935915528493183
+    second: InventoryEquipment_22
+  - first:
+      213: -6936093534846156548
+    second: InventoryEquipment_23
+  - first:
+      213: -3408766935484482932
+    second: InventoryEquipment_24
+  - first:
+      213: -8046052062674334350
+    second: InventoryEquipment_25
+  - first:
+      213: 6280799524022588327
+    second: InventoryEquipment_26
+  - first:
+      213: 7243996909868516814
+    second: InventoryEquipment_27
+  - first:
+      213: 2132809478857039403
+    second: InventoryEquipment_28
+  - first:
+      213: 2632896977825100868
+    second: InventoryEquipment_29
+  - first:
+      213: -5022761721392077589
+    second: InventoryEquipment_30
+  - first:
+      213: -4530508768230062236
+    second: InventoryEquipment_31
+  - first:
+      213: -1635606768348320988
+    second: InventoryEquipment_32
+  - first:
+      213: -253500421398973753
+    second: InventoryEquipment_33
+  - first:
+      213: -3845692875184863221
+    second: InventoryEquipment_34
+  - first:
+      213: 3784396809338852703
+    second: InventoryEquipment_35
+  - first:
+      213: -4080256239024258172
+    second: InventoryEquipment_36
+  - first:
+      213: 2805665351289436267
+    second: InventoryEquipment_37
+  - first:
+      213: -2167903430804137447
+    second: InventoryEquipment_38
+  - first:
+      213: -4601206913155129178
+    second: InventoryEquipment_39
+  - first:
+      213: 6771157210380743800
+    second: InventoryEquipment_40
+  - first:
+      213: 8133589684224734253
+    second: InventoryEquipment_41
+  - first:
+      213: -829288089317598106
+    second: InventoryEquipment_42
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: HelmetYellow
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 120
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5593c5f8d0e48430800000000000000
+      internalID: 3784396809338852703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PantsYellow
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 120
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 483436891940067c0800000000000000
+      internalID: -4080256239024258172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponYellow
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 95
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b687a3e95c9bfe620800000000000000
+      internalID: 2805665351289436267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltYellow
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 95
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91a9193d05f0ae1e0800000000000000
+      internalID: -2167903430804137447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShoulderYellow
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 66
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a02153d0ba3520c0800000000000000
+      internalID: -4601206913155129178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BootsYellow
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 66
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 874b1139b9bf7fd50800000000000000
+      internalID: 6771157210380743800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChestYellow
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 38
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d243ff469b050e070800000000000000
+      internalID: 8133589684224734253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneYellow
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 38
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66c13c360e6cd74f0800000000000000
+      internalID: -829288089317598106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: b00800dde65cdc94b9d71757fa23a174
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      BeltYellow: -2167903430804137447
+      BootsYellow: 6771157210380743800
+      ChestYellow: 8133589684224734253
+      HelmetYellow: 3784396809338852703
+      InventoryEquipment_0: 5659518846004008921
+      InventoryEquipment_1: -5496782260576783311
+      InventoryEquipment_10: 1443562082433950393
+      InventoryEquipment_11: -6137247703370032097
+      InventoryEquipment_12: -3620228195394546056
+      InventoryEquipment_13: -8239093956610108954
+      InventoryEquipment_14: -2508640406875984135
+      InventoryEquipment_15: 705663170652037565
+      InventoryEquipment_16: 8637459785437584764
+      InventoryEquipment_17: -8531609125662184571
+      InventoryEquipment_18: 7450675123907361192
+      InventoryEquipment_19: 6320482410878383074
+      InventoryEquipment_2: 985618403827800068
+      InventoryEquipment_20: -7950822531685656540
+      InventoryEquipment_21: -705056994995550172
+      InventoryEquipment_22: -8538935915528493183
+      InventoryEquipment_23: -6936093534846156548
+      InventoryEquipment_24: -3408766935484482932
+      InventoryEquipment_25: -8046052062674334350
+      InventoryEquipment_26: 6280799524022588327
+      InventoryEquipment_27: 7243996909868516814
+      InventoryEquipment_28: 2132809478857039403
+      InventoryEquipment_29: 2632896977825100868
+      InventoryEquipment_3: -9074789721513593954
+      InventoryEquipment_30: -5022761721392077589
+      InventoryEquipment_31: -4530508768230062236
+      InventoryEquipment_32: -1635606768348320988
+      InventoryEquipment_33: -253500421398973753
+      InventoryEquipment_34: -3845692875184863221
+      InventoryEquipment_4: -5469117092573055788
+      InventoryEquipment_5: 6459444419930872810
+      InventoryEquipment_6: 7923009121026420405
+      InventoryEquipment_7: 8643163306755061765
+      InventoryEquipment_8: 4728405791657227430
+      InventoryEquipment_9: -8912018028380907776
+      PantsYellow: -4080256239024258172
+      RuneYellow: -829288089317598106
+      ShoulderYellow: -4601206913155129178
+      WeaponYellow: 2805665351289436267
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
