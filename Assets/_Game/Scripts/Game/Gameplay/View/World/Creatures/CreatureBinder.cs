@@ -1,7 +1,8 @@
 
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class CreatureBinder : MonoBehaviour
+public class CreatureBinder : MonoBehaviour, IPointerClickHandler
 {
     protected virtual void OnBind(CreatureViewModel viewModel) { }
 
@@ -12,9 +13,13 @@ public class CreatureBinder : MonoBehaviour
         _viewModel.Position.OnNext(transform.position);
     }
 
-    public virtual void Bind(CreatureViewModel viewModel)
+    public void Bind(CreatureViewModel viewModel)
     {
         _viewModel = viewModel;
         OnBind(viewModel);
+    }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        _viewModel.OnClick(eventData);
     }
 }

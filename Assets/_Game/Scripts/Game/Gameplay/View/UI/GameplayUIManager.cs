@@ -16,7 +16,6 @@ public class GameplayUIManager : UIManager
 
 
     }
-
     public ScreenGameplayPauseViewModel OpenScreenGameplayPause()
     {
         var input = Container.Resolve<GameInput>();
@@ -65,6 +64,11 @@ public class GameplayUIManager : UIManager
         OpenStorage(1, inventory);
 
         return inventory;
+    }
+    public PopupDialogueViewModel OpenPopupDialog(ScreenGameplayPauseViewModel prevWindow)
+    {
+
+        return null;
     }
 
     public StorageViewModel OpenStorage(int storageId, PopupInventoryViewModel parrent)

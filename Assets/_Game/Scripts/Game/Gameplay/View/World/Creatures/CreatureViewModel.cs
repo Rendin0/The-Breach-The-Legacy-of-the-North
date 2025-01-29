@@ -1,6 +1,7 @@
 
 using R3;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CreatureViewModel
 {
@@ -21,4 +22,8 @@ public class CreatureViewModel
         Speed = _creatureEntity.Speed;
     }
 
+    public virtual void OnClick(PointerEventData eventData)
+    {
+
+    }
 }
