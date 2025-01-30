@@ -32,7 +32,6 @@ public class CmdCreateInventoryHandler : ICommandHandler<CmdCreateInventory>
                 OwnerId = command.OwnerId,
                 Storage = storage,
                 Equipment = new List<InventorySlotData>(),
-                ItemsConfig = _itemsConfigs
             };
             for (int i = 0; i < command.Size; i++)
                 inventoryData.Storage.Slots.Add(new InventorySlotData());
