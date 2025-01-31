@@ -148,8 +148,7 @@ public static class DSIOUtility
         UpdateDialoguesChoicesConnections();
 
         UpdateOldGroupedNodes(groupedNodeNames, graphData);
-
-        UpdateUngroupedNodes(ungroupedNodeNames, graphData);
+        UpdateOldUngroupedNodes(ungroupedNodeNames, graphData);
     }
 
     private static void UpdateOldGroupedNodes(SerializableDictionary<string, List<string>> currentGroupedNodeNames, DSGraphSaveDataObject graphData)
@@ -174,12 +173,11 @@ public static class DSIOUtility
 
         graphData.OldGroupedNodeNames = new(currentGroupedNodeNames);
     }
-
-    private static void UpdateUngroupedNodes(List<string> currentUngroupedNodeNames, DSGraphSaveDataObject graphData)
+    private static void UpdateOldUngroupedNodes(List<string> currentUngroupedNodeNames, DSGraphSaveDataObject graphData)
     {
-        if (graphData.OldNodeNames != null && graphData.OldNodeNames.Count != 0)
+        if (graphData.OldUngroupedNodeNames != null && graphData.OldUngroupedNodeNames.Count != 0)
         {
-            List<string> nodesToRemove = graphData.OldNodeNames.Except(currentUngroupedNodeNames).ToList();
+            List<string> nodesToRemove = graphData.OldUngroupedNodeNames.Except(currentUngroupedNodeNames).ToList();
 
             foreach (var nodeToRemove in nodesToRemove)
             {
@@ -187,8 +185,22 @@ public static class DSIOUtility
             }
         }
 
-        graphData.OldGroupNames = new(currentUngroupedNodeNames);
+        graphData.OldUngroupedNodeNames = new(currentUngroupedNodeNames);
 
+    }
+    private static void UpdateOldGroups(List<string> currentGroupNames, DSGraphSaveDataObject graphData)
+    {
+        if (graphData.OldGroupNames != null && graphData.OldGroupNames.Count != 0)
+        {
+            List<string> groupsToRemove = graphData.OldGroupNames.Except(currentGroupNames).ToList();
+
+            foreach (var groupToRemove in groupsToRemove)
+            {
+                RemoveFolder($"{_configFolderPath}/Groups/{groupToRemove}");
+            }
+        }
+
+        graphData.OldGroupNames = new(currentGroupNames);
     }
 
     private static void RemoveAsset(string path, string assetName)
@@ -312,20 +324,6 @@ public static class DSIOUtility
         UpdateOldGroups(groupNames, graphData);
     }
 
-    private static void UpdateOldGroups(List<string> currentGroupNames, DSGraphSaveDataObject graphData)
-    {
-        if (graphData.OldGroupNames != null && graphData.OldGroupNames.Count != 0)
-        {
-            List<string> groupsToRemove = graphData.OldGroupNames.Except(currentGroupNames).ToList();
-
-            foreach (var groupToRemove in groupsToRemove)
-            {
-                RemoveFolder($"{_configFolderPath}/Groups/{groupsToRemove}");
-            }
-        }
-
-        graphData.OldGroupNames = new(currentGroupNames);
-    }
 
     private static void RemoveFolder(string fullPath)
     {

@@ -8,7 +8,7 @@ public class DSGraphSaveDataObject : ScriptableObject
     public List<DSGroupSaveData> Groups;
     public List<DSNodeSaveData> Nodes;
     public List<string> OldGroupNames;
-    public List<string> OldNodeNames;
+    public List<string> OldUngroupedNodeNames;
     public SerializableDictionary<string, List<string>> OldGroupedNodeNames;
 
     public void Init(string fileName)
