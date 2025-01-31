@@ -16,6 +16,6 @@ MonoBehaviour:
   Text: Old boring text
   Choices:
   - Text: Next Dialogue
-    NextDialogue: {fileID: 11400000, guid: 41b43a35d4db3754c9b34bc87bb85ea7, type: 2}
+    NextDialogue: {fileID: 11400000, guid: f64fd0aad3bd52b45838a071373c80bb, type: 2}
   DialogueType: 0
   IsStartingDialogue: 0

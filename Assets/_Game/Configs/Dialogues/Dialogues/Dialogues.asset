@@ -14,11 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Filename: Dialogues
   DialogueGroups:
-    list:
-    - Key: {fileID: 11400000, guid: a585b40c0306f18428dd79284e72ec85, type: 2}
-      Value:
-      - {fileID: 11400000, guid: 41b43a35d4db3754c9b34bc87bb85ea7, type: 2}
+    list: []
   UngroupedDialogues:
   - {fileID: 11400000, guid: d017a6121b6a9a140ba90acaec83d5d1, type: 2}
   - {fileID: 11400000, guid: b12f2e0ae9ed0c547985d03f6e9a857c, type: 2}
-  - {fileID: 11400000, guid: e8975f46c2362a14fbd31790427728cb, type: 2}
+  - {fileID: 11400000, guid: f64fd0aad3bd52b45838a071373c80bb, type: 2}

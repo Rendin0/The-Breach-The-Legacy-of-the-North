@@ -18,8 +18,8 @@ MonoBehaviour:
   - Text: Choice1
     NextDialogue: {fileID: 11400000, guid: d017a6121b6a9a140ba90acaec83d5d1, type: 2}
   - Text: Not choice
-    NextDialogue: {fileID: 11400000, guid: 41b43a35d4db3754c9b34bc87bb85ea7, type: 2}
+    NextDialogue: {fileID: 11400000, guid: f64fd0aad3bd52b45838a071373c80bb, type: 2}
   - Text: Lol
-    NextDialogue: {fileID: 11400000, guid: e8975f46c2362a14fbd31790427728cb, type: 2}
+    NextDialogue: {fileID: 0}
   DialogueType: 1
   IsStartingDialogue: 1
