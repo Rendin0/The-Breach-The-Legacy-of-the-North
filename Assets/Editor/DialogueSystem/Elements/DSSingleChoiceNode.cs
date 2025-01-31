@@ -3,13 +3,18 @@ using UnityEngine;
 
 public class DSSingleChoiceNode : DSNode
 {
-    public override void Init(Vector2 position)
+    public override void Init(string nodeName, DSGraphView graphView, Vector2 position)
     {
-        base.Init(position);
+        base.Init(nodeName, graphView, position);
 
         DialogueType = DSDialogueType.SingleChoice;
 
-        Choices.Add("Next dialogue");
+        DSChoiceSaveData choice = new()
+        {
+            Text = "Next Dialogue"
+        };
+
+        Choices.Add(choice);
     }
 
     public override void Draw()
@@ -18,9 +23,11 @@ public class DSSingleChoiceNode : DSNode
 
         foreach (var choice in Choices)
         {
-            Port choicePort = this.CreatePort(choice);
+            Port choicePort = this.CreatePort(choice.Text);
 
-            choicePort.portName = choice;
+            choicePort.userData = choice;
+
+            choicePort.portName = choice.Text;
             outputContainer.Add(choicePort);
         }
 

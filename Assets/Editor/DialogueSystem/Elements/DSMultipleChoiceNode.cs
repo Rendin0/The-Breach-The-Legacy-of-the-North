@@ -4,12 +4,16 @@ using UnityEngine.UIElements;
 
 public class DSMultipleChoiceNode : DSNode
 {
-    public override void Init(Vector2 position)
+    public override void Init(string nodeName, DSGraphView graphView, Vector2 position)
     {
-        base.Init(position);
+        base.Init(nodeName, graphView, position);
         DialogueType = DSDialogueType.MultipleChoice;
+        DSChoiceSaveData choice = new()
+        {
+            Text = "New Choice"
+        };
 
-        Choices.Add("New choice");
+        Choices.Add(choice);
     }
 
     public override void Draw()
@@ -18,8 +22,14 @@ public class DSMultipleChoiceNode : DSNode
 
         Button addChoiceButton = DSElementUtility.CreateButton("Add choice", () =>
         {
-            Port choicePort = CreatePort("New choice");
-            Choices.Add("New choice");
+            DSChoiceSaveData choiceData = new()
+            {
+                Text = "New Choice"
+            };
+
+            Choices.Add(choiceData);
+
+            Port choicePort = CreatePort(choiceData);
             outputContainer.Add(choicePort);
         });
 
@@ -37,16 +47,33 @@ public class DSMultipleChoiceNode : DSNode
         RefreshExpandedState();
     }
 
-    private Port CreatePort(string choice)
+    private Port CreatePort(object userData)
     {
         Port choicePort = this.CreatePort();
 
+        choicePort.userData = userData;
         choicePort.portName = "";
+        DSChoiceSaveData choiceData = (DSChoiceSaveData)userData;
 
-        Button deleteChoiceButton = DSElementUtility.CreateButton("X");
+        Button deleteChoiceButton = DSElementUtility.CreateButton("X", () =>
+        {
+            if (Choices.Count == 1)
+                return;
+
+            if (choicePort.connected)
+            {
+                graphView.DeleteElements(choicePort.connections);
+            }
+
+            Choices.Remove(choiceData);
+            graphView.RemoveElement(choicePort);
+        });
         deleteChoiceButton.AddToClassList("ds-node__button");
 
-        TextField choiceTextField = DSElementUtility.CreateTextField(choice);
+        TextField choiceTextField = DSElementUtility.CreateTextField(choiceData.Text, onValueChanged: callback =>
+        {
+            choiceData.Text = callback.newValue;
+        });
 
         choiceTextField.AddClasses(
             "ds-node__text-field",

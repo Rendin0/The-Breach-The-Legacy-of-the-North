@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abf8417d0483cb1469fd538b3a2c3fb4, type: 3}
+  m_Name: DialoguesGraph
+  m_EditorClassIdentifier: 
+  FileName: Dialogues
+  Groups:
+  - Id: 62aad329-45f9-4acb-b3d3-31d4f41d519f
+    Name: DialogueGroup
+    Position: {x: 528, y: 368}
+  Nodes:
+  - Id: f4ffe88b-3a56-4488-ac54-792db785e46c
+    Name: DialogueName
+    Text: Text.
+    Choices:
+    - Text: Next Dialogue
+      NodeId: 
+    GroupId: 62aad329-45f9-4acb-b3d3-31d4f41d519f
+    DialogueType: 0
+    Position: {x: 553, y: 427}
+  - Id: 6d7308ea-3f20-4fda-94d4-a0b2a359a937
+    Name: DialogueName
+    Text: Old boring text
+    Choices:
+    - Text: Next Dialogue
+      NodeId: f4ffe88b-3a56-4488-ac54-792db785e46c
+    GroupId: 
+    DialogueType: 0
+    Position: {x: 193, y: 182}
+  - Id: 45d42a81-41ca-45e2-a751-7fad49026044
+    Name: DialogueName3
+    Text: Text.
+    Choices:
+    - Text: Choice1
+      NodeId: 6d7308ea-3f20-4fda-94d4-a0b2a359a937
+    - Text: Not choice
+      NodeId: f4ffe88b-3a56-4488-ac54-792db785e46c
+    - Text: Lol
+      NodeId: e70a8d65-bb64-47a2-99ff-a99237c8390e
+    GroupId: 
+    DialogueType: 1
+    Position: {x: -243, y: 326}
+  - Id: e70a8d65-bb64-47a2-99ff-a99237c8390e
+    Name: DialogueName2
+    Text: New cool text
+    Choices:
+    - Text: Next Dialogue
+      NodeId: f4ffe88b-3a56-4488-ac54-792db785e46c
+    GroupId: 
+    DialogueType: 0
+    Position: {x: 168, y: 592}
+  OldGroupNames:
+  - DialogueName
+  - DialogueName3
+  - DialogueName2
+  OldNodeNames: []
+  OldGroupedNodeNames:
+    list:
+    - Key: DialogueGroup
+      Value:
+      - DialogueName
