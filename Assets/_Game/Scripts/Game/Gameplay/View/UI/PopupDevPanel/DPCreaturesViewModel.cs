@@ -22,8 +22,14 @@ public class DPCreaturesViewModel
         _parrent.RequestClose();
     }
 
+    public void TogglePriveleges()
+    {
+        _parrent.PrivilegesRequest.OnNext(Unit.Default);
+    }
+
     private void CreateCreatureAtMousePos()
     {
         _creaturesSerivce.CreateCreature("Skeleton", Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
+
 }

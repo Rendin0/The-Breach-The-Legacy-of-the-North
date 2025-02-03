@@ -10,6 +10,8 @@ public class PopupDevPanelViewModel : WindowViewModel
     public DPInventoriesViewModel InventoriesPageViewModel { get; }
     public DPCreaturesViewModel CreaturesPageViewModel { get; }
 
+    public Subject<Unit> PrivilegesRequest { get; } = new();
+
     public PopupDevPanelViewModel(InventoriesService inventoriesService, CreaturesSerivce creaturesSerivce)
     {
         _inventoriesService = inventoriesService;

@@ -6,6 +6,12 @@ public class GameplayUIManager : UIManager
 {
     private readonly Subject<Unit> _exitSceneRequest;
 
+    private bool _devPrivileges = false;
+
+    public void ToggleDevPriveleges()
+    {
+        _devPrivileges = !_devPrivileges;
+    }
 
     public GameplayUIManager(DIContainer container) : base(container)
     {
@@ -52,21 +58,31 @@ public class GameplayUIManager : UIManager
     }
     public PopupCreatureMenuViewModel OpenPopupCreatureMenu(CreatureViewModel creatureViewModel)
     {
-        var viewModel = new PopupCreatureMenuViewModel(creatureViewModel, Input.mousePosition, this);
-        var rootUI = Container.Resolve<UIGameplayRootViewModel>();
+        if (_devPrivileges)
+        {
+            var viewModel = new PopupCreatureMenuViewModel(creatureViewModel, Input.mousePosition, this);
+            var rootUI = Container.Resolve<UIGameplayRootViewModel>();
 
-        rootUI.OpenPopup(viewModel);
-        return viewModel;
+            rootUI.OpenPopup(viewModel);
+            return viewModel;
+        }
+
+        return null;
     }
 
     public PopupCreatureInfoViewModel OpenPopupCreatureInfo(CreatureViewModel creatureViewModel)
     {
-        var viewModel = new PopupCreatureInfoViewModel(creatureViewModel);
-        var rootUI = Container.Resolve<UIGameplayRootViewModel>();
+        if (_devPrivileges)
+        {
+            var viewModel = new PopupCreatureInfoViewModel(creatureViewModel);
+            var rootUI = Container.Resolve<UIGameplayRootViewModel>();
 
-        rootUI.OpenPopup(viewModel);
+            rootUI.OpenPopup(viewModel);
 
-        return viewModel;
+            return viewModel;
+        }
+
+        return null;
     }
 
     public PopupInventoryViewModel OpenPopupInventory(int ownerId)
@@ -95,6 +111,7 @@ public class GameplayUIManager : UIManager
         var creatureService = Container.Resolve<CreaturesSerivce>();
 
         var viewModel = new PopupDevPanelViewModel(inventoryService, creatureService);
+        viewModel.PrivilegesRequest.Subscribe(_ => ToggleDevPriveleges());
         rootUI.OpenPopup(viewModel);
 
         return viewModel;
