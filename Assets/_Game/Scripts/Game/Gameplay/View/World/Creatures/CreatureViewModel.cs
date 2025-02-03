@@ -12,6 +12,9 @@ public class CreatureViewModel
     public ReactiveProperty<Vector2> Position { get; }
     public ReactiveProperty<float> Speed { get; }
 
+    public readonly Subject<CreatureViewModel> OnCreatureClick = new();
+    public readonly Subject<CreatureViewModel> DeleteRequest = new();
+
     public CreatureViewModel(CreatureEntityProxy creatureEntity)
     {
         _creatureEntity = creatureEntity;
@@ -24,6 +27,6 @@ public class CreatureViewModel
 
     public virtual void OnClick(PointerEventData eventData)
     {
-
+        OnCreatureClick.OnNext(this);
     }
 }

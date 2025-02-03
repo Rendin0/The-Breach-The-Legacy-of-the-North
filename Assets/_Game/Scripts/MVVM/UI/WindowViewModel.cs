@@ -6,8 +6,7 @@ public abstract class WindowViewModel : IDisposable
     public Observable<WindowViewModel> CloseRequested => _closeRequested;
     private readonly Subject<WindowViewModel> _closeRequested = new();
 
-    public readonly Subject<Unit> EscapeRequest = new();
-    public readonly Subject<Unit> TabRequest = new();
+    public InputRequests InputRequests { get; set; } = new();
 
     public abstract string Id { get; }
 

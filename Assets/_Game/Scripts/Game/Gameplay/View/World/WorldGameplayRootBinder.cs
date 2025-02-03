@@ -8,9 +8,12 @@ public class WorldGameplayRootBinder : MonoBehaviour
 {
     private readonly Dictionary<int, CreatureBinder> _creatures = new();
     private readonly CompositeDisposable _disposables = new();
+    private GameplayUIManager _uiManager;
 
-    public void Bind(WorldGameplayRootViewModel viewModel)
+    public void Bind(WorldGameplayRootViewModel viewModel, GameplayUIManager uiManager)
     {
+        _uiManager = uiManager;
+
         foreach (var creature in viewModel.CreatureViewModels)
         {
             CreateCreature(creature);
@@ -32,13 +35,18 @@ public class WorldGameplayRootBinder : MonoBehaviour
         _disposables.Dispose();
     }
 
-    private void DamageCreature(CreatureViewModel viewwModel)
+    private void DamageCreature(CreatureViewModel viewModel)
     {
 
     }
 
     private void CreateCreature(CreatureViewModel viewModel)
     {
+        viewModel.OnCreatureClick.Subscribe(c =>
+        {
+            _uiManager.OpenPopupCreatureMenu(c);
+        });
+
         var creatureType = viewModel.TypeId;
         var creaturePrefabPath = $"Gameplay/Creatures/Creature_{creatureType}";
         var prefab = Resources.Load<CreatureBinder>(creaturePrefabPath);

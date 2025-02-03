@@ -11,12 +11,15 @@ public class ScreenGameplayPauseViewModel : WindowViewModel
     {
         _exitSceneRequest = exitSceneRequest;
         _uiManager = uiManager;
-        EscapeRequest.Subscribe(_ => RequestResume());
+
+        InputRequests.EscapeRequest = new();
+
+        InputRequests.EscapeRequest.Subscribe(_ => RequestResume());
     }
 
     public void RequestOpenPopupSettings()
     {
-        _uiManager.OpenPopupSettings(this);
+        _uiManager.OpenPopupSettings();
     }
 
     public void RequestReturnToMenu()

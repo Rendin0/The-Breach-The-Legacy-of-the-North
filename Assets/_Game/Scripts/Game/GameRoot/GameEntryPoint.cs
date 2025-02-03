@@ -40,16 +40,24 @@ public class GameEntryPoint
 
         _rootContainer.RegisterInstance<IGameStateProvider>(gameStateProvider);
         _rootContainer.RegisterInstance(_uiRoot);
-        var escapeRequest = new Subject<Unit>();
-        var tabRequest = new Subject<Unit>();
+
+        var inputRequests = new InputRequests()
+        {
+            TabRequest = new(),
+            EscapeRequest = new(),
+            URequest = new(),
+            MouseRequest = new()
+        };
 
         var input = new GameInput();
         _rootContainer.RegisterInstance(input);
-        _rootContainer.RegisterInstance(new GameplayInputController(input, escapeRequest, tabRequest));
-        _rootContainer.RegisterInstance(new UIInputController(input, escapeRequest));
+        _rootContainer.RegisterInstance(new GameplayInputController(input, inputRequests));
+        _rootContainer.RegisterInstance(new UIInputController(input, inputRequests.EscapeRequest));
 
-        _rootContainer.RegisterInstance(AppConstants.ESCAPE_REQUEST_TAG, escapeRequest);
-        _rootContainer.RegisterInstance(AppConstants.TAB_REQUEST_TAG, tabRequest);
+        _rootContainer.RegisterInstance(AppConstants.ESCAPE_REQUEST_TAG, inputRequests.EscapeRequest);
+        _rootContainer.RegisterInstance(AppConstants.TAB_REQUEST_TAG, inputRequests.TabRequest);
+        _rootContainer.RegisterInstance(AppConstants.U_REQUEST_TAG, inputRequests.URequest);
+        _rootContainer.RegisterInstance(AppConstants.MOUSE_REQUEST_TAG, inputRequests.MouseRequest);
     }
 
     private async void RunGame()

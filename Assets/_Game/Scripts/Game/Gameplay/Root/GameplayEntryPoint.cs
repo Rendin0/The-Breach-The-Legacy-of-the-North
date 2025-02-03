@@ -13,7 +13,10 @@ public class GameplayEntryPoint : MonoBehaviour
         GameplayViewModelsRegistrations.Register(gameplayViewModelsContainer);
 
         InitUI(gameplayViewModelsContainer);
-        _worldBinder.Bind(gameplayViewModelsContainer.Resolve<WorldGameplayRootViewModel>());
+        _worldBinder.Bind(
+            gameplayViewModelsContainer.Resolve<WorldGameplayRootViewModel>(),
+            gameplayViewModelsContainer.Resolve<GameplayUIManager>()
+            );
 
         var creaturesSerivce = gameplayViewModelsContainer.Resolve<CreaturesSerivce>();
 
