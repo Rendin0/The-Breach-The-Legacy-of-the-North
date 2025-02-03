@@ -16,7 +16,7 @@ public class DPCreaturesBinder : MonoBehaviour
     {
         _viewModel = viewModel;
 
-        foreach (var creatureType in viewModel.CreatureTypes)
+        foreach (var creatureType in viewModel.CreatureTypesList)
         {
             _creatureTypeDropdown.options.Add(new(creatureType, null, Color.black));
         }

@@ -2,6 +2,7 @@
 using R3;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DPCreaturesViewModel
@@ -10,7 +11,7 @@ public class DPCreaturesViewModel
     private readonly InputRequests _inputRequests;
     private readonly PopupDevPanelViewModel _parrent;
     public int CurrentCreatureType;
-    public List<string> CreatureTypes = new();
+    public List<string> CreatureTypesList = new();
 
     public DPCreaturesViewModel(CreaturesSerivce creaturesSerivce, InputRequests inputRequests, PopupDevPanelViewModel parrent)
     {
@@ -19,9 +20,9 @@ public class DPCreaturesViewModel
         this._parrent = parrent;
         foreach (var config in creaturesSerivce.CreatureConfigMap)
         {
-            CreatureTypes.Add(config.Key);
+            CreatureTypesList.Add(config.Key);
         }
-
+        CreatureTypesList.Remove(CreaturesTypes.Player);
     }
 
     public void ToggleCreateCreatureMode()
@@ -40,7 +41,7 @@ public class DPCreaturesViewModel
 
     private void CreateCreatureAtMousePos(int index)
     {
-        _creaturesSerivce.CreateCreature(CreatureTypes[index - 1], Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        _creaturesSerivce.CreateCreature(CreatureTypesList[index - 1], Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
 
 }
