@@ -10,7 +10,7 @@ public class CreaturesSerivce
     private readonly Dictionary<int, CreatureViewModel> _creaturesMap = new();
     private readonly ObservableList<CreatureViewModel> _creatureViewModels = new();
 
-    private readonly Dictionary<string, CreatureConfig> _creatureConfigMap = new();
+    public readonly Dictionary<string, CreatureConfig> CreatureConfigMap = new();
     private PlayerViewModel _playerViewModel;
 
     public IObservableCollection<CreatureViewModel> CreatureViewModels => _creatureViewModels;
@@ -21,7 +21,7 @@ public class CreaturesSerivce
         _commandProcessor = commandProcessor;
         foreach (var config in creaturesConfig.Creatures)
         {
-            _creatureConfigMap[config.TypeId] = config;
+            CreatureConfigMap[config.TypeId] = config;
         }
 
         foreach (var creature in creatures)
