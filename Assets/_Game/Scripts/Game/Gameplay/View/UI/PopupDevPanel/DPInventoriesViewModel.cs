@@ -10,4 +10,14 @@ public class DPInventoriesViewModel
         _inputRequests = inputRequests;
     }
 
+    public void AddInventory(int ownerId, int slotsAmount)
+    {
+        _inventoriesService.CreateInventory(ownerId, slotsAmount);
+    }
+
+    public void AddSlots(int ownerId, int slotsAmount)
+    {
+        _inventoriesService.AddSlotsToInventory(ownerId, slotsAmount);
+    }
+
 }

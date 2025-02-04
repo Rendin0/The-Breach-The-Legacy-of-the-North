@@ -74,7 +74,8 @@ public class GameplayUIManager : UIManager
     {
         if (_devPrivileges)
         {
-            var viewModel = new PopupCreatureInfoViewModel(creatureViewModel);
+            var inventoryService = Container.Resolve<InventoriesService>();
+            var viewModel = new PopupCreatureInfoViewModel(creatureViewModel, inventoryService);
             var rootUI = Container.Resolve<UIGameplayRootViewModel>();
 
             rootUI.OpenPopup(viewModel);

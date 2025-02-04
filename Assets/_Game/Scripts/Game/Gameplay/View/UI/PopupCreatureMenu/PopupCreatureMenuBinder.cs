@@ -34,7 +34,7 @@ public class PopupCreatureMenuBinder : PopupBinder<PopupCreatureMenuViewModel>
     protected override void OnBind(PopupCreatureMenuViewModel viewModel)
     {
         base.OnBind(viewModel);
-        _creatureNameText.text = viewModel.CreatureName;
+        _creatureNameText.text = $"{viewModel.CreatureName}\nId: {viewModel.CreatureId}";
         _container.position = viewModel.Position;
 
         _viewModel = viewModel;

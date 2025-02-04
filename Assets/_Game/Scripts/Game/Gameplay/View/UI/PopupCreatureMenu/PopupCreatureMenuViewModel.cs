@@ -8,6 +8,7 @@ public class PopupCreatureMenuViewModel : WindowViewModel
     public override string Id => "PopupCreatureMenu";
 
     public readonly string CreatureName;
+    public readonly int CreatureId;
     public readonly Vector2 Position;
     private readonly CreatureViewModel _creatureViewModel;
     private readonly GameplayUIManager _uiManager;
@@ -15,6 +16,7 @@ public class PopupCreatureMenuViewModel : WindowViewModel
     public PopupCreatureMenuViewModel(CreatureViewModel creatureViewModel, Vector2 position, GameplayUIManager uiManager)
     {
         _creatureViewModel = creatureViewModel;
+        CreatureId = creatureViewModel.CreatureId;
         CreatureName = creatureViewModel.TypeId;
         Position = position;
         _uiManager = uiManager;
