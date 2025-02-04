@@ -95,8 +95,6 @@ public class GameplayUIManager : UIManager
         inventory.UIManager = this;
         rootUI.OpenPopup(inventory);
 
-        OpenStorage(1, inventory);
-
         return inventory;
     }
     public PopupDialogueViewModel OpenPopupDialog()

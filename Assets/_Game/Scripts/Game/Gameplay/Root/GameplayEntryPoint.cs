@@ -21,23 +21,6 @@ public class GameplayEntryPoint : MonoBehaviour
         var creaturesSerivce = gameplayViewModelsContainer.Resolve<CreaturesSerivce>();
 
         var inventoriesService = gameplayViewModelsContainer.Resolve<InventoriesService>();
-        var player = creaturesSerivce.GetPlayer();
-        //inventoriesService.CreateInventory(player.CreatureId, 32);
-        //inventoriesService.AddItemInInventory(player.CreatureId, "Weapon", 1);
-        //inventoriesService.AddItemInInventory(player.CreatureId, "Chest", 1);
-        //inventoriesService.AddItemInInventory(player.CreatureId, "Shoulder", 1);
-        //inventoriesService.AddItemInInventory(player.CreatureId, "Belt", 1);
-        //inventoriesService.AddItemInInventory(player.CreatureId, "Pants", 1);
-        //inventoriesService.AddItemInInventory(player.CreatureId, "Helmet", 1);
-        //inventoriesService.AddItemInInventory(player.CreatureId, "Boots", 1);
-        //inventoriesService.AddItemInInventory(player.CreatureId, "Rune", 1);
-
-        //creaturesSerivce.CreateCreature("Skeleton", Vector3.zero);
-        //inventoriesService.CreateInventory(1, 16);
-        //inventoriesService.AddItemInInventory(1, "Sword", 1);
-        //inventoriesService.AddItemInInventory(1, "Lava", 1);
-        //inventoriesService.AddItemInInventory(1, "MediumLava", 1);
-        //inventoriesService.AddItemInInventory(1, "CoolLava", 1);
 
         var mainMenuEnterParams = new MainMenuEnterParams("Lul");
         var exitParams = new GameplayExitParams(mainMenuEnterParams);

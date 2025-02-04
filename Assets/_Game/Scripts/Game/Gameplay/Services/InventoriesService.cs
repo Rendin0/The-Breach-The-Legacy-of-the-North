@@ -47,6 +47,14 @@ public class InventoriesService
         return result;
     }
 
+    public bool DeleteInventory(int ownerId)
+    {
+        var command = new CmdDeleteInventory(ownerId);
+        var result = _commandProcessor.Process(command);
+
+        return result;
+    }
+
     public PopupInventoryViewModel GetInventory(int ownerId)
     {
         if (_inventoriesMap.TryGetValue(ownerId, out var inventory)) 
