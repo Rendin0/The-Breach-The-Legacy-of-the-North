@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 
 public class PopupInventoryViewModel : WindowViewModel
-{ 
+{
     public GameplayUIManager UIManager;
     public readonly InventoryGrid Origin;
 
@@ -25,7 +25,7 @@ public class PopupInventoryViewModel : WindowViewModel
         Origin = origin;
         Storage = new StorageViewModel(origin.Storage);
         Storage.SetParrent(this);
-        
+
 
         foreach (var equip in origin.Equipment)
         {
@@ -106,7 +106,7 @@ public class PopupInventoryViewModel : WindowViewModel
         SelectedChanged.OnNext(null);
     }
 
-    
+
 
     public void RequestSortInventory()
     {

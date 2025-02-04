@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -124,7 +123,7 @@ public class DSNode : Node
             graphView.DeleteElements(port.connections);
         }
     }
-       
+
     public void SetErrorStyle(Color color)
     {
         mainContainer.style.backgroundColor = color;

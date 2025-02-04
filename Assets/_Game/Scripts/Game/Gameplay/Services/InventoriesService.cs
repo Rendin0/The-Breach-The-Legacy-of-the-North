@@ -57,7 +57,7 @@ public class InventoriesService
 
     public PopupInventoryViewModel GetInventory(int ownerId)
     {
-        if (_inventoriesMap.TryGetValue(ownerId, out var inventory)) 
+        if (_inventoriesMap.TryGetValue(ownerId, out var inventory))
             return inventory;
 
         return null;

@@ -12,7 +12,7 @@ public class InventoryGrid
 
     private List<InventorySlot> _equipment = new();
     public ObservableDictionary<EquipmentType, InventorySlot> Equipment { get; } = new();
-    public Storage Storage; 
+    public Storage Storage;
 
     public InventoryGrid(InventoryGridData grid)
     {

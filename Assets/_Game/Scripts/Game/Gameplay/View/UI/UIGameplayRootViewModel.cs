@@ -1,5 +1,3 @@
-using R3;
-
 public class UIGameplayRootViewModel : UIRootViewModel
 {
     public UIGameplayRootViewModel(InputRequests inputRequests)

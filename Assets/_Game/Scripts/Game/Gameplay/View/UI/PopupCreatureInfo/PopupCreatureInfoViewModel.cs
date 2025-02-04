@@ -1,6 +1,5 @@
 
 using System.Collections.Generic;
-using static UnityEngine.Rendering.STP;
 
 public class PopupCreatureInfoViewModel : WindowViewModel
 {

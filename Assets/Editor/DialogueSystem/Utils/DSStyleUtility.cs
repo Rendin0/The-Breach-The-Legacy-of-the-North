@@ -1,8 +1,7 @@
 using UnityEditor;
-using UnityEngine;
 using UnityEngine.UIElements;
 
-public static class DSStyleUtility 
+public static class DSStyleUtility
 {
     public static VisualElement AddClasses(this VisualElement element, params string[] classNames)
     {

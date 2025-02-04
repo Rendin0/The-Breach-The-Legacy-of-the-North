@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -55,7 +54,7 @@ public static class DSIOUtility
     {
         DSGraphSaveDataObject graphData = LoadAsset<DSGraphSaveDataObject>("Assets/Editor/DialogueSystem/Graphs", _graphFileName);
 
-        if (graphData == null )
+        if (graphData == null)
         {
             EditorUtility.DisplayDialog(
                 "Couldn't load file",
@@ -79,7 +78,7 @@ public static class DSIOUtility
         {
             foreach (Port choicePort in node.Value.outputContainer.Children())
             {
-                DSChoiceSaveData choiceData = (DSChoiceSaveData) choicePort.userData;
+                DSChoiceSaveData choiceData = (DSChoiceSaveData)choicePort.userData;
 
                 if (string.IsNullOrEmpty(choiceData.NodeId))
                     continue;

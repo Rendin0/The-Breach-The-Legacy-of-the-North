@@ -1,8 +1,8 @@
 
-using System.Collections.Generic;
-using R3;
 using ObservableCollections;
+using R3;
 using System;
+using System.Collections.Generic;
 
 public class StorageViewModel
 {

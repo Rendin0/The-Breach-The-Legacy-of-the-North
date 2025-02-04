@@ -1,5 +1,3 @@
-
-using R3;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -72,7 +70,7 @@ public class StorageBinder : MonoBehaviour
     {
         return _slots[0].RectTransform.sizeDelta;
     }
-  
+
     private void OnNextPageButtonClicked()
     {
         _currentPage = (_currentPage + 1) % _maxPages;

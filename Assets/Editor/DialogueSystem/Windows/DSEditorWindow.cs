@@ -1,8 +1,6 @@
-using System;
 using System.IO;
 using UnityEditor;
 using UnityEditor.UIElements;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 public class DSEditorWindow : EditorWindow
@@ -43,7 +41,7 @@ public class DSEditorWindow : EditorWindow
         ToolbarSpacer toolbarSpacer = new();
         ToolbarSpacer toolbarSpacer1 = new();
         ToolbarSpacer toolbarSpacer2 = new();
-        
+
 
         toolbar.Add(_filename);
         toolbar.Add(_saveButton);

@@ -1,8 +1,6 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Profiling.HierarchyFrameDataView;
 
 public class PopupCreatureInfoBinder : PopupBinder<PopupCreatureInfoViewModel>
 {
