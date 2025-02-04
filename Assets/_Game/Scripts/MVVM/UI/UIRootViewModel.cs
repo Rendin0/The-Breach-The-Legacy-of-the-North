@@ -13,15 +13,12 @@ public class UIRootViewModel : IDisposable
     private readonly ObservableList<WindowViewModel> _openedPopups = new();
     private readonly Dictionary<WindowViewModel, IDisposable> _subscriptions = new();
 
-    private CompositeDisposable _subs = new();
-    private readonly Stack<WindowViewModel> _prevWindows = new();
-    private Subject<Unit> _focusedEscapeRequest;
-    private Subject<Unit> _focusedTabRequest;
+    private readonly CompositeDisposable _subs;
+    private readonly InputRequests _inputRequests = new();
 
-    public UIRootViewModel(Subject<Unit> focusedEscapeRequest, Subject<Unit> focusedTabRequest)
+    public UIRootViewModel(InputRequests inputRequests)
     {
-        _subs.Add(focusedEscapeRequest.Subscribe(_ => _focusedEscapeRequest.OnNext(Unit.Default)));
-        _subs.Add(focusedTabRequest.Subscribe(_ => _focusedTabRequest.OnNext(Unit.Default)));
+        _subs = inputRequests.Subscribe(_inputRequests);
     }
 
     public void OpenScreen(WindowViewModel screenViewModel)
@@ -31,13 +28,17 @@ public class UIRootViewModel : IDisposable
         SetWindowBindings(screenViewModel);
     }
 
-    public void OpenPopup(WindowViewModel popupViewModel, WindowViewModel prevWindow)
+    public void OpenPopup(WindowViewModel popupViewModel)
     {
+        WindowViewModel prevWindow = _openedScreen.Value;
+        if (_openedPopups.Count > 0)
+            prevWindow = _openedPopups[^1];
+
+
         if (_openedPopups.Contains(popupViewModel)) return;
         var sub = popupViewModel.CloseRequested.Subscribe(ClosePopup);
         _subscriptions.Add(popupViewModel, sub);
         _openedPopups.Add(popupViewModel);
-        _prevWindows.Push(prevWindow);
         SetWindowBindings(popupViewModel);
     }
 
@@ -51,7 +52,13 @@ public class UIRootViewModel : IDisposable
         var sub = _subscriptions[popupViewModel];
         sub?.Dispose();
         _subscriptions.Remove(popupViewModel);
-        SetWindowBindings(_prevWindows.Pop());
+
+        SetWindowBindings(_openedScreen.Value);
+        foreach (var popup in _openedPopups)
+        {
+            SetWindowBindings(popup);
+        }
+
     }
 
     public void ClosePopup(string id)
@@ -77,8 +84,7 @@ public class UIRootViewModel : IDisposable
 
     public void SetWindowBindings(WindowViewModel viewModel)
     {
-        _focusedEscapeRequest = viewModel?.EscapeRequest;
-        _focusedTabRequest = viewModel?.TabRequest;
+        _inputRequests.SetRequests(viewModel.InputRequests);
     }
 
 }

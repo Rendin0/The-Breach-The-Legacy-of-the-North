@@ -9,18 +9,28 @@ public class ScreenGameplayViewModel : WindowViewModel
     public ScreenGameplayViewModel(GameplayUIManager uiManager)
     {
         this._uiManager = uiManager;
-        EscapeRequest.Subscribe(_ => RequestPause());
-        TabRequest.Subscribe(_ => RequestInventory(0));
 
+        InputRequests.EscapeRequest = new();
+        InputRequests.TabRequest = new();
+        InputRequests.URequest = new();
+
+        InputRequests.EscapeRequest.Subscribe(_ => RequestPause());
+        InputRequests.TabRequest.Subscribe(_ => RequestInventory(0));
+        InputRequests.URequest.Subscribe(_ => RequestDevPanel());
     }
 
-    public void RequestPause()
+    private void RequestPause()
     {
         _uiManager.OpenScreenGameplayPause();
     }
 
-    public void RequestInventory(int ownerId)
+    private void RequestInventory(int ownerId)
     {
-        _uiManager.OpenPopupInventory(ownerId, this);
+        _uiManager.OpenPopupInventory(ownerId);
+    }
+
+    private void RequestDevPanel()
+    {
+        _uiManager.OpenPopupDevPanel();
     }
 }

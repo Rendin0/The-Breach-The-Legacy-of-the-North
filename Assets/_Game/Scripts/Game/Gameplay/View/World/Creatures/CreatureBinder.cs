@@ -16,6 +16,8 @@ public class CreatureBinder : MonoBehaviour, IPointerClickHandler
     public void Bind(CreatureViewModel viewModel)
     {
         _viewModel = viewModel;
+        transform.position = _viewModel.Position.Value;
+
         OnBind(viewModel);
     }
     public void OnPointerClick(PointerEventData eventData)

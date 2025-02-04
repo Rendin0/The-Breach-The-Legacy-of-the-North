@@ -7,11 +7,10 @@ using UnityEngine;
 public class CreaturesSerivce
 {
     private readonly ICommandProcessor _commandProcessor;
-
     private readonly Dictionary<int, CreatureViewModel> _creaturesMap = new();
     private readonly ObservableList<CreatureViewModel> _creatureViewModels = new();
 
-    private readonly Dictionary<string, CreatureConfig> _creatureConfigMap = new();
+    public readonly Dictionary<string, CreatureConfig> CreatureConfigMap = new();
     private PlayerViewModel _playerViewModel;
 
     public IObservableCollection<CreatureViewModel> CreatureViewModels => _creatureViewModels;
@@ -20,10 +19,9 @@ public class CreaturesSerivce
     public CreaturesSerivce(IObservableCollection<CreatureEntityProxy> creatures, CreaturesConfig creaturesConfig, ICommandProcessor commandProcessor)
     {
         _commandProcessor = commandProcessor;
-
         foreach (var config in creaturesConfig.Creatures)
         {
-            _creatureConfigMap[config.TypeId] = config;
+            CreatureConfigMap[config.TypeId] = config;
         }
 
         foreach (var creature in creatures)
@@ -68,6 +66,14 @@ public class CreaturesSerivce
         return _playerViewModel;
     }
 
+    public bool DeleteCreature(int id)
+    {
+        var cmd = new CmdDeleteCreature(id);
+        var result = _commandProcessor.Process(cmd);
+
+        return result;
+    }
+
     private void CreateCreatureViewModel(CreatureEntityProxy creatureEntityProxy)
     {
 
@@ -76,6 +82,11 @@ public class CreaturesSerivce
             var playerViewModel = new PlayerViewModel(creatureEntityProxy);
             _creatureViewModels.Add(playerViewModel);
             _creaturesMap[playerViewModel.CreatureId] = playerViewModel;
+            playerViewModel.DeleteRequest.Subscribe(_ =>
+            {
+                Debug.LogWarning("Trying to delete player??");
+            });
+
             _playerViewModel = playerViewModel;
         }
         else
@@ -83,6 +94,11 @@ public class CreaturesSerivce
             var creatureViewModel = new CreatureViewModel(creatureEntityProxy);
             _creatureViewModels.Add(creatureViewModel);
             _creaturesMap[creatureViewModel.CreatureId] = creatureViewModel;
+
+            creatureViewModel.DeleteRequest.Subscribe(_ =>
+            {
+                DeleteCreature(creatureViewModel.CreatureId);
+            });
         }
     }
 

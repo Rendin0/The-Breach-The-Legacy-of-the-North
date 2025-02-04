@@ -44,8 +44,11 @@ public class PopupInventoryViewModel : WindowViewModel
         _service = service;
         ItemsConfig = service.ItemsConfig;
 
-        EscapeRequest.Subscribe(_ => RequestClose());
-        TabRequest.Subscribe(_ => RequestClose());
+        InputRequests.EscapeRequest = new();
+        InputRequests.TabRequest = new();
+
+        InputRequests.EscapeRequest.Subscribe(_ => RequestClose());
+        InputRequests.TabRequest.Subscribe(_ => RequestClose());
     }
 
     private void CreateEquipmentViewModel(InventorySlot origin, EquipmentType type)

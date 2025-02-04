@@ -47,9 +47,20 @@ public class InventoriesService
         return result;
     }
 
+    public bool DeleteInventory(int ownerId)
+    {
+        var command = new CmdDeleteInventory(ownerId);
+        var result = _commandProcessor.Process(command);
+
+        return result;
+    }
+
     public PopupInventoryViewModel GetInventory(int ownerId)
     {
-        return _inventoriesMap[ownerId];
+        if (_inventoriesMap.TryGetValue(ownerId, out var inventory)) 
+            return inventory;
+
+        return null;
     }
 
     private bool AddItemInInventorySlot(CmdAddItemInSlot cmd)
@@ -111,7 +122,7 @@ public class InventoriesService
             return result;
         }
 
-        Debug.LogError($"AddSlotsToInventory: Couldnt find inventory with id {inventoryId}");
+        Debug.LogError($"AddSlotsToInventory: No inventory with id {inventoryId}");
         return false;
     }
 

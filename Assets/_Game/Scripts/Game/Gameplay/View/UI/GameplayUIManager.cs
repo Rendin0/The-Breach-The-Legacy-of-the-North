@@ -1,20 +1,21 @@
 
 using R3;
+using UnityEngine;
 
 public class GameplayUIManager : UIManager
 {
-    private readonly CompositeDisposable _subs = new();
-
     private readonly Subject<Unit> _exitSceneRequest;
 
+    private bool _devPrivileges = false;
+
+    public void ToggleDevPriveleges()
+    {
+        _devPrivileges = !_devPrivileges;
+    }
 
     public GameplayUIManager(DIContainer container) : base(container)
     {
         _exitSceneRequest = container.Resolve<Subject<Unit>>(AppConstants.EXIT_SCENE_REQUEST_TAG);
-        var escapeRequest = container.Resolve<Subject<Unit>>(AppConstants.ESCAPE_REQUEST_TAG);
-        var tabRequest = container.Resolve<Subject<Unit>>(AppConstants.TAB_REQUEST_TAG);
-
-
     }
     public ScreenGameplayPauseViewModel OpenScreenGameplayPause()
     {
@@ -29,6 +30,9 @@ public class GameplayUIManager : UIManager
 
         return viewModel;
     }
+
+
+
     public ScreenGameplayViewModel OpenScreenGameplay()
     {
         var input = Container.Resolve<GameInput>();
@@ -44,41 +48,81 @@ public class GameplayUIManager : UIManager
         return viewModel;
     }
 
-    public PopupSettingsViewModel OpenPopupSettings(ScreenGameplayPauseViewModel prevWindow)
+    public PopupSettingsViewModel OpenPopupSettings()
     {
         var viewModel = new PopupSettingsViewModel();
         var rootUI = Container.Resolve<UIGameplayRootViewModel>();
 
-        rootUI.OpenPopup(viewModel, prevWindow);
+        rootUI.OpenPopup(viewModel);
         return viewModel;
     }
-    public PopupInventoryViewModel OpenPopupInventory(int ownerId, ScreenGameplayViewModel prevWindow)
+    public PopupCreatureMenuViewModel OpenPopupCreatureMenu(CreatureViewModel creatureViewModel)
+    {
+        if (_devPrivileges)
+        {
+            var viewModel = new PopupCreatureMenuViewModel(creatureViewModel, Input.mousePosition, this);
+            var rootUI = Container.Resolve<UIGameplayRootViewModel>();
+
+            rootUI.OpenPopup(viewModel);
+            return viewModel;
+        }
+
+        return null;
+    }
+
+    public PopupCreatureInfoViewModel OpenPopupCreatureInfo(CreatureViewModel creatureViewModel)
+    {
+        if (_devPrivileges)
+        {
+            var inventoryService = Container.Resolve<InventoriesService>();
+            var viewModel = new PopupCreatureInfoViewModel(creatureViewModel, inventoryService);
+            var rootUI = Container.Resolve<UIGameplayRootViewModel>();
+
+            rootUI.OpenPopup(viewModel);
+
+            return viewModel;
+        }
+
+        return null;
+    }
+
+    public PopupInventoryViewModel OpenPopupInventory(int ownerId)
     {
         var rootUI = Container.Resolve<UIGameplayRootViewModel>();
         var inventoryService = Container.Resolve<InventoriesService>();
         var inventory = inventoryService.GetInventory(ownerId);
 
         inventory.UIManager = this;
-        rootUI.OpenPopup(inventory, prevWindow);
-
-        OpenStorage(1, inventory);
+        rootUI.OpenPopup(inventory);
 
         return inventory;
     }
-    public PopupDialogueViewModel OpenPopupDialog(ScreenGameplayPauseViewModel prevWindow)
+    public PopupDialogueViewModel OpenPopupDialog()
     {
 
         return null;
     }
 
-    public StorageViewModel OpenStorage(int storageId, PopupInventoryViewModel parrent)
+    public PopupDevPanelViewModel OpenPopupDevPanel()
     {
         var rootUI = Container.Resolve<UIGameplayRootViewModel>();
+        var inventoryService = Container.Resolve<InventoriesService>();
+        var creatureService = Container.Resolve<CreaturesSerivce>();
+
+        var viewModel = new PopupDevPanelViewModel(inventoryService, creatureService);
+        viewModel.PrivilegesRequest.Subscribe(_ => ToggleDevPriveleges());
+        rootUI.OpenPopup(viewModel);
+
+        return viewModel;
+    }
+
+    public StorageViewModel OpenStorage(int storageId, PopupInventoryViewModel parrent)
+    {
         var inventoryService = Container.Resolve<InventoriesService>();
         var storage = inventoryService.GetInventory(storageId).Storage;
         storage.SetParrent(parrent);
         parrent.TmpStorage.OnNext(storage);
-        
+
         return storage;
     }
 
