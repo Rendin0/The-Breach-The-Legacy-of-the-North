@@ -13,11 +13,14 @@ public class CreaturesSerivce
     public readonly Dictionary<string, CreatureConfig> CreatureConfigMap = new();
     private PlayerViewModel _playerViewModel;
 
+    private readonly AbilitiesConfig _abilitiesConfig;
+
     public IObservableCollection<CreatureViewModel> CreatureViewModels => _creatureViewModels;
 
 
-    public CreaturesSerivce(IObservableCollection<CreatureEntityProxy> creatures, CreaturesConfig creaturesConfig, ICommandProcessor commandProcessor)
+    public CreaturesSerivce(IObservableCollection<CreatureEntityProxy> creatures, CreaturesConfig creaturesConfig, AbilitiesConfig abilitiesConfig, ICommandProcessor commandProcessor)
     {
+        _abilitiesConfig = abilitiesConfig;
         _commandProcessor = commandProcessor;
         foreach (var config in creaturesConfig.Creatures)
         {
@@ -79,7 +82,7 @@ public class CreaturesSerivce
 
         if (creatureEntityProxy.TypeId == CreaturesTypes.Player)
         {
-            var playerViewModel = new PlayerViewModel(creatureEntityProxy);
+            var playerViewModel = new PlayerViewModel(creatureEntityProxy, _abilitiesConfig);
             _creatureViewModels.Add(playerViewModel);
             _creaturesMap[playerViewModel.CreatureId] = playerViewModel;
             playerViewModel.DeleteRequest.Subscribe(_ =>

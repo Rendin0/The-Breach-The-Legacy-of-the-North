@@ -13,7 +13,7 @@ public class PlayerBinder : CreatureBinder
 
     private void Update()
     {
-        _direction = _viewModel.Direction.Value;
+        _direction = _viewModel.MoveDirection.Value;
     }
 
     private void FixedUpdate()

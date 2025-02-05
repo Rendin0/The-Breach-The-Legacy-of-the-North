@@ -11,7 +11,7 @@ public static class GameplayRegistrations
         var configProvider = sceneContainer.Resolve<IConfigProvider>();
         var gameConfig = configProvider.GameConfig;
         processor.RegisterHandler(new CmdCreateCreatureHandler(gameState, gameConfig.CreaturesConfig));
-        var creaturesService = new CreaturesSerivce(gameState.Creatures, gameConfig.CreaturesConfig, processor);
+        var creaturesService = new CreaturesSerivce(gameState.Creatures, gameConfig.CreaturesConfig, gameConfig.AbilitiesConfig, processor);
         var inventoriesService = new InventoriesService(gameState.Inventories, gameConfig.ItemsConfig, processor);
 
         processor.RegisterHandler(new CmdDamageCreatureHandler(gameState));

@@ -60,4 +60,10 @@ public class GameplayInputController : IPlayerActions
         if (context.performed)
             _inputRequests.MouseRequest.OnNext(Unit.Default);
     }
+
+    public void OnAbilities(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            _controllable.UseAbility(context.action.GetBindingIndexForControl(context.control), Camera.main.ScreenToWorldPoint(Input.mousePosition));
+    }
 }

@@ -38,8 +38,9 @@ public class GameplayUIManager : UIManager
         var input = Container.Resolve<GameInput>();
         input.UI.Disable();
 
+        var abilitiesConfig = Container.Resolve<IConfigProvider>().GameConfig.AbilitiesConfig;
 
-        var viewModel = new ScreenGameplayViewModel(this);
+        var viewModel = new ScreenGameplayViewModel(this, abilitiesConfig);
         var rootUI = Container.Resolve<UIGameplayRootViewModel>();
 
         rootUI.OpenScreen(viewModel);

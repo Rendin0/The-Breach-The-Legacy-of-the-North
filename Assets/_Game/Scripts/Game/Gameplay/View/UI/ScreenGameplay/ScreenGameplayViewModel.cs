@@ -3,10 +3,11 @@ using R3;
 public class ScreenGameplayViewModel : WindowViewModel
 {
     private readonly GameplayUIManager _uiManager;
+    public readonly AbilitiesBarViewModel AbilitiesBarViewModel;
 
     public override string Id => "ScreenGameplay";
 
-    public ScreenGameplayViewModel(GameplayUIManager uiManager)
+    public ScreenGameplayViewModel(GameplayUIManager uiManager, AbilitiesConfig abilitiesConfig)
     {
         this._uiManager = uiManager;
 
@@ -17,6 +18,8 @@ public class ScreenGameplayViewModel : WindowViewModel
         InputRequests.EscapeRequest.Subscribe(_ => RequestPause());
         InputRequests.TabRequest.Subscribe(_ => RequestInventory(0));
         InputRequests.URequest.Subscribe(_ => RequestDevPanel());
+
+        AbilitiesBarViewModel = new(abilitiesConfig);
     }
 
     private void RequestPause()
