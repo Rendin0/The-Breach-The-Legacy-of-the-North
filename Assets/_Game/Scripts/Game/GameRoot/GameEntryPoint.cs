@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameEntryPoint
 {
     private static GameEntryPoint _instance;
-    private Coroutines _coroutines;
+    public static Coroutines Coroutines {get; private set;}
     private UIRootView _uiRoot;
 
     private readonly DIContainer _rootContainer = new();
@@ -16,7 +16,7 @@ public class GameEntryPoint
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void AutoStartGame()
     {
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 80;
 
         _instance = new GameEntryPoint();
         _instance.RunGame();
@@ -24,8 +24,10 @@ public class GameEntryPoint
 
     private GameEntryPoint()
     {
-        _coroutines = new GameObject("[COROUTINES]").AddComponent<Coroutines>();
-        Object.DontDestroyOnLoad(_coroutines.gameObject);
+        Coroutines = new GameObject("[COROUTINES]").AddComponent<Coroutines>();
+        Object.DontDestroyOnLoad(Coroutines.gameObject);
+
+        var monoTimer = new GameObject("[MONO TIMER]").AddComponent<MonoTimer>();
 
         var prefabUIRoot = Resources.Load<UIRootView>("UI/UIRoot");
         _uiRoot = Object.Instantiate(prefabUIRoot);
@@ -71,13 +73,13 @@ public class GameEntryPoint
             // Параметры запуска геймплея сюда
             var gameplayEnterParams = new GameplayEnterParams();
 
-            _coroutines.StartCoroutine(LoadAndStartGameplay(gameplayEnterParams));
+            Coroutines.StartCoroutine(LoadAndStartGameplay(gameplayEnterParams));
             return;
         }
 
         if (sceneName == Scenes.MAINMENU)
         {
-            _coroutines.StartCoroutine(LoadAndStartMainMenu());
+            Coroutines.StartCoroutine(LoadAndStartMainMenu());
             return;
         }
 
@@ -86,7 +88,7 @@ public class GameEntryPoint
             return;
         }
 #endif
-        _coroutines.StartCoroutine(LoadAndStartMainMenu());
+        Coroutines.StartCoroutine(LoadAndStartMainMenu());
     }
 
     private IEnumerator LoadAndStartGameplay(GameplayEnterParams gameplayEnterParams)
@@ -114,7 +116,7 @@ public class GameEntryPoint
 
         sceneEntryPoint.Run(sceneContainer, gameplayEnterParams).Subscribe(gameplayExitParams =>
         {
-            _coroutines.StartCoroutine(LoadAndStartMainMenu(gameplayExitParams.ExitParams));
+            Coroutines.StartCoroutine(LoadAndStartMainMenu(gameplayExitParams.ExitParams));
         });
 
         _uiRoot.HideLoadingScreen();
@@ -149,7 +151,7 @@ public class GameEntryPoint
 
             if (sceneName == Scenes.GAMEPLAY)
             {
-                _coroutines.StartCoroutine(LoadAndStartGameplay(mainMenuExitParams.ExitParams.As<GameplayEnterParams>()));
+                Coroutines.StartCoroutine(LoadAndStartGameplay(mainMenuExitParams.ExitParams.As<GameplayEnterParams>()));
             }
 
         });

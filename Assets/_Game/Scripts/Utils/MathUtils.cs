@@ -3,6 +3,8 @@ using UnityEngine;
 
 public static class MathUtils
 {
+    // Возвращает две противолежащие точки прямоугольника, который направлен в сторону от 
+    // Оригинальной точки. Оригинальная точка лежит на одной из сторон прямоугольника
     public static (Vector2 p1, Vector2 p2) GetRectPoints(Vector2 size, Vector2 origin, Vector2 direction)
     {
         (Vector2 p1, Vector2 p2) rect = new();

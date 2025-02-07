@@ -1,27 +1,42 @@
-
+using R3;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class CreatureBinder : MonoBehaviour, IPointerClickHandler
 {
+    protected Rigidbody2D rb;
     protected virtual void OnBind(CreatureViewModel viewModel) { }
+    protected bool movementBlocked = false;
 
-    private CreatureViewModel _viewModel;
+    public CreatureViewModel ViewModel {get; private set;}
 
-    private void Update()
+    protected virtual void Start() 
     {
-        _viewModel.Position.OnNext(transform.position);
+        rb = GetComponent<Rigidbody2D>();
+        ViewModel.Rb = rb;
+    }
+
+    protected virtual void Update()
+    {
+
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        ViewModel.Position.OnNext(rb.position);
     }
 
     public void Bind(CreatureViewModel viewModel)
     {
-        _viewModel = viewModel;
-        transform.position = _viewModel.Position.Value;
+        ViewModel = viewModel;
+        transform.position = ViewModel.Position.Value;
+        viewModel.MovementBlocked.Subscribe(b => movementBlocked = b);
 
         OnBind(viewModel);
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        _viewModel.OnClick(eventData);
+        ViewModel.OnClick(eventData);
     }
 }

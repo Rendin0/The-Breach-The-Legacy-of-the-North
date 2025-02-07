@@ -9,8 +9,11 @@ public class CreatureViewModel
 
     public readonly int CreatureId;
     public readonly string TypeId;
+
+    public Rigidbody2D Rb { get; set; }
     public ReactiveProperty<Vector2> Position { get; }
     public ReactiveProperty<float> Speed { get; }
+    public ReactiveProperty<bool> MovementBlocked { get; } = new(false);
 
     public readonly Subject<CreatureViewModel> OnCreatureClick = new();
     public readonly Subject<CreatureViewModel> DeleteRequest = new();
