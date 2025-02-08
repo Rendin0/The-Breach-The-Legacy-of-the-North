@@ -36,3 +36,19 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+      - _Type: 6
+        _Int: 0
+        _String: 
+        _X: 4
+        _Y: 2
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 2
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}

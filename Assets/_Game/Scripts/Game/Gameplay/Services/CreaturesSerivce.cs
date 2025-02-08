@@ -49,9 +49,9 @@ public class CreaturesSerivce
         }
     }
 
-    public bool DamageCreature(int creatureId, float damage)
+    public bool DamageCreature(CreatureViewModel creature, float damage)
     {
-        var command = new CmdDamageCreature(creatureId, damage);
+        var command = new CmdDamageCreature(creature, damage);
         var result = _commandProcessor.Process(command);
         return result;
     }

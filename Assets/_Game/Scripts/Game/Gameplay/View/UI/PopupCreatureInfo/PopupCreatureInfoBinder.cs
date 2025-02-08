@@ -1,3 +1,5 @@
+using R3;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +20,12 @@ public class PopupCreatureInfoBinder : PopupBinder<PopupCreatureInfoViewModel>
     [SerializeField] private StorageBinder _storage;
     [SerializeField] private InventorySlotBinder _slotPrefab;
 
+    [SerializeField] private TMP_Text _statsHealthText;
+    [SerializeField] private TMP_Text _statsMaxHealthText;
+    [SerializeField] private TMP_Text _statsSpeedText;
+    [SerializeField] private TMP_Text _statsDamageText;
+
+    private CompositeDisposable _subs = new();
 
     private void Awake()
     {
@@ -64,6 +72,7 @@ public class PopupCreatureInfoBinder : PopupBinder<PopupCreatureInfoViewModel>
         _addSlotsButton.onClick.RemoveAllListeners();
         _addInventoryButton.onClick.RemoveAllListeners();
         _addItemButton.onClick.RemoveAllListeners();
+        _subs.Dispose();
     }
 
     protected override void OnBind(PopupCreatureInfoViewModel viewModel)
@@ -72,6 +81,15 @@ public class PopupCreatureInfoBinder : PopupBinder<PopupCreatureInfoViewModel>
         InitInfo(viewModel);
         InitInventory(viewModel);
         InitDropdown(viewModel);
+        InitStats(viewModel);
+    }
+
+    private void InitStats(PopupCreatureInfoViewModel viewModel)
+    {
+        viewModel.CreatureViewModel.Stats.Health.Subscribe(h => _statsHealthText.text = $"Health: {h}").AddTo(_subs);
+        viewModel.CreatureViewModel.Stats.MaxHealth.Subscribe(mh => _statsMaxHealthText.text = $"MaxHealth: {mh}").AddTo(_subs);
+        viewModel.CreatureViewModel.Stats.Speed.Subscribe(s => _statsSpeedText.text = $"Speed: {s}").AddTo(_subs);
+        viewModel.CreatureViewModel.Stats.Damage.Subscribe(d => _statsDamageText.text = $"Damage: {d}").AddTo(_subs);
     }
 
     private void InitDropdown(PopupCreatureInfoViewModel viewModel)

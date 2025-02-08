@@ -1,12 +1,12 @@
 
 public class CmdDamageCreature : ICommand
 {
-    public readonly int CreatureId;
+    public readonly CreatureViewModel Creature;
     public readonly float Damage;
 
-    public CmdDamageCreature(int creatureId, float damage)
+    public CmdDamageCreature(CreatureViewModel creature, float damage)
     {
-        CreatureId = creatureId;
+        Creature = creature;
         Damage = damage;
     }
 }

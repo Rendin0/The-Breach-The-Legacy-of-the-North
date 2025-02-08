@@ -12,6 +12,8 @@ public class GameplayEntryPoint : MonoBehaviour
         var gameplayViewModelsContainer = new DIContainer(sceneContainer);
         GameplayViewModelsRegistrations.Register(gameplayViewModelsContainer);
 
+
+
         InitUI(gameplayViewModelsContainer);
         _worldBinder.Bind(
             gameplayViewModelsContainer.Resolve<WorldGameplayRootViewModel>(),
@@ -19,6 +21,7 @@ public class GameplayEntryPoint : MonoBehaviour
             );
 
         var creaturesSerivce = gameplayViewModelsContainer.Resolve<CreaturesSerivce>();
+        AbilitiesWarrior.Init(creaturesSerivce);
 
         var inventoriesService = gameplayViewModelsContainer.Resolve<InventoriesService>();
 

@@ -19,6 +19,9 @@ public class GameplayUIManager : UIManager
     }
     public ScreenGameplayPauseViewModel OpenScreenGameplayPause()
     {
+        // Пауза игры
+        Time.timeScale = 0.0f;
+
         var input = Container.Resolve<GameInput>();
         input.Player.Disable();
 
@@ -35,6 +38,9 @@ public class GameplayUIManager : UIManager
 
     public ScreenGameplayViewModel OpenScreenGameplay()
     {
+        // Возобновление игры
+        Time.timeScale = 1.0f;
+
         var input = Container.Resolve<GameInput>();
         input.UI.Disable();
 

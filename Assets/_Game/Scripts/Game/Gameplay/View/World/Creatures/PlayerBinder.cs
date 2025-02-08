@@ -24,7 +24,7 @@ public class PlayerBinder : CreatureBinder
         base.FixedUpdate();
 
         if (!movementBlocked)
-            rb.linearVelocity = _viewModel.Speed.Value * _direction;
+            rb.linearVelocity = _viewModel.Stats.Speed.Value * _direction;
     }
 
     protected override void OnBind(CreatureViewModel viewModel)
