@@ -133,6 +133,9 @@ public class GameplayUIManager : UIManager
         return storage;
     }
 
+
+    // При взаимодействии с инвентарём через дев панель
+    // Сортировка может удалить предметы с неполным стаком
     public void RequestSortInventory(int ownerId)
     {
         var inventoryService = Container.Resolve<InventoriesService>();

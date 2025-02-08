@@ -10,7 +10,11 @@ public class AbilityConfig : ScriptableObject
     public float CooldownTime;
 
     public EventAbility Use;
+    public EventAbilityRequirement Requirement;
 }
 
 [Serializable]
 public class EventAbility : UltEvent<CreatureViewModel, Vector2> { }
+
+[Serializable]
+public class EventAbilityRequirement : UltEvent<CreatureViewModel, BoolWrapper> { }

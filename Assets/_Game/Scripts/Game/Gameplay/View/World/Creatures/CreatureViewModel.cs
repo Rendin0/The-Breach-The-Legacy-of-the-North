@@ -1,5 +1,6 @@
 
 using R3;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -22,6 +23,8 @@ public class CreatureViewModel : IBuffable
     public readonly Subject<CreatureViewModel> DeleteRequest = new();
 
     private List<IStatusEffect> _statusEffects = new();
+
+    public float HealthChanges { get; private set;}
 
     public CreatureViewModel(CreatureEntityProxy creatureEntity)
     {
@@ -52,7 +55,21 @@ public class CreatureViewModel : IBuffable
         // После конца дебаффа останется тот же процент хп
         _baseStats.Health.OnNext(Stats.Health.Value / Stats.MaxHealth.Value * _baseStats.MaxHealth.Value);
 
+        // Для способности Unbreakable, считает кол-во урона за последние 5 секунд
+        HealthChanges += damage;
+        GameEntryPoint.Coroutines.StartCoroutine(HealthChangesTimer(damage, 5f));
+
         return Stats.Health.Value > 0;
+    }
+
+    public void Heal(float heal)
+    {
+        heal = Mathf.Abs(heal);
+        Stats.Health.OnNext(Mathf.Clamp(Stats.Health.Value + heal, 0f, Stats.MaxHealth.Value));
+
+        // На случай дебаффов, которые уменьшают временно макс хп.
+        // После конца дебаффа останется тот же процент хп
+        _baseStats.Health.OnNext(Stats.Health.Value / Stats.MaxHealth.Value * _baseStats.MaxHealth.Value);
     }
 
     public void AddStatusEffect(IStatusEffect effect)
@@ -73,5 +90,11 @@ public class CreatureViewModel : IBuffable
 
         foreach (var effect in effects)
             effect.Apply(Stats);
+    }
+
+    private IEnumerator HealthChangesTimer(float amount, float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        HealthChanges -= amount;
     }
 }

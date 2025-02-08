@@ -102,6 +102,8 @@ public class InventoryBinder : MonoBehaviour
         _tmpStorage.gameObject.SetActive(storage != null);
     }
 
+    // При взаимодействии с инвентарём через дев панель
+    // Сортировка может удалить предметы с неполным стаком
     private void OnSortButtonClicked()
     {
         _viewModel.RequestSortInventory();

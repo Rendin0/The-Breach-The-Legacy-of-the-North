@@ -34,4 +34,9 @@ public static class AbilitiesWarrior
 
         GameEntryPoint.Coroutines.StartCoroutine(_coroutines.DashCoroutine(caster, time, size, direction, damageMultiplier, slowPower, slowDuration));
     }
+
+    public static void Unbreakable(CreatureViewModel caster)
+    {
+
+    }
 }

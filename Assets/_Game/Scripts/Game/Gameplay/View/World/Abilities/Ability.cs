@@ -1,5 +1,6 @@
 
 using R3;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,14 +9,17 @@ public class Ability
     public readonly string Name;
 
     private readonly EventAbility _use;
+    private readonly EventAbilityRequirement _requirement;
     private readonly float _cooldownTime;
 
+    public BoolWrapper CanUse = new();
     private bool _onCooldown = false;
     public ReactiveProperty<float> CurrentCooldown { get; } = new(0f);
     public Ability(AbilityConfig config)
     {
         Name = config.Name;
 
+        _requirement = config.Requirement;
         _use = config.Use;
         _cooldownTime = config.CooldownTime;
     }
@@ -23,7 +27,9 @@ public class Ability
     // Получилось либо не получилось активировать
     public bool Use(PlayerViewModel playerViewModel, Vector2 position)
     {
-        if (!_onCooldown)
+        _requirement?.Invoke(playerViewModel, CanUse);
+
+        if (!_onCooldown && CanUse.Value)
         {
             _use.Invoke(playerViewModel, position);
             GameEntryPoint.Coroutines.StartCoroutine(CooldownTimer(_cooldownTime));
@@ -45,6 +51,7 @@ public class Ability
         }
     }
 
+    // Потенциально плохая оптимизация
     private IEnumerator CooldownTimer(float duration)
     {
         _onCooldown = true;

@@ -108,6 +108,8 @@ public class PopupInventoryViewModel : WindowViewModel
 
 
 
+    // При взаимодействии с инвентарём через дев панель
+    // Сортировка может удалить предметы с неполным стаком
     public void RequestSortInventory()
     {
         CurrSelectedItem = null;
