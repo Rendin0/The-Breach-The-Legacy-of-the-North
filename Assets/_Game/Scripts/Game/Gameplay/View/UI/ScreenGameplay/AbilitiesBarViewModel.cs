@@ -5,11 +5,11 @@ public class AbilitiesBarViewModel
 {
     public readonly List<Ability> Abilities = new();
 
-    public AbilitiesBarViewModel(AbilitiesConfig abilitiesConfig)
+    public AbilitiesBarViewModel(PlayerViewModel player)
     {
-        foreach (var abilityCfg in abilitiesConfig.Abilities)
+        foreach (var ability in player.Abilities)
         {
-            Abilities.Add(new(abilityCfg));
+            Abilities.Add(ability);
         }
     }
 

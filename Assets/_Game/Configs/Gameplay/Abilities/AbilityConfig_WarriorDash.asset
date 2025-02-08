@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: AbilityConfig_WarriorDash
   m_EditorClassIdentifier: 
   Name: WarriorDash
+  CooldownTime: 2
   Use:
     _PersistentCalls:
     - _Target: {fileID: 0}

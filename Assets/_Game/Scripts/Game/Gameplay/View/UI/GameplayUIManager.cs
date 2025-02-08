@@ -44,9 +44,9 @@ public class GameplayUIManager : UIManager
         var input = Container.Resolve<GameInput>();
         input.UI.Disable();
 
-        var abilitiesConfig = Container.Resolve<IConfigProvider>().GameConfig.AbilitiesConfig;
+        var player = Container.Resolve<CreaturesSerivce>().GetPlayer();
 
-        var viewModel = new ScreenGameplayViewModel(this, abilitiesConfig);
+        var viewModel = new ScreenGameplayViewModel(this, player);
         var rootUI = Container.Resolve<UIGameplayRootViewModel>();
 
         rootUI.OpenScreen(viewModel);

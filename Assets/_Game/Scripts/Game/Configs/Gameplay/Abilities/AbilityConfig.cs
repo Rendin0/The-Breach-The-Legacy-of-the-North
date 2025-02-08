@@ -7,6 +7,8 @@ using UnityEngine.Events;
 public class AbilityConfig : ScriptableObject
 {
     public string Name;
+    public float CooldownTime;
+
     public EventAbility Use;
 }
 

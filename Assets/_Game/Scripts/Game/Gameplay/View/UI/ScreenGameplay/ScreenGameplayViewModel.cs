@@ -7,7 +7,7 @@ public class ScreenGameplayViewModel : WindowViewModel
 
     public override string Id => "ScreenGameplay";
 
-    public ScreenGameplayViewModel(GameplayUIManager uiManager, AbilitiesConfig abilitiesConfig)
+    public ScreenGameplayViewModel(GameplayUIManager uiManager, PlayerViewModel player)
     {
         this._uiManager = uiManager;
 
@@ -19,7 +19,7 @@ public class ScreenGameplayViewModel : WindowViewModel
         InputRequests.TabRequest.Subscribe(_ => RequestInventory(0));
         InputRequests.URequest.Subscribe(_ => RequestDevPanel());
 
-        AbilitiesBarViewModel = new(abilitiesConfig);
+        AbilitiesBarViewModel = new(player);
     }
 
     private void RequestPause()

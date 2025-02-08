@@ -6,23 +6,28 @@ using UnityEngine;
 public class PlayerViewModel : CreatureViewModel, IControllable
 {
     public ReactiveProperty<Vector2> MoveDirection { get; } = new();
-    private readonly List<Ability> _abilities = new();
+    public readonly List<Ability> Abilities = new();
 
     public PlayerViewModel(CreatureEntityProxy creatureEntity, AbilitiesConfig abilitiesConfig)
         : base(creatureEntity)
     {
         foreach (var abilityCfg in abilitiesConfig.Abilities)
         {
-            _abilities.Add(new(abilityCfg));
+            Abilities.Add(new(abilityCfg));
         }
     }
 
     public void UseAbility(int index, Vector2 position)
     {
-        if (index >= _abilities.Count)
+        if (index >= Abilities.Count)
             return;
 
-        _abilities[index].Use.Invoke(this, position);
+        if (Abilities[index].Use(this, position))
+        {
+            // Перезарядка всем остальным на одну секунду, чтобы не было спама
+            foreach (var ability in Abilities)
+                ability.SetCooldown(1f);
+        }
     }
 
     public void Move(Vector2 direction)
