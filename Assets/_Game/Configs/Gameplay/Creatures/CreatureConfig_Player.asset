@@ -18,4 +18,7 @@ MonoBehaviour:
     Health: 5
     Speed: 10
     Damage: 10
+    Immortal: 0
+    Defense: 0
+    AttackSpeed: 40
   Fraction: 0

@@ -26,6 +26,7 @@ public class CreatureViewModel : IBuffable
 
     public float HealthChanges { get; private set; }
     public float DamageResistance { get; private set; }
+    public float AttackSpeed { get; private set; }
 
     public CreatureViewModel(CreatureEntityProxy creatureEntity)
     {
@@ -38,6 +39,7 @@ public class CreatureViewModel : IBuffable
         _baseStats = creatureEntity.Stats.Copy();
         Stats = new(creatureEntity.Stats);
         Stats.Defense.Subscribe(v => DamageResistance = CalculateDamageResistance(v));
+        Stats.AttackSpeed.Subscribe(v => AttackSpeed = CalculateAttackSpeed(v));
     }
 
     public virtual void OnClick(PointerEventData eventData)
@@ -103,6 +105,12 @@ public class CreatureViewModel : IBuffable
     {
         // y = 30log_10(0.1x + 1)
         return 30 * Mathf.Log10(0.1f * defense + 1);
+    }
+
+    private float CalculateAttackSpeed(float attackSpeed)
+    {
+        // (log_0.6(0.00009x) / 10) - 0.06
+        return 0.1f * Mathf.Log(0.00009f * attackSpeed, 0.6f) - 0.06f;
     }
 
     private IEnumerator HealthChangesTimer(float amount, float timer)

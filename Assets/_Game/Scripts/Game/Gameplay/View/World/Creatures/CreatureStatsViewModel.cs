@@ -9,6 +9,7 @@ public class CreatureStatsViewModel
     public ReactiveProperty<float> Damage { get; }
     public ReactiveProperty<bool> Immortal { get; }
     public ReactiveProperty<float> Defense { get; }
+    public ReactiveProperty<float> AttackSpeed { get; }
 
     public CreatureStatsViewModel(CreatureStatsProxy origin)
     {
@@ -18,6 +19,7 @@ public class CreatureStatsViewModel
         Damage = origin.Damage;
         Immortal = origin.Immortal;
         Defense = origin.Defense;
+        AttackSpeed = origin.AttackSpeed;
     }
 
     public void CopyValuesTo(CreatureStatsViewModel other)
@@ -28,6 +30,7 @@ public class CreatureStatsViewModel
         other.Damage.OnNext(Damage.Value);
         other.Immortal.OnNext(Immortal.Value);
         other.Defense.OnNext(Defense.Value);
+        other.AttackSpeed.OnNext(AttackSpeed.Value);
     }
 
     public void CopyFrom(CreatureStatsProxy baseStats)
@@ -38,5 +41,6 @@ public class CreatureStatsViewModel
         Damage.OnNext(baseStats.Damage.Value);
         Immortal.OnNext(baseStats.Immortal.Value);
         Defense.OnNext(baseStats.Defense.Value);
+        AttackSpeed.OnNext(baseStats.AttackSpeed.Value);
     }
 }

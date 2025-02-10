@@ -10,6 +10,7 @@ public class CreatureStats
     public float Damage;
     public bool Immortal;
     public float Defense;
+    public float AttackSpeed;
 
     public CreatureStats(CreatureStatsConfig stats)
     {
@@ -19,6 +20,7 @@ public class CreatureStats
         Damage = stats.Damage;
         Immortal = stats.Immortal;
         Defense = stats.Defense;
+        AttackSpeed = stats.AttackSpeed;
     }
 
 }

@@ -11,5 +11,6 @@ public class CreatureStatsConfig /*: ScriptableObject*/
     [Min(0f)] public float Damage;
     public bool Immortal;
     public float Defense;
+    [Min(1f)]public float AttackSpeed;
 
 }

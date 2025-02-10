@@ -21,7 +21,8 @@ public class PlayerViewModel : CreatureViewModel, IControllable
 
     public void Attack(Vector2 position)
     {
-        attack.Use(this, position);
+        if (attack.Use(this, position))
+            attack.SetCooldown(AttackSpeed);
     }
 
     public void UseAbility(int index, Vector2 position)
