@@ -19,8 +19,13 @@ public static class AbilitiesWarrior
         Vector2 direction = (mousePosition - caster.Position.Value).normalized;
         var (p1, p2) = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
 
-        _coroutines.DamageRectangle(caster, 1, p1, p2);
+        var targets = _coroutines.DamageRectangle(caster, 1, p1, p2);
         _coroutines.CreateRectParticle(size, p1, p2, direction);
+
+        foreach (var target in targets)
+        {
+            
+        }
     }
 
     public static void Slash(CreatureViewModel caster, Vector2 mousePosition, Vector2 size, float damageMultiplier)
@@ -67,6 +72,12 @@ public static class AbilitiesWarrior
         caster.AddStatusEffect(tmpEffect);
 
         // TODO +resistance
+
+    }
+
+    public static void ExecutionersMark(CreatureViewModel caster)
+    {
+
 
     }
 

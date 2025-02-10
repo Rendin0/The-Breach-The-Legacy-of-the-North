@@ -28,6 +28,9 @@ public class CreatureViewModel : IBuffable
     public float DamageResistance { get; private set; }
     public float AttackSpeed { get; private set; }
 
+    public int MarkCount = 0;
+    public List<CreatureViewModel> MarkedTargets { get; }
+
     public CreatureViewModel(CreatureEntityProxy creatureEntity)
     {
         _creatureEntity = creatureEntity;
