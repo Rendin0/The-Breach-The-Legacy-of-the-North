@@ -29,7 +29,7 @@ public class CreatureViewModel : IBuffable
     public float AttackSpeed { get; private set; }
 
     public int MarkCount = 0;
-    public List<CreatureViewModel> MarkedTargets { get; }
+    public List<CreatureViewModel> MarkedTargets { get; } = new();
 
     public CreatureViewModel(CreatureEntityProxy creatureEntity)
     {

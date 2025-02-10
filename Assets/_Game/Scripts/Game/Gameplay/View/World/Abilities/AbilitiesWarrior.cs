@@ -24,7 +24,7 @@ public static class AbilitiesWarrior
 
         foreach (var target in targets)
         {
-            
+            GameEntryPoint.Coroutines.StartCoroutine(_coroutines.ExecutionersMarkCoroutine(caster, target.ViewModel, 5));
         }
     }
 
@@ -75,10 +75,12 @@ public static class AbilitiesWarrior
 
     }
 
-    public static void ExecutionersMark(CreatureViewModel caster)
+    public static void ExecutionersMark(CreatureViewModel caster, float totalDamage, float duration)
     {
-
-
+        foreach (var target in caster.MarkedTargets)
+        {
+            target.AddStatusEffect(new SEDot(target, totalDamage, duration));
+        }
     }
 
     public static void EarthRift(CreatureViewModel caster, Vector2 mousePosition, Vector2 size, float debuffDuration, float damageAmplify)

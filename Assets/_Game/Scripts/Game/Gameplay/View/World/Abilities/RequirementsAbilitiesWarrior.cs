@@ -7,5 +7,9 @@ public static class RequirementsAbilitiesWarrior
         result.Value = caster.HealthChanges >= (caster.Stats.MaxHealth.Value / 2f);
     }
 
+    public static void ExecutionersMarkRequirements(CreatureViewModel caster, BoolWrapper result)
+    {
+        result.Value = caster.MarkedTargets.Count > 0;
+    }
 
 }

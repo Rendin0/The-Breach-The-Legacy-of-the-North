@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a05983cadf0e1fe49bf01a2b04184af3, type: 3}
-  m_Name: AbilityConfig_WarriorUnbreakable
+  m_Name: AbilityConfig_WarriorExecutionersMark
   m_EditorClassIdentifier: 
-  Name: WarriorUnbreakable
-  CooldownTime: 0
+  Name: WarriorExecutionersMark
+  CooldownTime: 20
   Use:
     _PersistentCalls:
     - _Target: {fileID: 0}
       _MemberName: AbilitiesWarrior, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null.Unbreakable
+        PublicKeyToken=null.ExecutionersMark
       _PersistentArguments:
       - _Type: 14
         _Int: 0
@@ -32,7 +32,7 @@ MonoBehaviour:
       - _Type: 5
         _Int: 0
         _String: 
-        _X: 0.25
+        _X: 20
         _Y: 0
         _Z: 0
         _W: 0
@@ -40,23 +40,7 @@ MonoBehaviour:
       - _Type: 5
         _Int: 0
         _String: 
-        _X: 2
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-      - _Type: 5
-        _Int: 0
-        _String: 
-        _X: 4
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-      - _Type: 5
-        _Int: 0
-        _String: 
-        _X: 2
+        _X: 5
         _Y: 0
         _Z: 0
         _W: 0
@@ -65,7 +49,7 @@ MonoBehaviour:
     _PersistentCalls:
     - _Target: {fileID: 0}
       _MemberName: RequirementsAbilitiesWarrior, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null.UnbreakableRequirements
+        Culture=neutral, PublicKeyToken=null.ExecutionersMarkRequirements
       _PersistentArguments:
       - _Type: 14
         _Int: 0

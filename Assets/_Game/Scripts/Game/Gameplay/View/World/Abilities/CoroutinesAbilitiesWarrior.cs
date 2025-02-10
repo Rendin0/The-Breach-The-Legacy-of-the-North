@@ -38,15 +38,30 @@ public class CoroutinesAbilitiesWarrior
 
     }
 
+    public IEnumerator ExecutionersMarkCoroutine(CreatureViewModel caster, CreatureViewModel target, float time)
+    {
+        target.MarkCount++;
+        if (target.MarkCount >= 3)
+            caster.MarkedTargets.Add(target);
+
+        yield return new WaitForSeconds(time);
+
+        target.MarkCount--;
+        if (target.MarkCount == 2)
+            caster.MarkedTargets.Remove(target);
+    }
+
     public List<CreatureBinder> DamageRectangle(CreatureViewModel caster, float damageMultiplier, Vector2 p1, Vector2 p2)
     {
-        var hitsResult = Physics2DUtils.GetRectHits<CreatureBinder>(p1, p2);
-        foreach (var hit in hitsResult)
+        var hits = Physics2DUtils.GetRectHits<CreatureBinder>(p1, p2);
+        var hitsResult = new List<CreatureBinder>();
+        foreach (var hit in hits)
         {
             // Ударило не само себя
             if (hit.ViewModel.CreatureId != caster.CreatureId)
             {
                 _creaturesSerivce.DamageCreature(hit.ViewModel, caster.Stats.Damage.Value * damageMultiplier);
+                hitsResult.Add(hit);
             }
         }
 
