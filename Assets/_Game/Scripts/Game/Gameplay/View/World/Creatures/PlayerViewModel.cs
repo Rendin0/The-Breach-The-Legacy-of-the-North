@@ -7,6 +7,7 @@ public class PlayerViewModel : CreatureViewModel, IControllable
 {
     public ReactiveProperty<Vector2> MoveDirection { get; } = new();
     public readonly List<Ability> Abilities = new();
+    protected readonly Ability attack;
 
     public PlayerViewModel(CreatureEntityProxy creatureEntity, AbilitiesConfig abilitiesConfig)
         : base(creatureEntity)
@@ -15,6 +16,12 @@ public class PlayerViewModel : CreatureViewModel, IControllable
         {
             Abilities.Add(new(abilityCfg));
         }
+        attack = new(abilitiesConfig.Attack);
+    }
+
+    public void Attack(Vector2 position)
+    {
+        attack.Use(this, position);
     }
 
     public void UseAbility(int index, Vector2 position)

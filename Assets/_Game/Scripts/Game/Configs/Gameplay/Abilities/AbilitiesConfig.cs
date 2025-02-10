@@ -5,4 +5,5 @@ using UnityEngine;
 public class AbilitiesConfig : ScriptableObject
 {
     public List<AbilityConfig> Abilities;
+    public AbilityConfig Attack;
 }

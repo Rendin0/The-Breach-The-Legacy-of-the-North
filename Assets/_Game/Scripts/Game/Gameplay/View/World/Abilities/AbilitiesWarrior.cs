@@ -14,19 +14,22 @@ public static class AbilitiesWarrior
         _coroutines = new(creatures);
     }
 
+    public static void Attack(CreatureViewModel caster, Vector2 mousePosition, Vector2 size)
+    {
+        Vector2 direction = (mousePosition - caster.Position.Value).normalized;
+        var (p1, p2) = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
+
+        _coroutines.DamageRectangle(caster, 1, p1, p2);
+        _coroutines.CreateRectParticle(size, p1, p2, direction);
+    }
+
     public static void Slash(CreatureViewModel caster, Vector2 mousePosition, Vector2 size, float damageMultiplier)
     {
         Vector2 direction = (mousePosition - caster.Position.Value).normalized;
         var (p1, p2) = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
 
-        var particle = new GameObject("Slash");
-        particle.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Gameplay/Particles/WarriorSlash");
-        particle.transform.position = Vector2.Lerp(p1, p2, .5f);
-        particle.transform.localScale = size;
-        particle.transform.Rotate(new Vector3(0f, 0f, (-new Vector2(direction.x, 0).normalized.x) * Vector2.Angle(direction, Vector2.up)));
-        GameObject.Destroy(particle, .5f);
-
         _coroutines.DamageRectangle(caster, damageMultiplier, p1, p2);
+        _coroutines.CreateRectParticle(size, p1, p2, direction);
     }
 
     public static void Dash(CreatureViewModel caster, Vector2 mousePosition, Vector2 size, float time, float damageMultiplier, float slowPower, float slowDuration)
@@ -76,8 +79,12 @@ public static class AbilitiesWarrior
         var (p1, p2) = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
         var hits = Physics2DUtils.GetRectHits<CreatureBinder>(p1, p2);
 
+        _coroutines.CreateRectParticle(size, p1, p2, direction);
+
         foreach (var hit in hits )
         {
+            if (hit.ViewModel.CreatureId == caster.CreatureId) continue;
+
             hit.ViewModel.AddStatusEffect(stunEffect);
             hit.ViewModel.AddStatusEffect(amplifyEffect);
         }
