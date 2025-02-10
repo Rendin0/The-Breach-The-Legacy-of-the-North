@@ -97,7 +97,9 @@ public class GameplayUIManager : UIManager
     {
         var rootUI = Container.Resolve<UIGameplayRootViewModel>();
         var inventoryService = Container.Resolve<InventoriesService>();
+        var creatureService = Container.Resolve<CreaturesSerivce>();
         var inventory = inventoryService.GetInventory(ownerId);
+        inventory.Owner = creatureService.GetPlayer();
 
         inventory.UIManager = this;
         rootUI.OpenPopup(inventory);

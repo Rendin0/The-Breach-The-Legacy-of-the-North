@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a05983cadf0e1fe49bf01a2b04184af3, type: 3}
-  m_Name: AbilityConfig_WarriorUnbreakable
+  m_Name: AbilityConfig_WarriorEnduringPower
   m_EditorClassIdentifier: 
-  Name: WarriorUnbreakable
-  CooldownTime: 0
+  Name: WarriorEnduringPower
+  CooldownTime: 15
   Use:
     _PersistentCalls:
     - _Target: {fileID: 0}
       _MemberName: AbilitiesWarrior, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null.Unbreakable
+        PublicKeyToken=null.EnduringPower
       _PersistentArguments:
       - _Type: 14
         _Int: 0
@@ -32,7 +32,23 @@ MonoBehaviour:
       - _Type: 5
         _Int: 0
         _String: 
-        _X: 0.25
+        _X: 2
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 20
         _Y: 0
         _Z: 0
         _W: 0
@@ -46,26 +62,4 @@ MonoBehaviour:
         _W: 0
         _Object: {fileID: 0}
   Requirement:
-    _PersistentCalls:
-    - _Target: {fileID: 0}
-      _MemberName: RequirementsAbilitiesWarrior, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null.UnbreakableRequirements
-      _PersistentArguments:
-      - _Type: 14
-        _Int: 0
-        _String: CreatureViewModel, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-      - _Type: 14
-        _Int: 1
-        _String: BoolWrapper, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
+    _PersistentCalls: []

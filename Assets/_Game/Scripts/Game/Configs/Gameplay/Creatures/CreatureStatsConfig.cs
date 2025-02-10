@@ -9,4 +9,7 @@ public class CreatureStatsConfig /*: ScriptableObject*/
     [Min(0f)] public float Health;
     [Min(0f)] public float Speed;
     [Min(0f)] public float Damage;
+    public bool Immortal;
+    public float Defense;
+
 }

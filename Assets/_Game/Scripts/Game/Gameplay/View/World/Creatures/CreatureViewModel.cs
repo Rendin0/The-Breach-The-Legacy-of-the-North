@@ -17,14 +17,15 @@ public class CreatureViewModel : IBuffable
     public ReactiveProperty<Vector2> Position { get; }
     public ReactiveProperty<bool> MovementBlocked { get; } = new(false);
 
-    public CreatureStatsViewModel Stats {get; private set;}
+    public CreatureStatsViewModel Stats { get; private set; }
 
     public readonly Subject<CreatureViewModel> OnCreatureClick = new();
     public readonly Subject<CreatureViewModel> DeleteRequest = new();
 
     private List<IStatusEffect> _statusEffects = new();
 
-    public float HealthChanges { get; private set;}
+    public float HealthChanges { get; private set; }
+    public float DamageResistance { get; private set; }
 
     public CreatureViewModel(CreatureEntityProxy creatureEntity)
     {
@@ -36,6 +37,7 @@ public class CreatureViewModel : IBuffable
 
         _baseStats = creatureEntity.Stats.Copy();
         Stats = new(creatureEntity.Stats);
+        Stats.Defense.Subscribe(v => DamageResistance = CalculateDamageResistance(v));
     }
 
     public virtual void OnClick(PointerEventData eventData)
@@ -48,18 +50,23 @@ public class CreatureViewModel : IBuffable
     // False - мёртв
     public bool Damage(float damage)
     {
-        damage = Mathf.Abs(damage);
-        Stats.Health.OnNext(Stats.Health.Value - damage);
+        if (!Stats.Immortal.Value)
+        {
+            damage = Mathf.Abs(damage);
+            damage *= 1f - (DamageResistance / 100f);
+            Stats.Health.OnNext(Stats.Health.Value - damage);
 
-        // На случай дебаффов, которые уменьшают временно макс хп.
-        // После конца дебаффа останется тот же процент хп
-        _baseStats.Health.OnNext(Stats.Health.Value / Stats.MaxHealth.Value * _baseStats.MaxHealth.Value);
+            // На случай дебаффов, которые уменьшают временно макс хп.
+            // После конца дебаффа останется тот же процент хп
+            _baseStats.Health.OnNext(Stats.Health.Value / Stats.MaxHealth.Value * _baseStats.MaxHealth.Value);
 
-        // Для способности Unbreakable, считает кол-во урона за последние 5 секунд
-        HealthChanges += damage;
-        GameEntryPoint.Coroutines.StartCoroutine(HealthChangesTimer(damage, 5f));
+            // Для способности Unbreakable, считает кол-во урона за последние 5 секунд
+            HealthChanges += damage;
+            GameEntryPoint.Coroutines.StartCoroutine(HealthChangesTimer(damage, 5f));
+            return Stats.Health.Value > 0;
+        }
 
-        return Stats.Health.Value > 0;
+        return true;
     }
 
     public void Heal(float heal)
@@ -90,6 +97,12 @@ public class CreatureViewModel : IBuffable
 
         foreach (var effect in effects)
             effect.Apply(Stats);
+    }
+
+    private float CalculateDamageResistance(float defense)
+    {
+        // y = 30log_10(0.1x + 1)
+        return 30 * Mathf.Log10(0.1f * defense + 1);
     }
 
     private IEnumerator HealthChangesTimer(float amount, float timer)

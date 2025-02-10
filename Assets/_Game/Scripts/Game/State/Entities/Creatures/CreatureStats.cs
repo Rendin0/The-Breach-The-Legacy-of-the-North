@@ -8,6 +8,8 @@ public class CreatureStats
     public float MaxHealth;
     public float Speed;
     public float Damage;
+    public bool Immortal;
+    public float Defense;
 
     public CreatureStats(CreatureStatsConfig stats)
     {
@@ -15,5 +17,8 @@ public class CreatureStats
         MaxHealth = stats.MaxHealth;
         Speed = stats.Speed;
         Damage = stats.Damage;
+        Immortal = stats.Immortal;
+        Defense = stats.Defense;
     }
+
 }

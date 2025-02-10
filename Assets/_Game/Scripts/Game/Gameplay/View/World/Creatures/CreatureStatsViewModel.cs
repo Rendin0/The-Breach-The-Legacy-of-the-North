@@ -7,6 +7,8 @@ public class CreatureStatsViewModel
     public ReactiveProperty<float> MaxHealth { get; }
     public ReactiveProperty<float> Speed { get; }
     public ReactiveProperty<float> Damage { get; }
+    public ReactiveProperty<bool> Immortal { get; }
+    public ReactiveProperty<float> Defense { get; }
 
     public CreatureStatsViewModel(CreatureStatsProxy origin)
     {
@@ -14,6 +16,8 @@ public class CreatureStatsViewModel
         MaxHealth = origin.MaxHealth;
         Speed = origin.Speed;
         Damage = origin.Damage;
+        Immortal = origin.Immortal;
+        Defense = origin.Defense;
     }
 
     public void CopyValuesTo(CreatureStatsViewModel other)
@@ -22,6 +26,8 @@ public class CreatureStatsViewModel
         other.MaxHealth.OnNext(MaxHealth.Value);
         other.Speed.OnNext(Speed.Value);
         other.Damage.OnNext(Damage.Value);
+        other.Immortal.OnNext(Immortal.Value);
+        other.Defense.OnNext(Defense.Value);
     }
 
     public void CopyFrom(CreatureStatsProxy baseStats)
@@ -30,5 +36,7 @@ public class CreatureStatsViewModel
         MaxHealth.OnNext(baseStats.MaxHealth.Value);
         Speed.OnNext(baseStats.Speed.Value);
         Damage.OnNext(baseStats.Damage.Value);
+        Immortal.OnNext(baseStats.Immortal.Value);
+        Defense.OnNext(baseStats.Defense.Value);
     }
 }

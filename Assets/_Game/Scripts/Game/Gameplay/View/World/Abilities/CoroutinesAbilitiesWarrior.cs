@@ -22,28 +22,26 @@ public class CoroutinesAbilitiesWarrior
 
         caster.Rb.linearVelocity = Vector2.zero;
         caster.MovementBlocked.OnNext(false);
-        var hits = HitRectangle(caster, damageMultiplier, p1, p2);
+        var hits = DamageRectangle(caster, damageMultiplier, p1, p2);
 
         foreach (var hit in hits)
         {
-            var slow = new SESlow(slowPower);
+            var slow = new SESpeedChange(slowPower, true);
             var tmpEffect = new TemporaryStatusEffect(hit.ViewModel, slow, slowDuration);
 
             hit.ViewModel.AddStatusEffect(tmpEffect);
         }
     }
 
-    public List<CreatureBinder> HitRectangle(CreatureViewModel caster, float damageMultiplier, Vector2 p1, Vector2 p2)
+    public List<CreatureBinder> DamageRectangle(CreatureViewModel caster, float damageMultiplier, Vector2 p1, Vector2 p2)
     {
-        var hits = Physics2D.OverlapAreaAll(p1, p2);
-        var hitsResult = new List<CreatureBinder>();
-        foreach (var hit in hits)
+        var hitsResult = Physics2DUtils.GetRectHits<CreatureBinder>(p1, p2);
+        foreach (var hit in hitsResult)
         {
-            // Ударило существо, ударило не само себя
-            if (hit.TryGetComponent<CreatureBinder>(out var creature) && creature.ViewModel.CreatureId != caster.CreatureId)
+            // Ударило не само себя
+            if (hit.ViewModel.CreatureId != caster.CreatureId)
             {
-                _creaturesSerivce.DamageCreature(creature.ViewModel, caster.Stats.Damage.Value * damageMultiplier);
-                hitsResult.Add(creature);
+                _creaturesSerivce.DamageCreature(hit.ViewModel, caster.Stats.Damage.Value * damageMultiplier);
             }
         }
 

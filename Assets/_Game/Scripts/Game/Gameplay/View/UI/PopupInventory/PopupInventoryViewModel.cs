@@ -20,6 +20,8 @@ public class PopupInventoryViewModel : WindowViewModel
     public EquipmentType? CurrSelectedEquip = null;
     private readonly InventoriesService _service;
     public readonly Dictionary<string, ItemConfig> ItemsConfig;
+    public CreatureViewModel Owner;
+
     public PopupInventoryViewModel(InventoryGrid origin, InventoriesService service)
     {
         Origin = origin;

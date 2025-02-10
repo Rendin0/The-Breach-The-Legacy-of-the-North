@@ -15,10 +15,18 @@ public class EquipmentBinder : MonoBehaviour
     [SerializeField] private Button _fastEquipButton;
     [SerializeField] private Button _fastUnequipButton;
 
+    [SerializeField] private StatBinder _damageBinder;
+    [SerializeField] private StatBinder _healthBinder;
+    [SerializeField] private StatBinder _defenseBinder;
+    [SerializeField] private StatBinder _resistanceBinder;
+    [SerializeField] private StatBinder _attackSpeedBinder;
+
     private PopupInventoryViewModel _viewModel;
 
     private Dictionary<EquipmentType, InventorySlotBinder> _equipmentMap = new();
     private Dictionary<EquipmentType, StarBinder> _starsMap = new();
+
+
 
     private readonly CompositeDisposable _subs = new();
 
@@ -55,6 +63,8 @@ public class EquipmentBinder : MonoBehaviour
 
         CalculateLargeStar();
         _viewModel = viewModel;
+
+        BindStats(viewModel);
     }
 
     private void CalculateLargeStar()
@@ -77,5 +87,12 @@ public class EquipmentBinder : MonoBehaviour
 
         _starLarge.SetImage($"UI/Stars/StarLarge{(ItemRarity)avgRarity}");
 
+    }
+
+    private void BindStats(PopupInventoryViewModel viewModel)
+    {
+        _damageBinder.Bind(viewModel.Owner.Stats.Damage);
+        _healthBinder.Bind(viewModel.Owner.Stats.MaxHealth);
+        _defenseBinder.Bind(viewModel.Owner.Stats.Defense);
     }
 }

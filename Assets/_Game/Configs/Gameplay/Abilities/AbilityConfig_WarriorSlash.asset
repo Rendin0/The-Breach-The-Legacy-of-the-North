@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: AbilityConfig_WarriorSlash
   m_EditorClassIdentifier: 
   Name: WarriorSlash
+  CooldownTime: 4
   Use:
     _PersistentCalls:
     - _Target: {fileID: 0}
@@ -52,3 +53,5 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+  Requirement:
+    _PersistentCalls: []
