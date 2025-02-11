@@ -17,10 +17,10 @@ public static class AbilitiesWarrior
     public static void Attack(CreatureViewModel caster, Vector2 mousePosition, Vector2 size)
     {
         Vector2 direction = (mousePosition - caster.Position.Value).normalized;
-        var (p1, p2) = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
+        var points = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
 
-        var targets = _coroutines.DamageRectangle(caster, 1, p1, p2);
-        _coroutines.CreateRectParticle(size, p1, p2, direction);
+        var targets = _coroutines.DamageRectangle(caster, 1, points);
+        _coroutines.CreateRectParticle(size, points, direction);
 
         foreach (var target in targets)
         {
@@ -31,10 +31,10 @@ public static class AbilitiesWarrior
     public static void Slash(CreatureViewModel caster, Vector2 mousePosition, Vector2 size, float damageMultiplier)
     {
         Vector2 direction = (mousePosition - caster.Position.Value).normalized;
-        var (p1, p2) = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
+        var points = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
 
-        _coroutines.DamageRectangle(caster, damageMultiplier, p1, p2);
-        _coroutines.CreateRectParticle(size, p1, p2, direction);
+        _coroutines.DamageRectangle(caster, damageMultiplier, points);
+        _coroutines.CreateRectParticle(size, points, direction);
     }
 
     public static void Dash(CreatureViewModel caster, Vector2 mousePosition, Vector2 size, float time, float damageMultiplier, float slowPower, float slowDuration)
@@ -89,10 +89,10 @@ public static class AbilitiesWarrior
         var stunEffect = new TemporaryStatusEffect(caster, new SEStun(), debuffDuration);
         var amplifyEffect = new TemporaryStatusEffect(caster, new SEDamageChange(-damageAmplify, true), debuffDuration);
 
-        var (p1, p2) = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
-        var hits = Physics2DUtils.GetRectHits<CreatureBinder>(p1, p2);
+        var points = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
+        var hits = Physics2DUtils.GetColliderHits<CreatureBinder>(points);
 
-        _coroutines.CreateRectParticle(size, p1, p2, direction);
+        _coroutines.CreateRectParticle(size, points, direction);
 
         foreach (var hit in hits )
         {

@@ -21,6 +21,7 @@ public class CreatureViewModel : IBuffable
 
     public readonly Subject<CreatureViewModel> OnCreatureClick = new();
     public readonly Subject<CreatureViewModel> DeleteRequest = new();
+    public readonly Subject<CreatureViewModel> KillRequest = new();
 
     private List<IStatusEffect> _statusEffects = new();
 
@@ -55,6 +56,8 @@ public class CreatureViewModel : IBuffable
     // False - мёртв
     public bool Damage(float damage)
     {
+        bool isAlive = true;
+
         if (!Stats.Immortal.Value)
         {
             damage = Mathf.Abs(damage);
@@ -68,10 +71,13 @@ public class CreatureViewModel : IBuffable
             // Для способности Unbreakable, считает кол-во урона за последние 5 секунд
             HealthChanges += damage;
             GameEntryPoint.Coroutines.StartCoroutine(HealthChangesTimer(damage, 5f));
-            return Stats.Health.Value > 0;
+            isAlive = Stats.Health.Value > 0;
         }
 
-        return true;
+        if (!isAlive)
+            KillRequest.OnNext(this);
+
+        return isAlive;
     }
 
     public void Heal(float heal)

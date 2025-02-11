@@ -14,18 +14,18 @@ public class CoroutinesAbilitiesWarrior
 
     public IEnumerator DashCoroutine(CreatureViewModel caster, float time, Vector2 size, Vector2 direction, float damageMultiplier, float slowPower, float slowDuration)
     {
-        var (p1, p2) = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
+        var points = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
 
         caster.Rb.linearVelocity = size.y / time * direction;
         caster.MovementBlocked.OnNext(true);
 
-        CreateRectParticle(size, p1, p2, direction);
+        CreateRectParticle(size, points, direction);
 
         yield return new WaitForSeconds(time);
 
         caster.Rb.linearVelocity = Vector2.zero;
         caster.MovementBlocked.OnNext(false);
-        var hits = DamageRectangle(caster, damageMultiplier, p1, p2);
+        var hits = DamageRectangle(caster, damageMultiplier, points);
 
         foreach (var hit in hits)
         {
@@ -51,16 +51,16 @@ public class CoroutinesAbilitiesWarrior
             caster.MarkedTargets.Remove(target);
     }
 
-    public List<CreatureBinder> DamageRectangle(CreatureViewModel caster, float damageMultiplier, Vector2 p1, Vector2 p2)
+    public List<CreatureBinder> DamageRectangle(CreatureViewModel caster, float damageMultiplier, List<Vector2> points)
     {
-        var hits = Physics2DUtils.GetRectHits<CreatureBinder>(p1, p2);
+        var hits = Physics2DUtils.GetColliderHits<CreatureBinder>(points);
         var hitsResult = new List<CreatureBinder>();
         foreach (var hit in hits)
         {
             // Ударило не само себя
             if (hit.ViewModel.CreatureId != caster.CreatureId)
             {
-                _creaturesSerivce.DamageCreature(hit.ViewModel, caster.Stats.Damage.Value * damageMultiplier);
+                hit.ViewModel.Damage(caster.Stats.Damage.Value * damageMultiplier);
                 hitsResult.Add(hit);
             }
         }
@@ -68,13 +68,14 @@ public class CoroutinesAbilitiesWarrior
         return hitsResult;
     }
 
-    public void CreateRectParticle(Vector2 size, Vector2 p1, Vector2 p2, Vector2 direction)
+    public void CreateRectParticle(Vector2 size, List<Vector2> points, Vector2 direction)
     {
         var particle = new GameObject("Slash");
         particle.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Gameplay/Particles/WarriorSlash");
-        particle.transform.position = Vector2.Lerp(p1, p2, .5f);
+        particle.transform.position = Vector2.Lerp(points[0], points[2], .5f);
         particle.transform.localScale = size;
         particle.transform.Rotate(new Vector3(0f, 0f, (-new Vector2(direction.x, 0).normalized.x) * Vector2.Angle(direction, Vector2.up)));
+
         GameObject.Destroy(particle, .5f);
     }
 }

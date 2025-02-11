@@ -49,7 +49,7 @@ public class CreaturesSerivce
         }
     }
 
-    public bool DamageCreature(CreatureViewModel creature, float damage)
+    private bool DamageCreature(CreatureViewModel creature, float damage)
     {
         var command = new CmdDamageCreature(creature, damage);
         var result = _commandProcessor.Process(command);
@@ -69,7 +69,14 @@ public class CreaturesSerivce
         return _playerViewModel;
     }
 
-    public bool DeleteCreature(int id)
+    private bool KillCreature(int creatureId)
+    {
+        var cmd = new CmdKillCreature(creatureId);
+        var result = _commandProcessor.Process(cmd);
+        return result;
+    }
+
+    private bool DeleteCreature(int id)
     {
         var cmd = new CmdDeleteCreature(id);
         var result = _commandProcessor.Process(cmd);
@@ -101,6 +108,10 @@ public class CreaturesSerivce
             creatureViewModel.DeleteRequest.Subscribe(_ =>
             {
                 DeleteCreature(creatureViewModel.CreatureId);
+            });
+            creatureViewModel.KillRequest.Subscribe(_ =>
+            {
+                KillCreature(creatureViewModel.CreatureId);
             });
         }
     }
