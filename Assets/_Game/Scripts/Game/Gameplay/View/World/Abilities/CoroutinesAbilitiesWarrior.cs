@@ -41,12 +41,15 @@ public class CoroutinesAbilitiesWarrior
     public IEnumerator ExecutionersMarkCoroutine(CreatureViewModel caster, CreatureViewModel target, float time)
     {
         target.MarkCount++;
+        target.MarkCount = Mathf.Clamp(target.MarkCount, 0, 3);
+
         if (target.MarkCount >= 3)
             caster.MarkedTargets.Add(target);
 
         yield return new WaitForSeconds(time);
 
         target.MarkCount--;
+        target.MarkCount = Mathf.Clamp(target.MarkCount, 0, 3);
         if (target.MarkCount == 2)
             caster.MarkedTargets.Remove(target);
     }

@@ -25,6 +25,7 @@ public static class AbilitiesWarrior
         foreach (var target in targets)
         {
             GameEntryPoint.Coroutines.StartCoroutine(_coroutines.ExecutionersMarkCoroutine(caster, target.ViewModel, 5));
+            target.ViewModel.MarkCount = 0;
         }
     }
 
