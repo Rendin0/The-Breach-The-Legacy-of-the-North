@@ -88,14 +88,14 @@ public static class AbilitiesWarrior
     {
         Vector2 direction = (mousePosition - caster.Position.Value).normalized;
         var stunEffect = new TemporaryStatusEffect(caster, new SEStun(), debuffDuration);
-        var amplifyEffect = new TemporaryStatusEffect(caster, new SEDamageChange(-damageAmplify, true), debuffDuration);
+        var amplifyEffect = new TemporaryStatusEffect(caster, new SEDefenseChange(damageAmplify, true), debuffDuration);
 
         var points = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
         var hits = Physics2DUtils.GetColliderHits<CreatureBinder>(points);
 
         _coroutines.CreateRectParticle(size, points, direction);
 
-        foreach (var hit in hits )
+        foreach (var hit in hits)
         {
             if (hit.ViewModel.CreatureId == caster.CreatureId) continue;
 
