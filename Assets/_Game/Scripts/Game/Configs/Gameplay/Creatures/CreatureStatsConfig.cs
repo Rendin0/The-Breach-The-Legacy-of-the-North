@@ -12,5 +12,7 @@ public class CreatureStatsConfig /*: ScriptableObject*/
     public bool Immortal;
     public float Defense;
     [Min(1f)]public float AttackSpeed;
+    public float Stamina;
+    public float MaxStamina;
 
 }

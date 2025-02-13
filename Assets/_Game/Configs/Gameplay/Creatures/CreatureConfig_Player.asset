@@ -21,4 +21,6 @@ MonoBehaviour:
     Immortal: 0
     Defense: 0
     AttackSpeed: 40
+    Stamina: 40
+    MaxStamina: 100
   Fraction: 0

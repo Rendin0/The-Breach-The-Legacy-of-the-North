@@ -104,4 +104,9 @@ public static class AbilitiesWarrior
         }
 
     }
+
+    public static void InifinteRage(CreatureViewModel caster, float staminaAttackSpeedPercent, float duration)
+    {
+
+    }
 }

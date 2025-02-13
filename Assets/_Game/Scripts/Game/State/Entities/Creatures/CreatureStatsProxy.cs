@@ -12,6 +12,8 @@ public class CreatureStatsProxy
     public ReactiveProperty<bool> Immortal { get; }
     public ReactiveProperty<float> Defense { get; }
     public ReactiveProperty<float> AttackSpeed { get; }
+    public ReactiveProperty<float> Stamina { get; }
+    public ReactiveProperty<float> MaxStamina { get; }
 
     public CreatureStatsProxy(CreatureStats origin)
     {
@@ -24,6 +26,8 @@ public class CreatureStatsProxy
         Immortal = new ReactiveProperty<bool>(origin.Immortal);
         Defense = new ReactiveProperty<float>(origin.Defense);
         AttackSpeed = new ReactiveProperty<float>(origin.AttackSpeed);
+        Stamina = new(origin.Stamina);
+        MaxStamina = new(origin.MaxStamina);
 
         Health.Skip(1).Subscribe(value => origin.Health = value);
         MaxHealth.Skip(1).Subscribe(value => origin.MaxHealth = value);
@@ -32,6 +36,8 @@ public class CreatureStatsProxy
         Immortal.Skip(1).Subscribe(value => origin.Immortal = value);
         Defense.Skip(1).Subscribe(value => origin.Defense = value);
         AttackSpeed.Skip(1).Subscribe(value => origin.AttackSpeed = value);
+        Stamina.Skip(1).Subscribe(value => origin.Stamina = value);
+        MaxStamina.Skip(1).Subscribe(value => origin.MaxStamina = value);
     }
 
     public CreatureStatsProxy Copy()
@@ -45,6 +51,8 @@ public class CreatureStatsProxy
             Immortal = Immortal.Value,
             Defense = Defense.Value,
             AttackSpeed = AttackSpeed.Value,
+            Stamina = Stamina.Value,
+            MaxStamina = MaxStamina.Value,
         };
         var statsOrigin = new CreatureStats(tmpCfg);
 
