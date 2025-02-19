@@ -91,7 +91,7 @@ public class EquipmentBinder : MonoBehaviour
 
     private void BindStats(PopupInventoryViewModel viewModel)
     {
-        _damageBinder.Bind(viewModel.Owner.Stats.Damage);
+        _damageBinder.Bind(viewModel.Owner.Stats.Damage.Physical);
         _healthBinder.Bind(viewModel.Owner.Stats.MaxHealth);
         _defenseBinder.Bind(viewModel.Owner.Stats.Defense);
     }

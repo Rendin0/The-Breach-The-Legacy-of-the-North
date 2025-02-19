@@ -49,7 +49,7 @@ public class CreaturesSerivce
         }
     }
 
-    private bool DamageCreature(CreatureViewModel creature, float damage)
+    private bool DamageCreature(CreatureViewModel creature, DamageData damage)
     {
         var command = new CmdDamageCreature(creature, damage);
         var result = _commandProcessor.Process(command);

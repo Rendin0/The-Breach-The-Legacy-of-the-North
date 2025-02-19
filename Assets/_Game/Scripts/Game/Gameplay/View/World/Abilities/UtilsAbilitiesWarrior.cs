@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
 
-public class CoroutinesAbilitiesWarrior
+public class UtilsAbilitiesWarrior
 {
     private CreaturesSerivce _creaturesSerivce;
-    public CoroutinesAbilitiesWarrior(CreaturesSerivce creatures)
+    public UtilsAbilitiesWarrior(CreaturesSerivce creatures)
     {
         _creaturesSerivce = creatures;
     }
@@ -26,7 +26,7 @@ public class CoroutinesAbilitiesWarrior
 
         caster.Rb.linearVelocity = Vector2.zero;
         caster.MovementBlocked.OnNext(false);
-        var hits = DamageRectangle(caster, damageMultiplier, points);
+        var hits = DamageRectangle(caster, caster.Stats.Damage * damageMultiplier, points);
 
         foreach (var hit in hits)
         {
@@ -56,18 +56,46 @@ public class CoroutinesAbilitiesWarrior
             caster.MarkedTargets.Remove(target);
     }
 
-    public List<CreatureBinder> DamageRectangle(CreatureViewModel caster, float damageMultiplier, List<Vector2> points)
+    public IEnumerator DelayedReckoningCoroutine(CreatureViewModel caster, float damageResistancePercent, float radius)
+    {
+        caster.Stats.DamageResistance.OnNext(caster.Stats.DamageResistance.Value + damageResistancePercent);
+        yield return new WaitForSeconds(caster.HealthChangesTime);
+        caster.Stats.DamageResistance.OnNext(caster.Stats.DamageResistance.Value - damageResistancePercent);
+
+        float delayedDamage = caster.HealthChanges * (1f / (1f - damageResistancePercent)) * damageResistancePercent;
+
+        var damage = new DamageData() { PhysicalData = delayedDamage };
+
+        DamageCircle(caster, damage, caster.Position.Value, radius);
+    }
+
+    public List<CreatureBinder> DamageRectangle(CreatureViewModel caster, DamageData damage, List<Vector2> points)
     {
         var hits = Physics2DUtils.GetColliderHits<CreatureBinder>(points);
         var hitsResult = new List<CreatureBinder>();
         foreach (var hit in hits)
         {
             // Ударило не само себя
-            if (hit.ViewModel.CreatureId != caster.CreatureId)
-            {
-                hit.ViewModel.Damage(caster.Stats.Damage.Value * damageMultiplier);
-                hitsResult.Add(hit);
-            }
+            if (hit.ViewModel.CreatureId == caster.CreatureId) continue;
+
+            hit.ViewModel.Damage(damage);
+            hitsResult.Add(hit);
+        }
+
+        return hitsResult;
+    }
+
+    public List<CreatureBinder> DamageCircle(CreatureViewModel caster, DamageData damage, Vector2 center, float radius)
+    {
+        var hits = Physics2DUtils.GetCircleHits<CreatureBinder>(center, radius);
+        var hitsResult = new List<CreatureBinder>();
+        foreach (var hit in hits)
+        {
+            // Ударило не само себя
+            if (hit.ViewModel.CreatureId == caster.CreatureId) continue;
+
+            hit.ViewModel.Damage(damage);
+            hitsResult.Add(hit);
         }
 
         return hitsResult;

@@ -1,5 +1,5 @@
 
 public interface IStatusEffect
 {
-    public void Apply(CreatureStatsViewModel stats);
+    public void Apply(CreatureViewModel creature);
 }

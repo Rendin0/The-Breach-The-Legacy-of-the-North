@@ -15,9 +15,9 @@ public class TemporaryStatusEffect : IStatusEffect
         _duration = duration;
     }
 
-    public void Apply(CreatureStatsViewModel stats)
+    public void Apply(CreatureViewModel creature)
     {
-        _effect.Apply(stats);
+        _effect.Apply(creature);
         GameEntryPoint.Coroutines.StartCoroutine(Timer());
     }
 

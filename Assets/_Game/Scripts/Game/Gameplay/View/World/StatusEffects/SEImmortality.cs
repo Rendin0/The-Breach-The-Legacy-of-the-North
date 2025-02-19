@@ -1,8 +1,8 @@
 
 public class SEImmortality : IStatusEffect
 {
-    public void Apply(CreatureStatsViewModel stats)
+    public void Apply(CreatureViewModel creature)
     {
-        stats.Immortal.OnNext(true);
+        creature.Stats.Immortal.OnNext(true);
     }
 }

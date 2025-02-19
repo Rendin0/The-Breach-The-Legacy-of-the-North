@@ -2,9 +2,9 @@
 public class CmdDamageCreature : ICommand
 {
     public readonly CreatureViewModel Creature;
-    public readonly float Damage;
+    public readonly DamageData Damage;
 
-    public CmdDamageCreature(CreatureViewModel creature, float damage)
+    public CmdDamageCreature(CreatureViewModel creature, DamageData damage)
     {
         Creature = creature;
         Damage = damage;

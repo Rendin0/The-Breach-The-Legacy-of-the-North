@@ -9,12 +9,12 @@ public class SESpeedChange : IStatusEffect
         _isPercent = isPercent;
     }
 
-    public void Apply(CreatureStatsViewModel stats)
+    public void Apply(CreatureViewModel creature)
     {
         if (_isPercent)
-            stats.Speed.OnNext(stats.Speed.Value * _power);
+            creature.Stats.Speed.OnNext(creature.Stats.Speed.Value * _power);
         else
-            stats.Speed.OnNext(stats.Speed.Value + _power);
+            creature.Stats.Speed.OnNext(creature.Stats.Speed.Value + _power);
 
     }
 }

@@ -23,10 +23,12 @@ public class CreatureViewModel : IBuffable
     public readonly Subject<CreatureViewModel> DeleteRequest = new();
     public readonly Subject<CreatureViewModel> KillRequest = new();
 
-    private List<IStatusEffect> _statusEffects = new();
+    private readonly List<IStatusEffect> _statusEffects = new();
 
+    public readonly float HealthChangesTime = 5f;
     public float HealthChanges { get; private set; }
-    public float DamageResistance { get; private set; }
+    public float PhysicalDamageResistance { get; private set; }
+    public float MagicalDamageResistance { get; private set; }
     public float AttackSpeed { get; private set; }
 
     public int MarkCount = 0;
@@ -43,7 +45,8 @@ public class CreatureViewModel : IBuffable
 
         _baseStats = creatureEntity.Stats.Copy();
         Stats = new(creatureEntity.Stats);
-        Stats.Defense.Subscribe(v => DamageResistance = CalculateDamageResistance(v));
+        Stats.Defense.Subscribe(v => PhysicalDamageResistance = CalculateDamageResistance(v));
+        Stats.Resistance.Subscribe(v => MagicalDamageResistance = CalculateDamageResistance(v));
         Stats.AttackSpeed.Subscribe(v => AttackSpeed = CalculateAttackSpeed(v));
     }
 
@@ -55,23 +58,29 @@ public class CreatureViewModel : IBuffable
 
     // True - жив
     // False - мёртв
-    public bool Damage(float damage)
+    public bool Damage(DamageData damage)
     {
         bool isAlive = true;
 
         if (!Stats.Immortal.Value)
         {
-            damage = Mathf.Abs(damage);
-            damage *= 1f - (DamageResistance / 100f);
-            Stats.Health.OnNext(Stats.Health.Value - damage);
+            // Физическая часть
+            float damageResult = Mathf.Abs(damage.PhysicalData) * (1f - (PhysicalDamageResistance / 100f));
+
+            // Магическая часть
+            damageResult += Mathf.Abs(damage.MagicalData) * (1f - (MagicalDamageResistance / 100f));
+
+            // Доп уменьшение урона 
+            damageResult *= 1f - Stats.DamageResistance.Value;
+            Stats.Health.OnNext(Stats.Health.Value - damageResult);
 
             // На случай дебаффов, которые уменьшают временно макс хп.
             // После конца дебаффа останется тот же процент хп
             _baseStats.Health.OnNext(Stats.Health.Value / Stats.MaxHealth.Value * _baseStats.MaxHealth.Value);
 
-            // Для способности Unbreakable, считает кол-во урона за последние 5 секунд
-            HealthChanges += damage;
-            GameEntryPoint.Coroutines.StartCoroutine(HealthChangesTimer(damage, 5f));
+            // Для способностей Delayed reckoning, Unbreakable, считает кол-во урона за последние 5 секунд
+            HealthChanges += damageResult;
+            GameEntryPoint.Coroutines.StartCoroutine(HealthChangesTimer(damageResult, HealthChangesTime));
             isAlive = Stats.Health.Value > 0;
         }
 
@@ -108,7 +117,7 @@ public class CreatureViewModel : IBuffable
         Stats.CopyFrom(_baseStats);
 
         foreach (var effect in effects)
-            effect.Apply(Stats);
+            effect.Apply(this);
     }
 
     private float CalculateDamageResistance(float defense)

@@ -10,12 +10,12 @@ public class SEDefenseChange : IStatusEffect
         _isPercent = isPercent;
     }
 
-    public void Apply(CreatureStatsViewModel stats)
+    public void Apply(CreatureViewModel creature)
     {
         if (_isPercent)
-            stats.Defense.OnNext(stats.Defense.Value * _amount);
+            creature.Stats.Defense.OnNext(creature.Stats.Defense.Value * _amount);
         else
-            stats.Defense.OnNext(stats.Defense.Value + _amount);
+            creature.Stats.Defense.OnNext(creature.Stats.Defense.Value + _amount);
     }
 }
 

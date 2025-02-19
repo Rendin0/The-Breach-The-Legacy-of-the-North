@@ -7,12 +7,14 @@ public class CreatureStats
     public float Health;
     public float MaxHealth;
     public float Speed;
-    public float Damage;
+    public DamageData Damage;
     public bool Immortal;
     public float Defense;
+    public float Resistance;
     public float AttackSpeed;
     public float Stamina;
     public float MaxStamina;
+    public float DamageResistance;
 
     public CreatureStats(CreatureStatsConfig stats)
     {
@@ -22,7 +24,9 @@ public class CreatureStats
         Damage = stats.Damage;
         Immortal = stats.Immortal;
         Defense = stats.Defense;
+        Resistance = stats.Resistance;
         AttackSpeed = stats.AttackSpeed;
+        DamageResistance = stats.DamageResistance;
         Stamina = stats.Stamina;
         MaxStamina = stats.MaxStamina;
     }

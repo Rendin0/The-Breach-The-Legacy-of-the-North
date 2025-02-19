@@ -89,7 +89,6 @@ public class PopupCreatureInfoBinder : PopupBinder<PopupCreatureInfoViewModel>
         viewModel.CreatureViewModel.Stats.Health.Subscribe(h => _statsHealthText.text = $"Health: {h}").AddTo(_subs);
         viewModel.CreatureViewModel.Stats.MaxHealth.Subscribe(mh => _statsMaxHealthText.text = $"MaxHealth: {mh}").AddTo(_subs);
         viewModel.CreatureViewModel.Stats.Speed.Subscribe(s => _statsSpeedText.text = $"Speed: {s}").AddTo(_subs);
-        viewModel.CreatureViewModel.Stats.Damage.Subscribe(d => _statsDamageText.text = $"Damage: {d}").AddTo(_subs);
     }
 
     private void InitDropdown(PopupCreatureInfoViewModel viewModel)

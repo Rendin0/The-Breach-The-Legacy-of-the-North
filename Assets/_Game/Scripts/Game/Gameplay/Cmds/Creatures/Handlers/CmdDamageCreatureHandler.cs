@@ -14,8 +14,7 @@ public class CmdDamageCreatureHandler : ICommandHandler<CmdDamageCreature>
 
     public bool Handle(CmdDamageCreature command)
     {
-        if (!command.Creature.Damage(command.Damage))
-            _commandProcessor.Process(new CmdKillCreature(command.Creature.CreatureId));
+        command.Creature.Damage(command.Damage);
 
         return true;
     }

@@ -8,7 +8,7 @@ using UnityEngine.Events;
 
 public static class AbilitiesWarrior
 {
-    private static CoroutinesAbilitiesWarrior _coroutines;
+    private static UtilsAbilitiesWarrior _coroutines;
     public static void Init(CreaturesSerivce creatures)
     {
         _coroutines = new(creatures);
@@ -19,7 +19,7 @@ public static class AbilitiesWarrior
         Vector2 direction = (mousePosition - caster.Position.Value).normalized;
         var points = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
 
-        var targets = _coroutines.DamageRectangle(caster, 1, points);
+        var targets = _coroutines.DamageRectangle(caster, caster.Stats.Damage.Value, points);
         _coroutines.CreateRectParticle(size, points, direction);
 
         foreach (var target in targets)
@@ -33,7 +33,7 @@ public static class AbilitiesWarrior
         Vector2 direction = (mousePosition - caster.Position.Value).normalized;
         var points = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
 
-        _coroutines.DamageRectangle(caster, damageMultiplier, points);
+        _coroutines.DamageRectangle(caster, caster.Stats.Damage * damageMultiplier, points);
         _coroutines.CreateRectParticle(size, points, direction);
     }
 
@@ -63,7 +63,7 @@ public static class AbilitiesWarrior
 
     public static void EnduringPower(CreatureViewModel caster, float damagePercent, float resistance, float defense, float duration)
     {
-        var dmgUp = new SEDamageChange(damagePercent, true);
+        var dmgUp = new SEPhysicalDamageChange(damagePercent, true);
         var tmpEffect = new TemporaryStatusEffect(caster, dmgUp, duration);
         caster.AddStatusEffect(tmpEffect);
 
@@ -80,7 +80,7 @@ public static class AbilitiesWarrior
         foreach (var target in caster.MarkedTargets)
         {
             target.MarkCount = 0;
-            target.AddStatusEffect(new SEDot(target, totalDamage, duration));
+            target.AddStatusEffect(new SEDot(totalDamage, duration));
         }
     }
 
@@ -103,6 +103,11 @@ public static class AbilitiesWarrior
             hit.ViewModel.AddStatusEffect(amplifyEffect);
         }
 
+    }
+
+    public static void DelayedReckoning(CreatureViewModel caster, float damageResistancePercent, float damageRadius)
+    {
+        GameEntryPoint.Coroutines.StartCoroutine(_coroutines.DelayedReckoningCoroutine(caster, damageResistancePercent, damageRadius));
     }
 
     public static void InifinteRage(CreatureViewModel caster, float staminaAttackSpeedPercent, float duration)
