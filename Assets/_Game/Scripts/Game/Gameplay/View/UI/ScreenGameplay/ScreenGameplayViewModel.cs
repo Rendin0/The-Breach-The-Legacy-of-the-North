@@ -2,14 +2,17 @@ using R3;
 
 public class ScreenGameplayViewModel : WindowViewModel
 {
-    private readonly GameplayUIManager _uiManager;
-    public readonly AbilitiesBarViewModel AbilitiesBarViewModel;
-
     public override string Id => "ScreenGameplay";
+    private readonly GameplayUIManager _uiManager;
+
+    public readonly AbilitiesBarViewModel AbilitiesBarViewModel;
+    public readonly PlayerStatsViewModel playerStatsViewModel;
 
     public ScreenGameplayViewModel(GameplayUIManager uiManager, PlayerViewModel player)
     {
         this._uiManager = uiManager;
+
+        playerStatsViewModel = new(player);
 
         InputRequests.EscapeRequest = new();
         InputRequests.TabRequest = new();

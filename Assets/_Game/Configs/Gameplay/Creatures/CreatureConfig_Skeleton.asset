@@ -17,7 +17,14 @@ MonoBehaviour:
     MaxHealth: 100
     Health: 100
     Speed: 7
-    Damage: 0
+    Damage:
+      MagicalData: 0
+      PhysicalData: 0
     Immortal: 0
+    Resistance: 0
     Defense: 36
+    AttackSpeed: 0
+    DamageResistance: 0
+    Stamina: 0
+    MaxStamina: 1
   Fraction: 1
