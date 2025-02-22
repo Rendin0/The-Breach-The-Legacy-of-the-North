@@ -22,15 +22,17 @@ public class Ability : IElementInfoViewModel
     public Subject<IElementInfoViewModel> OnMouseEnter => _onMouseEnter;
     public Subject<IElementInfoViewModel> OnMouseExit => _onMouseExit;
 
+    private readonly string _description;
 
     public string ElementName => Name;
-    public string Description => $"Cd: {_cooldownTime}";
+    public string Description => _description;
     public Sprite Icon => Resources.Load<Sprite>($"UI/Abilities/{Name}");
 
     public Ability(AbilityConfig config)
     {
         Name = config.Name;
 
+        _description = config.Description;
         _requirement = config.Requirement;
         _use = config.Use;
         _cooldownTime = config.CooldownTime;
