@@ -1,6 +1,8 @@
 
 using R3;
+using System;
 using UnityEngine;
+using static UnityEditor.Profiling.HierarchyFrameDataView;
 
 public class GameplayUIManager : UIManager
 {
@@ -34,7 +36,22 @@ public class GameplayUIManager : UIManager
         return viewModel;
     }
 
+    public PopupElementInfoViewModel OpenPopupElementInfo(IElementInfoViewModel elementInfo)
+    {
+        var viewModel = new PopupElementInfoViewModel(elementInfo);
+        var rootUI = Container.Resolve<UIGameplayRootViewModel>();
 
+        rootUI.OpenPopup(viewModel);
+
+        return viewModel;
+
+    }
+    public void ClosePopupElementInfo(WindowViewModel elementInfo)
+    {
+        var rootUI = Container.Resolve<UIGameplayRootViewModel>();
+
+        rootUI.ClosePopup(elementInfo);
+    }
 
     public ScreenGameplayViewModel OpenScreenGameplay()
     {
@@ -143,6 +160,5 @@ public class GameplayUIManager : UIManager
         var inventoryService = Container.Resolve<InventoriesService>();
         inventoryService.SortInventory(ownerId);
     }
-
 
 }

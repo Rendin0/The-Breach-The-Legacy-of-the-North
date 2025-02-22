@@ -10,6 +10,12 @@ public class PlayerStatsBinder : MonoBehaviour
 
     private CompositeDisposable _subs = new();
 
+    private void Awake()
+    {
+        healthSlider.value = 1;
+        staminaSlider.value = 1;
+    }
+
     private void OnDestroy()
     {
         _subs.Dispose();

@@ -1,5 +1,6 @@
 using R3;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using static GameInput;
 
@@ -57,7 +58,7 @@ public class GameplayInputController : IPlayerActions
 
     public void OnMouse(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed /*&& !EventSystem.current.IsPointerOverGameObject()*/)
         {
             _controllable.Attack(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             _inputRequests.MouseRequest.OnNext(Unit.Default);

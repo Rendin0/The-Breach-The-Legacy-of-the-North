@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Ability
+public class Ability : IElementInfoViewModel
 {
     public readonly string Name;
 
@@ -15,6 +15,16 @@ public class Ability
     public BoolWrapper CanUse = new();
     private bool _onCooldown = false;
     public ReactiveProperty<float> CurrentCooldown { get; } = new(0f);
+
+    private readonly Subject<IElementInfoViewModel> _onMouseEnter = new();
+    private readonly Subject<IElementInfoViewModel> _onMouseExit = new();
+
+    public Subject<IElementInfoViewModel> OnMouseEnter => _onMouseEnter;
+
+    public Subject<IElementInfoViewModel> OnMouseExit => _onMouseExit;
+
+    public string Text => $"{Name} Cd: {_cooldownTime}";
+
     public Ability(AbilityConfig config)
     {
         Name = config.Name;
