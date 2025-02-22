@@ -2,6 +2,7 @@
 using R3;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class AbilitiesBarViewModel : IElementInfoViewModel, IDisposable
 {
@@ -24,7 +25,9 @@ public class AbilitiesBarViewModel : IElementInfoViewModel, IDisposable
     public Subject<IElementInfoViewModel> OnMouseEnter => _onMouseEnter;
     public Subject<IElementInfoViewModel> OnMouseExit => _onMouseExit;
 
-    public string Text => "";
+    public Sprite Icon => throw new NotImplementedException();
+    public string ElementName => throw new NotImplementedException();
+    public string Description => throw new NotImplementedException();
 
     public void Dispose()
     {

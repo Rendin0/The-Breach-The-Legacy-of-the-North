@@ -2,6 +2,7 @@
 using R3;
 using System;
 using System.Collections;
+using UnityEditor.Playables;
 using UnityEngine;
 
 public class Ability : IElementInfoViewModel
@@ -18,12 +19,13 @@ public class Ability : IElementInfoViewModel
 
     private readonly Subject<IElementInfoViewModel> _onMouseEnter = new();
     private readonly Subject<IElementInfoViewModel> _onMouseExit = new();
-
     public Subject<IElementInfoViewModel> OnMouseEnter => _onMouseEnter;
-
     public Subject<IElementInfoViewModel> OnMouseExit => _onMouseExit;
 
-    public string Text => $"{Name}\nCd: {_cooldownTime}";
+
+    public string ElementName => Name;
+    public string Description => $"Cd: {_cooldownTime}";
+    public Sprite Icon => Resources.Load<Sprite>($"UI/Abilities/{Name}");
 
     public Ability(AbilityConfig config)
     {

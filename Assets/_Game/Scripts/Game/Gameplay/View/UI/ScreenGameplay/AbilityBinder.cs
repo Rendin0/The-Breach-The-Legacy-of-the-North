@@ -32,7 +32,7 @@ public class AbilityBinder : MonoBehaviour, IElementInfoBinder
 
         ability.CurrentCooldown.Subscribe(t => ChangeCooldown(t)).AddTo(_subs);
 
-        _image.sprite = Resources.Load<Sprite>($"UI/Abilities/{ability.Name}");
+        _image.sprite = ability.Icon;
 
     }
 
