@@ -675,13 +675,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_20"
+      name: InventoryBackground
       rect:
         serializedVersion: 2
-        x: 3
-        y: 232
-        width: 161
-        height: 193
+        x: 4
+        y: 246
+        width: 159
+        height: 178
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1246,6 +1246,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: InventoryButtons
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 233
+        width: 119
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c906de94e414cd46aed139d832e38b1
+      internalID: -422026614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -1265,6 +1287,8 @@ TextureImporter:
       HealthEmpty: 946275878834574405
       HealthFull: 7362839175339592013
       InfoBackground: -8437801180173249976
+      InventoryBackground: 904790417663375618
+      InventoryButtons: -422026614
       StaminaEmpty: 1508285289485404567
       StaminaFull: 547036019971274663
       "\u0418\u043D3435 (2)_0": -3860653911301855275
@@ -1280,7 +1304,6 @@ TextureImporter:
       "\u0418\u043D3435 (2)_18": -6761668934837436115
       "\u0418\u043D3435 (2)_19": -5906186943141400540
       "\u0418\u043D3435 (2)_2": -3739031249028558036
-      "\u0418\u043D3435 (2)_20": 904790417663375618
       "\u0418\u043D3435 (2)_21": -1329992434245476289
       "\u0418\u043D3435 (2)_22": -6362366154682930055
       "\u0418\u043D3435 (2)_23": -9088042373768403820

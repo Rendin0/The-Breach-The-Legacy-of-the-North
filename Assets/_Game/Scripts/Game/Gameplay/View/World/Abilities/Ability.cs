@@ -23,7 +23,7 @@ public class Ability : IElementInfoViewModel
 
     public Subject<IElementInfoViewModel> OnMouseExit => _onMouseExit;
 
-    public string Text => $"{Name} Cd: {_cooldownTime}";
+    public string Text => $"{Name}\nCd: {_cooldownTime}";
 
     public Ability(AbilityConfig config)
     {
