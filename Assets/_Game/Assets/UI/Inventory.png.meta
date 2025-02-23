@@ -235,13 +235,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_0"
+      name: RarityGrey
       rect:
         serializedVersion: 2
-        x: 2
-        y: 469
-        width: 29
-        height: 30
+        x: 3
+        y: 470
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,13 +257,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_1"
+      name: RarityGreen
       rect:
         serializedVersion: 2
-        x: 34
-        y: 469
-        width: 29
-        height: 30
+        x: 35
+        y: 470
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,13 +279,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_2"
+      name: RarityBlue
       rect:
         serializedVersion: 2
-        x: 66
-        y: 469
-        width: 29
-        height: 30
+        x: 67
+        y: 470
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -301,13 +301,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_3"
+      name: RarityPurple
       rect:
         serializedVersion: 2
-        x: 98
-        y: 469
-        width: 29
-        height: 30
+        x: 99
+        y: 470
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -323,13 +323,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_4"
+      name: RarityYellow
       rect:
         serializedVersion: 2
-        x: 130
-        y: 469
-        width: 29
-        height: 30
+        x: 131
+        y: 470
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -345,13 +345,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_5"
+      name: RarityRed
       rect:
         serializedVersion: 2
-        x: 162
-        y: 469
-        width: 29
-        height: 30
+        x: 163
+        y: 470
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -367,13 +367,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_6"
+      name: RarityWhite
       rect:
         serializedVersion: 2
-        x: 194
-        y: 469
-        width: 29
-        height: 30
+        x: 195
+        y: 470
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -499,35 +499,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_12"
+      name: RarityGreyS
       rect:
         serializedVersion: 2
-        x: 340
-        y: 386
-        width: 148
-        height: 111
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 832ef1bda4a61f300800000000000000
-      internalID: 284125121237475896
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_13"
-      rect:
-        serializedVersion: 2
-        x: 2
-        y: 436
-        width: 29
-        height: 30
+        x: 3
+        y: 437
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -543,13 +521,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_14"
+      name: RarityGreenS
       rect:
         serializedVersion: 2
-        x: 34
-        y: 437
-        width: 29
-        height: 30
+        x: 35
+        y: 438
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -565,13 +543,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_15"
+      name: RarityBlueS
       rect:
         serializedVersion: 2
-        x: 66
-        y: 437
-        width: 29
-        height: 30
+        x: 67
+        y: 438
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -587,13 +565,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_16"
+      name: RarityPurpleS
       rect:
         serializedVersion: 2
-        x: 98
-        y: 437
-        width: 29
-        height: 30
+        x: 99
+        y: 438
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -609,13 +587,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_17"
+      name: RarityYellowS
       rect:
         serializedVersion: 2
-        x: 130
-        y: 437
-        width: 29
-        height: 30
+        x: 131
+        y: 438
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -631,13 +609,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_18"
+      name: RarityRedS
       rect:
         serializedVersion: 2
-        x: 162
-        y: 437
-        width: 29
-        height: 30
+        x: 163
+        y: 438
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -653,13 +631,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_19"
+      name: RarityWhiteS
       rect:
         serializedVersion: 2
-        x: 194
-        y: 437
-        width: 29
-        height: 30
+        x: 195
+        y: 438
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -741,13 +719,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_23"
+      name: ItemPotionRed
       rect:
         serializedVersion: 2
-        x: 173
-        y: 378
-        width: 19
-        height: 18
+        x: 169
+        y: 374
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -763,13 +741,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_24"
+      name: ItemPotionBlue
       rect:
         serializedVersion: 2
-        x: 205
-        y: 377
-        width: 19
-        height: 18
+        x: 201
+        y: 373
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -785,13 +763,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_25"
+      name: ItemPotionYellow
       rect:
         serializedVersion: 2
-        x: 238
-        y: 377
-        width: 19
-        height: 18
+        x: 234
+        y: 373
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -807,13 +785,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_26"
+      name: ItemPotionPurple
       rect:
         serializedVersion: 2
-        x: 270
-        y: 377
-        width: 19
-        height: 18
+        x: 266
+        y: 373
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -829,35 +807,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_27"
+      name: ItemSpine
       rect:
         serializedVersion: 2
-        x: 340
-        y: 257
-        width: 148
-        height: 122
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 56be4e97245d0a330800000000000000
-      internalID: 3720207773697633125
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_28"
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 342
-        width: 13
-        height: 22
+        x: 167
+        y: 339
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -873,13 +829,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_29"
+      name: ItemBone
       rect:
         serializedVersion: 2
-        x: 202
-        y: 342
-        width: 22
-        height: 22
+        x: 199
+        y: 339
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -895,13 +851,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_30"
+      name: ItemSword
       rect:
         serializedVersion: 2
-        x: 235
-        y: 341
-        width: 24
-        height: 23
+        x: 234
+        y: 339
+        width: 27
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -939,28 +895,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StaminaFull
-      rect:
-        serializedVersion: 2
-        x: 325
-        y: 226
-        width: 139
-        height: 5
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7a73bb1ac56779700800000000000000
-      internalID: 547036019971274663
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: InfoBackground
       rect:
         serializedVersion: 2
@@ -978,72 +912,6 @@ TextureImporter:
       bones: []
       spriteID: 842d6623888e6ea80800000000000000
       internalID: -8437801180173249976
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HealthFull
-      rect:
-        serializedVersion: 2
-        x: 325
-        y: 218
-        width: 139
-        height: 5
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d494270583f0e2660800000000000000
-      internalID: 7362839175339592013
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_35"
-      rect:
-        serializedVersion: 2
-        x: 325
-        y: 205
-        width: 141
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 577d6cdba8772c9a0800000000000000
-      internalID: -6214273098044745867
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u0418\u043D3435 (2)_36"
-      rect:
-        serializedVersion: 2
-        x: 325
-        y: 196
-        width: 141
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d239d0901b1fb08a0800000000000000
-      internalID: -6337706307930451155
       vertices: []
       indices: 
       edges: []
@@ -1343,7 +1211,7 @@ TextureImporter:
         width: 27
         height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1378,46 +1246,46 @@ TextureImporter:
       InfoBackground: -8437801180173249976
       InventoryBackground: 904790417663375618
       InventoryButtons: -422026614
+      ItemBone: 4877859827638785705
+      ItemPotionBlue: 4263121227727471317
+      ItemPotionPurple: 7888976576817761128
+      ItemPotionRed: -9088042373768403820
+      ItemPotionYellow: -1040257695013996132
+      ItemSpine: 4495002052157467565
+      ItemSword: -6725718429210779991
       NextPageButton: 291633002
       PrevPageButton: -1862063525
+      RarityBlue: -3739031249028558036
+      RarityBlueS: -387410712235116947
+      RarityGreen: 5693135287085900587
+      RarityGreenS: -2429200263511840383
+      RarityGrey: -3860653911301855275
+      RarityGreyS: -5899345660821112594
+      RarityPurple: -4337675187280358474
+      RarityPurpleS: 3921876562269426854
+      RarityRed: 5692544317021684339
+      RarityRedS: -6761668934837436115
+      RarityWhite: 3428929463328593352
+      RarityWhiteS: -5906186943141400540
+      RarityYellow: -6212069046017025494
+      RarityYellowS: 6633338042271610790
       SortInventory: 164320907
       StaminaEmpty: 1508285289485404567
       StaminaFull: 547036019971274663
-      "\u0418\u043D3435 (2)_0": -3860653911301855275
-      "\u0418\u043D3435 (2)_1": 5693135287085900587
       "\u0418\u043D3435 (2)_10": -5274880324360033939
       "\u0418\u043D3435 (2)_11": -1744521330083088434
       "\u0418\u043D3435 (2)_12": 284125121237475896
-      "\u0418\u043D3435 (2)_13": -5899345660821112594
-      "\u0418\u043D3435 (2)_14": -2429200263511840383
-      "\u0418\u043D3435 (2)_15": -387410712235116947
-      "\u0418\u043D3435 (2)_16": 3921876562269426854
-      "\u0418\u043D3435 (2)_17": 6633338042271610790
-      "\u0418\u043D3435 (2)_18": -6761668934837436115
-      "\u0418\u043D3435 (2)_19": -5906186943141400540
-      "\u0418\u043D3435 (2)_2": -3739031249028558036
       "\u0418\u043D3435 (2)_21": -1329992434245476289
       "\u0418\u043D3435 (2)_22": -6362366154682930055
-      "\u0418\u043D3435 (2)_23": -9088042373768403820
-      "\u0418\u043D3435 (2)_24": 4263121227727471317
-      "\u0418\u043D3435 (2)_25": -1040257695013996132
-      "\u0418\u043D3435 (2)_26": 7888976576817761128
       "\u0418\u043D3435 (2)_27": 3720207773697633125
-      "\u0418\u043D3435 (2)_28": 4495002052157467565
-      "\u0418\u043D3435 (2)_29": 4877859827638785705
-      "\u0418\u043D3435 (2)_3": -4337675187280358474
-      "\u0418\u043D3435 (2)_30": -6725718429210779991
       "\u0418\u043D3435 (2)_31": 6270611726299194623
       "\u0418\u043D3435 (2)_35": -6214273098044745867
       "\u0418\u043D3435 (2)_36": -6337706307930451155
       "\u0418\u043D3435 (2)_37": -4391387766011295990
-      "\u0418\u043D3435 (2)_4": -6212069046017025494
       "\u0418\u043D3435 (2)_41": 8727813794346941637
       "\u0418\u043D3435 (2)_43": -6759558142735994726
       "\u0418\u043D3435 (2)_44": 4212582659192905709
       "\u0418\u043D3435 (2)_45": 5503307981722273042
-      "\u0418\u043D3435 (2)_5": 5692544317021684339
-      "\u0418\u043D3435 (2)_6": 3428929463328593352
       "\u0418\u043D3435 (2)_7": 5316201179293054464
       "\u0418\u043D3435 (2)_8": 2955969018937490492
       "\u0418\u043D3435 (2)_9": 3925434075356114454

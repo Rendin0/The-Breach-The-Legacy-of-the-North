@@ -35,7 +35,10 @@ public class CmdAddItemInSlotHandler : ICommandHandler<CmdAddItemInSlot>
 
                     command.Slot.ItemId.OnNext(tmpId);
                     command.Slot.Amount.OnNext(tmpAmount);
-                    command.Slot.ItemDescription = _itemsConfigMap[command.Slot.ItemId.Value].Desription;
+
+                    var itemCfg = _itemsConfigMap[command.Slot.ItemId.Value];
+                    command.Slot.ItemDescription = itemCfg.Desription;
+                    command.Slot.Rarity = itemCfg.Rarity;
                     return false;
                 }
 
@@ -56,7 +59,10 @@ public class CmdAddItemInSlotHandler : ICommandHandler<CmdAddItemInSlot>
 
             command.Slot.ItemId.OnNext(command.ItemId);
             command.Slot.Amount.OnNext(command.Amount);
-            command.Slot.ItemDescription = _itemsConfigMap[command.Slot.ItemId.Value].Desription;
+
+            var cfg = _itemsConfigMap[command.Slot.ItemId.Value];
+            command.Slot.ItemDescription = cfg.Desription;
+            command.Slot.Rarity = cfg.Rarity;
             return true;
         }
 

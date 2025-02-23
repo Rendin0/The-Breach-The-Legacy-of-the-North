@@ -49,6 +49,7 @@ public class InventoryBinder : MonoBehaviour
         _selectedItem.interactable = false;
         _selectedItem.Image.raycastTarget = false;
         _selectedItem.Amount.raycastTarget = false;
+        _selectedItem.Rarity.raycastTarget = false;
         _selectedItem.gameObject.SetActive(false);
     }
 
@@ -96,6 +97,7 @@ public class InventoryBinder : MonoBehaviour
             _selectedItem.gameObject.SetActive(true);
             _selectedItem.Image.sprite = Resources.Load<Sprite>($"UI/Items/{slotViewModel.ItemId.Value}");
             _selectedItem.Amount.text = slotViewModel.Amount.ToString();
+            _selectedItem.Rarity.sprite = Resources.Load<Sprite>($"UI/Items/Rarities/Rarity{slotViewModel.Rarity}S");
 
             var slotSize = _mainStorage.GetSlotSize();
             _selectedItem.RectTransform.sizeDelta = slotSize * 0.7f;

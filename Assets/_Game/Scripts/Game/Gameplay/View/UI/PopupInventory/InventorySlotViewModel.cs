@@ -11,6 +11,7 @@ public class InventorySlotViewModel : IElementInfoViewModel
 
     public Sprite ItemIcon = null;
     public string ItemDescription;
+    public ItemRarity Rarity;
 
     public Sprite Icon => ItemIcon;
     public string ElementName => ItemId.Value;
