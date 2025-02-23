@@ -8,7 +8,7 @@ public class InventoryBinder : MonoBehaviour
     [SerializeField] private Transform _selectedItemContainer;
     [SerializeField] private InventorySlotBinder _slotPrefab;
 
-    [SerializeField] private Button _equipmentButton;
+    //[SerializeField] private Button _equipmentButton;
     [SerializeField] private Button _sortInventoryButton;
 
     [SerializeField] private StorageBinder _mainStorage;
@@ -16,17 +16,15 @@ public class InventoryBinder : MonoBehaviour
     private StorageBinder _tmpStorage;
 
     private InventorySlotBinder _selectedItem;
-    private Vector3 _offsetSelectedItem;
+    private readonly Vector3 _offsetSelectedItem = new(10f, -15f);
 
-    private CompositeDisposable _disposables = new();
+    private readonly CompositeDisposable _disposables = new();
     private PopupInventoryViewModel _viewModel;
     private PopupInventoryBinder _parrent;
 
     private void Awake()
     {
-        _selectedItem = Instantiate(_slotPrefab, _selectedItemContainer);
-        _selectedItem.GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0.6f);
-        _selectedItem.gameObject.SetActive(false);
+        InitSelectedItem();
 
         _tmpStorage = Instantiate(_storagePrefab, transform);
         _tmpStorage.gameObject.SetActive(false);
@@ -34,13 +32,24 @@ public class InventoryBinder : MonoBehaviour
 
     protected void Start()
     {
-        _equipmentButton.onClick.AddListener(OnEquipmentButtonClicked);
-        _sortInventoryButton?.onClick.AddListener(OnSortButtonClicked);
+        //_equipmentButton.onClick.AddListener(OnEquipmentButtonClicked);
+        _sortInventoryButton.onClick.AddListener(OnSortButtonClicked);
     }
 
     private void OnEquipmentButtonClicked()
     {
         _parrent.ToggleEquipment();
+    }
+    
+    private void InitSelectedItem()
+    {
+        _selectedItem = Instantiate(_slotPrefab, _selectedItemContainer);
+        _selectedItem.GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0.6f);
+        _selectedItem.RectTransform.pivot = new Vector2(0f, 1f);
+        _selectedItem.interactable = false;
+        _selectedItem.Image.raycastTarget = false;
+        _selectedItem.Amount.raycastTarget = false;
+        _selectedItem.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -50,8 +59,8 @@ public class InventoryBinder : MonoBehaviour
 
     protected void OnDestroy()
     {
-        _sortInventoryButton?.onClick.RemoveAllListeners();
-        _equipmentButton.onClick.RemoveAllListeners();
+        _sortInventoryButton.onClick.RemoveAllListeners();
+        //_equipmentButton.onClick.RemoveAllListeners();
         _disposables.Dispose();
     }
 
@@ -59,7 +68,7 @@ public class InventoryBinder : MonoBehaviour
     {
         _parrent = parrent;
         _viewModel = viewModel;
-        _mainStorage.Bind(viewModel.Storage, _slotPrefab);
+        _mainStorage.Bind(viewModel.Storage);
 
         _disposables.Add(
         viewModel.SelectedChanged.Subscribe(s =>
@@ -89,15 +98,14 @@ public class InventoryBinder : MonoBehaviour
             _selectedItem.Amount.text = slotViewModel.Amount.ToString();
 
             var slotSize = _mainStorage.GetSlotSize();
-            _selectedItem.RectTransform.sizeDelta = slotSize;
-            _offsetSelectedItem = slotSize * 1.1f;
+            _selectedItem.RectTransform.sizeDelta = slotSize * 0.7f;
         }
     }
 
     private void TmpStorageChanged(StorageViewModel storage)
     {
         if (storage != null)
-            _tmpStorage.Bind(storage, _slotPrefab);
+            _tmpStorage.Bind(storage);
 
         _tmpStorage.gameObject.SetActive(storage != null);
     }

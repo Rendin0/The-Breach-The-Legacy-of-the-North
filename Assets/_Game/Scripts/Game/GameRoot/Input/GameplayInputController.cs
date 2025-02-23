@@ -58,7 +58,7 @@ public class GameplayInputController : IPlayerActions
 
     public void OnMouse(InputAction.CallbackContext context)
     {
-        if (context.performed /*&& !EventSystem.current.IsPointerOverGameObject()*/)
+        if (context.performed)
         {
             _controllable.Attack(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             _inputRequests.MouseRequest.OnNext(Unit.Default);

@@ -2467,10 +2467,6 @@ MonoBehaviour:
   _itemsAmountInputField: {fileID: 6919147156682292}
   _storage: {fileID: 4962988354790596496}
   _slotPrefab: {fileID: 1472442890788669248, guid: 8a5ad35eb6253e040bafedcd53474fe3, type: 3}
-  _statsHealthText: {fileID: 0}
-  _statsMaxHealthText: {fileID: 0}
-  _statsSpeedText: {fileID: 0}
-  _statsDamageText: {fileID: 0}
 --- !u!1 &6390568124185829872
 GameObject:
   m_ObjectHideFlags: 0
@@ -4004,6 +4000,18 @@ PrefabInstance:
     - target: {fileID: 1097287954112793070, guid: 7bfdcdd51c57d82499c9fd64089c0a4d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900338566781584856, guid: 7bfdcdd51c57d82499c9fd64089c0a4d, type: 3}
+      propertyPath: m_fontSize
+      value: 21.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183721522205002848, guid: 7bfdcdd51c57d82499c9fd64089c0a4d, type: 3}
+      propertyPath: m_fontSize
+      value: 21.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168380025027236379, guid: 7bfdcdd51c57d82499c9fd64089c0a4d, type: 3}
+      propertyPath: m_fontSize
+      value: 21.55
       objectReference: {fileID: 0}
     - target: {fileID: 6776437062358622619, guid: 7bfdcdd51c57d82499c9fd64089c0a4d, type: 3}
       propertyPath: m_AnchorMax.x

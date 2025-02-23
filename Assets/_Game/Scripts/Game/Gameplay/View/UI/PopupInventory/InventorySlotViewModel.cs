@@ -9,6 +9,7 @@ public class InventorySlotViewModel
     public ReactiveProperty<int> Amount { get; }
 
     public readonly Subject<InventorySlotViewModel> SelectRequested = new();
+    public readonly Subject<Unit> ResetColor = new();
 
     public void RequestSelect()
     {

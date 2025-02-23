@@ -1,5 +1,7 @@
 
 using R3;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -22,8 +24,16 @@ public class PlayerViewModel : CreatureViewModel, IControllable
 
     public void Attack(Vector2 position)
     {
-        if (attack.Use(this, position))
-            attack.SetCooldown(AttackSpeed);
+        GameEntryPoint.Coroutines.StartCoroutine(AttackCoroutine(position));
+    }
+
+    private IEnumerator AttackCoroutine(Vector2 position)
+    {
+        // Скип одного кадра, чтобы IsPointerOverGameObject сработал правильно
+        yield return null;
+        if (!EventSystem.current.IsPointerOverGameObject())
+            if (attack.Use(this, position))
+                attack.SetCooldown(AttackSpeed);
     }
 
     public void UseAbility(int index, Vector2 position)

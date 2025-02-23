@@ -88,12 +88,14 @@ public class PopupInventoryViewModel : WindowViewModel
     {
         if (CurrSelectedItem == tmpSelected)
         {
+            CurrSelectedItem.ResetColor.OnNext(Unit.Default);
             SelectedChanged.OnNext(null);
             tmpSelected = CurrSelectedItem = null;
         }
 
         if (tmpSelected != null && tmpSelected.ItemId.Value != ItemsIDs.Nothing)
         {
+            CurrSelectedItem.ResetColor.OnNext(Unit.Default);
             _service.SwapSlots(tmpSelected, CurrSelectedItem, this);
             SelectedChanged.OnNext(null);
             CurrSelectedItem = null;

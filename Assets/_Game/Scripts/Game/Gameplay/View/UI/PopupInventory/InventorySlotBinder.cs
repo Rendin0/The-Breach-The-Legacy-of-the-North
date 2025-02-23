@@ -28,6 +28,8 @@ public class InventorySlotBinder : Selectable, IPointerDownHandler
     public override void OnPointerDown(PointerEventData eventData)
     {
         base.OnPointerDown(eventData);
+        Image.color = Color.clear;
+        Amount.color = Color.clear;
         _viewModel.RequestSelect();
     }
 
@@ -56,11 +58,17 @@ public class InventorySlotBinder : Selectable, IPointerDownHandler
             {
                 ChangeImage(id);
             });
-
+        var resetColorSub =
+            viewModel.ResetColor.Subscribe(_ =>
+            {
+                Image.color = Color.white;
+                Amount.color = Color.white;
+            });
 
 
         _subs.Add(itemAmountChangedSub);
         _subs.Add(itemIdChangedSub);
+        _subs.Add(resetColorSub);
 
         _viewModel = viewModel;
     }

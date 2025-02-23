@@ -55,7 +55,7 @@ public class PopupCreatureInfoBinder : PopupBinder<PopupCreatureInfoViewModel>
             {
                 _storage.gameObject.SetActive(true);
                 var inventory = ViewModel.GetInventory();
-                _storage.Bind(inventory.Storage, _slotPrefab);
+                _storage.Bind(inventory.Storage);
             }
         }
     }
@@ -96,7 +96,7 @@ public class PopupCreatureInfoBinder : PopupBinder<PopupCreatureInfoViewModel>
         if (inventory != null)
         {
             _storage.gameObject.SetActive(true);
-            _storage.Bind(inventory.Storage, _slotPrefab);
+            _storage.Bind(inventory.Storage);
         }
     }
 

@@ -1255,7 +1255,7 @@ TextureImporter:
         width: 119
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1264,6 +1264,94 @@ TextureImporter:
       bones: []
       spriteID: 8c906de94e414cd46aed139d832e38b1
       internalID: -422026614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NextPageButton
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 238
+        width: 20
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef85c19d3958e3b408874fef7d529c18
+      internalID: 291633002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortInventory
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 238
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ee2c60f1c2a82243844e196dddbf4d2
+      internalID: 164320907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PrevPageButton
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 238
+        width: 20
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 263dccf85cc02294ab6f105eeacdfbaa
+      internalID: -1862063525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmptySlot
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 370
+        width: 27
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf7b322fbc0d6df418f01709d200216a
+      internalID: -309373940
       vertices: []
       indices: 
       edges: []
@@ -1284,11 +1372,15 @@ TextureImporter:
     nameFileIdTable:
       Ability: 3877111415579917930
       AbilityBar: 4547170392746323865
+      EmptySlot: -309373940
       HealthEmpty: 946275878834574405
       HealthFull: 7362839175339592013
       InfoBackground: -8437801180173249976
       InventoryBackground: 904790417663375618
       InventoryButtons: -422026614
+      NextPageButton: 291633002
+      PrevPageButton: -1862063525
+      SortInventory: 164320907
       StaminaEmpty: 1508285289485404567
       StaminaFull: 547036019971274663
       "\u0418\u043D3435 (2)_0": -3860653911301855275
