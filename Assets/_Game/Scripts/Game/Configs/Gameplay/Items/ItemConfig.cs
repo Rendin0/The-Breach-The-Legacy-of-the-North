@@ -25,5 +25,6 @@ public abstract class ItemConfig : ScriptableObject
     public ItemRarity Rarity;
     public string ItemId;
     [Min(1)] public int MaxStack = 1;
+    [TextArea] public string Desription;
 }
 

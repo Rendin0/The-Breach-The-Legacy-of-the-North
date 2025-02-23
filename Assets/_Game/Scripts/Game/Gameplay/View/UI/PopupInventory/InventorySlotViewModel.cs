@@ -1,12 +1,26 @@
 
 using R3;
+using UnityEngine;
 
-public class InventorySlotViewModel
+public class InventorySlotViewModel : IElementInfoViewModel
 {
     private readonly InventorySlot _origin;
 
     public ReactiveProperty<string> ItemId { get; }
     public ReactiveProperty<int> Amount { get; }
+
+    private readonly Sprite _icon;
+    public string ItemDescription;
+
+    public Sprite Icon => _icon;
+    public string ElementName => ItemId.Value;
+    public string Description => ItemDescription;
+
+
+    private readonly Subject<IElementInfoViewModel> _onMouseEnter = new();
+    private readonly Subject<IElementInfoViewModel> _onMouseExit = new();
+    public Subject<IElementInfoViewModel> OnMouseEnter => _onMouseEnter;
+    public Subject<IElementInfoViewModel> OnMouseExit => _onMouseExit;
 
     public readonly Subject<InventorySlotViewModel> SelectRequested = new();
     public readonly Subject<Unit> ResetColor = new();
@@ -18,6 +32,8 @@ public class InventorySlotViewModel
     public InventorySlotViewModel(InventorySlot origin)
     {
         _origin = origin;
+
+        _icon = Resources.Load<Sprite>($"UI/Items/{ItemId}");
 
         ItemId = origin.ItemId;
         Amount = origin.Amount;

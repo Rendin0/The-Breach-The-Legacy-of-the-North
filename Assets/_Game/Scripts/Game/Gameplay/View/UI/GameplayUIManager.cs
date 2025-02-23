@@ -1,6 +1,8 @@
 
 using R3;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static UnityEditor.Profiling.HierarchyFrameDataView;
 
@@ -69,6 +71,8 @@ public class GameplayUIManager : UIManager
         rootUI.OpenScreen(viewModel);
         input.Player.Enable();
 
+        SubscribeElementInfo(viewModel.CreateElementInfo, viewModel.DeleteElementInfo);
+
         return viewModel;
     }
 
@@ -120,6 +124,8 @@ public class GameplayUIManager : UIManager
 
         inventory.UIManager = this;
         rootUI.OpenPopup(inventory);
+        
+        SubscribeElementInfo(inventory.CreateElementInfo, inventory.DeleteElementInfo);
 
         return inventory;
     }
@@ -161,4 +167,11 @@ public class GameplayUIManager : UIManager
         inventoryService.SortInventory(ownerId);
     }
 
+    private void SubscribeElementInfo(Subject<IElementInfoViewModel> onEnter, Subject<IElementInfoViewModel> onExit)
+    {
+        WindowViewModel viewModel = null;
+
+        onEnter.Subscribe(e => viewModel = OpenPopupElementInfo(e));
+        onExit.Subscribe(e => ClosePopupElementInfo(viewModel));
+    }
 }

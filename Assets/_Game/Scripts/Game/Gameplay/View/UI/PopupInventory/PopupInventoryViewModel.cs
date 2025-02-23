@@ -22,6 +22,10 @@ public class PopupInventoryViewModel : WindowViewModel
     public readonly Dictionary<string, ItemConfig> ItemsConfig;
     public CreatureViewModel Owner;
 
+
+    public Subject<IElementInfoViewModel> CreateElementInfo = new();
+    public Subject<IElementInfoViewModel> DeleteElementInfo = new();
+
     public PopupInventoryViewModel(InventoryGrid origin, InventoriesService service)
     {
         Origin = origin;
@@ -51,6 +55,9 @@ public class PopupInventoryViewModel : WindowViewModel
 
         InputRequests.EscapeRequest.Subscribe(_ => RequestClose());
         InputRequests.TabRequest.Subscribe(_ => RequestClose());
+
+        Storage.CreateElementInfo.Subscribe(e => CreateElementInfo.OnNext(e));
+        Storage.DeleteElementInfo.Subscribe(e => DeleteElementInfo.OnNext(e));
     }
 
     private void CreateEquipmentViewModel(InventorySlot origin, EquipmentType type)

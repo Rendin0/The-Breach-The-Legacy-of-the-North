@@ -12,7 +12,9 @@ public class ScreenGameplayViewModel : WindowViewModel
     public readonly PlayerStatsViewModel playerStatsViewModel;
 
     private readonly CompositeDisposable _subs = new();
-    private readonly List<(IElementInfoViewModel, PopupElementInfoViewModel)> _elementInfoWindows = new();
+
+    public Subject<IElementInfoViewModel> CreateElementInfo = new();
+    public Subject<IElementInfoViewModel> DeleteElementInfo = new();
 
     public ScreenGameplayViewModel(GameplayUIManager uiManager, PlayerViewModel player)
     {
@@ -29,25 +31,8 @@ public class ScreenGameplayViewModel : WindowViewModel
         InputRequests.URequest.Subscribe(_ => RequestDevPanel());
 
         AbilitiesBarViewModel = new(player);
-        AbilitiesBarViewModel.OnMouseEnter.Subscribe(e => OpenElementInfo(e)).AddTo(_subs);
-        AbilitiesBarViewModel.OnMouseExit.Subscribe(e => CloseElementInfo(e)).AddTo(_subs);
-    }
-
-    private void OpenElementInfo(IElementInfoViewModel element)
-    {
-        _elementInfoWindows.Add((element, _uiManager.OpenPopupElementInfo(element)));
-    }
-
-    private void CloseElementInfo(IElementInfoViewModel element)
-    {
-        var window = _elementInfoWindows.FirstOrDefault(e => e.Item1 == element);
-
-        if (window.Item2 != null)
-        {
-            _uiManager.ClosePopupElementInfo(window.Item2);
-        }
-
-        _elementInfoWindows.Remove(window);
+        AbilitiesBarViewModel.OnMouseEnter.Subscribe(e => CreateElementInfo.OnNext(e)).AddTo(_subs);
+        AbilitiesBarViewModel.OnMouseExit.Subscribe(e => DeleteElementInfo.OnNext(e)).AddTo(_subs);
     }
 
     private void RequestPause()

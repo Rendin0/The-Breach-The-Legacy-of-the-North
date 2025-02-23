@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlotBinder : Selectable, IPointerDownHandler
+public class InventorySlotBinder : Selectable, IPointerDownHandler, IElementInfoBinder
 {
     [SerializeField] private Image _image;
     [SerializeField] private TMP_Text _amount;
@@ -93,4 +93,17 @@ public class InventorySlotBinder : Selectable, IPointerDownHandler
         _image.color = new Color(1, 1, 1, 1);
     }
 
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+        base.OnPointerEnter(eventData);
+
+        _viewModel.OnMouseEnter.OnNext(_viewModel);
+    }
+
+    public override void OnPointerExit(PointerEventData eventData)
+    {
+        base.OnPointerExit(eventData);
+
+        _viewModel.OnMouseExit.OnNext(_viewModel);
+    }
 }

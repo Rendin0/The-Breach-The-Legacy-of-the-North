@@ -15,4 +15,5 @@ MonoBehaviour:
   Rarity: 3
   ItemId: Chest
   MaxStack: 1
+  Desription: The cool chest kek
   EquipmentType: 3

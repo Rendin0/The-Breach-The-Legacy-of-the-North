@@ -9,6 +9,9 @@ public class StorageViewModel
     private PopupInventoryViewModel _parrent;
     public List<InventorySlotViewModel> Slots { get; } = new();
 
+    public Subject<IElementInfoViewModel> CreateElementInfo = new();
+    public Subject<IElementInfoViewModel> DeleteElementInfo = new();
+
     public StorageViewModel(Storage origin)
     {
         foreach (var slot in origin.Slots)
@@ -47,6 +50,8 @@ public class StorageViewModel
 
         });
 
+        viewModel.OnMouseEnter.Subscribe(e => CreateElementInfo.OnNext(e));
+        viewModel.OnMouseExit.Subscribe(e => DeleteElementInfo.OnNext(e));
 
         Slots.Add(viewModel);
     }

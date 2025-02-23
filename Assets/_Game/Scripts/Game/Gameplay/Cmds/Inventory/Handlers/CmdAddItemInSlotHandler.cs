@@ -35,6 +35,7 @@ public class CmdAddItemInSlotHandler : ICommandHandler<CmdAddItemInSlot>
 
                     command.Slot.ItemId.OnNext(tmpId);
                     command.Slot.Amount.OnNext(tmpAmount);
+                    command.Slot.ItemDescription = _itemsConfigMap[command.Slot.ItemId.Value].Desription;
                     return false;
                 }
 
@@ -55,6 +56,7 @@ public class CmdAddItemInSlotHandler : ICommandHandler<CmdAddItemInSlot>
 
             command.Slot.ItemId.OnNext(command.ItemId);
             command.Slot.Amount.OnNext(command.Amount);
+            command.Slot.ItemDescription = _itemsConfigMap[command.Slot.ItemId.Value].Desription;
             return true;
         }
 
