@@ -13,7 +13,7 @@ public class InventorySlotBinder : Selectable, IPointerDownHandler, IElementInfo
     public TMP_Text Amount { get { return _amount; } }
 
     private InventorySlotViewModel _viewModel;
-    private CompositeDisposable _subs = new();
+    private readonly CompositeDisposable _subs = new();
 
 
     private RectTransform _rectTransorfm;
@@ -30,6 +30,7 @@ public class InventorySlotBinder : Selectable, IPointerDownHandler, IElementInfo
         base.OnPointerDown(eventData);
         Image.color = Color.clear;
         Amount.color = Color.clear;
+        _viewModel.OnMouseExit.OnNext(_viewModel);
         _viewModel.RequestSelect();
     }
 
@@ -48,6 +49,8 @@ public class InventorySlotBinder : Selectable, IPointerDownHandler, IElementInfo
 
     public void Bind(InventorySlotViewModel viewModel)
     {
+        _viewModel = viewModel;
+
         var itemAmountChangedSub =
             viewModel.Amount.Subscribe(amount =>
             {
@@ -61,8 +64,11 @@ public class InventorySlotBinder : Selectable, IPointerDownHandler, IElementInfo
         var resetColorSub =
             viewModel.ResetColor.Subscribe(_ =>
             {
-                Image.color = Color.white;
-                Amount.color = Color.white;
+                if (_image.sprite != null)
+                {
+                    Image.color = Color.white;
+                    Amount.color = Color.white;
+                }
             });
 
 
@@ -70,7 +76,6 @@ public class InventorySlotBinder : Selectable, IPointerDownHandler, IElementInfo
         _subs.Add(itemIdChangedSub);
         _subs.Add(resetColorSub);
 
-        _viewModel = viewModel;
     }
 
     private void ChangeAmount(int amount)
@@ -84,26 +89,31 @@ public class InventorySlotBinder : Selectable, IPointerDownHandler, IElementInfo
         var sprite = Resources.Load<Sprite>($"UI/Items/{id}");
 
         _image.sprite = sprite;
+        _viewModel.ItemIcon = sprite;
 
         if (sprite == null)
         {
-            _image.color = new Color(1, 1, 1, 0);
+            _image.color = Color.clear;
             return;
         }
-        _image.color = new Color(1, 1, 1, 1);
+        _image.color = Color.white;
     }
+
+    
 
     public override void OnPointerEnter(PointerEventData eventData)
     {
         base.OnPointerEnter(eventData);
 
-        _viewModel.OnMouseEnter.OnNext(_viewModel);
+        if (_viewModel.ItemId.Value != ItemsIDs.Nothing && _image.color != Color.clear)
+            _viewModel.OnMouseEnter.OnNext(_viewModel);
     }
 
     public override void OnPointerExit(PointerEventData eventData)
     {
         base.OnPointerExit(eventData);
 
-        _viewModel.OnMouseExit.OnNext(_viewModel);
+        if (_viewModel.ItemId.Value != ItemsIDs.Nothing)
+            _viewModel.OnMouseExit.OnNext(_viewModel);
     }
 }

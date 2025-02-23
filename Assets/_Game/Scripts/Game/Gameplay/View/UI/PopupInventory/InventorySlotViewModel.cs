@@ -9,10 +9,10 @@ public class InventorySlotViewModel : IElementInfoViewModel
     public ReactiveProperty<string> ItemId { get; }
     public ReactiveProperty<int> Amount { get; }
 
-    private readonly Sprite _icon;
+    public Sprite ItemIcon = null;
     public string ItemDescription;
 
-    public Sprite Icon => _icon;
+    public Sprite Icon => ItemIcon;
     public string ElementName => ItemId.Value;
     public string Description => ItemDescription;
 
@@ -32,8 +32,6 @@ public class InventorySlotViewModel : IElementInfoViewModel
     public InventorySlotViewModel(InventorySlot origin)
     {
         _origin = origin;
-
-        _icon = Resources.Load<Sprite>($"UI/Items/{ItemId}");
 
         ItemId = origin.ItemId;
         Amount = origin.Amount;
