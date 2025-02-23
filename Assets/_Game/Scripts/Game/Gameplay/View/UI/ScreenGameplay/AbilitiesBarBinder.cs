@@ -1,6 +1,7 @@
 
 using R3;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ public class AbilitiesBarBinder : MonoBehaviour
     [SerializeField] private AbilityBinder _abilityPrefab;
     [SerializeField] private List<AbilityBinder> _abilities = new();
     [SerializeField] private GameObject _extraBar;
+    [SerializeField] private List<TMP_Text> _abilityBindingsNames;
 
     public void Bind(AbilitiesBarViewModel viewModel)
     {
@@ -23,12 +25,17 @@ public class AbilitiesBarBinder : MonoBehaviour
             _abilities[i].gameObject.SetActive(false);
         }
 
-        viewModel.SwitchBackground.Subscribe(_ => SwitchBackground(_));
+        for (int i = 0; i < viewModel.AbilityBindings.Count; i++)
+        {
+            _abilityBindingsNames[i].text = viewModel.AbilityBindings[i];
+        }
 
+
+        viewModel.AddExtraBar.Subscribe(_ => AddExtraBar(_));
         _extraBar.SetActive(false);
     }
 
-    private void SwitchBackground(InputAction.CallbackContext context)
+    private void AddExtraBar(InputAction.CallbackContext context)
     {
         _extraBar.SetActive(!context.canceled);
     }

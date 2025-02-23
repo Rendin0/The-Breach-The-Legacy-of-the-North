@@ -8,8 +8,10 @@ using UnityEngine.InputSystem;
 public class AbilitiesBarViewModel : IElementInfoViewModel, IDisposable
 {
     public readonly List<Ability> Abilities = new();
+    public readonly List<string> AbilityBindings = new();
 
-    public AbilitiesBarViewModel(PlayerViewModel player)
+
+    public AbilitiesBarViewModel(PlayerViewModel player, InputAction bindings)
     {
         foreach (var ability in player.Abilities)
         {
@@ -17,6 +19,11 @@ public class AbilitiesBarViewModel : IElementInfoViewModel, IDisposable
 
             _subs.Add(ability.OnMouseEnter.Subscribe(e => OnMouseEnter.OnNext(e)));
             _subs.Add(ability.OnMouseExit.Subscribe(e => OnMouseExit.OnNext(e)));
+        }
+
+        foreach (var binding in bindings.controls)
+        {
+            AbilityBindings.Add(binding.displayName);
         }
     }
 
@@ -26,7 +33,7 @@ public class AbilitiesBarViewModel : IElementInfoViewModel, IDisposable
     public Subject<IElementInfoViewModel> OnMouseEnter => _onMouseEnter;
     public Subject<IElementInfoViewModel> OnMouseExit => _onMouseExit;
 
-    public readonly Subject<InputAction.CallbackContext> SwitchBackground = new();
+    public readonly Subject<InputAction.CallbackContext> AddExtraBar = new();
 
     public Sprite Icon => throw new NotImplementedException();
     public string ElementName => throw new NotImplementedException();

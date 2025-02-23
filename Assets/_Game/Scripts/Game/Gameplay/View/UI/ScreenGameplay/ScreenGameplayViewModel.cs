@@ -19,7 +19,7 @@ public class ScreenGameplayViewModel : WindowViewModel
     public Subject<IElementInfoViewModel> CreateElementInfo = new();
     public Subject<IElementInfoViewModel> DeleteElementInfo = new();
 
-    public ScreenGameplayViewModel(GameplayUIManager uiManager, PlayerViewModel player)
+    public ScreenGameplayViewModel(GameplayUIManager uiManager, InputAction abilityBindings, PlayerViewModel player)
     {
         this._uiManager = uiManager;
 
@@ -35,14 +35,14 @@ public class ScreenGameplayViewModel : WindowViewModel
         InputRequests.URequest.Subscribe(_ => RequestDevPanel(_));
         InputRequests.AltRequest.Subscribe(_ => RequestSwitchAbilityBar(_));
 
-        AbilitiesBarViewModel = new(player);
+        AbilitiesBarViewModel = new(player, abilityBindings);
         AbilitiesBarViewModel.OnMouseEnter.Subscribe(e => CreateElementInfo.OnNext(e)).AddTo(_subs);
         AbilitiesBarViewModel.OnMouseExit.Subscribe(e => DeleteElementInfo.OnNext(e)).AddTo(_subs);
     }
 
     private void RequestSwitchAbilityBar(InputAction.CallbackContext context)
     {
-        AbilitiesBarViewModel.SwitchBackground.OnNext(context);
+        AbilitiesBarViewModel.AddExtraBar.OnNext(context);
     }
 
     private void RequestPause(InputAction.CallbackContext context)
