@@ -24,9 +24,13 @@ public class PopupDevPanelViewModel : WindowViewModel
         InputRequests.URequest = new();
         InputRequests.MouseRequest = new();
 
-        InputRequests.EscapeRequest.Subscribe(_ => RequestClose());
-        InputRequests.URequest.Subscribe(_ => RequestClose());
+        InputRequests.EscapeRequest.Subscribe(_ => Close(_));
+        InputRequests.URequest.Subscribe(_ => Close(_));
     }
 
-
+    private void Close(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            RequestClose();
+    }
 }

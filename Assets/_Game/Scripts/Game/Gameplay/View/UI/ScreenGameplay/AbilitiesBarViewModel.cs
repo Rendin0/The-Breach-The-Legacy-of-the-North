@@ -3,6 +3,7 @@ using R3;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AbilitiesBarViewModel : IElementInfoViewModel, IDisposable
 {
@@ -24,6 +25,8 @@ public class AbilitiesBarViewModel : IElementInfoViewModel, IDisposable
     private readonly Subject<IElementInfoViewModel> _onMouseEnter = new();
     public Subject<IElementInfoViewModel> OnMouseEnter => _onMouseEnter;
     public Subject<IElementInfoViewModel> OnMouseExit => _onMouseExit;
+
+    public readonly Subject<InputAction.CallbackContext> SwitchBackground = new();
 
     public Sprite Icon => throw new NotImplementedException();
     public string ElementName => throw new NotImplementedException();

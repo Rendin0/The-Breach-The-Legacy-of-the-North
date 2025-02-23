@@ -98,6 +98,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Alt"",
+                    ""type"": ""Button"",
+                    ""id"": ""41b10ec5-3582-44fa-b3e7-c50691e9c754"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -432,202 +441,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""One Modifier"",
-                    ""id"": ""31e13916-1dd5-4b59-b6ce-71f30ac9deab"",
-                    ""path"": ""OneModifier(overrideModifiersNeedToBePressedFirst=true)"",
+                    ""name"": """",
+                    ""id"": ""7224feba-3c52-4c92-a9c6-784c688e4864"",
+                    ""path"": ""<Keyboard>/leftAlt"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Abilities"",
-                    ""isComposite"": true,
+                    ""action"": ""Alt"",
+                    ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Binding"",
-                    ""id"": ""0d04a565-08dc-4a82-a81a-fd491de4c35f"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Abilities"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Binding"",
-                    ""id"": ""d9e4efdd-d9e6-46be-8309-749f1377b68a"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Abilities"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""One Modifier"",
-                    ""id"": ""3c8dca96-3c2b-496b-8fea-54b7a4abd0d3"",
-                    ""path"": ""OneModifier"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Abilities"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""modifier"",
-                    ""id"": ""2ec6e04f-bbb3-47c4-ab1c-d70c934c6e0f"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Abilities"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""binding"",
-                    ""id"": ""85dc597b-4bc0-4ab0-8b11-111bca9cc717"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Abilities"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""One Modifier"",
-                    ""id"": ""38ff8928-eac3-4886-875e-9170f737fd33"",
-                    ""path"": ""OneModifier"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Abilities"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""modifier"",
-                    ""id"": ""6fe30ba0-14d0-4add-84d6-fd4946ac5634"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Abilities"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""binding"",
-                    ""id"": ""315bfc75-ef65-4287-ab35-8c791952c376"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Abilities"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""One Modifier"",
-                    ""id"": ""16d8d0b0-6d59-4b3a-ac2d-238bcf683975"",
-                    ""path"": ""OneModifier"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Abilities"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""modifier"",
-                    ""id"": ""02c2264c-97aa-45c3-bf64-d12054e80502"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Abilities"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""binding"",
-                    ""id"": ""eb5af379-9369-4cbb-9459-a9154130f9a1"",
-                    ""path"": ""<Keyboard>/4"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Abilities"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""One Modifier"",
-                    ""id"": ""30367245-69b6-4ee6-89f7-e49588fa85ef"",
-                    ""path"": ""OneModifier"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Abilities"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""modifier"",
-                    ""id"": ""d55744bd-c82b-4faf-9bb3-b155d8719e28"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Abilities"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""binding"",
-                    ""id"": ""c179d919-cc4c-4b23-9277-c647e07425f0"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Abilities"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""One Modifier"",
-                    ""id"": ""4c465bbe-f6a3-43e8-a9ba-b892663c942f"",
-                    ""path"": ""OneModifier"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Abilities"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""modifier"",
-                    ""id"": ""329b9dff-d0dd-4bdd-b2da-0617d4bd5187"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Abilities"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""binding"",
-                    ""id"": ""d00f0e90-992b-496f-ae8d-064a7ebb1943"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Abilities"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -1241,6 +1063,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Player_U = m_Player.FindAction("U", throwIfNotFound: true);
         m_Player_Mouse = m_Player.FindAction("Mouse", throwIfNotFound: true);
         m_Player_Abilities = m_Player.FindAction("Abilities", throwIfNotFound: true);
+        m_Player_Alt = m_Player.FindAction("Alt", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1329,6 +1152,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_U;
     private readonly InputAction m_Player_Mouse;
     private readonly InputAction m_Player_Abilities;
+    private readonly InputAction m_Player_Alt;
     public struct PlayerActions
     {
         private @GameInput m_Wrapper;
@@ -1341,6 +1165,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @U => m_Wrapper.m_Player_U;
         public InputAction @Mouse => m_Wrapper.m_Player_Mouse;
         public InputAction @Abilities => m_Wrapper.m_Player_Abilities;
+        public InputAction @Alt => m_Wrapper.m_Player_Alt;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1374,6 +1199,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Abilities.started += instance.OnAbilities;
             @Abilities.performed += instance.OnAbilities;
             @Abilities.canceled += instance.OnAbilities;
+            @Alt.started += instance.OnAlt;
+            @Alt.performed += instance.OnAlt;
+            @Alt.canceled += instance.OnAlt;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1402,6 +1230,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Abilities.started -= instance.OnAbilities;
             @Abilities.performed -= instance.OnAbilities;
             @Abilities.canceled -= instance.OnAbilities;
+            @Alt.started -= instance.OnAlt;
+            @Alt.performed -= instance.OnAlt;
+            @Alt.canceled -= instance.OnAlt;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1600,6 +1431,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnU(InputAction.CallbackContext context);
         void OnMouse(InputAction.CallbackContext context);
         void OnAbilities(InputAction.CallbackContext context);
+        void OnAlt(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

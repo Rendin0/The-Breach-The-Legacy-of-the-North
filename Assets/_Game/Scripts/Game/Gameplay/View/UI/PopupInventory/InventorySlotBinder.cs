@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.Profiling.HierarchyFrameDataView;
 
 public class InventorySlotBinder : Selectable, IPointerDownHandler, IElementInfoBinder
 {
@@ -62,7 +63,6 @@ public class InventorySlotBinder : Selectable, IPointerDownHandler, IElementInfo
         var itemIdChangedSub =
             viewModel.ItemId.Subscribe(id =>
             {
-                ChangeAmount(viewModel.Amount.Value);
                 ChangeImage(id);
             });
         var resetColorSub =
@@ -85,6 +85,7 @@ public class InventorySlotBinder : Selectable, IPointerDownHandler, IElementInfo
 
     private void ChangeAmount(int amount)
     {
+        _amount.color = Color.white;
         if (amount > 1)
         {
             _amount.text = amount.ToString();

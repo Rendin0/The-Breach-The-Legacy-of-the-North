@@ -48,18 +48,16 @@ public class GameEntryPoint
             TabRequest = new(),
             EscapeRequest = new(),
             URequest = new(),
-            MouseRequest = new()
+            MouseRequest = new(),
+            AltRequest = new(),
         };
+        _rootContainer.RegisterInstance(inputRequests);
 
         var input = new GameInput();
         _rootContainer.RegisterInstance(input);
         _rootContainer.RegisterInstance(new GameplayInputController(input, inputRequests));
         _rootContainer.RegisterInstance(new UIInputController(input, inputRequests.EscapeRequest));
 
-        _rootContainer.RegisterInstance(AppConstants.ESCAPE_REQUEST_TAG, inputRequests.EscapeRequest);
-        _rootContainer.RegisterInstance(AppConstants.TAB_REQUEST_TAG, inputRequests.TabRequest);
-        _rootContainer.RegisterInstance(AppConstants.U_REQUEST_TAG, inputRequests.URequest);
-        _rootContainer.RegisterInstance(AppConstants.MOUSE_REQUEST_TAG, inputRequests.MouseRequest);
     }
 
     private async void RunGame()

@@ -5,10 +5,10 @@ using static GameInput;
 
 public class UIInputController : IUIActions
 {
-    private readonly Subject<Unit> _escapeRequest;
+    private readonly Subject<InputAction.CallbackContext> _escapeRequest;
     private readonly GameInput _inputActions;
 
-    public UIInputController(GameInput inputActions, Subject<Unit> escapeRequest)
+    public UIInputController(GameInput inputActions, Subject<InputAction.CallbackContext> escapeRequest)
     {
         _escapeRequest = escapeRequest;
         _inputActions = inputActions;
@@ -25,8 +25,7 @@ public class UIInputController : IUIActions
 
     public void OnEscape(InputAction.CallbackContext context)
     {
-        if (context.performed)
-            _escapeRequest.OnNext(Unit.Default);
+        _escapeRequest.OnNext(context);
     }
 
     public void OnMiddleClick(InputAction.CallbackContext context)

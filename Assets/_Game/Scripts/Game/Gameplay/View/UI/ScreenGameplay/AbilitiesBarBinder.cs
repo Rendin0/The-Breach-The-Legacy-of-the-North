@@ -1,13 +1,15 @@
 
-
+using R3;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class AbilitiesBarBinder : MonoBehaviour
 {
     [SerializeField] private AbilityBinder _abilityPrefab;
     [SerializeField] private List<AbilityBinder> _abilities = new();
-
+    [SerializeField] private GameObject _extraBar;
 
     public void Bind(AbilitiesBarViewModel viewModel)
     {
@@ -20,6 +22,14 @@ public class AbilitiesBarBinder : MonoBehaviour
         {
             _abilities[i].gameObject.SetActive(false);
         }
+
+        viewModel.SwitchBackground.Subscribe(_ => SwitchBackground(_));
+
+        _extraBar.SetActive(false);
     }
 
+    private void SwitchBackground(InputAction.CallbackContext context)
+    {
+        _extraBar.SetActive(!context.canceled);
+    }
 }

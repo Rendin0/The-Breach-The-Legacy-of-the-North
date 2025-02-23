@@ -28,10 +28,9 @@ public class PopupInventoryViewModel : WindowViewModel
 
     public PopupInventoryViewModel(InventoryGrid origin, InventoriesService service)
     {
+        ItemsConfig = service.ItemsConfig;
         Origin = origin;
-        Storage = new StorageViewModel(origin.Storage);
-        Storage.SetParrent(this);
-
+        Storage = new StorageViewModel(origin.Storage, this);
 
         foreach (var equip in origin.Equipment)
         {
@@ -48,16 +47,21 @@ public class PopupInventoryViewModel : WindowViewModel
 
         OwnerId = origin.OwnerId;
         _service = service;
-        ItemsConfig = service.ItemsConfig;
 
         InputRequests.EscapeRequest = new();
         InputRequests.TabRequest = new();
 
-        InputRequests.EscapeRequest.Subscribe(_ => RequestClose());
-        InputRequests.TabRequest.Subscribe(_ => RequestClose());
+        InputRequests.EscapeRequest.Subscribe(_ => Close(_));
+        InputRequests.TabRequest.Subscribe(_ => Close(_));
 
         Storage.CreateElementInfo.Subscribe(e => CreateElementInfo.OnNext(e));
         Storage.DeleteElementInfo.Subscribe(e => DeleteElementInfo.OnNext(e));
+    }
+
+    private void Close(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            RequestClose();
     }
 
     private void CreateEquipmentViewModel(InventorySlot origin, EquipmentType type)
