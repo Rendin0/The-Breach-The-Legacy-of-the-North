@@ -143,6 +143,7 @@ MonoBehaviour:
   _btnClose: {fileID: 0}
   _btnCloseAlt: {fileID: 5422892528851183661}
   _inventory: {fileID: 6755795961632060644}
+  _mainContainer: {fileID: 3832436244004534191}
 --- !u!1 &7787264199177751766
 GameObject:
   m_ObjectHideFlags: 0

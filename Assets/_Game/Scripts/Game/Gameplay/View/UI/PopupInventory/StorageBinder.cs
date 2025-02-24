@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class StorageBinder : MonoBehaviour
+public class StorageBinder : MonoBehaviour, IDraggable
 {
     [SerializeField] private InventoryPageBinder _pagePrefab;
     [SerializeField] private Transform _pageContainer;
@@ -17,6 +18,10 @@ public class StorageBinder : MonoBehaviour
     private readonly List<InventorySlotBinder> _slots = new();
     private readonly List<InventoryPageBinder> _slotsPages = new();
 
+    private RectTransform _rect;
+    private bool _dragging = false;
+    private Vector3 _draggingOffset;
+
     private int _currentPage = 0;
     private int _maxPages;
     private readonly int _slotsPerPage = 25;
@@ -25,11 +30,17 @@ public class StorageBinder : MonoBehaviour
     {
         _nextPage.onClick.AddListener(OnNextPageButtonClicked);
         _prevPage.onClick.AddListener(OnPreviousPageButtonClicked);
+        _rect = GetComponent<RectTransform>();
     }
     protected void OnDestroy()
     {
         _nextPage.onClick.RemoveAllListeners();
         _prevPage.onClick.RemoveAllListeners();
+    }
+    private void Update()
+    {
+        if (_dragging)
+            _rect.position = Input.mousePosition + _draggingOffset;
     }
 
     public void Bind(StorageViewModel viewModel)
@@ -55,6 +66,7 @@ public class StorageBinder : MonoBehaviour
         SetPage(0);
     }
 
+
     private void SetPage(int page)
     {
         _currPageText.text = (page + 1).ToString();
@@ -78,6 +90,17 @@ public class StorageBinder : MonoBehaviour
     {
         _currentPage = _currentPage == 0 ? _maxPages - 1 : _currentPage - 1;
         SetPage(_currentPage);
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        _dragging = true;
+        _draggingOffset = _rect.position - Input.mousePosition;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        _dragging = false;
     }
 }
 

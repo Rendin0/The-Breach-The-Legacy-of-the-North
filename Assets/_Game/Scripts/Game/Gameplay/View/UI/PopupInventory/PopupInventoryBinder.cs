@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PopupInventoryBinder : PopupBinder<PopupInventoryViewModel>
 {
     [SerializeField] InventoryBinder _inventory;
+
     //[SerializeField] EquipmentBinder _equipment;
 
     protected override void Start()
