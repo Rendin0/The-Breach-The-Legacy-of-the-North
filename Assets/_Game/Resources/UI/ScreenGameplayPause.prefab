@@ -276,9 +276,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Resume
-
-'
+  m_text: Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -375,7 +373,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4294484048598158703}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -479,7 +477,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4859760890086139760}
-  - component: {fileID: 126623998799791533}
+  - component: {fileID: 4257587689000556344}
   m_Layer: 5
   m_Name: ScreenGameplayPause
   m_TagString: Untagged
@@ -500,9 +498,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3455930607172165978}
+  - {fileID: 6805514133254036800}
   - {fileID: 6628407300525022602}
   - {fileID: 1540075201391970776}
-  - {fileID: 6805514133254036800}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -510,7 +508,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &126623998799791533
+--- !u!114 &4257587689000556344
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -590,7 +588,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Return to Menu
+  m_text: 'Exit
 
 '
   m_isRightToLeft: 0
@@ -676,7 +674,7 @@ GameObject:
   - component: {fileID: 3748833523334199335}
   - component: {fileID: 3954891329613107766}
   m_Layer: 5
-  m_Name: ButtonReturnToMenu
+  m_Name: ButtonExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -797,7 +795,7 @@ GameObject:
   - component: {fileID: 2009809188711219764}
   - component: {fileID: 5200394170974344551}
   m_Layer: 5
-  m_Name: ButtonResume
+  m_Name: ButtonPlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

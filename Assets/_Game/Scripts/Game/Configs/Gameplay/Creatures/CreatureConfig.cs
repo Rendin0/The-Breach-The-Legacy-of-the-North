@@ -12,8 +12,6 @@ public enum Fractions
 public class CreatureConfig : ScriptableObject
 {
     public string TypeId;
-    [Min(0f)] public float MaxHealth;
-    [Min(0f)] public float Health;
-    [Min(0f)] public float Speed;
+    public CreatureStatsConfig Stats;
     public Fractions Fraction;
 }

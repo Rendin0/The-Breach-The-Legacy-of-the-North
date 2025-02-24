@@ -3,10 +3,8 @@ public class PopupDialogueViewModel : WindowViewModel
 {
     public override string Id => "PopupDialogue";
 
-    private DialogueObject _currDialogue;
 
-    public PopupDialogueViewModel(DialogueObject currDialogue)
+    public PopupDialogueViewModel()
     {
-        _currDialogue = currDialogue;
     }
 }

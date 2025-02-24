@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PopupInventoryBinder : PopupBinder<PopupInventoryViewModel>
 {
     [SerializeField] InventoryBinder _inventory;
-    [SerializeField] EquipmentBinder _equipment;
+
+    //[SerializeField] EquipmentBinder _equipment;
 
     protected override void Start()
     {
@@ -17,7 +19,7 @@ public class PopupInventoryBinder : PopupBinder<PopupInventoryViewModel>
         base.OnBind(viewModel);
 
         _inventory.Bind(viewModel, this);
-        _equipment.Bind(viewModel);
+        //_equipment.Bind(viewModel);
         ToggleEquipment();
     }
 
@@ -29,6 +31,6 @@ public class PopupInventoryBinder : PopupBinder<PopupInventoryViewModel>
 
     public void ToggleEquipment()
     {
-        _equipment.gameObject.SetActive(!_equipment.gameObject.activeSelf);
+        //_equipment.gameObject.SetActive(!_equipment.gameObject.activeSelf);
     }
 }

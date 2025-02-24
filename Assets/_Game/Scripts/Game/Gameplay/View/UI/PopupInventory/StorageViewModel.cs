@@ -9,8 +9,13 @@ public class StorageViewModel
     private PopupInventoryViewModel _parrent;
     public List<InventorySlotViewModel> Slots { get; } = new();
 
-    public StorageViewModel(Storage origin)
+    public Subject<IElementInfoViewModel> CreateElementInfo = new();
+    public Subject<IElementInfoViewModel> DeleteElementInfo = new();
+
+    public StorageViewModel(Storage origin, PopupInventoryViewModel parrent)
     {
+        _parrent = parrent;
+
         foreach (var slot in origin.Slots)
         {
             CreateSlotViewModel(slot);
@@ -47,6 +52,10 @@ public class StorageViewModel
 
         });
 
+        viewModel.Rarity = _parrent.ItemsConfig[viewModel.ItemId.Value].Rarity;
+        viewModel.ItemDescription = _parrent.ItemsConfig[viewModel.ItemId.Value].Desription;
+        viewModel.OnMouseEnter.Subscribe(e => CreateElementInfo.OnNext(e));
+        viewModel.OnMouseExit.Subscribe(e => DeleteElementInfo.OnNext(e));
 
         Slots.Add(viewModel);
     }

@@ -1,3 +1,5 @@
+using R3;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +20,7 @@ public class PopupCreatureInfoBinder : PopupBinder<PopupCreatureInfoViewModel>
     [SerializeField] private StorageBinder _storage;
     [SerializeField] private InventorySlotBinder _slotPrefab;
 
+    private CompositeDisposable _subs = new();
 
     private void Awake()
     {
@@ -52,7 +55,7 @@ public class PopupCreatureInfoBinder : PopupBinder<PopupCreatureInfoViewModel>
             {
                 _storage.gameObject.SetActive(true);
                 var inventory = ViewModel.GetInventory();
-                _storage.Bind(inventory.Storage, _slotPrefab);
+                _storage.Bind(inventory.Storage);
             }
         }
     }
@@ -64,6 +67,7 @@ public class PopupCreatureInfoBinder : PopupBinder<PopupCreatureInfoViewModel>
         _addSlotsButton.onClick.RemoveAllListeners();
         _addInventoryButton.onClick.RemoveAllListeners();
         _addItemButton.onClick.RemoveAllListeners();
+        _subs.Dispose();
     }
 
     protected override void OnBind(PopupCreatureInfoViewModel viewModel)
@@ -72,6 +76,12 @@ public class PopupCreatureInfoBinder : PopupBinder<PopupCreatureInfoViewModel>
         InitInfo(viewModel);
         InitInventory(viewModel);
         InitDropdown(viewModel);
+        InitStats(viewModel);
+    }
+
+    private void InitStats(PopupCreatureInfoViewModel viewModel)
+    {
+
     }
 
     private void InitDropdown(PopupCreatureInfoViewModel viewModel)
@@ -86,7 +96,7 @@ public class PopupCreatureInfoBinder : PopupBinder<PopupCreatureInfoViewModel>
         if (inventory != null)
         {
             _storage.gameObject.SetActive(true);
-            _storage.Bind(inventory.Storage, _slotPrefab);
+            _storage.Bind(inventory.Storage);
         }
     }
 

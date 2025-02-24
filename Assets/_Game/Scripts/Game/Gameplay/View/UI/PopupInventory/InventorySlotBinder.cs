@@ -4,16 +4,19 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.Profiling.HierarchyFrameDataView;
 
-public class InventorySlotBinder : Selectable, IPointerDownHandler
+public class InventorySlotBinder : Selectable, IPointerDownHandler, IElementInfoBinder
 {
-    [SerializeField] private Image _image;
+    [SerializeField] private Image _icon;
+    [SerializeField] private Image _rarityImage;
     [SerializeField] private TMP_Text _amount;
-    public Image Image { get { return _image; } }
+    public Image Image { get { return _icon; } }
+    public Image Rarity { get { return _rarityImage; } }
     public TMP_Text Amount { get { return _amount; } }
 
     private InventorySlotViewModel _viewModel;
-    private CompositeDisposable _subs = new();
+    private readonly CompositeDisposable _subs = new();
 
 
     private RectTransform _rectTransorfm;
@@ -28,6 +31,10 @@ public class InventorySlotBinder : Selectable, IPointerDownHandler
     public override void OnPointerDown(PointerEventData eventData)
     {
         base.OnPointerDown(eventData);
+        Image.color = Color.clear;
+        _rarityImage.color = Color.clear;
+        Amount.color = Color.clear;
+        _viewModel.OnMouseExit.OnNext(_viewModel);
         _viewModel.RequestSelect();
     }
 
@@ -46,6 +53,8 @@ public class InventorySlotBinder : Selectable, IPointerDownHandler
 
     public void Bind(InventorySlotViewModel viewModel)
     {
+        _viewModel = viewModel;
+
         var itemAmountChangedSub =
             viewModel.Amount.Subscribe(amount =>
             {
@@ -56,33 +65,71 @@ public class InventorySlotBinder : Selectable, IPointerDownHandler
             {
                 ChangeImage(id);
             });
-
+        var resetColorSub =
+            viewModel.ResetColor.Subscribe(_ =>
+            {
+                if (_icon.sprite != null)
+                {
+                    Image.color = Color.white;
+                    Amount.color = Color.white;
+                    _rarityImage.color = Color.white;
+                }
+            });
 
 
         _subs.Add(itemAmountChangedSub);
         _subs.Add(itemIdChangedSub);
+        _subs.Add(resetColorSub);
 
-        _viewModel = viewModel;
     }
 
     private void ChangeAmount(int amount)
     {
-        if (_amount != null)
-            _amount.text = (amount == 0 || amount == 1 ? "" : amount.ToString());
+        _amount.color = Color.white;
+        if (amount > 1)
+        {
+            _amount.text = amount.ToString();
+            _rarityImage.sprite = Resources.Load<Sprite>($"UI/Items/Rarities/Rarity{_viewModel.Rarity}S");
+        }
+        else
+        {
+            _amount.text = "";
+            _rarityImage.sprite = Resources.Load<Sprite>($"UI/Items/Rarities/Rarity{_viewModel.Rarity}");
+        }
     }
 
     private void ChangeImage(string id)
     {
         var sprite = Resources.Load<Sprite>($"UI/Items/{id}");
 
-        _image.sprite = sprite;
+        _icon.sprite = sprite;
+        _viewModel.ItemIcon = sprite;
 
         if (sprite == null)
         {
-            _image.color = new Color(1, 1, 1, 0);
+            _rarityImage.color = Color.clear;
+            _icon.color = Color.clear;
             return;
         }
-        _image.color = new Color(1, 1, 1, 1);
+        _rarityImage.color = Color.white;
+        _icon.color = Color.white;
     }
 
+
+
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+        base.OnPointerEnter(eventData);
+
+        if (_viewModel.ItemId.Value != ItemsIDs.Nothing && _icon.color != Color.clear)
+            _viewModel.OnMouseEnter.OnNext(_viewModel);
+    }
+
+    public override void OnPointerExit(PointerEventData eventData)
+    {
+        base.OnPointerExit(eventData);
+
+        if (_viewModel.ItemId.Value != ItemsIDs.Nothing)
+            _viewModel.OnMouseExit.OnNext(_viewModel);
+    }
 }

@@ -21,14 +21,11 @@ public class CmdCreateCreatureHandler : ICommandHandler<CmdCreateCreature>
         var entityId = _gameState.GetEntityId();
         var creatureConfig = _configs[command.TypeId];
 
-        var creature = new CreatureEntity()
+        var creature = new CreatureEntity(creatureConfig.Stats)
         {
             Id = entityId,
             TypeId = command.TypeId,
             Position = command.Position,
-            Health = creatureConfig.Health,
-            MaxHealth = creatureConfig.MaxHealth,
-            Speed = creatureConfig.Speed
         };
 
         var creatureProxy = new CreatureEntityProxy(creature);

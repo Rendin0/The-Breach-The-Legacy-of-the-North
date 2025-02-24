@@ -20,12 +20,17 @@ public class PopupInventoryViewModel : WindowViewModel
     public EquipmentType? CurrSelectedEquip = null;
     private readonly InventoriesService _service;
     public readonly Dictionary<string, ItemConfig> ItemsConfig;
+    public CreatureViewModel Owner;
+
+
+    public Subject<IElementInfoViewModel> CreateElementInfo = new();
+    public Subject<IElementInfoViewModel> DeleteElementInfo = new();
+
     public PopupInventoryViewModel(InventoryGrid origin, InventoriesService service)
     {
+        ItemsConfig = service.ItemsConfig;
         Origin = origin;
-        Storage = new StorageViewModel(origin.Storage);
-        Storage.SetParrent(this);
-
+        Storage = new StorageViewModel(origin.Storage, this);
 
         foreach (var equip in origin.Equipment)
         {
@@ -42,13 +47,21 @@ public class PopupInventoryViewModel : WindowViewModel
 
         OwnerId = origin.OwnerId;
         _service = service;
-        ItemsConfig = service.ItemsConfig;
 
         InputRequests.EscapeRequest = new();
         InputRequests.TabRequest = new();
 
-        InputRequests.EscapeRequest.Subscribe(_ => RequestClose());
-        InputRequests.TabRequest.Subscribe(_ => RequestClose());
+        InputRequests.EscapeRequest.Subscribe(_ => Close(_));
+        InputRequests.TabRequest.Subscribe(_ => Close(_));
+
+        Storage.CreateElementInfo.Subscribe(e => CreateElementInfo.OnNext(e));
+        Storage.DeleteElementInfo.Subscribe(e => DeleteElementInfo.OnNext(e));
+    }
+
+    private void Close(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            RequestClose();
     }
 
     private void CreateEquipmentViewModel(InventorySlot origin, EquipmentType type)
@@ -86,12 +99,14 @@ public class PopupInventoryViewModel : WindowViewModel
     {
         if (CurrSelectedItem == tmpSelected)
         {
+            CurrSelectedItem.ResetColor.OnNext(Unit.Default);
             SelectedChanged.OnNext(null);
             tmpSelected = CurrSelectedItem = null;
         }
 
         if (tmpSelected != null && tmpSelected.ItemId.Value != ItemsIDs.Nothing)
         {
+            CurrSelectedItem.ResetColor.OnNext(Unit.Default);
             _service.SwapSlots(tmpSelected, CurrSelectedItem, this);
             SelectedChanged.OnNext(null);
             CurrSelectedItem = null;
@@ -108,6 +123,8 @@ public class PopupInventoryViewModel : WindowViewModel
 
 
 
+    // При взаимодействии с инвентарём через дев панель
+    // Сортировка может удалить предметы с неполным стаком
     public void RequestSortInventory()
     {
         CurrSelectedItem = null;

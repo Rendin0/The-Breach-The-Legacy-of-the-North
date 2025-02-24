@@ -13,11 +13,14 @@ public class CreaturesSerivce
     public readonly Dictionary<string, CreatureConfig> CreatureConfigMap = new();
     private PlayerViewModel _playerViewModel;
 
+    private readonly AbilitiesConfig _abilitiesConfig;
+
     public IObservableCollection<CreatureViewModel> CreatureViewModels => _creatureViewModels;
 
 
-    public CreaturesSerivce(IObservableCollection<CreatureEntityProxy> creatures, CreaturesConfig creaturesConfig, ICommandProcessor commandProcessor)
+    public CreaturesSerivce(IObservableCollection<CreatureEntityProxy> creatures, CreaturesConfig creaturesConfig, AbilitiesConfig abilitiesConfig, ICommandProcessor commandProcessor)
     {
+        _abilitiesConfig = abilitiesConfig;
         _commandProcessor = commandProcessor;
         foreach (var config in creaturesConfig.Creatures)
         {
@@ -46,9 +49,9 @@ public class CreaturesSerivce
         }
     }
 
-    public bool DamageCreature(int creatureId, float damage)
+    private bool DamageCreature(CreatureViewModel creature, DamageData damage)
     {
-        var command = new CmdDamageCreature(creatureId, damage);
+        var command = new CmdDamageCreature(creature, damage);
         var result = _commandProcessor.Process(command);
         return result;
     }
@@ -66,7 +69,14 @@ public class CreaturesSerivce
         return _playerViewModel;
     }
 
-    public bool DeleteCreature(int id)
+    private bool KillCreature(int creatureId)
+    {
+        var cmd = new CmdKillCreature(creatureId);
+        var result = _commandProcessor.Process(cmd);
+        return result;
+    }
+
+    private bool DeleteCreature(int id)
     {
         var cmd = new CmdDeleteCreature(id);
         var result = _commandProcessor.Process(cmd);
@@ -79,7 +89,7 @@ public class CreaturesSerivce
 
         if (creatureEntityProxy.TypeId == CreaturesTypes.Player)
         {
-            var playerViewModel = new PlayerViewModel(creatureEntityProxy);
+            var playerViewModel = new PlayerViewModel(creatureEntityProxy, _abilitiesConfig);
             _creatureViewModels.Add(playerViewModel);
             _creaturesMap[playerViewModel.CreatureId] = playerViewModel;
             playerViewModel.DeleteRequest.Subscribe(_ =>
@@ -98,6 +108,10 @@ public class CreaturesSerivce
             creatureViewModel.DeleteRequest.Subscribe(_ =>
             {
                 DeleteCreature(creatureViewModel.CreatureId);
+            });
+            creatureViewModel.KillRequest.Subscribe(_ =>
+            {
+                KillCreature(creatureViewModel.CreatureId);
             });
         }
     }

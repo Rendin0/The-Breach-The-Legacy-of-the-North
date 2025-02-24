@@ -1,0 +1,1621 @@
+fileFormatVersion: 2
+guid: 400988faf5c2f4042af41436cac01b22
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1714401274020008873
+    second: Inventory (4)_0
+  - first:
+      213: 1696759823110352665
+    second: Inventory (4)_1
+  - first:
+      213: -6787440030827381030
+    second: Inventory (4)_2
+  - first:
+      213: -6477978864733635933
+    second: Inventory (4)_3
+  - first:
+      213: 1847912965596623146
+    second: Inventory (4)_4
+  - first:
+      213: -498453825219131436
+    second: Inventory (4)_5
+  - first:
+      213: -4158007418471678774
+    second: Inventory (4)_6
+  - first:
+      213: 853176341049152235
+    second: Inventory (4)_7
+  - first:
+      213: 4396959327801562468
+    second: Inventory (4)_8
+  - first:
+      213: 5805895880191847245
+    second: Inventory (4)_9
+  - first:
+      213: -4822368612779172267
+    second: Inventory (4)_10
+  - first:
+      213: -5449667708189911550
+    second: Inventory (4)_11
+  - first:
+      213: -428718699274652729
+    second: Inventory (4)_12
+  - first:
+      213: -6290362345271891589
+    second: Inventory (4)_13
+  - first:
+      213: -2073167783248829591
+    second: Inventory (4)_14
+  - first:
+      213: 7640383062002561923
+    second: Inventory (4)_15
+  - first:
+      213: 1026191556413133704
+    second: Inventory (4)_16
+  - first:
+      213: 3866600031606684618
+    second: Inventory (4)_17
+  - first:
+      213: -8299687886549515361
+    second: Inventory (4)_18
+  - first:
+      213: 7229614394466146107
+    second: Inventory (4)_19
+  - first:
+      213: -1390566177974038275
+    second: Inventory (4)_20
+  - first:
+      213: 3689958252729146859
+    second: Inventory (4)_21
+  - first:
+      213: 6140826575962515007
+    second: Inventory (4)_22
+  - first:
+      213: 4253061886608189892
+    second: Inventory (4)_23
+  - first:
+      213: -4029515339293704484
+    second: Inventory (4)_24
+  - first:
+      213: 6373113096104497316
+    second: Inventory (4)_25
+  - first:
+      213: -6535512041257250283
+    second: Inventory (4)_26
+  - first:
+      213: -1419142606567631785
+    second: Inventory (4)_27
+  - first:
+      213: 2049680652993411393
+    second: Inventory (4)_28
+  - first:
+      213: -4264780587761448986
+    second: Inventory (4)_29
+  - first:
+      213: -649057414829268746
+    second: Inventory (4)_30
+  - first:
+      213: -6608898381075117402
+    second: Inventory (4)_31
+  - first:
+      213: -6158399531342689696
+    second: Inventory (4)_32
+  - first:
+      213: 1599571499379865874
+    second: Inventory (4)_33
+  - first:
+      213: 8543808740383310217
+    second: Inventory (4)_34
+  - first:
+      213: 4523297172183264783
+    second: Inventory (4)_35
+  - first:
+      213: 4130208938818287002
+    second: Inventory (4)_36
+  - first:
+      213: -5422143452410848451
+    second: Inventory (4)_37
+  - first:
+      213: -8662523685090224238
+    second: Inventory (4)_38
+  - first:
+      213: 9104013014035698550
+    second: Inventory (4)_39
+  - first:
+      213: 8063730202529792719
+    second: Inventory (4)_40
+  - first:
+      213: 7281710485084990347
+    second: Inventory (4)_41
+  - first:
+      213: -8986709807136183869
+    second: Inventory (4)_42
+  - first:
+      213: -4325082304966129977
+    second: Inventory (4)_43
+  - first:
+      213: 6290677555450723971
+    second: Inventory (4)_44
+  - first:
+      213: -2691105515953153326
+    second: Inventory (4)_45
+  - first:
+      213: 8816704393817929143
+    second: Inventory (4)_46
+  - first:
+      213: -5628397740288499053
+    second: Inventory (4)_47
+  - first:
+      213: -8229168247688261193
+    second: Inventory (4)_48
+  - first:
+      213: -48610368332961651
+    second: Inventory (4)_49
+  - first:
+      213: 3239183854477424419
+    second: Inventory (4)_50
+  - first:
+      213: -5056321874093554802
+    second: Inventory (4)_51
+  - first:
+      213: 6411717459366291685
+    second: Inventory (4)_52
+  - first:
+      213: 6271095759857719365
+    second: Inventory (4)_53
+  - first:
+      213: -806442975234964693
+    second: Inventory (4)_54
+  - first:
+      213: -6900539039512649217
+    second: Inventory (4)_55
+  - first:
+      213: 937752636899649414
+    second: Inventory (4)_56
+  - first:
+      213: 7677188723611346962
+    second: Inventory (4)_57
+  - first:
+      213: 307342202004889416
+    second: Inventory (4)_58
+  - first:
+      213: 1647544348823722563
+    second: Inventory (4)_59
+  - first:
+      213: -7127384434866328350
+    second: Inventory (4)_60
+  - first:
+      213: 5351924442181039501
+    second: Inventory (4)_61
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: InventoryPage
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 206
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75c6f83ef193538e0800000000000000
+      internalID: -1714401274020008873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PrevPageHL
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 285
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91fa5adb11a1c8710800000000000000
+      internalID: 1696759823110352665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NextPageHL
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 285
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ade744cd04b2ec1a0800000000000000
+      internalID: -6787440030827381030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NumberOne
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 286
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3aa30195b889916a0800000000000000
+      internalID: -6477978864733635933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NumberTwo
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 286
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a21b9323d0b15a910800000000000000
+      internalID: 1847912965596623146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PrevPage
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 284
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d701ea03e22519f0800000000000000
+      internalID: -498453825219131436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NextPage
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 284
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acc7e80784acb46c0800000000000000
+      internalID: -4158007418471678774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LavaRed
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 270
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be29003ac5717db00800000000000000
+      internalID: 853176341049152235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordRed
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 270
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 465d3796633250d30800000000000000
+      internalID: 4396959327801562468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonBlueTmpHL
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 264
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4b2db5ca8fa29050800000000000000
+      internalID: 5805895880191847245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonEquipmentHL
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 246
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55edd43fb41831db0800000000000000
+      internalID: -4822368612779172267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonBlueTmp
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 264
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2065c6dc714ee54b0800000000000000
+      internalID: -5449667708189911550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonEquipment
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 246
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c3ba2d4d92ec0af0800000000000000
+      internalID: -428718699274652729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonYellowTmp
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 264
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b79639556c424b8a0800000000000000
+      internalID: -6290362345271891589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: InventorySlot
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 251
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9636baf92e0aa33e0800000000000000
+      internalID: -2073167783248829591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LavaYellow
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 246
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 383f2961ae7180a60800000000000000
+      internalID: 7640383062002561923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordYellow
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 247
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 883928798c3cd3e00800000000000000
+      internalID: 1026191556413133704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonSortHL
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 228
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acb3e6c1e3ce8a530800000000000000
+      internalID: 3866600031606684618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonSort
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 228
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f938a9f37d591dc80800000000000000
+      internalID: -8299687886549515361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LavaBlue
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 222
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7541ae971513e4ce0800000000000000
+      internalID: -1419142606567631785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordBlue
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 223
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 149b9a8b1bde17c10800000000000000
+      internalID: 2049680652993411393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonSettingHL
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 210
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e74f75b6a470d4c0800000000000000
+      internalID: -4264780587761448986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonSetting
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 210
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f0a44658b51ef6f0800000000000000
+      internalID: -649057414829268746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LavaGreen
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 197
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06a036d3148f88aa0800000000000000
+      internalID: -6158399531342689696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordGreen
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 199
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2193065cdc1d23610800000000000000
+      internalID: 1599571499379865874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LavaGray
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 174
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 981cc6748c4b19670800000000000000
+      internalID: 8543808740383310217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordGray
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 175
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0e238900daf5ce30800000000000000
+      internalID: 4523297172183264783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EquipmentLeft
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 57
+        width: 23
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a953866a523715930800000000000000
+      internalID: 4130208938818287002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatsDamage
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 135
+        width: 38
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3b57ddf14da0c4b0800000000000000
+      internalID: -5422143452410848451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarLarge
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 127
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6739124e993f75e70800000000000000
+      internalID: 9104013014035698550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarSmall
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 138
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc2806e45ef18ef60800000000000000
+      internalID: 8063730202529792719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatsHealth
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 124
+        width: 38
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c9e0264b0bc84380800000000000000
+      internalID: -8986709807136183869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatsDefense
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 113
+        width: 38
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3922e73631ae3e1b0800000000000000
+      internalID: -5628397740288499053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarSmallGray
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 111
+        width: 3
+        height: 3
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d88ec17a02d435ff0800000000000000
+      internalID: -48610368332961651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatsResistance
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 102
+        width: 38
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 327be40cd84e3fc20800000000000000
+      internalID: 3239183854477424419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarSmallGreen
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 111
+        width: 3
+        height: 3
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e83cd988b0654d9b0800000000000000
+      internalID: -5056321874093554802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarSmallBlue
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 111
+        width: 3
+        height: 3
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e8a2bdfe0ffaf850800000000000000
+      internalID: 6411717459366291685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarSmallYellow
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 111
+        width: 3
+        height: 3
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54817ce2e58670750800000000000000
+      internalID: 6271095759857719365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarSmallRed
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 111
+        width: 3
+        height: 3
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b23c2810360fec4f0800000000000000
+      internalID: -806442975234964693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatsAttackSpeed
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 91
+        width: 38
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff1222fdd4c5c30a0800000000000000
+      internalID: -6900539039512649217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonStats
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 75
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 687e6990e01930d00800000000000000
+      internalID: 937752636899649414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonFastEquip
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 75
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2182d78f77ada8a60800000000000000
+      internalID: 7677188723611346962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonFastUnequip
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 75
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84fdcf6ba16e34400800000000000000
+      internalID: 307342202004889416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonStatsHL
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 61
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34a175f2bd04dd610800000000000000
+      internalID: 1647544348823722563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonFastEquipHL
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 61
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ece4267e91761d90800000000000000
+      internalID: -7127384434866328350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonFastUnequipHL
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 61
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d857ee8acead54a40800000000000000
+      internalID: 5351924442181039501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: InventoryButtons
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 206
+        width: 22
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70abe6823ca887640a8fee7d1849f5ca
+      internalID: 7229614394466146107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: InventoryPageSelector
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 191
+        width: 56
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6403dc5ea3641140a3deb5018d18488
+      internalID: -1390566177974038275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EquipmentRight
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 57
+        width: 23
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0085a831273f8e64e9d54a184761e58b
+      internalID: 3689958252729146859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EquipmentStars
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 117
+        width: 44
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1410a72a4f748524cad9a720db58502e
+      internalID: 6140826575962515007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EquipmentStats
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 57
+        width: 44
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56a1342d2ac043c44bf720038061c67f
+      internalID: 4253061886608189892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EquipmentButtons
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 42
+        width: 46
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2be7ac3903df5404a8f0ac7aff194850
+      internalID: -4029515339293704484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarLargeGray
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 116
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e445a6924ff9e044aae4932f632bbb08
+      internalID: 6373113096104497316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarLargeRed
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 103
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af48d73a53cea324898faf8d52bcb4cd
+      internalID: -6535512041257250283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarLargeYellow
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 103
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80442727f1ba71b4e8a7fc8d41d1db43
+      internalID: -6608898381075117402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarLargeBlue
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 103
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf641c7451f00c44fb159dcc82dc2559
+      internalID: -964136230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarLargeGreen
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 103
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf2f1640a298d2540813b8c3d91b6557
+      internalID: 878648512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 1c069e45617d9cb40a4bc6de5e9491f2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ButtonBlueTmp: -5449667708189911550
+      ButtonBlueTmpHL: 5805895880191847245
+      ButtonEquipment: -428718699274652729
+      ButtonEquipmentHL: -4822368612779172267
+      ButtonFastEquip: 7677188723611346962
+      ButtonFastEquipHL: -7127384434866328350
+      ButtonFastUnequip: 307342202004889416
+      ButtonFastUnequipHL: 5351924442181039501
+      ButtonSetting: -649057414829268746
+      ButtonSettingHL: -4264780587761448986
+      ButtonSort: -8299687886549515361
+      ButtonSortHL: 3866600031606684618
+      ButtonStats: 937752636899649414
+      ButtonStatsHL: 1647544348823722563
+      ButtonYellowTmp: -6290362345271891589
+      EquipmentButtons: -4029515339293704484
+      EquipmentLeft: 4130208938818287002
+      EquipmentRight: 3689958252729146859
+      EquipmentStars: 6140826575962515007
+      EquipmentStats: 4253061886608189892
+      Inventory (4)_38: -8662523685090224238
+      Inventory (4)_41: 7281710485084990347
+      Inventory (4)_43: -4325082304966129977
+      Inventory (4)_44: 6290677555450723971
+      Inventory (4)_45: -2691105515953153326
+      Inventory (4)_46: 8816704393817929143
+      Inventory (4)_48: -8229168247688261193
+      InventoryButtons: 7229614394466146107
+      InventoryPage: -1714401274020008873
+      InventoryPageSelector: -1390566177974038275
+      InventorySlot: -2073167783248829591
+      LavaBlue: -1419142606567631785
+      LavaGray: 8543808740383310217
+      LavaGreen: -6158399531342689696
+      LavaRed: 853176341049152235
+      LavaYellow: 7640383062002561923
+      NextPage: -4158007418471678774
+      NextPageHL: -6787440030827381030
+      NumberOne: -6477978864733635933
+      NumberTwo: 1847912965596623146
+      PrevPage: -498453825219131436
+      PrevPageHL: 1696759823110352665
+      StarLarge: 9104013014035698550
+      StarLargeBlue: -964136230
+      StarLargeGray: 6373113096104497316
+      StarLargeGreen: 878648512
+      StarLargeRed: -6535512041257250283
+      StarLargeYellow: -6608898381075117402
+      StarSmall: 8063730202529792719
+      StarSmallBlue: 6411717459366291685
+      StarSmallGray: -48610368332961651
+      StarSmallGreen: -5056321874093554802
+      StarSmallRed: -806442975234964693
+      StarSmallYellow: 6271095759857719365
+      StatsAttackSpeed: -6900539039512649217
+      StatsDamage: -5422143452410848451
+      StatsDefense: -5628397740288499053
+      StatsHealth: -8986709807136183869
+      StatsResistance: 3239183854477424419
+      SwordBlue: 2049680652993411393
+      SwordGray: 4523297172183264783
+      SwordGreen: 1599571499379865874
+      SwordRed: 4396959327801562468
+      SwordYellow: 1026191556413133704
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

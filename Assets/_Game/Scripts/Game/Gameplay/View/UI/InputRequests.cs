@@ -1,21 +1,24 @@
 
 using R3;
+using UnityEngine.InputSystem;
 
 public class InputRequests
 {
-    public Subject<Unit> TabRequest { get; set; }
-    public Subject<Unit> EscapeRequest { get; set; }
-    public Subject<Unit> URequest { get; set; }
-    public Subject<Unit> MouseRequest { get; set; }
+    public Subject<InputAction.CallbackContext> TabRequest { get; set; }
+    public Subject<InputAction.CallbackContext> EscapeRequest { get; set; }
+    public Subject<InputAction.CallbackContext> URequest { get; set; }
+    public Subject<InputAction.CallbackContext> MouseRequest { get; set; }
+    public Subject<InputAction.CallbackContext> AltRequest { get; set; }
 
     public CompositeDisposable Subscribe(InputRequests other)
     {
         CompositeDisposable subs = new();
 
-        TabRequest.Subscribe(_ => other.TabRequest?.OnNext(Unit.Default)).AddTo(subs);
-        EscapeRequest.Subscribe(_ => other.EscapeRequest?.OnNext(Unit.Default)).AddTo(subs);
-        URequest.Subscribe(_ => other.URequest?.OnNext(Unit.Default)).AddTo(subs);
-        MouseRequest.Subscribe(_ => other.MouseRequest?.OnNext(Unit.Default)).AddTo(subs);
+        TabRequest.Subscribe(_ => other.TabRequest?.OnNext(_)).AddTo(subs);
+        EscapeRequest.Subscribe(_ => other.EscapeRequest?.OnNext(_)).AddTo(subs);
+        URequest.Subscribe(_ => other.URequest?.OnNext(_)).AddTo(subs);
+        MouseRequest.Subscribe(_ => other.MouseRequest?.OnNext(_)).AddTo(subs);
+        AltRequest.Subscribe(_ => other.AltRequest?.OnNext(_)).AddTo(subs);
 
         return subs;
     }
@@ -30,5 +33,7 @@ public class InputRequests
             URequest = other.URequest;
         if (other.MouseRequest != null)
             MouseRequest = other.MouseRequest;
+        if (other.AltRequest != null)   
+            AltRequest = other.AltRequest;
     }
 }

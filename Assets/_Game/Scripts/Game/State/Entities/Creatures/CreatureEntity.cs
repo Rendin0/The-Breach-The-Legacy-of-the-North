@@ -7,8 +7,10 @@ public class CreatureEntity : Entity
 {
     public string TypeId;
     public Vector2 Position;
-    public float Health;
-    public float MaxHealth;
-    public float Speed;
+    public CreatureStats Stats;
 
+    public CreatureEntity(CreatureStatsConfig stats)
+    {
+        Stats = new(stats);
+    }
 }

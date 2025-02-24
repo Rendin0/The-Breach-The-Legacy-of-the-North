@@ -1,6 +1,10 @@
 
 using R3;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static UnityEditor.Profiling.HierarchyFrameDataView;
 
 public class GameplayUIManager : UIManager
 {
@@ -19,6 +23,9 @@ public class GameplayUIManager : UIManager
     }
     public ScreenGameplayPauseViewModel OpenScreenGameplayPause()
     {
+        // Пауза игры
+        Time.timeScale = 0.0f;
+
         var input = Container.Resolve<GameInput>();
         input.Player.Disable();
 
@@ -31,19 +38,40 @@ public class GameplayUIManager : UIManager
         return viewModel;
     }
 
+    public PopupElementInfoViewModel OpenPopupElementInfo(IElementInfoViewModel elementInfo)
+    {
+        var viewModel = new PopupElementInfoViewModel(elementInfo);
+        var rootUI = Container.Resolve<UIGameplayRootViewModel>();
 
+        rootUI.OpenPopup(viewModel);
+
+        return viewModel;
+
+    }
+    public void ClosePopupElementInfo(WindowViewModel elementInfo)
+    {
+        var rootUI = Container.Resolve<UIGameplayRootViewModel>();
+
+        rootUI.ClosePopup(elementInfo);
+    }
 
     public ScreenGameplayViewModel OpenScreenGameplay()
     {
+        // Возобновление игры
+        Time.timeScale = 1.0f;
+
         var input = Container.Resolve<GameInput>();
         input.UI.Disable();
 
+        var player = Container.Resolve<CreaturesSerivce>().GetPlayer();
 
-        var viewModel = new ScreenGameplayViewModel(this);
+        var viewModel = new ScreenGameplayViewModel(this, input.FindAction("Abilities"), player);
         var rootUI = Container.Resolve<UIGameplayRootViewModel>();
 
         rootUI.OpenScreen(viewModel);
         input.Player.Enable();
+
+        SubscribeElementInfo(viewModel.CreateElementInfo, viewModel.DeleteElementInfo);
 
         return viewModel;
     }
@@ -90,10 +118,14 @@ public class GameplayUIManager : UIManager
     {
         var rootUI = Container.Resolve<UIGameplayRootViewModel>();
         var inventoryService = Container.Resolve<InventoriesService>();
+        var creatureService = Container.Resolve<CreaturesSerivce>();
         var inventory = inventoryService.GetInventory(ownerId);
+        inventory.Owner = creatureService.GetPlayer();
 
         inventory.UIManager = this;
         rootUI.OpenPopup(inventory);
+        
+        SubscribeElementInfo(inventory.CreateElementInfo, inventory.DeleteElementInfo);
 
         return inventory;
     }
@@ -126,11 +158,20 @@ public class GameplayUIManager : UIManager
         return storage;
     }
 
+
+    // При взаимодействии с инвентарём через дев панель
+    // Сортировка может удалить предметы с неполным стаком
     public void RequestSortInventory(int ownerId)
     {
         var inventoryService = Container.Resolve<InventoriesService>();
         inventoryService.SortInventory(ownerId);
     }
 
+    private void SubscribeElementInfo(Subject<IElementInfoViewModel> onEnter, Subject<IElementInfoViewModel> onExit)
+    {
+        WindowViewModel viewModel = null;
 
+        onEnter.Subscribe(e => viewModel = OpenPopupElementInfo(e));
+        onExit.Subscribe(e => ClosePopupElementInfo(viewModel));
+    }
 }

@@ -1,5 +1,7 @@
 using R3;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using static GameInput;
 
@@ -24,8 +26,7 @@ public class GameplayInputController : IPlayerActions
 
     public void OnEscape(InputAction.CallbackContext context)
     {
-        if (context.performed)
-            _inputRequests.EscapeRequest.OnNext(Unit.Default);
+        _inputRequests.EscapeRequest.OnNext(context);
     }
 
     public void OnFire(InputAction.CallbackContext context)
@@ -45,19 +46,31 @@ public class GameplayInputController : IPlayerActions
 
     public void OnTab(InputAction.CallbackContext context)
     {
-        if (context.performed)
-            _inputRequests.TabRequest.OnNext(Unit.Default);
+        _inputRequests.TabRequest.OnNext(context);
     }
 
     public void OnU(InputAction.CallbackContext context)
     {
-        if (context.performed)
-            _inputRequests.URequest.OnNext(Unit.Default);
+        _inputRequests.URequest.OnNext(context);
     }
 
     public void OnMouse(InputAction.CallbackContext context)
     {
         if (context.performed)
-            _inputRequests.MouseRequest.OnNext(Unit.Default);
+        {
+            _controllable.Attack(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
+        _inputRequests.MouseRequest.OnNext(context);
+    }
+
+    public void OnAbilities(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            _controllable.UseAbility(context.action.GetBindingIndexForControl(context.control), Camera.main.ScreenToWorldPoint(Input.mousePosition));
+    }
+
+    public void OnAlt(InputAction.CallbackContext context)
+    {
+        _inputRequests.AltRequest.OnNext(context);
     }
 }

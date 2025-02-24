@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class StorageBinder : MonoBehaviour
+public class StorageBinder : MonoBehaviour, IDraggable
 {
-    [SerializeField] private GameObject _pagePrefab;
+    [SerializeField] private InventoryPageBinder _pagePrefab;
+    [SerializeField] private Transform _pageContainer;
 
     [SerializeField] private Button _prevPage;
     [SerializeField] private Button _nextPage;
@@ -13,41 +15,48 @@ public class StorageBinder : MonoBehaviour
     [SerializeField] private TMP_Text _currPageText;
     [SerializeField] private TMP_Text _maxPagesText;
 
-    private InventorySlotBinder _slotPrefab;
-    private List<InventorySlotBinder> _slots = new();
-    private List<GameObject> _slotsPages = new();
+    private readonly List<InventorySlotBinder> _slots = new();
+    private readonly List<InventoryPageBinder> _slotsPages = new();
+
+    private RectTransform _rect;
+    private bool _dragging = false;
+    private Vector3 _draggingOffset;
 
     private int _currentPage = 0;
     private int _maxPages;
-    private int _slotsPerPage = 16;
+    private readonly int _slotsPerPage = 25;
 
     protected void Start()
     {
         _nextPage.onClick.AddListener(OnNextPageButtonClicked);
         _prevPage.onClick.AddListener(OnPreviousPageButtonClicked);
+        _rect = GetComponent<RectTransform>();
     }
     protected void OnDestroy()
     {
         _nextPage.onClick.RemoveAllListeners();
         _prevPage.onClick.RemoveAllListeners();
     }
+    private void Update()
+    {
+        if (_dragging)
+            _rect.position = Input.mousePosition + _draggingOffset;
+    }
 
-    public void Bind(StorageViewModel viewModel, InventorySlotBinder slotPrefab)
+    public void Bind(StorageViewModel viewModel)
     {
         if (viewModel == null)
             return;
-
-        _slotPrefab = slotPrefab;
 
         _maxPages = Mathf.CeilToInt(viewModel.Slots.Count / (float)_slotsPerPage);
         _maxPagesText.text = _maxPages.ToString();
 
         for (int i = 0; i < _maxPages; i++)
         {
-            var slotsPage = Instantiate(_pagePrefab, transform);
+            var slotsPage = Instantiate(_pagePrefab, _pageContainer);
             for (int j = 0; j < _slotsPerPage; j++)
             {
-                var slot = Instantiate(_slotPrefab, slotsPage.transform);
+                var slot = slotsPage.Slots[j];
                 slot.Bind(viewModel.Slots[i * _slotsPerPage + j]);
                 _slots.Add(slot);
             }
@@ -57,18 +66,19 @@ public class StorageBinder : MonoBehaviour
         SetPage(0);
     }
 
+
     private void SetPage(int page)
     {
         _currPageText.text = (page + 1).ToString();
         foreach (var pageObject in _slotsPages)
-            pageObject.SetActive(false);
+            pageObject.gameObject.SetActive(false);
 
-        _slotsPages[page].SetActive(true);
+        _slotsPages[page].gameObject.SetActive(true);
     }
 
     public Vector2 GetSlotSize()
     {
-        return _slots[0].RectTransform.sizeDelta;
+        return _slots[0].RectTransform.rect.size;
     }
 
     private void OnNextPageButtonClicked()
@@ -80,6 +90,17 @@ public class StorageBinder : MonoBehaviour
     {
         _currentPage = _currentPage == 0 ? _maxPages - 1 : _currentPage - 1;
         SetPage(_currentPage);
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        _dragging = true;
+        _draggingOffset = _rect.position - Input.mousePosition;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        _dragging = false;
     }
 }
 

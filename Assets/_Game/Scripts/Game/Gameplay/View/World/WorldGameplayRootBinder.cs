@@ -53,6 +53,7 @@ public class WorldGameplayRootBinder : MonoBehaviour
 
         var created = Instantiate(prefab);
         created.Bind(viewModel);
+        created.gameObject.layer = LayerMask.NameToLayer(LayerNames.Creatures);
 
         _creatures[viewModel.CreatureId] = created;
     }

@@ -4,22 +4,18 @@ using System.Linq;
 public class CmdDamageCreatureHandler : ICommandHandler<CmdDamageCreature>
 {
     private readonly GameStateProxy _gameState;
+    private readonly ICommandProcessor _commandProcessor;
 
-    public CmdDamageCreatureHandler(GameStateProxy gameState)
+    public CmdDamageCreatureHandler(GameStateProxy gameState, ICommandProcessor processor)
     {
+        _commandProcessor = processor;
         this._gameState = gameState;
     }
 
     public bool Handle(CmdDamageCreature command)
     {
-        var creature = _gameState.Creatures.FirstOrDefault(c => c.Id == command.CreatureId);
-        if (creature != null)
-        {
-            creature.Health.OnNext(creature.Health.Value - command.Damage);
+        command.Creature.Damage(command.Damage);
 
-            return true;
-        }
-
-        return false;
+        return true;
     }
 }

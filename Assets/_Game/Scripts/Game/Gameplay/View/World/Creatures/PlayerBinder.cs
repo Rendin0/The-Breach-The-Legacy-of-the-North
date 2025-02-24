@@ -4,27 +4,34 @@ public class PlayerBinder : CreatureBinder
 {
     private Vector2 _direction;
     private PlayerViewModel _viewModel;
-    private Rigidbody2D _rb;
 
-    private void Start()
+    protected override void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        base.Start();
+
+
     }
 
-    private void Update()
+    protected override void Update()
     {
-        _direction = _viewModel.Direction.Value;
+        base.Update();
+
+        _direction = _viewModel.MoveDirection.Value;
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
-        _rb.MovePosition(_rb.position + Time.fixedDeltaTime * _viewModel.Speed.Value * _direction);
-        _viewModel.Position.OnNext(transform.position);
+        base.FixedUpdate();
+
+        if (!movementBlocked)
+            rb.linearVelocity = _viewModel.Stats.Speed.Value * _direction;
     }
 
     protected override void OnBind(CreatureViewModel viewModel)
     {
         var playerModel = (PlayerViewModel)viewModel;
         _viewModel = playerModel;
+
+
     }
 }

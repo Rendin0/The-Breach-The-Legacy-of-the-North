@@ -13,7 +13,18 @@ MonoBehaviour:
   m_Name: CreatureConfig_Player
   m_EditorClassIdentifier: 
   TypeId: Player
-  MaxHealth: 20
-  Health: 20
-  Speed: 10
+  Stats:
+    MaxHealth: 20
+    Health: 5
+    Speed: 10
+    Damage:
+      MagicalData: 0
+      PhysicalData: 10
+    Immortal: 0
+    Resistance: 0
+    Defense: 0
+    AttackSpeed: 40
+    DamageResistance: 0
+    Stamina: 40
+    MaxStamina: 100
   Fraction: 0

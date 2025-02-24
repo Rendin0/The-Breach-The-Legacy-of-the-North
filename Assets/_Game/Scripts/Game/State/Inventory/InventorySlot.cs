@@ -7,7 +7,7 @@ public class InventorySlot
 
     public ReactiveProperty<string> ItemId { get; }
     public ReactiveProperty<int> Amount { get; }
-
+    public ReactiveProperty<string> Description { get; }
 
     public InventorySlot(InventorySlotData origin)
     {
