@@ -28,11 +28,13 @@ public class ScreenGameplayViewModel : WindowViewModel
         InputRequests.EscapeRequest = new();
         InputRequests.TabRequest = new();
         InputRequests.URequest = new();
+        InputRequests.MRequest = new();
         InputRequests.AltRequest = new();
 
         InputRequests.EscapeRequest.Subscribe(_ => RequestPause(_));
         InputRequests.TabRequest.Subscribe(_ => RequestInventory(_, 0));
         InputRequests.URequest.Subscribe(_ => RequestDevPanel(_));
+        InputRequests.MRequest.Subscribe(_ => RequestWorldMap(_));
         InputRequests.AltRequest.Subscribe(_ => RequestSwitchAbilityBar(_));
 
         AbilitiesBarViewModel = new(player, abilityBindings);
@@ -49,6 +51,12 @@ public class ScreenGameplayViewModel : WindowViewModel
     {
         if (context.performed)
             _uiManager.OpenScreenGameplayPause();
+    }
+
+    private void RequestWorldMap(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            _uiManager.OpenPopupWorldMap();
     }
 
     private void RequestInventory(InputAction.CallbackContext context, int ownerId)

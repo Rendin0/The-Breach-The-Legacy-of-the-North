@@ -73,4 +73,9 @@ public class GameplayInputController : IPlayerActions
     {
         _inputRequests.AltRequest.OnNext(context);
     }
+
+    public void OnM(InputAction.CallbackContext context)
+    {
+        _inputRequests.MRequest.OnNext(context);
+    }
 }
