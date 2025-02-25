@@ -50,6 +50,7 @@ public class GameEntryPoint
             URequest = new(),
             MouseRequest = new(),
             AltRequest = new(),
+            MRequest = new(),
         };
         _rootContainer.RegisterInstance(inputRequests);
 
