@@ -10,7 +10,6 @@ public class PopupWorldMapViewModel : WindowViewModel
         InputRequests.EscapeRequest = new();
         InputRequests.MRequest = new();
 
-        InputRequests.EscapeRequest.Subscribe(c => Close(c));
         InputRequests.MRequest.Subscribe(c => Close(c));
     }
 

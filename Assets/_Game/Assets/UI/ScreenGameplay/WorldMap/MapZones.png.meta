@@ -301,10 +301,10 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u041D\u0430\u0433\u043E\u0440\u044C\u0435\u0423\u043B\u0430\u043D"
+      name: UlanHighlandsS
       rect:
         serializedVersion: 2
-        x: 21
+        x: 19
         y: 848
         width: 149
         height: 138
@@ -323,11 +323,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StoneReef
+      name: StoneReefS
       rect:
         serializedVersion: 2
         x: 249
-        y: 851
+        y: 849
         width: 178
         height: 135
       alignment: 0
@@ -345,7 +345,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Peleon
+      name: PeleonS
       rect:
         serializedVersion: 2
         x: 518
@@ -689,8 +689,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B
-        \u043A\u0430\u0440\u0442\u044B_17"
+      name: StoneReefSE
       rect:
         serializedVersion: 2
         x: 246
@@ -827,8 +826,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B
-        \u043A\u0430\u0440\u0442\u044B_23"
+      name: UlanHighlandsSE
       rect:
         serializedVersion: 2
         x: 17
@@ -850,8 +848,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B
-        \u043A\u0430\u0440\u0442\u044B_24"
+      name: PeleonSE
       rect:
         serializedVersion: 2
         x: 515
@@ -1425,7 +1422,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DoanSea
+      name: DoanSeaS
       rect:
         serializedVersion: 2
         x: 26
@@ -1447,8 +1444,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B
-        \u043A\u0430\u0440\u0442\u044B_50"
+      name: DoanSeaSE
       rect:
         serializedVersion: 2
         x: 19
@@ -1483,10 +1479,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DoanSea: -7603008838420257623
-      Peleon: 6019068562483868399
-      StoneReef: 3592657706802044556
-      "\u041D\u0430\u0433\u043E\u0440\u044C\u0435\u0423\u043B\u0430\u043D": -4504562041879415478
+      DoanSeaS: -7603008838420257623
+      DoanSeaSE: -760132750837559539
+      PeleonS: 6019068562483868399
+      PeleonSE: -9004522598939477921
+      StoneReefS: 3592657706802044556
+      StoneReefSE: -3874192095695346988
+      UlanHighlandsS: -4504562041879415478
+      UlanHighlandsSE: -7220810638235876228
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_10": 4559169341155587585
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_11": 4776626404476044160
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_12": 1440443766624976296
@@ -1494,14 +1494,11 @@ TextureImporter:
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_14": -2514614943446803872
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_15": -4399303010388612564
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_16": -183174066456275157
-      "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_17": -3874192095695346988
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_18": 8469584252069256525
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_19": 9016321368392210021
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_20": 1150540380552441750
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_21": 8912846303459798681
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_22": 4659188260645912536
-      "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_23": -7220810638235876228
-      "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_24": -9004522598939477921
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_25": -609280886390773711
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_26": -7079914630349353159
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_27": -8546712261844505839
@@ -1529,7 +1526,6 @@ TextureImporter:
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_47": -5345234024061880887
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_48": -7555828735717736977
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_5": -8292164140541331903
-      "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_50": -760132750837559539
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_6": 2199355856872426312
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_7": 6985619925133558529
       "\u0433\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B \u043A\u0430\u0440\u0442\u044B_8": 8900896504500329860
