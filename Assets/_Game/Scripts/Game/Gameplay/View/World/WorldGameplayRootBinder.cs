@@ -1,14 +1,25 @@
 
+using CrashKonijn.Goap.Runtime;
 using ObservableCollections;
 using R3;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(GoapBehaviour), typeof(AgentTypeFactoryBase), typeof(ProactiveControllerBehaviour))]
 public class WorldGameplayRootBinder : MonoBehaviour
 {
     private readonly Dictionary<int, CreatureBinder> _creatures = new();
     private readonly CompositeDisposable _disposables = new();
     private GameplayUIManager _uiManager;
+
+    private GoapBehaviour _goapBehaviour;
+    private AgentTypeFactoryBase _agentTypeFactory;
+
+    private void Awake()
+    {
+        _goapBehaviour = GetComponent<GoapBehaviour>();
+        _agentTypeFactory = GetComponent<AgentTypeFactoryBase>();
+    }
 
     public void Bind(WorldGameplayRootViewModel viewModel, GameplayUIManager uiManager)
     {
@@ -52,8 +63,14 @@ public class WorldGameplayRootBinder : MonoBehaviour
         var prefab = Resources.Load<CreatureBinder>(creaturePrefabPath);
 
         var created = Instantiate(prefab);
+        if (created.TryGetComponent<AgentTypeBinder>(out var setBinder))
+        {
+            setBinder.GoapBehaviour = _goapBehaviour;
+        }
+
         created.Bind(viewModel);
         created.gameObject.layer = LayerMask.NameToLayer(LayerNames.Creatures);
+
 
         _creatures[viewModel.CreatureId] = created;
     }
