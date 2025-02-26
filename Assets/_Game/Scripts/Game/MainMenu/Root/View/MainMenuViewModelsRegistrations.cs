@@ -1,5 +1,3 @@
-using R3;
-
 public static class MainMenuViewModelsRegistrations
 {
     public static void Register(DIContainer sceneContainer)

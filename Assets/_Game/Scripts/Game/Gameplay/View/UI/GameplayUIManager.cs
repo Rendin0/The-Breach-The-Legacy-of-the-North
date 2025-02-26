@@ -1,10 +1,6 @@
 
 using R3;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using static UnityEditor.Profiling.HierarchyFrameDataView;
 
 public class GameplayUIManager : UIManager
 {
@@ -134,7 +130,7 @@ public class GameplayUIManager : UIManager
 
         inventory.UIManager = this;
         rootUI.OpenPopup(inventory);
-        
+
         SubscribeElementInfo(inventory.CreateElementInfo, inventory.DeleteElementInfo);
 
         return inventory;

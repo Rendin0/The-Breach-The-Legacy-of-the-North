@@ -9,9 +9,9 @@ public class CreatureBinder : MonoBehaviour, IPointerClickHandler
     protected virtual void OnBind(CreatureViewModel viewModel) { }
     protected bool movementBlocked = false;
 
-    public CreatureViewModel ViewModel {get; private set;}
+    public CreatureViewModel ViewModel { get; private set; }
 
-    protected virtual void Start() 
+    protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         ViewModel.Rb = rb;

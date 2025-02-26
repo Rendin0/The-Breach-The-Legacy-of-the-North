@@ -3,7 +3,7 @@ using CrashKonijn.Agent.Runtime;
 using CrashKonijn.Goap.Runtime;
 using UnityEngine;
 
-[RequireComponent (typeof(AgentBehaviour), typeof(GoapActionProvider))]
+[RequireComponent(typeof(AgentBehaviour), typeof(GoapActionProvider))]
 public class EnemyBrain : MonoBehaviour
 {
     private AgentBehaviour _agentBehaviour;

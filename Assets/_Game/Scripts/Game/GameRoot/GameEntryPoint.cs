@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameEntryPoint
 {
     private static GameEntryPoint _instance;
-    public static Coroutines Coroutines {get; private set;}
+    public static Coroutines Coroutines { get; private set; }
     private UIRootView _uiRoot;
 
     private readonly DIContainer _rootContainer = new();
