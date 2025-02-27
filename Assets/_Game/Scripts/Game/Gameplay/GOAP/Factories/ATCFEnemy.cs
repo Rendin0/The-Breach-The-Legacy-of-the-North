@@ -2,7 +2,7 @@
 using CrashKonijn.Goap.Core;
 using CrashKonijn.Goap.Runtime;
 
-public class AgentTypeConfigFactory : AgentTypeFactoryBase
+public class ATCFEnemy : AgentTypeFactoryBase
 {
     public override IAgentTypeConfig Create()
     {

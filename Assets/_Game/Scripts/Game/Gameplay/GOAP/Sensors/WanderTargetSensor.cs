@@ -20,7 +20,8 @@ public class WanderTargetSensor : LocalTargetSensorBase
 
     private Vector2 GetRandomPosition(IActionReceiver agent)
     {
-        for (int count = 0; count < 5; count++)
+        // 10 попыток найти подходящую позицию
+        for (int count = 0; count < 10; count++)
         {
             Vector2 randomPos = Random.insideUnitCircle * 5f;
             Vector2 position = (Vector2)agent.Transform.position + randomPos;

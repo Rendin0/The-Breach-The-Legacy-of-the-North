@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(GoapActionProvider))]
 public class AgentTypeBinder : MonoBehaviour
 {
-    public GoapBehaviour GoapBehaviour;
+    [HideInInspector] public GoapBehaviour GoapBehaviour;
 
     private void Start()
     {
