@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: 7405713914210983795}
   - component: {fileID: 2548533763112378345}
   - component: {fileID: -1302646897127567387}
-  - component: {fileID: -3510571977014695971}
   m_Layer: 0
   m_Name: Creature_Skeleton
   m_TagString: Untagged
@@ -241,10 +240,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2133105398881076204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5572d912d75f7bc4eaa64c755423f1ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 67a941f86e4ef6047a157faac4810189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GoapBehaviour: {fileID: 0}
 --- !u!114 &-1302646897127567387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,15 +260,3 @@ MonoBehaviour:
     <MaxLogSize>k__BackingField: 20
   <AgentTypeBehaviour>k__BackingField: {fileID: 0}
   <DistanceMultiplier>k__BackingField: 1
---- !u!114 &-3510571977014695971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133105398881076204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f8edfef1c0295c41927b356829de403, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

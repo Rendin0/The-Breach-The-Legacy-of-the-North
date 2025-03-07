@@ -14,4 +14,5 @@ public class CreatureConfig : ScriptableObject
     public string TypeId;
     public CreatureStatsConfig Stats;
     public Fractions Fraction;
+    public AgentTypes AgentType;
 }

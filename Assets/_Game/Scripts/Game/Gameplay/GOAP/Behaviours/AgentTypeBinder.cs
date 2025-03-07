@@ -4,11 +4,19 @@ using UnityEngine;
 [RequireComponent(typeof(GoapActionProvider))]
 public class AgentTypeBinder : MonoBehaviour
 {
-    [HideInInspector] public GoapBehaviour GoapBehaviour;
+    private GoapBehaviour _goapBehaviour;
+    private GoapActionProvider _agent;
+    private BrainBase _brain;
 
     private void Start()
     {
-        GoapActionProvider agent = GetComponent<GoapActionProvider>();
-        agent.AgentType = GoapBehaviour.GetAgentType("Enemy");
+        _agent = GetComponent<GoapActionProvider>();
+        _agent.AgentType = _goapBehaviour.GetAgentType(_brain.AgentType.ToString());
+    }
+
+    public void Init(GoapBehaviour goapBehaviour, BrainBase brain)
+    {
+        _goapBehaviour = goapBehaviour;
+        _brain = brain;
     }
 }

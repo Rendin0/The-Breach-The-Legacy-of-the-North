@@ -3,20 +3,11 @@ using CrashKonijn.Agent.Runtime;
 using CrashKonijn.Goap.Runtime;
 using UnityEngine;
 
-[RequireComponent(typeof(AgentBehaviour), typeof(GoapActionProvider))]
-public class EnemyBrain : MonoBehaviour
+public class EnemyBrain : BrainBase
 {
-    private AgentBehaviour _agentBehaviour;
-    private GoapActionProvider _goapActionProvider;
-
-    private void Awake()
+    public EnemyBrain(AgentTypes AgentType)
+        : base(AgentType)
     {
-        _agentBehaviour = GetComponent<AgentBehaviour>();
-        _goapActionProvider = GetComponent<GoapActionProvider>();
-    }
-
-    private void Start()
-    {
-        _goapActionProvider.RequestGoal<WanderGoal>(false);
+        goapActionProvider.RequestGoal<WanderGoal>(false);
     }
 }

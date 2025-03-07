@@ -12,6 +12,7 @@ public class CreatureViewModel : IBuffable
 
     public readonly int CreatureId;
     public readonly string TypeId;
+    public AgentTypes AgentType;
 
     public Rigidbody2D Rb { get; set; }
     public ReactiveProperty<Vector2> Position { get; }

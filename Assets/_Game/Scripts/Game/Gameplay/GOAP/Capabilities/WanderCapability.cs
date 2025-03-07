@@ -6,7 +6,7 @@ public class WanderCapability : CapabilityFactoryBase
 {
     public override ICapabilityConfig Create()
     {
-        var builder = new CapabilityBuilder("WanderCapability");
+        var builder = new CapabilityBuilder(nameof(WanderCapability));
 
         AddGoals(builder);
         AddActions(builder);
