@@ -1,5 +1,5 @@
 public enum AgentTypes
 {
-    Base,
+    BaseAgentType,
     Enemy,
 }

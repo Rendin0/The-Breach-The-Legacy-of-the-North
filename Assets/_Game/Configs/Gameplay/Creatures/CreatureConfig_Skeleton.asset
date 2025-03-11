@@ -28,3 +28,4 @@ MonoBehaviour:
     Stamina: 0
     MaxStamina: 1
   Fraction: 1
+  AgentType: 1

@@ -36,6 +36,8 @@ public class CreatureViewModel : IBuffable
     public bool InfiniteRage = false;
     public List<CreatureViewModel> MarkedTargets { get; } = new();
 
+    protected Ability attack;
+
     public CreatureViewModel(CreatureEntityProxy creatureEntity)
     {
         _creatureEntity = creatureEntity;
@@ -54,6 +56,12 @@ public class CreatureViewModel : IBuffable
     public virtual void OnClick(PointerEventData eventData)
     {
         OnCreatureClick.OnNext(this);
+    }
+
+    public virtual void Attack(Vector2 position)
+    {
+        if (attack.Use(this, position))
+            attack.SetCooldown(AttackSpeed);
     }
 
 
@@ -121,12 +129,14 @@ public class CreatureViewModel : IBuffable
             effect.Apply(this);
     }
 
+    // Переводит число защиты в процент уменьшения урона
     private float CalculateDamageResistance(float defense)
     {
         // y = 30log_10(0.1x + 1)
         return 30 * Mathf.Log10(0.1f * defense + 1);
     }
 
+    // Переводит число скорости атаки в задержку между атаками в секундах
     private float CalculateAttackSpeed(float attackSpeed)
     {
         // (log_0.6(0.00009x) / 10) - 0.06

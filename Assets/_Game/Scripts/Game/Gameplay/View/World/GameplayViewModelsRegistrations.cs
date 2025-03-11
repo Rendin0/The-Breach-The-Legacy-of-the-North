@@ -6,8 +6,6 @@ public static class GameplayViewModelsRegistrations
 
         var inputRequests = sceneContainer.Resolve<InputRequests>();
         sceneContainer.RegisterFactory(c => new UIGameplayRootViewModel(inputRequests)).AsSingle();
-        sceneContainer.RegisterFactory(c => new WorldGameplayRootViewModel(sceneContainer.Resolve<CreaturesSerivce>(), sceneContainer)).AsSingle();
-
-        sceneContainer.RegisterFactory(AgentTypes.Enemy.ToString() ,c => new EnemyBrain(AgentTypes.Enemy)).AsSingle();
+        sceneContainer.RegisterFactory(c => new WorldGameplayRootViewModel(sceneContainer)).AsSingle();
     }
 }

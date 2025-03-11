@@ -1,29 +1,17 @@
-
-using CrashKonijn.Goap.Runtime;
 using ObservableCollections;
 using R3;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(GoapBehaviour), typeof(ProactiveControllerBehaviour))]
 public class WorldGameplayRootBinder : MonoBehaviour
 {
     private readonly Dictionary<int, CreatureBinder> _creatures = new();
     private readonly CompositeDisposable _disposables = new();
     private GameplayUIManager _uiManager;
 
-    private GoapBehaviour _goapBehaviour;
 
     private WorldGameplayRootViewModel _viewModel;
 
-    private readonly Dictionary<AgentTypes, ATCF> _atcfsMap = new();
-
-    private void Awake()
-    {
-        _goapBehaviour = GetComponent<GoapBehaviour>();
-        InitAgents();
-    }
     private void OnDestroy()
     {
         _disposables.Dispose();
@@ -35,19 +23,6 @@ public class WorldGameplayRootBinder : MonoBehaviour
         _uiManager = uiManager;
         InitCreatures(viewModel);
     }
-
-    #region GOAP
-    private void InitAgents()
-    {
-        AddATCF<ATCFEnemy>();
-    }
-    private void AddATCF<T>() where T : ATCF
-    {
-        var atcf = gameObject.AddComponent<T>();
-        _atcfsMap.Add(atcf.AgentType, atcf);
-        _goapBehaviour.agentTypeConfigFactories.Add(atcf);
-    }
-    #endregion
 
     #region Creatures
     private void InitCreatures(WorldGameplayRootViewModel viewModel)
@@ -83,10 +58,6 @@ public class WorldGameplayRootBinder : MonoBehaviour
         var prefab = Resources.Load<CreatureBinder>(creaturePrefabPath);
 
         var created = Instantiate(prefab);
-        if (created.TryGetComponent<AgentTypeBinder>(out var agentTypeBinder))
-        {
-            agentTypeBinder.Init(_goapBehaviour, _atcfsMap[viewModel.AgentType].GetBrain());
-        }
         created.Bind(viewModel);
 
         if (viewModel.TypeId == CreaturesTypes.Player)

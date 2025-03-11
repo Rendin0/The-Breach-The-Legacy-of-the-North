@@ -14,10 +14,6 @@ GameObject:
   - component: {fileID: -5610800615459950022}
   - component: {fileID: 4822099428512246184}
   - component: {fileID: 469525703258760705}
-  - component: {fileID: -3476445616198450316}
-  - component: {fileID: 7405713914210983795}
-  - component: {fileID: 2548533763112378345}
-  - component: {fileID: -1302646897127567387}
   m_Layer: 0
   m_Name: Creature_Skeleton
   m_TagString: Untagged
@@ -202,61 +198,3 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-3476445616198450316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133105398881076204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cef53d855ccf0b46bcf004b27c4a52a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <ActionProviderBase>k__BackingField: {fileID: -1302646897127567387}
-  <LoggerConfig>k__BackingField:
-    <DebugMode>k__BackingField: 1
-    <MaxLogSize>k__BackingField: 20
---- !u!114 &7405713914210983795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133105398881076204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fd2279dfa2c895488a4c6352611aa06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _minMoveDist: 0.2
---- !u!114 &2548533763112378345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133105398881076204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67a941f86e4ef6047a157faac4810189, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-1302646897127567387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133105398881076204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72344165e2cc41da93476bb1aa2cdd4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <LoggerConfig>k__BackingField:
-    <DebugMode>k__BackingField: 1
-    <MaxLogSize>k__BackingField: 20
-  <AgentTypeBehaviour>k__BackingField: {fileID: 0}
-  <DistanceMultiplier>k__BackingField: 1
