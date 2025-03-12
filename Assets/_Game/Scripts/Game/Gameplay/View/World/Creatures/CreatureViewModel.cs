@@ -58,6 +58,7 @@ public class CreatureViewModel : IBuffable
         OnCreatureClick.OnNext(this);
     }
 
+
     public virtual void Attack(Vector2 position)
     {
         if (attack.Use(this, position))

@@ -1,5 +1,8 @@
+using CrashKonijn.Goap.Core;
+using CrashKonijn.Goap.Runtime;
 using ObservableCollections;
 using R3;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,10 +12,11 @@ public class WorldGameplayRootBinder : MonoBehaviour
     private readonly CompositeDisposable _disposables = new();
     private GameplayUIManager _uiManager;
 
+    private GoapBehaviour _goap;
 
     private WorldGameplayRootViewModel _viewModel;
 
-    private void OnDestroy()
+    private void OnDestroy()    
     {
         _disposables.Dispose();
     }
@@ -21,8 +25,17 @@ public class WorldGameplayRootBinder : MonoBehaviour
     {
         _viewModel = viewModel;
         _uiManager = uiManager;
+        InitGoap();
         InitCreatures(viewModel);
     }
+
+    #region GOAP
+    private void InitGoap()
+    {
+        var goap = Resources.Load<GoapBehaviour>("Gameplay/GOAP");
+        _goap = Instantiate(goap);
+    }
+    #endregion
 
     #region Creatures
     private void InitCreatures(WorldGameplayRootViewModel viewModel)
@@ -58,7 +71,7 @@ public class WorldGameplayRootBinder : MonoBehaviour
         var prefab = Resources.Load<CreatureBinder>(creaturePrefabPath);
 
         var created = Instantiate(prefab);
-        created.Bind(viewModel);
+        created.Bind(viewModel, _goap);
 
         if (viewModel.TypeId == CreaturesTypes.Player)
             created.gameObject.layer = LayerMask.NameToLayer(LayerNames.Player);
