@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PigBrain : AgentBrain
 {
-    public static string AgentType => AgentTypes.PigAgent.ToString();
+    public override string AgentType => AgentTypes.PigAgent.ToString();
 
     protected override void OnInit()
     {

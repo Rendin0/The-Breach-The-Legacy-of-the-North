@@ -19,7 +19,7 @@ public class WorldGameplayRootBinder : MonoBehaviour
 
     private WorldGameplayRootViewModel _viewModel;
 
-    private readonly Dictionary<string, ATCF> _atcfsMap = new();
+    private readonly Dictionary<string, IATCF> _atcfsMap = new();
 
     private void OnDestroy()    
     {
@@ -45,7 +45,7 @@ public class WorldGameplayRootBinder : MonoBehaviour
 
     private void InitATCFsMap(GoapBehaviour goap)
     {
-        var atcfs = goap.GetComponentsInChildren<ATCF>();
+        var atcfs = goap.GetComponentsInChildren<IATCF>();
 
         foreach (var atcf in atcfs)
         {
