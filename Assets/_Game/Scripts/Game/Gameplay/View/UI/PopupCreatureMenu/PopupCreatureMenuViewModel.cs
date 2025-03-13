@@ -27,7 +27,7 @@ public class PopupCreatureMenuViewModel : WindowViewModel
 
     public void DeleteCreature()
     {
-        _creatureViewModel.DeleteRequest.OnNext(_creatureViewModel);
+        _creatureViewModel.CreatureRequests.DeleteRequest.OnNext(_creatureViewModel);
         RequestClose();
     }
 }

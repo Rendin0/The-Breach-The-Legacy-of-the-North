@@ -90,7 +90,7 @@ public class CreaturesSerivce
         if (creatureEntityProxy.TypeId == CreaturesTypes.Player)
         {
             var playerViewModel = new PlayerViewModel(creatureEntityProxy, _abilitiesConfig);
-            playerViewModel.DeleteRequest.Subscribe(_ =>
+            playerViewModel.CreatureRequests.DeleteRequest.Subscribe(_ =>
             {
                 Debug.LogWarning("Trying to delete player??");
             });
@@ -104,11 +104,11 @@ public class CreaturesSerivce
             var creatureViewModel = new CreatureViewModel(creatureEntityProxy);
             creatureViewModel.AgentType = CreatureConfigMap[creatureViewModel.TypeId].AgentType;
 
-            creatureViewModel.DeleteRequest.Subscribe(_ =>
+            creatureViewModel.CreatureRequests.DeleteRequest.Subscribe(_ =>
             {
                 DeleteCreature(creatureViewModel.CreatureId);
             });
-            creatureViewModel.KillRequest.Subscribe(_ =>
+            creatureViewModel.CreatureRequests.KillRequest.Subscribe(_ =>
             {
                 KillCreature(creatureViewModel.CreatureId);
             });

@@ -86,7 +86,7 @@ public class WorldGameplayRootBinder : MonoBehaviour
     }
     private void CreateCreature(CreatureViewModel viewModel)
     {
-        viewModel.OnCreatureClick.Subscribe(c =>
+        viewModel.CreatureRequests.OnCreatureClick.Subscribe(c =>
         {
             _uiManager.OpenPopupCreatureMenu(c);
         });

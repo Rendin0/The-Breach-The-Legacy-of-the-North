@@ -71,9 +71,11 @@ public static class AbilitiesWarrior
 
     public static void ExecutionersMark(CreatureViewModel caster, float totalDamage, float duration)
     {
-        foreach (var target in caster.MarkedTargets)
+        var war = (WarriorViewModel)caster;
+
+        foreach (var target in war.MarkedTargets)
         {
-            target.MarkCount = 0;
+            target.DynamicStats.MarkCount = 0;
             target.AddStatusEffect(new SEDot(totalDamage, duration));
         }
     }

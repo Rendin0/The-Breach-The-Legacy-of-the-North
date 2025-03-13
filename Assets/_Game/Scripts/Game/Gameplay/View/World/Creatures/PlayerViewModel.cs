@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerViewModel : CreatureViewModel, IControllable
+public class PlayerViewModel : WarriorViewModel, IControllable
 {
     public ReactiveProperty<Vector2> MoveDirection { get; } = new();
     public readonly List<Ability> Abilities = new();
@@ -31,7 +31,7 @@ public class PlayerViewModel : CreatureViewModel, IControllable
         yield return null;
         if (!EventSystem.current.IsPointerOverGameObject())
             if (attack.Use(this, position))
-                attack.SetCooldown(AttackSpeed);
+                attack.SetCooldown(DynamicStats.AttackSpeed);
     }
 
     public void UseAbility(int index, Vector2 position)
