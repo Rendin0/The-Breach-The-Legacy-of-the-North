@@ -9,7 +9,6 @@ public abstract class AgentBrain : MonoBehaviour
     protected GoapActionProvider provider;
     protected GoapBehaviour goap;
 
-
     public void Init(AgentBehaviour agentBehaviour, GoapActionProvider goapActionProvider, GoapBehaviour goapBehaviour)
     {
         this.agentBehaviour = agentBehaviour;

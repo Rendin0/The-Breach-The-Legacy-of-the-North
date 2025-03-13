@@ -30,19 +30,19 @@ public class CreatureBinder : MonoBehaviour, IPointerClickHandler
         ViewModel.Position.OnNext(rb.position);
     }
 
-    public void Bind(CreatureViewModel viewModel, GoapBehaviour goap)
+    public void Bind(CreatureViewModel viewModel, GoapBehaviour goap, AgentBrain brain)
     {
         ViewModel = viewModel;
         transform.position = ViewModel.Position.Value;
         viewModel.MovementBlocked.Subscribe(b => movementBlocked = b);
 
         if (viewModel.AgentType != AgentTypes.None)
-            InitGoap(viewModel, goap);
+            InitGoap(viewModel, goap, brain);
 
         OnBind(viewModel);
     }
 
-    private void InitGoap(CreatureViewModel viewModel, GoapBehaviour goap)
+    private void InitGoap(CreatureViewModel viewModel, GoapBehaviour goap, AgentBrain brain)
     {
         var navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
         navMeshAgent.updateRotation = navMeshAgent.updateUpAxis = false;
@@ -55,18 +55,7 @@ public class CreatureBinder : MonoBehaviour, IPointerClickHandler
         var agentMoveBehaviour = gameObject.AddComponent<AgentMoveBehaviour>();
         agentMoveBehaviour.Init(navMeshAgent, agentBehaviour);
         
-        var brain = AddBrain(viewModel.AgentType);
         brain.Init(agentBehaviour, actionProvider, goap);
-    }
-
-    private AgentBrain AddBrain(AgentTypes agentType)
-    {
-        AgentBrain brain = agentType switch
-        {
-            AgentTypes.PigAgent => gameObject.AddComponent<PigBrain>(),
-            _ => gameObject.AddComponent<PigBrain>(),
-        };
-        return brain;
     }
 
     protected virtual void OnBind(CreatureViewModel viewModel) { }

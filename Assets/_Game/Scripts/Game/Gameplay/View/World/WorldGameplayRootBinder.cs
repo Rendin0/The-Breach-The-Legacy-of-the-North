@@ -4,7 +4,10 @@ using ObservableCollections;
 using R3;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Profiling.HierarchyFrameDataView;
 
 public class WorldGameplayRootBinder : MonoBehaviour
 {
@@ -15,6 +18,8 @@ public class WorldGameplayRootBinder : MonoBehaviour
     private GoapBehaviour _goap;
 
     private WorldGameplayRootViewModel _viewModel;
+
+    private readonly Dictionary<string, ATCF> _atcfsMap = new();
 
     private void OnDestroy()    
     {
@@ -34,6 +39,26 @@ public class WorldGameplayRootBinder : MonoBehaviour
     {
         var goap = Resources.Load<GoapBehaviour>("Gameplay/GOAP");
         _goap = Instantiate(goap);
+
+        InitATCFsMap(_goap);
+    }
+
+    private void InitATCFsMap(GoapBehaviour goap)
+    {
+        var atcfs = goap.GetComponentsInChildren<ATCF>();
+
+        foreach (var atcf in atcfs)
+        {
+            _atcfsMap.Add(atcf.AgentType, atcf);
+        }
+    }
+
+    private AgentBrain GetBrain(AgentTypes agentType, GameObject go)
+    {
+        if (_atcfsMap.TryGetValue(agentType.ToSafeString(), out var atcf))
+            return atcf.GetBrain(go);
+
+        return null;
     }
     #endregion
 
@@ -71,7 +96,7 @@ public class WorldGameplayRootBinder : MonoBehaviour
         var prefab = Resources.Load<CreatureBinder>(creaturePrefabPath);
 
         var created = Instantiate(prefab);
-        created.Bind(viewModel, _goap);
+        created.Bind(viewModel, _goap, GetBrain(viewModel.AgentType, created.gameObject));
 
         if (viewModel.TypeId == CreaturesTypes.Player)
             created.gameObject.layer = LayerMask.NameToLayer(LayerNames.Player);
