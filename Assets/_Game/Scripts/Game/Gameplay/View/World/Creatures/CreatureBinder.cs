@@ -55,7 +55,7 @@ public class CreatureBinder : MonoBehaviour, IPointerClickHandler
         var agentMoveBehaviour = gameObject.AddComponent<AgentMoveBehaviour>();
         agentMoveBehaviour.Init(navMeshAgent, agentBehaviour);
         
-        brain.Init(agentBehaviour, actionProvider, goap);
+        brain.Init(agentBehaviour, actionProvider, goap, this);
     }
 
     protected virtual void OnBind(CreatureViewModel viewModel) { }

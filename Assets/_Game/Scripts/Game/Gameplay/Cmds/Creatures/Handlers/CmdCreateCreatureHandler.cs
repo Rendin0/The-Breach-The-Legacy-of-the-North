@@ -27,6 +27,7 @@ public class CmdCreateCreatureHandler : ICommandHandler<CmdCreateCreature>
             TypeId = command.TypeId,
             Position = command.Position,
             AgentType = creatureConfig.AgentType,
+            Faction = creatureConfig.Faction,
         };
 
         var creatureProxy = new CreatureEntityProxy(creature);

@@ -10,7 +10,7 @@ public class CreatureEntityProxy : EntityProxy
     public AgentTypes AgentType => Origin.AgentType;
     public ReactiveProperty<Vector2> Position { get; }
     public CreatureStatsProxy Stats { get; }
-
+    public Factions Faction => Origin.Faction;
 
     public CreatureEntityProxy(CreatureEntity creatureEntity)
         : base(creatureEntity)

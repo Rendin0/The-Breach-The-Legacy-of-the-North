@@ -16,6 +16,20 @@ public class CreatureViewModel : IBuffable
     public string TypeId => _creatureEntity.TypeId;
     public AgentTypes AgentType => _creatureEntity.AgentType;
 
+    public Factions Faction => _creatureEntity.Faction;
+    private LayerMask _enemies = -2;
+    public LayerMask Enemies
+    {
+        get
+        {
+            if (_enemies == -2)
+                _enemies = FactionManager.GetEnemies(Faction);
+
+            return _enemies;
+        }
+    }
+    public CreatureViewModel CurrentTarget { get; set; }
+
     public Rigidbody2D Rb { get; set; }
     public ReactiveProperty<Vector2> Position { get; }
     public ReactiveProperty<bool> MovementBlocked { get; } = new(false);

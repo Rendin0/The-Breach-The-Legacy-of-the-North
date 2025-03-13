@@ -29,10 +29,10 @@ public class IdleTargetSensor : LocalTargetSensorBase
 
             if (NavMesh.SamplePosition(position, out var hit, 1, NavMesh.AllAreas))
             {
-                return new (hit.position.x, hit.position.y, agent.Transform.position.z);
+                return new(hit.position.x, hit.position.y, agent.Transform.position.z);
             }
         }
-            
+
         return agent.Transform.position;
     }
 

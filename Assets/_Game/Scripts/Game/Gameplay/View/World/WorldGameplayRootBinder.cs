@@ -21,7 +21,7 @@ public class WorldGameplayRootBinder : MonoBehaviour
 
     private readonly Dictionary<string, IATCF> _atcfsMap = new();
 
-    private void OnDestroy()    
+    private void OnDestroy()
     {
         _disposables.Dispose();
     }
@@ -98,10 +98,11 @@ public class WorldGameplayRootBinder : MonoBehaviour
         var created = Instantiate(prefab);
         created.Bind(viewModel, _goap, GetBrain(viewModel.AgentType, created.gameObject));
 
-        if (viewModel.TypeId == CreaturesTypes.Player)
-            created.gameObject.layer = LayerMask.NameToLayer(LayerNames.Player);
-        else
-            created.gameObject.layer = LayerMask.NameToLayer(LayerNames.Creatures);
+        var layer = LayerMask.NameToLayer(viewModel.Faction.ToString());
+        if (layer == -1)
+            Debug.LogError($"Can not find layer with name {viewModel.Faction} for creature type {viewModel.TypeId}");
+
+        created.gameObject.layer = layer;
 
         _creatures[viewModel.CreatureId] = created;
     }
@@ -111,7 +112,6 @@ public class WorldGameplayRootBinder : MonoBehaviour
         {
             Destroy(creature.gameObject);
             _creatures.Remove(viewModel.CreatureId);
-
         }
     }
     #endregion

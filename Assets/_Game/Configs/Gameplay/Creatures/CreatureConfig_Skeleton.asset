@@ -27,5 +27,5 @@ MonoBehaviour:
     DamageResistance: 0
     Stamina: 0
     MaxStamina: 1
-  Fraction: 1
+  Faction: 1
   AgentType: 1
