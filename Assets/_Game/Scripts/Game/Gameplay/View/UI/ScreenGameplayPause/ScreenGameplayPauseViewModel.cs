@@ -1,4 +1,5 @@
 using R3;
+using UnityEngine.InputSystem;
 
 public class ScreenGameplayPauseViewModel : WindowViewModel
 {
@@ -14,7 +15,7 @@ public class ScreenGameplayPauseViewModel : WindowViewModel
 
         InputRequests.EscapeRequest = new();
 
-        InputRequests.EscapeRequest.Subscribe(_ => RequestResume());
+        InputRequests.EscapeRequest.Subscribe(_ => RequestResume(_));
     }
 
     public void RequestOpenPopupSettings()
@@ -27,6 +28,11 @@ public class ScreenGameplayPauseViewModel : WindowViewModel
         _exitSceneRequest.OnNext(Unit.Default);
     }
 
+    public void RequestResume(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            RequestResume();
+    }
     public void RequestResume()
     {
         _uiManager.OpenScreenGameplay();

@@ -102,7 +102,6 @@ public class CreaturesSerivce
         else
         {
             var creatureViewModel = new CreatureViewModel(creatureEntityProxy);
-            creatureViewModel.AgentType = CreatureConfigMap[creatureViewModel.TypeId].AgentType;
 
             creatureViewModel.CreatureRequests.DeleteRequest.Subscribe(_ =>
             {

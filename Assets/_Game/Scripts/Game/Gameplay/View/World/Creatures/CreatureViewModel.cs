@@ -10,10 +10,11 @@ public class CreatureViewModel : IBuffable
     private readonly CreatureEntityProxy _creatureEntity;
     private readonly CreatureStatsProxy _baseStats;
     public CreatureStatsViewModel Stats { get; private set; }
+    public DynamicCreatureStats DynamicStats;
 
-    public readonly int CreatureId;
-    public readonly string TypeId;
-    public AgentTypes AgentType;
+    public int CreatureId => _creatureEntity.Id;
+    public string TypeId => _creatureEntity.TypeId;
+    public AgentTypes AgentType => _creatureEntity.AgentType;
 
     public Rigidbody2D Rb { get; set; }
     public ReactiveProperty<Vector2> Position { get; }
@@ -21,7 +22,6 @@ public class CreatureViewModel : IBuffable
 
     private readonly List<IStatusEffect> _statusEffects = new();
     public CreatureRequests CreatureRequests = new();
-    public DynamicCreatureStats DynamicStats;
 
     protected Ability attack;
 
@@ -29,8 +29,6 @@ public class CreatureViewModel : IBuffable
     {
         _creatureEntity = creatureEntity;
 
-        TypeId = _creatureEntity.TypeId;
-        CreatureId = _creatureEntity.Id;
         Position = _creatureEntity.Position;
 
         _baseStats = creatureEntity.Stats.Copy();
@@ -53,7 +51,7 @@ public class CreatureViewModel : IBuffable
 
     // True - жив
     // False - мёртв
-    public bool Damage(DamageData damage)
+    public void Damage(DamageData damage)
     {
         bool isAlive = true;
 
@@ -81,8 +79,6 @@ public class CreatureViewModel : IBuffable
 
         if (!isAlive)
             CreatureRequests.KillRequest.OnNext(this);
-
-        return isAlive;
     }
 
     public void Heal(float heal)
