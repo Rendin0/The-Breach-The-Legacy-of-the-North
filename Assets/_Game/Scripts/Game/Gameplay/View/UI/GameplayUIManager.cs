@@ -22,14 +22,10 @@ public class GameplayUIManager : UIManager
         // Пауза игры
         Time.timeScale = 0.0f;
 
-        var input = Container.Resolve<GameInput>();
-        input.Player.Disable();
-
         var viewModel = new ScreenGameplayPauseViewModel(this, _exitSceneRequest);
         var rootUI = Container.Resolve<UIGameplayRootViewModel>();
 
         rootUI.OpenScreen(viewModel);
-        input.UI.Enable();
 
         return viewModel;
     }

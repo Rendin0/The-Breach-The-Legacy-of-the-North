@@ -4,7 +4,7 @@ public static class MainMenuViewModelsRegistrations
     {
         sceneContainer.RegisterFactory(c => new MainMenuUIManager(sceneContainer)).AsSingle();
 
-        var inputRequests = sceneContainer.Resolve<InputRequests>();
+        var inputRequests = sceneContainer.Resolve<InputRequests>(AppConstants.MAINMENU_REQUESTS);
         sceneContainer.RegisterFactory(c => new UIMainMenuRootViewModel(inputRequests)).AsSingle();
     }
 
