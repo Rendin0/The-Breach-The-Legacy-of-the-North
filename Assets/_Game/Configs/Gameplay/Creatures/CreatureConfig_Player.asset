@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TypeId: Player
   Stats:
-    MaxHealth: 20
-    Health: 5
+    MaxHealth: 100
+    Health: 100
     Speed: 10
     Damage:
       MagicalData: 0
@@ -27,4 +27,5 @@ MonoBehaviour:
     DamageResistance: 0
     Stamina: 40
     MaxStamina: 100
-  Fraction: 0
+  Faction: 0
+  AgentType: 0
