@@ -46,7 +46,7 @@ public static class AbilitiesWarrior
         caster.AddStatusEffect(tmpEffect);
 
         // Стан всех врагов в радиусе
-        var hits = Physics2DUtils.GetCircleHits<CreatureBinder>(caster.Position.Value, stunRadius);
+        var hits = _coroutines.DamageCircle(caster, new(), caster.Position.Value, stunRadius);
 
         foreach (var hit in hits)
         {

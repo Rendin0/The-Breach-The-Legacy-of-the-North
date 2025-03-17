@@ -17,6 +17,7 @@ public class PlayerBinder : CreatureBinder
         base.Update();
 
         _direction = _viewModel.MoveDirection.Value;
+        Camera.main.transform.localPosition = new Vector3(transform.position.x, transform.position.y, 0f);
     }
 
     protected override void FixedUpdate()

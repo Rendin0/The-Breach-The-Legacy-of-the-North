@@ -11,7 +11,7 @@ public class PlayerViewModel : WarriorViewModel, IControllable
     public readonly List<Ability> Abilities = new();
 
     public PlayerViewModel(CreatureEntityProxy creatureEntity, AbilitiesConfig abilitiesConfig)
-        : base(creatureEntity)
+        : base(creatureEntity, abilitiesConfig)
     {
         foreach (var abilityCfg in abilitiesConfig.Abilities)
         {
@@ -20,9 +20,10 @@ public class PlayerViewModel : WarriorViewModel, IControllable
         attack = new(abilitiesConfig.Attack);
     }
 
-    public override void Attack(Vector2 position)
+    public override bool Attack(Vector2 position)
     {
         GameEntryPoint.Coroutines.StartCoroutine(AttackCoroutine(position));
+        return true;
     }
 
     private IEnumerator AttackCoroutine(Vector2 position)

@@ -38,21 +38,23 @@ public class UtilsAbilitiesWarrior
 
     public IEnumerator ExecutionersMarkCoroutine(CreatureViewModel caster, CreatureViewModel target, float time)
     {
-        var war = (WarriorViewModel)caster;
+        if (caster is WarriorViewModel war)
+        {
+            if (target.DynamicStats.MarkCount == 2)
+                war.MarkedTargets.Add(target);
 
-        if (target.DynamicStats.MarkCount == 2)
-            war.MarkedTargets.Add(target);
+            target.DynamicStats.MarkCount++;
+            target.DynamicStats.MarkCount = Mathf.Clamp(target.DynamicStats.MarkCount, 0, int.MaxValue);
 
-        target.DynamicStats.MarkCount++;
-        target.DynamicStats.MarkCount = Mathf.Clamp(target.DynamicStats.MarkCount, 0, int.MaxValue);
+            yield return new WaitForSeconds(time);
 
-        yield return new WaitForSeconds(time);
+            target.DynamicStats.MarkCount--;
+            target.DynamicStats.MarkCount = Mathf.Clamp(target.DynamicStats.MarkCount, 0, int.MaxValue);
 
-        target.DynamicStats.MarkCount--;
-        target.DynamicStats.MarkCount = Mathf.Clamp(target.DynamicStats.MarkCount, 0, int.MaxValue);
-
-        if (target.DynamicStats.MarkCount == 2)
-            war.MarkedTargets.Remove(target);
+            if (target.DynamicStats.MarkCount == 2)
+                war.MarkedTargets.Remove(target);
+        }
+        yield return null;
     }
 
     public IEnumerator DelayedReckoningCoroutine(CreatureViewModel caster, float damageResistancePercent, float radius)

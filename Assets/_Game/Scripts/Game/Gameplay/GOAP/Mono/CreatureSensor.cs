@@ -1,11 +1,15 @@
+using CrashKonijn.Agent.Runtime;
 using R3;
 using R3.Triggers;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class CreatureSensor : MonoBehaviour
 {
-    public Observable<Collider2D> OnCreatureSpotted;
+    public Subject<Collider2D> OnEnemySpotted = new();
     public Observable<Collider2D> OnCreatureLost;
+
+    private CreatureBinder _owner;
 
     private void Awake()
     {
@@ -14,7 +18,25 @@ public class CreatureSensor : MonoBehaviour
         var sensor = Instantiate(sensorPrefab);
         sensor.transform.SetParent(transform, false);
 
-        OnCreatureSpotted = sensor.OnTriggerEnter2DAsObservable();
+        sensor.OnTriggerEnter2DAsObservable().Subscribe(c => OnCreatureSpotted(c));
         OnCreatureLost = sensor.OnTriggerExit2DAsObservable();
+    }
+
+    private void OnCreatureSpotted(Collider2D collider)
+    {
+        LayerMask enemies = _owner.ViewModel.Enemies;
+        int layer = collider.gameObject.layer;
+
+        // Проверка на наличие слоя в маске слоёв врагов
+        // https://discussions.unity.com/t/checking-if-a-layer-is-in-a-layer-mask/860331/2
+        if ((enemies & (1 << layer)) != 0)
+        {
+            OnEnemySpotted.OnNext(collider);
+        }
+    }
+
+    public void Init(CreatureBinder owner)
+    {
+        _owner = owner;
     }
 }

@@ -11,7 +11,7 @@ public class KillEnemyCapability : CapabilityFactory
         builder.AddAction<AttackAction>()
             .SetTarget<EnemyTargetKey>()
             .AddEffect<EnemyHealthWorldKey>(EffectType.Decrease)
-            .SetBaseCost(4)
+            .SetBaseCost(1)
             .SetStoppingDistance(5f);
     }
 

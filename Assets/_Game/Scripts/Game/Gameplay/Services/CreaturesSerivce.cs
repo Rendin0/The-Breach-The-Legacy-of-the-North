@@ -101,7 +101,7 @@ public class CreaturesSerivce
         }
         else
         {
-            var creatureViewModel = new CreatureViewModel(creatureEntityProxy);
+            var creatureViewModel = new CreatureViewModel(creatureEntityProxy, _abilitiesConfig);
 
             creatureViewModel.CreatureRequests.DeleteRequest.Subscribe(_ =>
             {

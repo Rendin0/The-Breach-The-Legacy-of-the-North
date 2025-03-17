@@ -39,7 +39,7 @@ public class CreatureViewModel : IBuffable
 
     protected Ability attack;
 
-    public CreatureViewModel(CreatureEntityProxy creatureEntity)
+    public CreatureViewModel(CreatureEntityProxy creatureEntity, AbilitiesConfig abilitiesConfig)
     {
         _creatureEntity = creatureEntity;
 
@@ -48,6 +48,8 @@ public class CreatureViewModel : IBuffable
         _baseStats = creatureEntity.Stats.Copy();
         Stats = new(creatureEntity.Stats);
         DynamicStats = new(Stats);
+
+        attack = new(abilitiesConfig.Attack);
     }
 
     public virtual void OnClick(PointerEventData eventData)
@@ -56,10 +58,14 @@ public class CreatureViewModel : IBuffable
     }
 
 
-    public virtual void Attack(Vector2 position)
+    public virtual bool Attack(Vector2 position)
     {
-        if (attack.Use(this, position))
+        bool result = attack.Use(this, position);
+
+        if (result)
             attack.SetCooldown(DynamicStats.AttackSpeed);
+
+        return result;
     }
 
 

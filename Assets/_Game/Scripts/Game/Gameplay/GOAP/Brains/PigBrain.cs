@@ -1,8 +1,5 @@
 using R3;
-using CrashKonijn.Agent.Runtime;
-using CrashKonijn.Goap.Runtime;
 using UnityEngine;
-using UnityEngine.UI;   
 
 public class PigBrain : AgentBrain
 {
@@ -21,18 +18,14 @@ public class PigBrain : AgentBrain
     private void AddCreatureSensor()
     {
         var creatureSensor = gameObject.AddComponent<CreatureSensor>();
-        creatureSensor.OnCreatureSpotted.Subscribe(c => OnCreatureSpotted(c));
+        creatureSensor.Init(GetComponent<CreatureBinder>());
+        creatureSensor.OnEnemySpotted.Subscribe(c => OnEnemySpotted(c));
         creatureSensor.OnCreatureLost.Subscribe(c => OnCreatureLost(c));
     }
 
-    private void OnCreatureSpotted(Collider2D collider)
+    private void OnEnemySpotted(Collider2D collider)
     {
-        LayerMask enemies = creatureBinder.ViewModel.Enemies;
-        int layer = collider.gameObject.layer;
-
-        // Проверка на наличие слоя в маске слоёв врагов
-        // https://discussions.unity.com/t/checking-if-a-layer-is-in-a-layer-mask/860331/2
-        if ((enemies & (1 << layer)) != 0)
+        if (_currentTarget == null)
         {
             agentBehaviour.StopAction();
             provider.RequestGoal<KillEnemyGoal>();
