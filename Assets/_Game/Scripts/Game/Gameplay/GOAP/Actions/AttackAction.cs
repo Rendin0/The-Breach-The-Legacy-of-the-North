@@ -19,11 +19,10 @@ public class AttackAction : GoapActionBase<AttackAction.Data>
         }
         data.Timer -= context.DeltaTime;
 
-        bool inRange = Vector2.Distance(agent.transform.position, data.ViewModel.CurrentTarget.Position.Value) <= 1.5f;
+        bool inRange = Vector2.Distance(agent.transform.position, data.ViewModel.CurrentTarget.Position.Value) <= 2f;
 
         if (inRange)
         {
-
             data.ViewModel.Attack(data.ViewModel.CurrentTarget.Position.Value);
         }
 

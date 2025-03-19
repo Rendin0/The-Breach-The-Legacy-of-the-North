@@ -46,7 +46,8 @@ public class CreatureBinder : MonoBehaviour, IPointerClickHandler
     {
         var navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
         navMeshAgent.updateRotation = navMeshAgent.updateUpAxis = false;
-        
+        viewModel.Stats.Speed.Subscribe(s => navMeshAgent.speed = s);
+
         var actionProvider = gameObject.AddComponent<GoapActionProvider>();
         
         var agentBehaviour = gameObject.AddComponent<AgentBehaviour>();
