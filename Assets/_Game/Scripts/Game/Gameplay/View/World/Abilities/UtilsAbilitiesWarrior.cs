@@ -72,8 +72,10 @@ public class UtilsAbilitiesWarrior
 
     public List<CreatureBinder> DamageRectangle(CreatureViewModel caster, DamageData damage, List<Vector2> points)
     {
-        var hits = Physics2DUtils.GetColliderHits<CreatureBinder>(points);
+        var mask = caster.Enemies;
+        var hits = Physics2DUtils.GetColliderHits<CreatureBinder>(points, mask);
         var hitsResult = new List<CreatureBinder>();
+
         foreach (var hit in hits)
         {
             // Ударило не само себя
@@ -88,7 +90,8 @@ public class UtilsAbilitiesWarrior
 
     public List<CreatureBinder> DamageCircle(CreatureViewModel caster, DamageData damage, Vector2 center, float radius)
     {
-        var hits = Physics2DUtils.GetCircleHits<CreatureBinder>(center, radius);
+        var mask = caster.Enemies;
+        var hits = Physics2DUtils.GetCircleHits<CreatureBinder>(center, radius, mask);
         var hitsResult = new List<CreatureBinder>();
         foreach (var hit in hits)
         {

@@ -7,7 +7,7 @@ using UnityEngine;
 public class CreatureSensor : MonoBehaviour
 {
     public Subject<Collider2D> OnEnemySpotted = new();
-    public Observable<Collider2D> OnCreatureLost;
+    public Subject<Collider2D> OnCreatureLost = new();
 
     private CreatureBinder _owner;
 
@@ -19,7 +19,7 @@ public class CreatureSensor : MonoBehaviour
         sensor.transform.SetParent(transform, false);
 
         sensor.OnTriggerEnter2DAsObservable().Subscribe(c => OnCreatureSpotted(c));
-        OnCreatureLost = sensor.OnTriggerExit2DAsObservable();
+        sensor.OnTriggerExit2DAsObservable().Subscribe(c => OnCreatureLostE(c));
     }
 
     private void OnCreatureSpotted(Collider2D collider)
@@ -33,6 +33,11 @@ public class CreatureSensor : MonoBehaviour
         {
             OnEnemySpotted.OnNext(collider);
         }
+    }
+
+    private void OnCreatureLostE(Collider2D collider)
+    {
+        OnCreatureLost.OnNext(collider);
     }
 
     public void Init(CreatureBinder owner)

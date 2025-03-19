@@ -11,15 +11,26 @@ public static class Physics2DUtils
 
         return CheckHits<T>(hits);
     }
+
+
     public static List<T> GetColliderHits<T>(List<Vector2> points)
+        where T : MonoBehaviour
+    {
+        return GetColliderHits<T>(points, -1);
+    }
+
+    public static List<T> GetColliderHits<T>(List<Vector2> points, LayerMask layerMask)
         where T : MonoBehaviour
     {
         var gameObject = new GameObject();
         var collider = gameObject.AddComponent<PolygonCollider2D>();
+        var filter = new ContactFilter2D();
+        filter.SetLayerMask(layerMask);
+
         collider.points = points.ToArray();
         var hits = new List<Collider2D>();
 
-        Physics2D.OverlapCollider(collider, hits);
+        Physics2D.OverlapCollider(collider, filter, hits);
 
         GameObject.Destroy(gameObject);
         return CheckHits<T>(hits.ToArray());
