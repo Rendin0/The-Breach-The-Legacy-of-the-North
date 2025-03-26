@@ -1,16 +1,18 @@
 using R3;
+using System;
 using UnityEngine.InputSystem;
 
-public class PopupWorldMapViewModel : WindowViewModel
+[Obsolete("Old map script")]
+public class PopupWorldMapViewModelOld : WindowViewModel
 {
     public override string Id => "PopupWorldMap";
-    public PopupWorldMapViewModel()
+
+    public PopupWorldMapViewModelOld()
     {
         InputRequests.EscapeRequest = new();
         InputRequests.MRequest = new();
 
         InputRequests.MRequest.Subscribe(c => Close(c));
-        InputRequests.EscapeRequest.Subscribe(c => Close(c));
     }
 
     private void Close(InputAction.CallbackContext context)
