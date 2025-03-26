@@ -1,8 +1,6 @@
 
 using R3;
-using System;
 using System.Collections;
-using UnityEditor.Playables;
 using UnityEngine;
 
 public class Ability : IElementInfoViewModel
@@ -39,7 +37,7 @@ public class Ability : IElementInfoViewModel
     }
 
     // ѕолучилось либо не получилось активировать
-    public bool Use(PlayerViewModel playerViewModel, Vector2 position)
+    public bool Use(CreatureViewModel playerViewModel, Vector2 position)
     {
         _requirement?.Invoke(playerViewModel, CanUse);
 

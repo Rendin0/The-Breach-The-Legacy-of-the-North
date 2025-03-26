@@ -90,29 +90,30 @@ public class CreaturesSerivce
         if (creatureEntityProxy.TypeId == CreaturesTypes.Player)
         {
             var playerViewModel = new PlayerViewModel(creatureEntityProxy, _abilitiesConfig);
-            _creatureViewModels.Add(playerViewModel);
-            _creaturesMap[playerViewModel.CreatureId] = playerViewModel;
-            playerViewModel.DeleteRequest.Subscribe(_ =>
+            playerViewModel.CreatureRequests.DeleteRequest.Subscribe(_ =>
             {
                 Debug.LogWarning("Trying to delete player??");
             });
 
             _playerViewModel = playerViewModel;
+            _creaturesMap[playerViewModel.CreatureId] = playerViewModel;
+            _creatureViewModels.Add(playerViewModel);
         }
         else
         {
-            var creatureViewModel = new CreatureViewModel(creatureEntityProxy);
-            _creatureViewModels.Add(creatureViewModel);
-            _creaturesMap[creatureViewModel.CreatureId] = creatureViewModel;
+            var creatureViewModel = new CreatureViewModel(creatureEntityProxy, _abilitiesConfig);
 
-            creatureViewModel.DeleteRequest.Subscribe(_ =>
+            creatureViewModel.CreatureRequests.DeleteRequest.Subscribe(_ =>
             {
                 DeleteCreature(creatureViewModel.CreatureId);
             });
-            creatureViewModel.KillRequest.Subscribe(_ =>
+            creatureViewModel.CreatureRequests.KillRequest.Subscribe(_ =>
             {
                 KillCreature(creatureViewModel.CreatureId);
             });
+
+            _creaturesMap[creatureViewModel.CreatureId] = creatureViewModel;
+            _creatureViewModels.Add(creatureViewModel);
         }
     }
 

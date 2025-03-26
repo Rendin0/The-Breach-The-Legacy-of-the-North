@@ -6,7 +6,7 @@ using System.Linq;
 
 public class UIRootViewModel : IDisposable
 {
-    public ReadOnlyReactiveProperty<WindowViewModel> OpenedScreen => _openedScreen;
+    public Observable<WindowViewModel> OpenedScreen => _openedScreen;
     public IObservableCollection<WindowViewModel> OpenedPopups => _openedPopups;
 
     private readonly ReactiveProperty<WindowViewModel> _openedScreen = new(null);
@@ -24,18 +24,14 @@ public class UIRootViewModel : IDisposable
     public void OpenScreen(WindowViewModel screenViewModel)
     {
         _openedScreen.Value?.Dispose();
-        _openedScreen.Value = screenViewModel;
+        _openedScreen.OnNext(screenViewModel);
         SetWindowBindings(screenViewModel);
     }
 
     public void OpenPopup(WindowViewModel popupViewModel)
     {
-        WindowViewModel prevWindow = _openedScreen.Value;
-        if (_openedPopups.Count > 0)
-            prevWindow = _openedPopups[^1];
-
-
         if (_openedPopups.Contains(popupViewModel)) return;
+
         var sub = popupViewModel.CloseRequested.Subscribe(ClosePopup);
         _subscriptions.Add(popupViewModel, sub);
         _openedPopups.Add(popupViewModel);
@@ -78,7 +74,7 @@ public class UIRootViewModel : IDisposable
     public void Dispose()
     {
         CloseAllPopups();
-        _openedScreen.Dispose();
+        _openedScreen.Value?.Dispose();
         _subs.Dispose();
     }
 

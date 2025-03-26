@@ -1,19 +1,17 @@
 
 using R3;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerViewModel : CreatureViewModel, IControllable
+public class PlayerViewModel : WarriorViewModel, IControllable
 {
     public ReactiveProperty<Vector2> MoveDirection { get; } = new();
     public readonly List<Ability> Abilities = new();
-    protected readonly Ability attack;
 
     public PlayerViewModel(CreatureEntityProxy creatureEntity, AbilitiesConfig abilitiesConfig)
-        : base(creatureEntity)
+        : base(creatureEntity, abilitiesConfig)
     {
         foreach (var abilityCfg in abilitiesConfig.Abilities)
         {
@@ -22,9 +20,10 @@ public class PlayerViewModel : CreatureViewModel, IControllable
         attack = new(abilitiesConfig.Attack);
     }
 
-    public void Attack(Vector2 position)
+    public override bool Attack(Vector2 position)
     {
         GameEntryPoint.Coroutines.StartCoroutine(AttackCoroutine(position));
+        return true;
     }
 
     private IEnumerator AttackCoroutine(Vector2 position)
@@ -33,7 +32,7 @@ public class PlayerViewModel : CreatureViewModel, IControllable
         yield return null;
         if (!EventSystem.current.IsPointerOverGameObject())
             if (attack.Use(this, position))
-                attack.SetCooldown(AttackSpeed);
+                attack.SetCooldown(DynamicStats.AttackSpeed);
     }
 
     public void UseAbility(int index, Vector2 position)

@@ -24,7 +24,7 @@ public class CreatureStatsProxy
         Health = new(origin.Health);
         MaxHealth = new(origin.MaxHealth);
         Speed = new(origin.Speed);
-        Damage = new (origin.Damage);
+        Damage = new(origin.Damage);
         Immortal = new(origin.Immortal);
         Defense = new(origin.Defense);
         Resistance = new(origin.Resistance);

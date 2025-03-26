@@ -1,7 +1,4 @@
-using R3;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using static GameInput;
 
@@ -26,7 +23,8 @@ public class GameplayInputController : IPlayerActions
 
     public void OnEscape(InputAction.CallbackContext context)
     {
-        _inputRequests.EscapeRequest.OnNext(context);
+        if (context.performed)
+            _inputRequests.EscapeRequest.OnNext(context);
     }
 
     public void OnFire(InputAction.CallbackContext context)
@@ -46,11 +44,13 @@ public class GameplayInputController : IPlayerActions
 
     public void OnTab(InputAction.CallbackContext context)
     {
-        _inputRequests.TabRequest.OnNext(context);
+        if (context.performed)
+            _inputRequests.TabRequest.OnNext(context);
     }
 
     public void OnU(InputAction.CallbackContext context)
     {
+        if (context.performed)
         _inputRequests.URequest.OnNext(context);
     }
 
@@ -76,6 +76,7 @@ public class GameplayInputController : IPlayerActions
 
     public void OnM(InputAction.CallbackContext context)
     {
-        _inputRequests.MRequest.OnNext(context);
+        if (context.performed)
+            _inputRequests.MRequest.OnNext(context);
     }
 }

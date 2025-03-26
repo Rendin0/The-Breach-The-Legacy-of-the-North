@@ -2,6 +2,7 @@
 using R3;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DPCreaturesViewModel
 {
@@ -28,7 +29,7 @@ public class DPCreaturesViewModel
         if (CurrentCreatureType == 0)
             return;
 
-        _inputRequests.MouseRequest.Subscribe(_ => CreateCreatureAtMousePos(CurrentCreatureType));
+        _inputRequests.MouseRequest.Subscribe(_ => CreateCreatureAtMousePos(_, CurrentCreatureType));
         _parrent.RequestClose();
     }
 
@@ -37,9 +38,10 @@ public class DPCreaturesViewModel
         _parrent.PrivilegesRequest.OnNext(Unit.Default);
     }
 
-    private void CreateCreatureAtMousePos(int index)
+    private void CreateCreatureAtMousePos(InputAction.CallbackContext context, int index)
     {
-        _creaturesSerivce.CreateCreature(CreatureTypesList[index - 1], Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        if (context.performed)
+            _creaturesSerivce.CreateCreature(CreatureTypesList[index - 1], Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
 
 }

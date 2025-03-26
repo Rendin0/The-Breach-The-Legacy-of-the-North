@@ -1,6 +1,3 @@
-
-using System.Linq;
-
 public class CmdDamageCreatureHandler : ICommandHandler<CmdDamageCreature>
 {
     private readonly GameStateProxy _gameState;

@@ -31,6 +31,7 @@ public static class GameplayRegistrations
 
         sceneContainer.RegisterFactory(_ => creaturesService).AsSingle();
         sceneContainer.RegisterFactory(_ => inventoriesService).AsSingle();
+        sceneContainer.RegisterFactory(_ => new GOAPService(creaturesService)).AsSingle();
         sceneContainer.RegisterInstance<ICommandProcessor>(processor);
         sceneContainer.RegisterInstance(AppConstants.EXIT_SCENE_REQUEST_TAG, new Subject<Unit>());
     }

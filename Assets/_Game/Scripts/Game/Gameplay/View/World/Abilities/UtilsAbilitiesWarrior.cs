@@ -1,8 +1,5 @@
-
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 
 public class UtilsAbilitiesWarrior
@@ -41,28 +38,32 @@ public class UtilsAbilitiesWarrior
 
     public IEnumerator ExecutionersMarkCoroutine(CreatureViewModel caster, CreatureViewModel target, float time)
     {
-        if (target.MarkCount == 2)
-            caster.MarkedTargets.Add(target);
+        if (caster is WarriorViewModel war)
+        {
+            if (target.DynamicStats.MarkCount == 2)
+                war.MarkedTargets.Add(target);
 
-        target.MarkCount++;
-        target.MarkCount = Mathf.Clamp(target.MarkCount, 0, int.MaxValue);
+            target.DynamicStats.MarkCount++;
+            target.DynamicStats.MarkCount = Mathf.Clamp(target.DynamicStats.MarkCount, 0, int.MaxValue);
 
-        yield return new WaitForSeconds(time);
+            yield return new WaitForSeconds(time);
 
-        target.MarkCount--;
-        target.MarkCount = Mathf.Clamp(target.MarkCount, 0, int.MaxValue);
+            target.DynamicStats.MarkCount--;
+            target.DynamicStats.MarkCount = Mathf.Clamp(target.DynamicStats.MarkCount, 0, int.MaxValue);
 
-        if (target.MarkCount == 2)
-            caster.MarkedTargets.Remove(target);
+            if (target.DynamicStats.MarkCount == 2)
+                war.MarkedTargets.Remove(target);
+        }
+        yield return null;
     }
 
     public IEnumerator DelayedReckoningCoroutine(CreatureViewModel caster, float damageResistancePercent, float radius)
     {
         caster.Stats.DamageResistance.OnNext(caster.Stats.DamageResistance.Value + damageResistancePercent);
-        yield return new WaitForSeconds(caster.HealthChangesTime);
+        yield return new WaitForSeconds(caster.DynamicStats.HealthChangesTime);
         caster.Stats.DamageResistance.OnNext(caster.Stats.DamageResistance.Value - damageResistancePercent);
 
-        float delayedDamage = caster.HealthChanges * (1f / (1f - damageResistancePercent)) * damageResistancePercent;
+        float delayedDamage = caster.DynamicStats.HealthChanges * (1f / (1f - damageResistancePercent)) * damageResistancePercent;
 
         var damage = new DamageData() { PhysicalData = delayedDamage };
 
@@ -71,8 +72,10 @@ public class UtilsAbilitiesWarrior
 
     public List<CreatureBinder> DamageRectangle(CreatureViewModel caster, DamageData damage, List<Vector2> points)
     {
-        var hits = Physics2DUtils.GetColliderHits<CreatureBinder>(points);
+        var mask = caster.Enemies;
+        var hits = Physics2DUtils.GetColliderHits<CreatureBinder>(points, mask);
         var hitsResult = new List<CreatureBinder>();
+
         foreach (var hit in hits)
         {
             // Ударило не само себя
@@ -87,7 +90,8 @@ public class UtilsAbilitiesWarrior
 
     public List<CreatureBinder> DamageCircle(CreatureViewModel caster, DamageData damage, Vector2 center, float radius)
     {
-        var hits = Physics2DUtils.GetCircleHits<CreatureBinder>(center, radius);
+        var mask = caster.Enemies;
+        var hits = Physics2DUtils.GetCircleHits<CreatureBinder>(center, radius, mask);
         var hitsResult = new List<CreatureBinder>();
         foreach (var hit in hits)
         {

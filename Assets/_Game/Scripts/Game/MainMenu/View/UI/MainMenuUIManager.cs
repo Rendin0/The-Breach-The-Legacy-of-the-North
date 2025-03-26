@@ -20,10 +20,14 @@ public class MainMenuUIManager : UIManager
 
     public ScreenMainMenuViewModel OpenMainMenu()
     {
+        var input = Container.Resolve<GameInput>();
+        input.Player.Disable();
+
         var viewModel = new ScreenMainMenuViewModel(this, _exitSceneRequest);
         var rootUI = Container.Resolve<UIMainMenuRootViewModel>();
 
         rootUI.OpenScreen(viewModel);
+        input.UI.Enable();
         return viewModel;
     }
 

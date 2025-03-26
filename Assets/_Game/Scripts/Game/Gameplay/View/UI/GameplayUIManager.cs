@@ -1,10 +1,6 @@
 
 using R3;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using static UnityEditor.Profiling.HierarchyFrameDataView;
 
 public class GameplayUIManager : UIManager
 {
@@ -26,14 +22,10 @@ public class GameplayUIManager : UIManager
         // Пауза игры
         Time.timeScale = 0.0f;
 
-        var input = Container.Resolve<GameInput>();
-        input.Player.Disable();
-
         var viewModel = new ScreenGameplayPauseViewModel(this, _exitSceneRequest);
         var rootUI = Container.Resolve<UIGameplayRootViewModel>();
 
         rootUI.OpenScreen(viewModel);
-        input.UI.Enable();
 
         return viewModel;
     }
@@ -134,7 +126,7 @@ public class GameplayUIManager : UIManager
 
         inventory.UIManager = this;
         rootUI.OpenPopup(inventory);
-        
+
         SubscribeElementInfo(inventory.CreateElementInfo, inventory.DeleteElementInfo);
 
         return inventory;

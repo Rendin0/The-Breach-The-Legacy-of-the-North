@@ -40,7 +40,7 @@ public class InventoryBinder : MonoBehaviour
     {
         _parrent.ToggleEquipment();
     }
-    
+
     private void InitSelectedItem()
     {
         _selectedItem = Instantiate(_slotPrefab, _selectedItemContainer);

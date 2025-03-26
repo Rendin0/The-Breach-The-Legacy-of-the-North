@@ -16,7 +16,7 @@ public enum ItemRarity
     Gray = 0,
     Green = 1,
     Blue = 2,
-    Purple = 3, 
+    Purple = 3,
     Yellow = 4,
     Red = 4,
     White = 5,
