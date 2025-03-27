@@ -7,8 +7,7 @@ public class PopupWorldMapViewModel : WindowViewModel
 {
     public override string Id => "PopupWorldMap";
 
-    private ReactiveProperty<float> _scale = new(1f);
-    public Observable<float> Scale => _scale;
+    public ReactiveProperty<float> Scale { get; } = new(1f);
 
     public PopupWorldMapViewModel()
     {
@@ -24,7 +23,7 @@ public class PopupWorldMapViewModel : WindowViewModel
     private void ChangeScale(InputAction.CallbackContext context)
     {
         float changeAmount = context.ReadValue<float>() * .05f;
-        _scale.OnNext(Mathf.Clamp(_scale.Value - changeAmount, .05f, 1f));
+        Scale.OnNext(Mathf.Clamp(Scale.Value - changeAmount, .05f, 1f));
     }
 
     private void Close(InputAction.CallbackContext context)

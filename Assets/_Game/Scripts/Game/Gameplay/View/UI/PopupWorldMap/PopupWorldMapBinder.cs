@@ -7,6 +7,7 @@ public class PopupWorldMapBinder : PopupBinder<PopupWorldMapViewModel>
 
     protected override void OnBind(PopupWorldMapViewModel viewModel)
     {
-        viewModel.Scale.Subscribe(s => _worldMap.SetScale(s));
+        _worldMap.Init(viewModel.Scale.Value);
+        viewModel.Scale.Skip(1).Subscribe(s => _worldMap.SetScale(s));
     }
 }

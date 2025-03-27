@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7220364978452164637}
   - component: {fileID: 3875672500212371660}
   m_Layer: 0
-  m_Name: PigAgentFactory
+  m_Name: PeacefulAgentFactory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
