@@ -116,6 +116,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Wheel"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""fdc4c06a-5ef6-45ad-9579-3c5bf1c18e28"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -468,6 +477,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""M"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cb747b90-3bba-488a-8471-4f9ae32ea4be"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Wheel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1085,6 +1105,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Player_Abilities = m_Player.FindAction("Abilities", throwIfNotFound: true);
         m_Player_Alt = m_Player.FindAction("Alt", throwIfNotFound: true);
         m_Player_M = m_Player.FindAction("M", throwIfNotFound: true);
+        m_Player_Wheel = m_Player.FindAction("Wheel", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1175,6 +1196,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Abilities;
     private readonly InputAction m_Player_Alt;
     private readonly InputAction m_Player_M;
+    private readonly InputAction m_Player_Wheel;
     public struct PlayerActions
     {
         private @GameInput m_Wrapper;
@@ -1189,6 +1211,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @Abilities => m_Wrapper.m_Player_Abilities;
         public InputAction @Alt => m_Wrapper.m_Player_Alt;
         public InputAction @M => m_Wrapper.m_Player_M;
+        public InputAction @Wheel => m_Wrapper.m_Player_Wheel;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1228,6 +1251,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @M.started += instance.OnM;
             @M.performed += instance.OnM;
             @M.canceled += instance.OnM;
+            @Wheel.started += instance.OnWheel;
+            @Wheel.performed += instance.OnWheel;
+            @Wheel.canceled += instance.OnWheel;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1262,6 +1288,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @M.started -= instance.OnM;
             @M.performed -= instance.OnM;
             @M.canceled -= instance.OnM;
+            @Wheel.started -= instance.OnWheel;
+            @Wheel.performed -= instance.OnWheel;
+            @Wheel.canceled -= instance.OnWheel;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1462,6 +1491,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnAbilities(InputAction.CallbackContext context);
         void OnAlt(InputAction.CallbackContext context);
         void OnM(InputAction.CallbackContext context);
+        void OnWheel(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

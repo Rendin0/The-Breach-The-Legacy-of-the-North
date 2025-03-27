@@ -79,4 +79,10 @@ public class GameplayInputController : IPlayerActions
         if (context.performed)
             _inputRequests.MRequest.OnNext(context);
     }
+
+    public void OnWheel(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            _inputRequests.WheelRequest.OnNext(context);
+    }
 }

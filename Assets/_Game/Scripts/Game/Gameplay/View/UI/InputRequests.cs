@@ -10,6 +10,18 @@ public class InputRequests
     public Subject<InputAction.CallbackContext> MRequest { get; set; }
     public Subject<InputAction.CallbackContext> MouseRequest { get; set; }
     public Subject<InputAction.CallbackContext> AltRequest { get; set; }
+    public Subject<InputAction.CallbackContext> WheelRequest { get; set; }
+
+    public void Init()
+    {
+        TabRequest = new();
+        EscapeRequest = new();
+        URequest = new();
+        MouseRequest = new();
+        AltRequest = new();
+        MRequest = new();
+        WheelRequest = new();
+    }
 
     public CompositeDisposable Subscribe(InputRequests other)
     {
@@ -21,6 +33,7 @@ public class InputRequests
         MRequest.Subscribe(_ => other.MRequest?.OnNext(_)).AddTo(subs);
         MouseRequest.Subscribe(_ => other.MouseRequest?.OnNext(_)).AddTo(subs);
         AltRequest.Subscribe(_ => other.AltRequest?.OnNext(_)).AddTo(subs);
+        WheelRequest.Subscribe(_ => other.WheelRequest?.OnNext(_)).AddTo(subs);
 
         return subs;
     }
@@ -39,5 +52,7 @@ public class InputRequests
             MouseRequest = other.MouseRequest;
         if (other.AltRequest != null)
             AltRequest = other.AltRequest;
+        if (other.WheelRequest != null)
+            WheelRequest = other.WheelRequest;
     }
 }

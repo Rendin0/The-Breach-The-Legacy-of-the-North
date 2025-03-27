@@ -4,11 +4,12 @@ public class PlayerBinder : CreatureBinder
 {
     private Vector2 _direction;
     private PlayerViewModel _viewModel;
+    private Camera _camera;
 
     protected override void Start()
     {
         base.Start();
-
+        _camera = Camera.main;
 
     }
 
@@ -17,7 +18,7 @@ public class PlayerBinder : CreatureBinder
         base.Update();
 
         _direction = _viewModel.MoveDirection.Value;
-        Camera.main.transform.localPosition = new Vector3(transform.position.x, transform.position.y, 0f);
+        _camera.transform.localPosition = new Vector3(transform.position.x, transform.position.y, 0f);
     }
 
     protected override void FixedUpdate()

@@ -1,10 +1,12 @@
-
+using R3;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PopupWorldMapBinder : PopupBinder<PopupWorldMapViewModel>
 {
-    [SerializeField] private Image _targetImage;
+    [SerializeField] private WorldMapBinder _worldMap;
 
-
+    protected override void OnBind(PopupWorldMapViewModel viewModel)
+    {
+        viewModel.Scale.Subscribe(s => _worldMap.SetScale(s));
+    }
 }

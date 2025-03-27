@@ -43,24 +43,11 @@ public class GameEntryPoint
         _rootContainer.RegisterInstance<IGameStateProvider>(gameStateProvider);
         _rootContainer.RegisterInstance(_uiRoot);
 
-        var gameplayInputRequests = new InputRequests()
-        {
-            TabRequest = new(),
-            EscapeRequest = new(),
-            URequest = new(),
-            MouseRequest = new(),
-            AltRequest = new(),
-            MRequest = new(),
-        };
-        var mainMenuInputRequests = new InputRequests()
-        {
-            TabRequest = new(),
-            EscapeRequest = new(),
-            URequest = new(),
-            MouseRequest = new(),
-            AltRequest = new(),
-            MRequest = new(),
-        };
+        var gameplayInputRequests = new InputRequests();
+        gameplayInputRequests.Init();
+
+        var mainMenuInputRequests = new InputRequests();
+        mainMenuInputRequests.Init();
 
         _rootContainer.RegisterInstance(AppConstants.GAMEPLAY_REQUESTS, gameplayInputRequests);
         _rootContainer.RegisterInstance(AppConstants.MAINMENU_REQUESTS, mainMenuInputRequests);
