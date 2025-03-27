@@ -23,7 +23,10 @@ public class PopupWorldMapViewModel : WindowViewModel
     private void ChangeScale(InputAction.CallbackContext context)
     {
         float changeAmount = context.ReadValue<float>() * .05f;
-        Scale.OnNext(Mathf.Clamp(Scale.Value - changeAmount, .05f, 1f));
+
+        // InputSystem почему-то всегда выдаёт два значения: ноль и значение направления
+        if (changeAmount != 0)
+            Scale.OnNext(Mathf.Clamp(Scale.Value - changeAmount, .05f, 1f));
     }
 
     private void Close(InputAction.CallbackContext context)

@@ -12,6 +12,7 @@ public class WorldMapBinder : MonoBehaviour, IDraggable, IPointerEnterHandler, I
     [SerializeField] private GameObject _townLevel;
 
     private RectTransform _rect;
+    private RectTransform _parrentRect;
     private Vector3 _draggingOffset;
     private bool _dragging = false;
     private bool _scalable = false;
@@ -19,12 +20,16 @@ public class WorldMapBinder : MonoBehaviour, IDraggable, IPointerEnterHandler, I
     private void Awake()
     {
         _rect = GetComponent<RectTransform>();
+        _parrentRect = _rect.parent.GetComponent<RectTransform>();
     }
 
     private void Update()
     {
         if (_dragging)
+        {
             _rect.position = Input.mousePosition + _draggingOffset;
+            KeepOutsideOfBounds();
+        }
     }
 
     public void Init(float scale)
@@ -55,10 +60,22 @@ public class WorldMapBinder : MonoBehaviour, IDraggable, IPointerEnterHandler, I
     private void ResizeObject(float scale)
     {
         var mousePos = Input.mousePosition;
+        var startPos = _rect.position;
+        var localScale = 1f / scale;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(_rect, mousePos, null, out var point);
-        Debug.Log(point);
 
-        //_rect.pivot = new Vector2(.5f, .5f);
+        //_rect.position += (Vector3)point;
+
+        _rect.localScale = new Vector3(localScale, localScale, localScale);
+
+        _rect.position -= (Vector3)point;
+        KeepOutsideOfBounds();
+    }
+
+    private void KeepOutsideOfBounds()
+    {
+        var bounds = RectTransformUtility.CalculateRelativeRectTransformBounds(_rect);
+
     }
 
     private void SetWorldScale()
@@ -70,7 +87,7 @@ public class WorldMapBinder : MonoBehaviour, IDraggable, IPointerEnterHandler, I
     }
     private void SetReliefScale()
     {
-        _worldLevel.SetActive(false);
+        _worldLevel.SetActive(true);
         _reliefLevel.SetActive(true);
         _locationLevel.SetActive(false);
         _townLevel.SetActive(false);
