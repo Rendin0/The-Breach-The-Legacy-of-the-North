@@ -55,9 +55,8 @@ public class WorldMapBinder : MonoBehaviour, IDraggable, IPointerEnterHandler, I
     private void ResizeObject(float scale)
     {
         var mousePos = Input.mousePosition;
-        _rect.pivot = new Vector2(mousePos.x / Screen.width, mousePos.y /  Screen.height);
-        var localScale = 1f / scale;
-        _rect.localScale = new Vector3(localScale, localScale, localScale);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(_rect, mousePos, null, out var point);
+        Debug.Log(point);
 
         //_rect.pivot = new Vector2(.5f, .5f);
     }
