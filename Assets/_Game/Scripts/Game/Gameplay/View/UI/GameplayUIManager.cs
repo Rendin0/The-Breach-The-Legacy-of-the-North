@@ -40,9 +40,9 @@ public class GameplayUIManager : UIManager
         return viewModel;
 
     }
-    public PopupWorldMapViewModel OpenPopupWorldMap()
+    public PopupWorldMapViewModel OpenPopupWorldMap(PlayerViewModel player)
     {
-        var viewModel = new PopupWorldMapViewModel();
+        var viewModel = new PopupWorldMapViewModel(player);
         var rootUI = Container.Resolve<UIGameplayRootViewModel>();
 
         rootUI.OpenPopup(viewModel);

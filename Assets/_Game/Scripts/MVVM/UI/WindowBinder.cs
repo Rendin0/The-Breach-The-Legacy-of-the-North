@@ -11,13 +11,14 @@ public abstract class WindowBinder<T> : MonoBehaviour, IWindowBinder where T : W
         OnBind(ViewModel);
     }
 
-    public virtual void Close()
+    public void Close()
     {
+        BeforeClose();
+
         Destroy(gameObject);
     }
 
-    protected virtual void OnBind(T viewModel)
-    {
+    protected virtual void BeforeClose() { }
+    protected virtual void OnBind(T viewModel) { }
 
-    }
 }

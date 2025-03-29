@@ -9,6 +9,7 @@ public class PlayerViewModel : WarriorViewModel, IControllable
 {
     public ReactiveProperty<Vector2> MoveDirection { get; } = new();
     public readonly List<Ability> Abilities = new();
+    public ReactiveProperty<(float scale, Vector2 position)> MapState => creatureEntity.MapState;
 
     public PlayerViewModel(CreatureEntityProxy creatureEntity, AbilitiesConfig abilitiesConfig)
         : base(creatureEntity, abilitiesConfig)

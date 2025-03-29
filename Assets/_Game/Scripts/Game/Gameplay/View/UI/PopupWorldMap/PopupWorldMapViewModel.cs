@@ -5,11 +5,14 @@ using UnityEngine.InputSystem;
 
 public class PopupWorldMapViewModel : WindowViewModel
 {
+    private readonly PlayerViewModel _player;
+
     public override string Id => "PopupWorldMap";
 
-    public ReactiveProperty<float> Scale { get; } = new(1f);
+    public ReactiveProperty<float> Scale { get; }
+    public ReactiveProperty<Vector2> Position { get; }
 
-    public PopupWorldMapViewModel()
+    public PopupWorldMapViewModel(PlayerViewModel player)
     {
         InputRequests.EscapeRequest = new();
         InputRequests.MRequest = new();
@@ -18,6 +21,10 @@ public class PopupWorldMapViewModel : WindowViewModel
         InputRequests.MRequest.Subscribe(c => Close(c));
         InputRequests.EscapeRequest.Subscribe(c => Close(c));
         InputRequests.WheelRequest.Subscribe(c => ChangeScale(c));
+
+        Scale = new(player.MapState.Value.scale);
+        Position = new(player.MapState.Value.position);
+        this._player = player;
     }
 
     private void ChangeScale(InputAction.CallbackContext context)
@@ -32,6 +39,10 @@ public class PopupWorldMapViewModel : WindowViewModel
     private void Close(InputAction.CallbackContext context)
     {
         if (context.performed)
+        {
             RequestClose();
+            _player.MapState.OnNext((Scale.Value, Position.Value));
+
+        }
     }
 }
