@@ -3,6 +3,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 public class WorldMapBinder : MonoBehaviour, IDraggable, IPointerEnterHandler, IPointerExitHandler
 {
@@ -36,7 +37,7 @@ public class WorldMapBinder : MonoBehaviour, IDraggable, IPointerEnterHandler, I
     {
         var tmp = _scalable;
         _scalable = true;
-        SetScale(scale);
+        //SetScale(scale);
         _scalable = tmp;
     }
 
@@ -46,6 +47,7 @@ public class WorldMapBinder : MonoBehaviour, IDraggable, IPointerEnterHandler, I
             return;
 
         ResizeObject(scale);
+        KeepOutsideOfBounds();
 
         if (scale >= .9f)
             SetWorldScale();
@@ -57,24 +59,31 @@ public class WorldMapBinder : MonoBehaviour, IDraggable, IPointerEnterHandler, I
             SetTownScale();
     }
 
+    // Увеличивает объект относительно позиции курсора
     private void ResizeObject(float scale)
     {
-        var mousePos = Input.mousePosition;
-        var startPos = _rect.position;
-        var localScale = 1f / scale;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(_rect, mousePos, null, out var point);
+        // Получаем позицию курсора
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            _rect,
+            Input.mousePosition,
+            null,
+            out var mousePosition
+        );
 
-        //_rect.position += (Vector3)point;
+        var prevScale = _rect.localScale.x;
+        var prevPosition = _rect.localPosition;
+        _rect.localPosition = Vector3.zero;
 
+        float localScale = 1f / scale;
         _rect.localScale = new Vector3(localScale, localScale, localScale);
 
-        _rect.position -= (Vector3)point;
-        KeepOutsideOfBounds();
+        var translatedPosition = (_rect.localPosition - (Vector3)mousePosition) * (localScale - prevScale);
+
+        _rect.localPosition = translatedPosition + prevPosition;
     }
 
     private void KeepOutsideOfBounds()
     {
-        var bounds = RectTransformUtility.CalculateRelativeRectTransformBounds(_rect);
 
     }
 
