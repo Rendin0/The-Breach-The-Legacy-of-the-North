@@ -32,7 +32,7 @@ public class PlayerBinder : CreatureBinder
             rb.linearVelocity = ViewModel.Stats.Speed.Value * _direction;
     }
 
-    protected override void OnBind(CreatureViewModel viewModel, GoapBehaviour _ = null, AgentBrain __ = null)
+    protected override void OnBind(CreatureViewModel viewModel)
     {
         _playerViewModel = viewModel as PlayerViewModel;
 

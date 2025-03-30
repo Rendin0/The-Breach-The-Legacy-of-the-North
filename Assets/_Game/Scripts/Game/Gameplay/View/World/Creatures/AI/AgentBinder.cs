@@ -9,14 +9,12 @@ public class AgentBinder : CreatureBinder
     private AgentViewModel _agentViewModel;
     public override CreatureViewModel ViewModel => _agentViewModel;
 
-    protected override void OnBind(CreatureViewModel viewModel, GoapBehaviour goap, AgentBrain brain)
+    protected override void OnBind(CreatureViewModel viewModel)
     {
         _agentViewModel = viewModel as AgentViewModel;
-
-        InitGoap(goap, brain);
     }
 
-    private void InitGoap(GoapBehaviour goap, AgentBrain brain)
+    public void InitGoap(GoapBehaviour goap, AgentBrain brain)
     {
         var navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
         navMeshAgent.updateRotation = navMeshAgent.updateUpAxis = false;

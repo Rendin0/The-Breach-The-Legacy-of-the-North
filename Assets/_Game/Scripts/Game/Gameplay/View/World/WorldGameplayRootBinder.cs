@@ -96,13 +96,15 @@ public class WorldGameplayRootBinder : MonoBehaviour
         var prefab = Resources.Load<CreatureBinder>(creaturePrefabPath);
 
         var created = Instantiate(prefab);
+        created.Bind(viewModel);
 
-        if (viewModel is AgentViewModel agentViewModel)
-            created.Bind(viewModel, _goap, GetBrain(agentViewModel.AgentType, created.gameObject));
-        else
-            created.Bind(viewModel);
+        if (created is AgentBinder agent)
+        {
+            var agentViewModel = viewModel as AgentViewModel;
+            agent.InitGoap(_goap, GetBrain(agentViewModel.AgentType, created.gameObject));
+        }
 
-            var layer = LayerMask.NameToLayer(viewModel.Faction.ToString());
+        var layer = LayerMask.NameToLayer(viewModel.Faction.ToString());
         if (layer == -1)
             Debug.LogError($"Can not find layer with name {viewModel.Faction} for creature type {viewModel.TypeId}");
 

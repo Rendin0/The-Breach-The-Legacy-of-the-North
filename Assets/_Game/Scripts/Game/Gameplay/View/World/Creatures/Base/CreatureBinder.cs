@@ -24,13 +24,13 @@ public abstract class CreatureBinder : MonoBehaviour, IPointerClickHandler
         ViewModel.Position.OnNext(rb.position);
     }
 
-    public void Bind(CreatureViewModel viewModel, GoapBehaviour goap = null, AgentBrain brain = null)
+    public void Bind(CreatureViewModel viewModel)
     {
-        OnBind(viewModel, goap, brain);
+        OnBind(viewModel);
 
         transform.position = ViewModel.Position.Value;
     }
-    protected abstract void OnBind(CreatureViewModel viewModel, GoapBehaviour goap, AgentBrain brain);
+    protected abstract void OnBind(CreatureViewModel viewModel);
     public void OnPointerClick(PointerEventData eventData)
     {
         ViewModel.OnClick(eventData);
