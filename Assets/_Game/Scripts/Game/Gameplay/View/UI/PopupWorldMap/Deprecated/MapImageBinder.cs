@@ -1,7 +1,8 @@
-
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Obsolete("Old map script")]
 public class MapImageBinder : MonoBehaviour
 {
     public List<NonRectButton> _regionButtons;
@@ -13,7 +14,7 @@ public class MapImageBinder : MonoBehaviour
             button.onClick.RemoveAllListeners();
         }
     }
-    public void Bind(PopupWorldMapBinder parrent)
+    public void Bind(PopupWorldMapBinderOld parrent)
     {
         foreach (var button in _regionButtons)
         {
@@ -21,7 +22,7 @@ public class MapImageBinder : MonoBehaviour
         }
     }
 
-    private void ChangeImage(PopupWorldMapBinder parrent, NonRectButton button)
+    private void ChangeImage(PopupWorldMapBinderOld parrent, NonRectButton button)
     {
         parrent.LoadImage(button);
     }

@@ -2,21 +2,38 @@
 using R3;
 using UnityEngine;
 
+/// <summary>
+/// Класс для управления UI в игровом процессе.
+/// </summary>
 public class GameplayUIManager : UIManager
 {
     private readonly Subject<Unit> _exitSceneRequest;
-
     private bool _devPrivileges = false;
 
-    public void ToggleDevPriveleges()
-    {
-        _devPrivileges = !_devPrivileges;
-    }
-
+    /// <summary>
+    /// Конструктор для инициализации контейнера зависимостей.
+    /// </summary>
+    /// <param name="container">Контейнер зависимостей.</param>
     public GameplayUIManager(DIContainer container) : base(container)
     {
         _exitSceneRequest = container.Resolve<Subject<Unit>>(AppConstants.EXIT_SCENE_REQUEST_TAG);
     }
+
+    #region Developer Privileges
+    /// <summary>
+    /// Переключение привилегий разработчика.
+    /// </summary>
+    public void ToggleDevPriveleges()
+    {
+        _devPrivileges = !_devPrivileges;
+    }
+    #endregion
+
+    #region Screen Management
+    /// <summary>
+    /// Открытие экрана паузы игрового процесса.
+    /// </summary>
+    /// <returns>Модель представления экрана паузы.</returns>
     public ScreenGameplayPauseViewModel OpenScreenGameplayPause()
     {
         // Пауза игры
@@ -30,33 +47,10 @@ public class GameplayUIManager : UIManager
         return viewModel;
     }
 
-    public PopupElementInfoViewModel OpenPopupElementInfo(IElementInfoViewModel elementInfo)
-    {
-        var viewModel = new PopupElementInfoViewModel(elementInfo);
-        var rootUI = Container.Resolve<UIGameplayRootViewModel>();
-
-        rootUI.OpenPopup(viewModel);
-
-        return viewModel;
-
-    }
-    public PopupWorldMapViewModel OpenPopupWorldMap()
-    {
-        var viewModel = new PopupWorldMapViewModel();
-        var rootUI = Container.Resolve<UIGameplayRootViewModel>();
-
-        rootUI.OpenPopup(viewModel);
-
-        return viewModel;
-    }
-
-    public void ClosePopupElementInfo(WindowViewModel elementInfo)
-    {
-        var rootUI = Container.Resolve<UIGameplayRootViewModel>();
-
-        rootUI.ClosePopup(elementInfo);
-    }
-
+    /// <summary>
+    /// Открытие экрана игрового процесса.
+    /// </summary>
+    /// <returns>Модель представления экрана игрового процесса.</returns>
     public ScreenGameplayViewModel OpenScreenGameplay()
     {
         // Возобновление игры
@@ -77,7 +71,54 @@ public class GameplayUIManager : UIManager
 
         return viewModel;
     }
+    #endregion
 
+    #region Popup Management
+    /// <summary>
+    /// Открытие всплывающего окна с информацией об элементе.
+    /// </summary>
+    /// <param name="elementInfo">Информация об элементе.</param>
+    /// <returns>Модель представления всплывающего окна.</returns>
+    public PopupElementInfoViewModel OpenPopupElementInfo(IElementInfoViewModel elementInfo)
+    {
+        var viewModel = new PopupElementInfoViewModel(elementInfo);
+        var rootUI = Container.Resolve<UIGameplayRootViewModel>();
+
+        rootUI.OpenPopup(viewModel);
+
+        return viewModel;
+    }
+
+    /// <summary>
+    /// Закрытие всплывающего окна с информацией об элементе.
+    /// </summary>
+    /// <param name="elementInfo">Модель представления окна.</param>
+    public void ClosePopupElementInfo(WindowViewModel elementInfo)
+    {
+        var rootUI = Container.Resolve<UIGameplayRootViewModel>();
+
+        rootUI.ClosePopup(elementInfo);
+    }
+
+    /// <summary>
+    /// Открытие всплывающего окна карты мира.
+    /// </summary>
+    /// <param name="player">Модель представления игрока.</param>
+    /// <returns>Модель представления всплывающего окна карты мира.</returns>
+    public PopupWorldMapViewModel OpenPopupWorldMap(PlayerViewModel player)
+    {
+        var viewModel = new PopupWorldMapViewModel(player);
+        var rootUI = Container.Resolve<UIGameplayRootViewModel>();
+
+        rootUI.OpenPopup(viewModel);
+
+        return viewModel;
+    }
+
+    /// <summary>
+    /// Открытие всплывающего окна настроек.
+    /// </summary>
+    /// <returns>Модель представления всплывающего окна настроек.</returns>
     public PopupSettingsViewModel OpenPopupSettings()
     {
         var viewModel = new PopupSettingsViewModel();
@@ -86,6 +127,12 @@ public class GameplayUIManager : UIManager
         rootUI.OpenPopup(viewModel);
         return viewModel;
     }
+
+    /// <summary>
+    /// Открытие всплывающего окна меню существа.
+    /// </summary>
+    /// <param name="creatureViewModel">Модель представления существа.</param>
+    /// <returns>Модель представления всплывающего окна меню существа.</returns>
     public PopupCreatureMenuViewModel OpenPopupCreatureMenu(CreatureViewModel creatureViewModel)
     {
         if (_devPrivileges)
@@ -100,6 +147,11 @@ public class GameplayUIManager : UIManager
         return null;
     }
 
+    /// <summary>
+    /// Открытие всплывающего окна информации о существе.
+    /// </summary>
+    /// <param name="creatureViewModel">Модель представления существа.</param>
+    /// <returns>Модель представления всплывающего окна информации о существе.</returns>
     public PopupCreatureInfoViewModel OpenPopupCreatureInfo(CreatureViewModel creatureViewModel)
     {
         if (_devPrivileges)
@@ -116,6 +168,11 @@ public class GameplayUIManager : UIManager
         return null;
     }
 
+    /// <summary>
+    /// Открытие всплывающего окна инвентаря.
+    /// </summary>
+    /// <param name="ownerId">Идентификатор владельца инвентаря.</param>
+    /// <returns>Модель представления всплывающего окна инвентаря.</returns>
     public PopupInventoryViewModel OpenPopupInventory(int ownerId)
     {
         var rootUI = Container.Resolve<UIGameplayRootViewModel>();
@@ -131,12 +188,20 @@ public class GameplayUIManager : UIManager
 
         return inventory;
     }
+
+    /// <summary>
+    /// Открытие всплывающего окна диалога.
+    /// </summary>
+    /// <returns>Модель представления всплывающего окна диалога.</returns>
     public PopupDialogueViewModel OpenPopupDialog()
     {
-
         return null;
     }
 
+    /// <summary>
+    /// Открытие всплывающего окна панели разработчика.
+    /// </summary>
+    /// <returns>Модель представления всплывающего окна панели разработчика.</returns>
     public PopupDevPanelViewModel OpenPopupDevPanel()
     {
         var rootUI = Container.Resolve<UIGameplayRootViewModel>();
@@ -150,25 +215,41 @@ public class GameplayUIManager : UIManager
         return viewModel;
     }
 
-    public StorageViewModel OpenStorage(int storageId, PopupInventoryViewModel parrent)
+    /// <summary>
+    /// Открытие хранилища.
+    /// </summary>
+    /// <param name="storageId">Идентификатор хранилища.</param>
+    /// <param name="parent">Родительская модель представления всплывающего окна инвентаря.</param>
+    /// <returns>Модель представления хранилища.</returns>
+    public StorageViewModel OpenStorage(int storageId, PopupInventoryViewModel parent)
     {
         var inventoryService = Container.Resolve<InventoriesService>();
         var storage = inventoryService.GetInventory(storageId).Storage;
-        storage.SetParrent(parrent);
-        parrent.TmpStorage.OnNext(storage);
+        storage.SetParent(parent);
+        parent.TmpStorage.OnNext(storage);
 
         return storage;
     }
+    #endregion
 
-
-    // При взаимодействии с инвентарём через дев панель
-    // Сортировка может удалить предметы с неполным стаком
+    #region Inventory Management
+    /// <summary>
+    /// Запрос на сортировку инвентаря.
+    /// </summary>
+    /// <param name="ownerId">Идентификатор владельца инвентаря.</param>
     public void RequestSortInventory(int ownerId)
     {
         var inventoryService = Container.Resolve<InventoriesService>();
         inventoryService.SortInventory(ownerId);
     }
+    #endregion
 
+    #region Element Info Subscription
+    /// <summary>
+    /// Подписка на события информации об элементе.
+    /// </summary>
+    /// <param name="onEnter">Событие при наведении на элемент.</param>
+    /// <param name="onExit">Событие при уходе с элемента.</param>
     private void SubscribeElementInfo(Subject<IElementInfoViewModel> onEnter, Subject<IElementInfoViewModel> onExit)
     {
         WindowViewModel viewModel = null;
@@ -176,4 +257,5 @@ public class GameplayUIManager : UIManager
         onEnter.Subscribe(e => viewModel = OpenPopupElementInfo(e));
         onExit.Subscribe(e => ClosePopupElementInfo(viewModel));
     }
+    #endregion
 }

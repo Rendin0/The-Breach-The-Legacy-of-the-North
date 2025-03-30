@@ -30,7 +30,7 @@ public class StorageViewModel
         });
     }
 
-    public void SetParrent(PopupInventoryViewModel parrent)
+    public void SetParent(PopupInventoryViewModel parrent)
     {
         _parrent = parrent;
     }

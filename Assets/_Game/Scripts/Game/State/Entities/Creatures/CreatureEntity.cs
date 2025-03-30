@@ -10,9 +10,11 @@ public class CreatureEntity : Entity
     public CreatureStats Stats;
     public AgentTypes AgentType;
     public Factions Faction;
+    public MapState MapState;
 
     public CreatureEntity(CreatureStatsConfig stats)
     {
         Stats = new(stats);
     }
+
 }

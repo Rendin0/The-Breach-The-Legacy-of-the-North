@@ -7,16 +7,16 @@ using UnityEngine.EventSystems;
 
 public class CreatureViewModel : IBuffable
 {
-    private readonly CreatureEntityProxy _creatureEntity;
-    private readonly CreatureStatsProxy _baseStats;
+    protected readonly CreatureEntityProxy creatureEntity;
+    protected readonly CreatureStatsProxy baseStats;
     public CreatureStatsViewModel Stats { get; private set; }
     public DynamicCreatureStats DynamicStats;
 
-    public int CreatureId => _creatureEntity.Id;
-    public string TypeId => _creatureEntity.TypeId;
-    public AgentTypes AgentType => _creatureEntity.AgentType;
+    public int CreatureId => creatureEntity.Id;
+    public string TypeId => creatureEntity.TypeId;
+    public AgentTypes AgentType => creatureEntity.AgentType;
 
-    public Factions Faction => _creatureEntity.Faction;
+    public Factions Faction => creatureEntity.Faction;
     private LayerMask _enemies = -2;
     public LayerMask Enemies
     {
@@ -41,11 +41,11 @@ public class CreatureViewModel : IBuffable
 
     public CreatureViewModel(CreatureEntityProxy creatureEntity, AbilitiesConfig abilitiesConfig)
     {
-        _creatureEntity = creatureEntity;
+        this.creatureEntity = creatureEntity;
 
-        Position = _creatureEntity.Position;
+        Position = this.creatureEntity.Position;
 
-        _baseStats = creatureEntity.Stats.Copy();
+        baseStats = creatureEntity.Stats.Copy();
         Stats = new(creatureEntity.Stats);
         DynamicStats = new(Stats);
 
@@ -89,7 +89,7 @@ public class CreatureViewModel : IBuffable
 
             // На случай дебаффов, которые уменьшают временно макс хп.
             // После конца дебаффа останется тот же процент хп
-            _baseStats.Health.OnNext(Stats.Health.Value / Stats.MaxHealth.Value * _baseStats.MaxHealth.Value);
+            baseStats.Health.OnNext(Stats.Health.Value / Stats.MaxHealth.Value * baseStats.MaxHealth.Value);
 
             // Для способностей Delayed reckoning, Unbreakable, считает кол-во урона за последние 5 секунд
             DynamicStats.HealthChanges += damageResult;
@@ -108,7 +108,7 @@ public class CreatureViewModel : IBuffable
 
         // На случай дебаффов, которые уменьшают временно макс хп.
         // После конца дебаффа останется тот же процент хп
-        _baseStats.Health.OnNext(Stats.Health.Value / Stats.MaxHealth.Value * _baseStats.MaxHealth.Value);
+        baseStats.Health.OnNext(Stats.Health.Value / Stats.MaxHealth.Value * baseStats.MaxHealth.Value);
     }
 
     public void AddStatusEffect(IStatusEffect effect)
@@ -125,7 +125,7 @@ public class CreatureViewModel : IBuffable
 
     private void UpdateStatusEffects(List<IStatusEffect> effects)
     {
-        Stats.CopyFrom(_baseStats);
+        Stats.CopyFrom(baseStats);
 
         foreach (var effect in effects)
             effect.Apply(this);

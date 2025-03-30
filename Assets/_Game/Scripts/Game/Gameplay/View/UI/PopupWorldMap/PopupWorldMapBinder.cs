@@ -1,62 +1,19 @@
 using R3;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PopupWorldMapBinder : PopupBinder<PopupWorldMapViewModel>
 {
-    private MapImageBinder _currentImage;
-    private MapImageBinder _worldMap;
-
-    private void Awake()
-    {
-        _worldMap = Resources.Load<MapImageBinder>($"UI/WorldMap/WorldMap");
-        LoadWorldMap();
-    }
+    [SerializeField] private WorldMapBinder _worldMap;
 
     protected override void OnBind(PopupWorldMapViewModel viewModel)
     {
-        base.OnBind(viewModel);
-
-        viewModel.InputRequests.EscapeRequest.Subscribe(c => RequestEscape(c, viewModel));
-
+        _worldMap.Init(viewModel.Scale.Value, viewModel.Position.Value);
+        viewModel.Scale.Skip(1).Subscribe(s => _worldMap.SetScale(s));
     }
 
-    public void LoadImage(NonRectButton button)
+    protected override void BeforeClose()
     {
-        var image = Resources.Load<MapImageBinder>($"UI/WorldMap/{button.name}");
-
-        if (image == null)
-        {
-            Debug.LogError($"Can not find WorlMap Image with name {button.name}");
-            return;
-        }
-
-        ChangeImage(image);
+        ViewModel.Position.OnNext(_worldMap.Rect.position);
     }
 
-    private void LoadWorldMap()
-    {
-        ChangeImage(_worldMap);
-    }
-
-    private void ChangeImage(MapImageBinder newImage)
-    {
-        var tmpImage = _currentImage;
-        _currentImage = Instantiate(newImage, transform);
-        _currentImage.Bind(this);
-
-        if (tmpImage != null)
-            Destroy(tmpImage.gameObject);
-    }
-
-    private void RequestEscape(InputAction.CallbackContext context, PopupWorldMapViewModel viewModel)
-    {
-        if (context.performed)
-        {
-            if (_currentImage.name == $"{_worldMap.name}(Clone)")
-                viewModel.RequestClose();
-            else
-                LoadWorldMap();
-        }
-    }
 }
