@@ -1,5 +1,6 @@
 public enum AgentTypes
 {
     None,
-    PigAgent,
+    PeacefulAgent,
+    NeutralAgent,
 }

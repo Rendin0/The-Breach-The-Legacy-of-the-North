@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemyTargetSensor : LocalTargetSensorBase
 {
+    private AgentViewModel _viewModel;
     public override void Created()
     {
     }
@@ -15,15 +16,15 @@ public class EnemyTargetSensor : LocalTargetSensorBase
 
     public override ITarget Sense(IActionReceiver agent, IComponentReference references, ITarget existingTarget)
     {
-        var viewModel = references.GetCachedComponent<CreatureBinder>().ViewModel;
-        var enemiesMask = viewModel.Enemies;
+        _viewModel = references.GetCachedComponent<CreatureBinder>().ViewModel as AgentViewModel;
+        var enemiesMask = _viewModel.Enemies;
 
-        var hit = Physics2D.OverlapCircle(viewModel.Position.Value, 6f, enemiesMask);
+        var hit = Physics2D.OverlapCircle(_viewModel.Position.Value, 6f, enemiesMask);
 
         if (hit == null)
             return null;
 
-        viewModel.CurrentTarget = hit.GetComponent<CreatureBinder>().ViewModel;
+        _viewModel.CurrentTarget = hit.GetComponent<CreatureBinder>().ViewModel;
         return new TransformTarget(hit.transform);
     }
 

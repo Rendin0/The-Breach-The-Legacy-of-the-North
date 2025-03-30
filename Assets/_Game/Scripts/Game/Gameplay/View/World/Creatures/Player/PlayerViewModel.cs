@@ -10,6 +10,8 @@ public class PlayerViewModel : WarriorViewModel, IControllable
     public ReactiveProperty<Vector2> MoveDirection { get; } = new();
     public readonly List<Ability> Abilities = new();
     public ReactiveProperty<(float scale, Vector2 position)> MapState => creatureEntity.MapState;
+    private readonly Ability _attack;
+
 
     public PlayerViewModel(CreatureEntityProxy creatureEntity, AbilitiesConfig abilitiesConfig)
         : base(creatureEntity, abilitiesConfig)
@@ -18,10 +20,10 @@ public class PlayerViewModel : WarriorViewModel, IControllable
         {
             Abilities.Add(new(abilityCfg));
         }
-        attack = new(abilitiesConfig.Attack);
+        _attack = new(abilitiesConfig.Attack);
     }
 
-    public override bool Attack(Vector2 position)
+    public bool Attack(Vector2 position)
     {
         GameEntryPoint.Coroutines.StartCoroutine(AttackCoroutine(position));
         return true;
@@ -32,8 +34,8 @@ public class PlayerViewModel : WarriorViewModel, IControllable
         // Скип одного кадра, чтобы IsPointerOverGameObject сработал правильно
         yield return null;
         if (!EventSystem.current.IsPointerOverGameObject())
-            if (attack.Use(this, position))
-                attack.SetCooldown(DynamicStats.AttackSpeed);
+            if (_attack.Use(this, position))
+                _attack.SetCooldown(DynamicStats.AttackSpeed);
     }
 
     public void UseAbility(int index, Vector2 position)

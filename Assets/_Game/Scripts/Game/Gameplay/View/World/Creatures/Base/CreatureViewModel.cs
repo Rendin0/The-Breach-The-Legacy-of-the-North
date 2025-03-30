@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CreatureViewModel : IBuffable
+public abstract class CreatureViewModel : IBuffable
 {
     protected readonly CreatureEntityProxy creatureEntity;
     protected readonly CreatureStatsProxy baseStats;
@@ -14,30 +14,16 @@ public class CreatureViewModel : IBuffable
 
     public int CreatureId => creatureEntity.Id;
     public string TypeId => creatureEntity.TypeId;
-    public AgentTypes AgentType => creatureEntity.AgentType;
-
     public Factions Faction => creatureEntity.Faction;
-    private LayerMask _enemies = -2;
-    public LayerMask Enemies
-    {
-        get
-        {
-            if (_enemies == -2)
-                _enemies = FactionManager.GetEnemies(Faction);
+    public LayerMask Enemies { get; }
 
-            return _enemies;
-        }
-    }
-    public CreatureViewModel CurrentTarget { get; set; }
-
+    public ReactiveProperty<bool> MovementBlocked { get; } = new(false);
     public Rigidbody2D Rb { get; set; }
     public ReactiveProperty<Vector2> Position { get; }
-    public ReactiveProperty<bool> MovementBlocked { get; } = new(false);
 
     private readonly List<IStatusEffect> _statusEffects = new();
     public CreatureRequests CreatureRequests = new();
 
-    protected Ability attack;
 
     public CreatureViewModel(CreatureEntityProxy creatureEntity, AbilitiesConfig abilitiesConfig)
     {
@@ -49,25 +35,13 @@ public class CreatureViewModel : IBuffable
         Stats = new(creatureEntity.Stats);
         DynamicStats = new(Stats);
 
-        attack = new(abilitiesConfig.Attack);
+        Enemies = FactionManager.GetEnemies(Faction);
     }
 
     public virtual void OnClick(PointerEventData eventData)
     {
         CreatureRequests.OnCreatureClick.OnNext(this);
     }
-
-
-    public virtual bool Attack(Vector2 position)
-    {
-        bool result = attack.Use(this, position);
-
-        if (result)
-            attack.SetCooldown(DynamicStats.AttackSpeed);
-
-        return result;
-    }
-
 
     // True - жив
     // False - мёртв

@@ -7,7 +7,7 @@ public class AttackAction : GoapActionBase<AttackAction.Data>
 {
     public override void Start(IMonoAgent agent, Data data)
     {
-        data.ViewModel = agent.GetComponent<CreatureBinder>().ViewModel;
+        data.ViewModel = agent.GetComponent<AgentBinder>().ViewModel as AgentViewModel;
         data.Timer = 1f;
     }
 
@@ -32,6 +32,6 @@ public class AttackAction : GoapActionBase<AttackAction.Data>
 
     public class Data : ActionData
     {
-        public CreatureViewModel ViewModel { get; set; }
+        public AgentViewModel ViewModel { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 using CrashKonijn.Agent.Runtime;
 using CrashKonijn.Goap.Runtime;
-using System;
 using UnityEngine;
 
 public abstract class AgentBrain : MonoBehaviour
@@ -8,15 +7,15 @@ public abstract class AgentBrain : MonoBehaviour
     protected AgentBehaviour agentBehaviour;
     protected GoapActionProvider provider;
     protected GoapBehaviour goap;
-    protected CreatureBinder creatureBinder;
 
     public abstract string AgentType { get; }
-    public void Init(AgentBehaviour agentBehaviour, GoapActionProvider goapActionProvider, GoapBehaviour goapBehaviour, CreatureBinder creatureBinder)
+    public void Init(AgentBehaviour agentBehaviour, GoapActionProvider goapActionProvider, GoapBehaviour goapBehaviour)
     {
         this.agentBehaviour = agentBehaviour;
         this.provider = goapActionProvider;
         this.goap = goapBehaviour;
-        this.creatureBinder = creatureBinder;
+
+        provider.AgentType = goap.GetAgentType(AgentType);
 
         OnInit();
     }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EnemyHealthWorldSensor : LocalWorldSensorBase
 {
-    private CreatureViewModel _viewModel;
+    private AgentViewModel _viewModel;
 
     public override void Created()
     {
@@ -18,7 +18,7 @@ public class EnemyHealthWorldSensor : LocalWorldSensorBase
 
     public override SenseValue Sense(IActionReceiver agent, IComponentReference references)
     {
-        _viewModel ??= references.GetCachedComponent<CreatureBinder>().ViewModel;
+        _viewModel ??= references.GetCachedComponent<CreatureBinder>().ViewModel as AgentViewModel;
         var enemiesMask = _viewModel.Enemies;
 
         var hit = Physics2D.OverlapCircle(_viewModel.Position.Value, 5f, enemiesMask);

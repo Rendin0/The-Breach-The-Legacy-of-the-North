@@ -101,19 +101,19 @@ public class CreaturesSerivce
         }
         else
         {
-            var creatureViewModel = new CreatureViewModel(creatureEntityProxy, _abilitiesConfig);
+            var agentViewModel = new AgentViewModel(creatureEntityProxy, _abilitiesConfig);
 
-            creatureViewModel.CreatureRequests.DeleteRequest.Subscribe(_ =>
+            agentViewModel.CreatureRequests.DeleteRequest.Subscribe(_ =>
             {
-                DeleteCreature(creatureViewModel.CreatureId);
+                DeleteCreature(agentViewModel.CreatureId);
             });
-            creatureViewModel.CreatureRequests.KillRequest.Subscribe(_ =>
+            agentViewModel.CreatureRequests.KillRequest.Subscribe(_ =>
             {
-                KillCreature(creatureViewModel.CreatureId);
+                KillCreature(agentViewModel.CreatureId);
             });
 
-            _creaturesMap[creatureViewModel.CreatureId] = creatureViewModel;
-            _creatureViewModels.Add(creatureViewModel);
+            _creaturesMap[agentViewModel.CreatureId] = agentViewModel;
+            _creatureViewModels.Add(agentViewModel);
         }
     }
 
