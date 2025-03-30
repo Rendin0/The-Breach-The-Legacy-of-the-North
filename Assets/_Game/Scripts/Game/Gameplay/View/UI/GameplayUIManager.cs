@@ -105,9 +105,9 @@ public class GameplayUIManager : UIManager
     /// </summary>
     /// <param name="player">ћодель представлени€ игрока.</param>
     /// <returns>ћодель представлени€ всплывающего окна карты мира.</returns>
-    public PopupWorldMapViewModel OpenPopupWorldMap(PlayerViewModel player)
+    public PopupWorldMapViewModel OpenPopupWorldMap(ReactiveProperty<(float scale, Vector2 position)> mapState)
     {
-        var viewModel = new PopupWorldMapViewModel(player);
+        var viewModel = new PopupWorldMapViewModel(mapState);
         var rootUI = Container.Resolve<UIGameplayRootViewModel>();
 
         rootUI.OpenPopup(viewModel);

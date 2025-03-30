@@ -9,9 +9,9 @@ public class CreaturesSerivce
     private readonly ICommandProcessor _commandProcessor;
     private readonly Dictionary<int, CreatureViewModel> _creaturesMap = new();
     private readonly ObservableList<CreatureViewModel> _creatureViewModels = new();
+    private PlayerViewModel _playerViewModel;
 
     public readonly Dictionary<string, CreatureConfig> CreatureConfigMap = new();
-    private PlayerViewModel _playerViewModel;
 
     private readonly AbilitiesConfig _abilitiesConfig;
 
@@ -89,7 +89,7 @@ public class CreaturesSerivce
 
         if (creatureEntityProxy.TypeId == CreaturesTypes.Player)
         {
-            var playerViewModel = new PlayerViewModel(creatureEntityProxy, _abilitiesConfig);
+            var playerViewModel = new WarriorViewModel(creatureEntityProxy, _abilitiesConfig);
             playerViewModel.CreatureRequests.DeleteRequest.Subscribe(_ =>
             {
                 Debug.LogWarning("Trying to delete player??");

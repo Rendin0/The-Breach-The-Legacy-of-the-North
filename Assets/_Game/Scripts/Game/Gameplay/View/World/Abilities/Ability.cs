@@ -3,17 +3,19 @@ using R3;
 using System.Collections;
 using UnityEngine;
 
-public class Ability : IElementInfoViewModel
+public class Ability<T> : IElementInfoViewModel, IAbility where T : CreatureViewModel
 {
     public readonly string Name;
 
-    private readonly EventAbility _use;
-    private readonly EventAbilityRequirement _requirement;
+    private readonly AbilityConfig<T>.EventAbility _use;
+    private readonly AbilityConfig<T>.EventAbilityRequirement _requirement;
     private readonly float _cooldownTime;
 
     public BoolWrapper CanUse = new();
     private bool _onCooldown = false;
-    public ReactiveProperty<float> CurrentCooldown { get; } = new(0f);
+
+    private ReactiveProperty<float> _currentCooldown = new();
+    public ReactiveProperty<float> CurrentCooldown => _currentCooldown;
 
     private readonly Subject<IElementInfoViewModel> _onMouseEnter = new();
     private readonly Subject<IElementInfoViewModel> _onMouseExit = new();
@@ -26,7 +28,7 @@ public class Ability : IElementInfoViewModel
     public string Description => _description;
     public Sprite Icon => Resources.Load<Sprite>($"UI/Abilities/{Name}");
 
-    public Ability(AbilityConfig config)
+    public Ability(AbilityConfig<T> config)
     {
         Name = config.Name;
 
@@ -37,13 +39,13 @@ public class Ability : IElementInfoViewModel
     }
 
     // ѕолучилось либо не получилось активировать
-    public bool Use(CreatureViewModel playerViewModel, Vector2 position)
+    public bool Use<T1>(T1 viewModel, Vector2 position) where T1 : CreatureViewModel
     {
-        _requirement?.Invoke(playerViewModel, CanUse);
+        _requirement?.Invoke(viewModel as T, CanUse);
 
         if (!_onCooldown && CanUse.Value)
         {
-            _use.Invoke(playerViewModel, position);
+            _use.Invoke(viewModel as T, position);
             GameEntryPoint.Coroutines.StartCoroutine(CooldownTimer(_cooldownTime));
             return true;
         }
@@ -78,4 +80,6 @@ public class Ability : IElementInfoViewModel
 
         _onCooldown = false;
     }
+
+
 }

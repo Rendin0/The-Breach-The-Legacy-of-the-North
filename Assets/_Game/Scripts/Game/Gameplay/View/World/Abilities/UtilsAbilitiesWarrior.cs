@@ -10,7 +10,7 @@ public class UtilsAbilitiesWarrior
         _creaturesSerivce = creatures;
     }
 
-    public IEnumerator DashCoroutine(CreatureViewModel caster, float time, Vector2 size, Vector2 direction, float damageMultiplier, float slowPower, float slowDuration)
+    public IEnumerator DashCoroutine(WarriorViewModel caster, float time, Vector2 size, Vector2 direction, float damageMultiplier, float slowPower, float slowDuration)
     {
         var points = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
 
@@ -36,28 +36,26 @@ public class UtilsAbilitiesWarrior
 
     }
 
-    public IEnumerator ExecutionersMarkCoroutine(CreatureViewModel caster, CreatureViewModel target, float time)
+    public IEnumerator ExecutionersMarkCoroutine(WarriorViewModel caster, CreatureViewModel target, float time)
     {
-        if (caster is WarriorViewModel war)
-        {
-            if (target.DynamicStats.MarkCount == 2)
-                war.MarkedTargets.Add(target);
+        if (target.DynamicStats.MarkCount == 2)
+            caster.MarkedTargets.Add(target);
 
-            target.DynamicStats.MarkCount++;
-            target.DynamicStats.MarkCount = Mathf.Clamp(target.DynamicStats.MarkCount, 0, int.MaxValue);
+        target.DynamicStats.MarkCount++;
+        target.DynamicStats.MarkCount = Mathf.Clamp(target.DynamicStats.MarkCount, 0, int.MaxValue);
 
-            yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(time);
 
-            target.DynamicStats.MarkCount--;
-            target.DynamicStats.MarkCount = Mathf.Clamp(target.DynamicStats.MarkCount, 0, int.MaxValue);
+        target.DynamicStats.MarkCount--;
+        target.DynamicStats.MarkCount = Mathf.Clamp(target.DynamicStats.MarkCount, 0, int.MaxValue);
 
-            if (target.DynamicStats.MarkCount == 2)
-                war.MarkedTargets.Remove(target);
-        }
+        if (target.DynamicStats.MarkCount == 2)
+            caster.MarkedTargets.Remove(target);
+
         yield return null;
     }
 
-    public IEnumerator DelayedReckoningCoroutine(CreatureViewModel caster, float damageResistancePercent, float radius)
+    public IEnumerator DelayedReckoningCoroutine(WarriorViewModel caster, float damageResistancePercent, float radius)
     {
         caster.Stats.DamageResistance.OnNext(caster.Stats.DamageResistance.Value + damageResistancePercent);
         yield return new WaitForSeconds(caster.DynamicStats.HealthChangesTime);
@@ -70,7 +68,7 @@ public class UtilsAbilitiesWarrior
         DamageCircle(caster, damage, caster.Position.Value, radius);
     }
 
-    public List<CreatureBinder> DamageRectangle(CreatureViewModel caster, DamageData damage, List<Vector2> points)
+    public List<CreatureBinder> DamageRectangle(WarriorViewModel caster, DamageData damage, List<Vector2> points)
     {
         var mask = caster.Enemies;
         var hits = Physics2DUtils.GetColliderHits<CreatureBinder>(points, mask);
@@ -88,7 +86,7 @@ public class UtilsAbilitiesWarrior
         return hitsResult;
     }
 
-    public List<CreatureBinder> DamageCircle(CreatureViewModel caster, DamageData damage, Vector2 center, float radius)
+    public List<CreatureBinder> DamageCircle(WarriorViewModel caster, DamageData damage, Vector2 center, float radius)
     {
         var mask = caster.Enemies;
         var hits = Physics2DUtils.GetCircleHits<CreatureBinder>(center, radius, mask);

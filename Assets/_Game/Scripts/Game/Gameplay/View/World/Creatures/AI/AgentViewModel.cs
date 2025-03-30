@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AgentViewModel : CreatureViewModel
 {
-    private readonly Ability _attack;
+    private readonly Ability<AgentViewModel> _attack;
     public CreatureViewModel CurrentTarget { get; set; }
     public AgentTypes AgentType => creatureEntity.AgentType;
 
@@ -12,7 +12,7 @@ public class AgentViewModel : CreatureViewModel
     public AgentViewModel(CreatureEntityProxy creatureEntity, AbilitiesConfig abilitiesConfig) 
         : base(creatureEntity, abilitiesConfig)
     {
-        _attack = new(abilitiesConfig.Attack);
+        //_attack = new(abilitiesConfig.WarriorAbilitesConfig.Attack);
     }
 
     public bool Attack(Vector2 position)

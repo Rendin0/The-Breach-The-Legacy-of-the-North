@@ -19,7 +19,7 @@ public class AbilitiesBarBinder : MonoBehaviour
             _abilities[i].Bind(viewModel.Abilities[i]);
         }
 
-        for (int i = _abilities.Count - viewModel.Abilities.Count; i < _abilities.Count; i++)
+        for (int i = viewModel.Abilities.Count; i < _abilities.Count; i++)
         {
             _abilities[i].gameObject.SetActive(false);
         }

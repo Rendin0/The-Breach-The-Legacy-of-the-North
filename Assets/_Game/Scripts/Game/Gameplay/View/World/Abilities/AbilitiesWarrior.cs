@@ -2,43 +2,43 @@ using UnityEngine;
 
 public static class AbilitiesWarrior
 {
-    private static UtilsAbilitiesWarrior _coroutines;
+    private static UtilsAbilitiesWarrior _utils;
     public static void Init(CreaturesSerivce creatures)
     {
-        _coroutines = new(creatures);
+        _utils = new(creatures);
     }
 
-    public static void Attack(CreatureViewModel caster, Vector2 mousePosition, Vector2 size)
+    public static void Attack(WarriorViewModel caster, Vector2 mousePosition, Vector2 size)
     {
         Vector2 direction = (mousePosition - caster.Position.Value).normalized;
         var points = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
 
-        var targets = _coroutines.DamageRectangle(caster, caster.Stats.Damage.Value, points);
-        _coroutines.CreateRectParticle(size, points, direction);
+        var targets = _utils.DamageRectangle(caster, caster.Stats.Damage.Value, points);
+        _utils.CreateRectParticle(size, points, direction);
 
         foreach (var target in targets)
         {
-            GameEntryPoint.Coroutines.StartCoroutine(_coroutines.ExecutionersMarkCoroutine(caster, target.ViewModel, 5));
+            GameEntryPoint.Coroutines.StartCoroutine(_utils.ExecutionersMarkCoroutine(caster, target.ViewModel, 5));
         }
     }
 
-    public static void Slash(CreatureViewModel caster, Vector2 mousePosition, Vector2 size, float damageMultiplier)
+    public static void Slash(WarriorViewModel caster, Vector2 mousePosition, Vector2 size, float damageMultiplier)
     {
         Vector2 direction = (mousePosition - caster.Position.Value).normalized;
         var points = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
 
-        _coroutines.DamageRectangle(caster, caster.Stats.Damage * damageMultiplier, points);
-        _coroutines.CreateRectParticle(size, points, direction);
+        _utils.DamageRectangle(caster, caster.Stats.Damage * damageMultiplier, points);
+        _utils.CreateRectParticle(size, points, direction);
     }
 
-    public static void Dash(CreatureViewModel caster, Vector2 mousePosition, Vector2 size, float time, float damageMultiplier, float slowPower, float slowDuration)
+    public static void Dash(WarriorViewModel caster, Vector2 mousePosition, Vector2 size, float time, float damageMultiplier, float slowPower, float slowDuration)
     {
         Vector2 direction = (mousePosition - caster.Position.Value).normalized;
 
-        GameEntryPoint.Coroutines.StartCoroutine(_coroutines.DashCoroutine(caster, time, size, direction, damageMultiplier, slowPower, slowDuration));
+        GameEntryPoint.Coroutines.StartCoroutine(_utils.DashCoroutine(caster, time, size, direction, damageMultiplier, slowPower, slowDuration));
     }
 
-    public static void Unbreakable(CreatureViewModel caster, float healPercent, float immortalityDuration, float stunRadius, float stunDuration)
+    public static void Unbreakable(WarriorViewModel caster, float healPercent, float immortalityDuration, float stunRadius, float stunDuration)
     {
         caster.Heal(healPercent * caster.Stats.MaxHealth.Value);
         var immortality = new SEImmortality();
@@ -46,7 +46,7 @@ public static class AbilitiesWarrior
         caster.AddStatusEffect(tmpEffect);
 
         // Стан всех врагов в радиусе
-        var hits = _coroutines.DamageCircle(caster, new(), caster.Position.Value, stunRadius);
+        var hits = _utils.DamageCircle(caster, new(), caster.Position.Value, stunRadius);
 
         foreach (var hit in hits)
         {
@@ -55,7 +55,7 @@ public static class AbilitiesWarrior
         }
     }
 
-    public static void EnduringPower(CreatureViewModel caster, float damagePercent, float resistance, float defense, float duration)
+    public static void EnduringPower(WarriorViewModel caster, float damagePercent, float resistance, float defense, float duration)
     {
         var dmgUp = new SEPhysicalDamageChange(damagePercent, true);
         var tmpEffect = new TemporaryStatusEffect(caster, dmgUp, duration);
@@ -69,7 +69,7 @@ public static class AbilitiesWarrior
 
     }
 
-    public static void ExecutionersMark(CreatureViewModel caster, float totalDamage, float duration)
+    public static void ExecutionersMark(WarriorViewModel caster, float totalDamage, float duration)
     {
         var war = (WarriorViewModel)caster;
 
@@ -80,14 +80,14 @@ public static class AbilitiesWarrior
         }
     }
 
-    public static void EarthRift(CreatureViewModel caster, Vector2 mousePosition, Vector2 size, float debuffDuration, float damageAmplify)
+    public static void EarthRift(WarriorViewModel caster, Vector2 mousePosition, Vector2 size, float debuffDuration, float damageAmplify)
     {
         Vector2 direction = (mousePosition - caster.Position.Value).normalized;
 
         var points = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
         var hits = Physics2DUtils.GetColliderHits<CreatureBinder>(points);
 
-        _coroutines.CreateRectParticle(size, points, direction);
+        _utils.CreateRectParticle(size, points, direction);
 
         foreach (var hit in hits)
         {
@@ -101,12 +101,12 @@ public static class AbilitiesWarrior
 
     }
 
-    public static void DelayedReckoning(CreatureViewModel caster, float damageResistancePercent, float damageRadius)
+    public static void DelayedReckoning(WarriorViewModel caster, float damageResistancePercent, float damageRadius)
     {
-        GameEntryPoint.Coroutines.StartCoroutine(_coroutines.DelayedReckoningCoroutine(caster, damageResistancePercent, damageRadius));
+        GameEntryPoint.Coroutines.StartCoroutine(_utils.DelayedReckoningCoroutine(caster, damageResistancePercent, damageRadius));
     }
 
-    public static void InifinteRage(CreatureViewModel caster, float staminaAttackSpeedPercent, float duration)
+    public static void InifinteRage(WarriorViewModel caster, float staminaAttackSpeedPercent, float duration)
     {
 
     }
