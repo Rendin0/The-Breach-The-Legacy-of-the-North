@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PopupWorldMapViewModel : WindowViewModel
 {
-    private ReactiveProperty<(float scale, Vector2 position)> _mapState;
+    private readonly ReactiveProperty<(float scale, Vector2 position)> _mapState;
 
     public override string Id => "PopupWorldMap";
 
@@ -24,6 +24,7 @@ public class PopupWorldMapViewModel : WindowViewModel
 
         Scale = new(mapState.Value.scale);
         Position = new(mapState.Value.position);
+        _mapState = mapState;
     }
 
     private void ChangeScale(InputAction.CallbackContext context)
@@ -41,7 +42,6 @@ public class PopupWorldMapViewModel : WindowViewModel
         {
             RequestClose();
             _mapState.OnNext((Scale.Value, Position.Value));
-
         }
     }
 }
