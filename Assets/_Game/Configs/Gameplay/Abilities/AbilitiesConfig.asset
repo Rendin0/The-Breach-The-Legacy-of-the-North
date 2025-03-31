@@ -15,6 +15,7 @@ MonoBehaviour:
   WarriorAbilitesConfig:
     Abilities:
     - {fileID: 11400000, guid: b6669129419ecc94480d71672af9b95f, type: 2}
+    - {fileID: 11400000, guid: 55f451993ef177647b359523334c773a, type: 2}
     Attack: {fileID: 11400000, guid: 8626f49de3befde4eb0e90bbf8290299, type: 2}
   PigAbilitiesConfig:
     Abilities:
