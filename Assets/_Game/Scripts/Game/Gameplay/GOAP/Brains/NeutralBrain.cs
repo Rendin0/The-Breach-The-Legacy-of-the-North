@@ -1,6 +1,5 @@
-using R3;
 using ObservableCollections;
-using System;
+using R3;
 
 public class NeutralBrain : AgentBrain
 {

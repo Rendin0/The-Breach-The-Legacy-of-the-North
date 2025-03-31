@@ -21,7 +21,7 @@ public class GameplayEntryPoint : MonoBehaviour
             );
 
         var creaturesSerivce = gameplayViewModelsContainer.Resolve<CreaturesSerivce>();
-        
+
         new AbilitiesWarrior(creaturesSerivce);
         new AbilitiesPig(creaturesSerivce);
 

@@ -1,9 +1,4 @@
-using CrashKonijn.Agent.Runtime;
-using CrashKonijn.Goap.Runtime;
-using R3;
-using System;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Rigidbody2D))]

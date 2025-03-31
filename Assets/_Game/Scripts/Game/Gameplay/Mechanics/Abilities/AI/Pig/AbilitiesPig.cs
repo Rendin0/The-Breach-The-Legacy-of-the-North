@@ -11,7 +11,7 @@ public class AbilitiesPig : Abilities<UtilsAbilitiesPig>
     public AbilitiesPig(CreaturesSerivce creatures)
         : base(creatures)
     {
-        utils = new (creatures);
+        utils = new(creatures);
     }
 
     public static void Attack(PigAgentViewModel caster, Vector2 targetPosition, Vector2 size)

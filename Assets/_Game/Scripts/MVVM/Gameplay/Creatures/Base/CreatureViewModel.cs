@@ -1,7 +1,6 @@
 
 using R3;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,7 +8,7 @@ using UnityEngine.EventSystems;
 public abstract class CreatureViewModel : IBuffable, IDisposable
 {
     protected readonly CreatureEntityProxy creatureEntity;
-    
+
     public readonly CreatureStatsProxy BaseStats;
     public CreatureStatsViewModel Stats { get; private set; }
     public DynamicCreatureStats DynamicStats;

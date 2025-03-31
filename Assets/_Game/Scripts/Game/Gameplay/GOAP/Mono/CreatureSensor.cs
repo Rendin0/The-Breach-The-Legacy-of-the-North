@@ -1,7 +1,5 @@
-using CrashKonijn.Agent.Runtime;
 using R3;
 using R3.Triggers;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class CreatureSensor : MonoBehaviour

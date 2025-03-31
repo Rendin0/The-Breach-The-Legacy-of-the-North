@@ -1,5 +1,3 @@
-
-using CrashKonijn.Goap.Core;
 using CrashKonijn.Goap.Runtime;
 
 public class ATCFNeutral : ATCF<NeutralBrain>

@@ -1,8 +1,8 @@
 
-using System.Collections;
-using System.Collections.Generic;
 using ObservableCollections;
 using R3;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class AgentViewModel : CreatureViewModel

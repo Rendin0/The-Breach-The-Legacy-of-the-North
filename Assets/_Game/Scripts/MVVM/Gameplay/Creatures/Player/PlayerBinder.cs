@@ -1,6 +1,5 @@
-using CrashKonijn.Goap.Runtime;
-using UnityEngine;
 using R3;
+using UnityEngine;
 
 public class PlayerBinder : CreatureBinder
 {
@@ -15,7 +14,7 @@ public class PlayerBinder : CreatureBinder
     {
         base.Start();
         _camera = Camera.main;
-        
+
     }
 
     protected void Update()

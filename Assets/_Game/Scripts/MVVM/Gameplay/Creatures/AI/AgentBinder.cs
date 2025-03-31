@@ -1,8 +1,7 @@
-using R3;
 using CrashKonijn.Agent.Runtime;
 using CrashKonijn.Goap.Runtime;
+using R3;
 using UnityEngine.AI;
-using CrashKonijn.Goap.Core;
 
 public class AgentBinder : CreatureBinder
 {

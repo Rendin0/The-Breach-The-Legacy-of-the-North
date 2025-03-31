@@ -1,7 +1,5 @@
 using CrashKonijn.Agent.Runtime;
 using CrashKonijn.Goap.Runtime;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public abstract class AgentBrain : MonoBehaviour
@@ -30,7 +28,7 @@ public abstract class AgentBrain : MonoBehaviour
         {
             agentBehaviour.StopAction();
             provider.RequestGoal<IdleGoal>();
-            
+
             agent.CurrentTarget = null;
 
             return;

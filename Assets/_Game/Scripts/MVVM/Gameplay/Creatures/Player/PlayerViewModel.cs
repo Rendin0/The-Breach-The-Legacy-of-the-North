@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class PlayerViewModel : CreatureViewModel, IControllable 
+public abstract class PlayerViewModel : CreatureViewModel, IControllable
 {
     public ReactiveProperty<Vector2> MoveDirection { get; } = new();
     public ReactiveProperty<(float scale, Vector2 position)> MapState => creatureEntity.MapState;

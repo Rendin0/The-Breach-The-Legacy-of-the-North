@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Playables;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using System.Collections.Generic;
 
 public class WarriorViewModel : PlayerViewModel
 {
@@ -10,9 +6,9 @@ public class WarriorViewModel : PlayerViewModel
     public bool InfiniteRage = false;
 
 
-    
 
-    public WarriorViewModel(CreatureEntityProxy creatureEntity, AbilitiesConfig abilitiesConfig) 
+
+    public WarriorViewModel(CreatureEntityProxy creatureEntity, AbilitiesConfig abilitiesConfig)
         : base(creatureEntity)
     {
         foreach (var abilityCfg in abilitiesConfig.WarriorAbilitesConfig.Abilities)

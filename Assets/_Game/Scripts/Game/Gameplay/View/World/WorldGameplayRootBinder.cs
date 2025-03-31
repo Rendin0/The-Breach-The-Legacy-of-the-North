@@ -1,10 +1,7 @@
-using CrashKonijn.Goap.Core;
 using CrashKonijn.Goap.Runtime;
 using ObservableCollections;
 using R3;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 

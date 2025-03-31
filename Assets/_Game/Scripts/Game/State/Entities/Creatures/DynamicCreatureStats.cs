@@ -1,6 +1,6 @@
-﻿using System.Collections;
+﻿using R3;
+using System.Collections;
 using UnityEngine;
-using R3;
 
 public class DynamicCreatureStats
 {
