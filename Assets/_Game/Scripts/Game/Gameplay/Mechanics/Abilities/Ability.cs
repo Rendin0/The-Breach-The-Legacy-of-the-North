@@ -26,7 +26,7 @@ public class Ability<T> : IElementInfoViewModel, IAbility where T : CreatureView
 
     public string ElementName => Name;
     public string Description => _description;
-    public Sprite Icon => Resources.Load<Sprite>($"UI/Abilities/{Name}");
+    public Sprite Icon => Resources.Load<Sprite>($"UI/Abilities/{typeof(T).Name.Replace("ViewModel", "")}/{Name}");
 
     public Ability(AbilityConfig<T> config)
     {
