@@ -28,6 +28,6 @@ public class AgentBinder : CreatureBinder
         var agentMoveBehaviour = gameObject.AddComponent<AgentMoveBehaviour>();
         agentMoveBehaviour.Init(navMeshAgent, agentBehaviour);
 
-        brain.Init(agentBehaviour, actionProvider, goap);
+        brain.Init(agentBehaviour, actionProvider, goap, _agentViewModel);
     }
 }

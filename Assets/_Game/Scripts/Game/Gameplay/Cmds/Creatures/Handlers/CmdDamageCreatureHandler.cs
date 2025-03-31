@@ -1,4 +1,5 @@
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class CmdDamageCreatureHandler : ICommandHandler<CmdDamageCreature>
@@ -14,20 +15,26 @@ public class CmdDamageCreatureHandler : ICommandHandler<CmdDamageCreature>
 
     public bool Handle(CmdDamageCreature command)
     {
-        bool dealedDamage = false;
-        bool isAlive = true;
+        float damageResult = CalculateDamage(command);
+        AddThreat(command, damageResult);
 
+        return damageResult > 0f;
+    }
+
+    private float CalculateDamage(CmdDamageCreature command)
+    {
+        bool isAlive = true;
+        float damageResult = 0f;
         if (!command.Creature.Stats.Immortal.Value)
         {
             // Физическая часть
-            float damageResult = Mathf.Abs(command.Damage.PhysicalData) * (1f - (command.Creature.DynamicStats.PhysicalDamageResistance / 100f));
+            damageResult = Mathf.Abs(command.Damage.PhysicalData) * (1f - (command.Creature.DynamicStats.PhysicalDamageResistance / 100f));
 
             // Магическая часть
             damageResult += Mathf.Abs(command.Damage.MagicalData) * (1f - (command.Creature.DynamicStats.MagicalDamageResistance / 100f));
 
             // Доп уменьшение урона 
             damageResult *= 1f - command.Creature.Stats.DamageResistance.Value;
-            dealedDamage = damageResult > 0f;
 
             command.Creature.Stats.Health.OnNext(command.Creature.Stats.Health.Value - damageResult);
 
@@ -41,9 +48,20 @@ public class CmdDamageCreatureHandler : ICommandHandler<CmdDamageCreature>
             isAlive = command.Creature.Stats.Health.Value > 0;
         }
 
+
         if (!isAlive)
             command.Creature.CreatureRequests.KillRequest.OnNext(command.Creature);
 
-        return dealedDamage;
+        return damageResult;
+    }
+    private void AddThreat(CmdDamageCreature command, float damage)
+    {
+        float threat = damage;
+
+        if (command.Creature is AgentViewModel agent)
+        {
+            agent.ThreatMap.Add(command.DamageDealer, threat);
+        }
     }
 }
+
