@@ -1,11 +1,12 @@
 
 using R3;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class CreatureViewModel : IBuffable
+public abstract class CreatureViewModel : IBuffable, IDisposable
 {
     protected readonly CreatureEntityProxy creatureEntity;
     
@@ -21,6 +22,7 @@ public abstract class CreatureViewModel : IBuffable
     public ReactiveProperty<bool> MovementBlocked { get; } = new(false);
     public Rigidbody2D Rb { get; set; }
     public ReactiveProperty<Vector2> Position { get; }
+    public Transform Transform { get; set; }
 
     private readonly List<IStatusEffect> _statusEffects = new();
     public CreatureRequests CreatureRequests = new();
@@ -63,4 +65,6 @@ public abstract class CreatureViewModel : IBuffable
         foreach (var effect in effects)
             effect.Apply(this);
     }
+
+    public virtual void Dispose() { }
 }

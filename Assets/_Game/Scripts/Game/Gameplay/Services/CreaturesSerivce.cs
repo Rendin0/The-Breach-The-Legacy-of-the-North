@@ -182,6 +182,7 @@ public class CreaturesSerivce
         {
             _creaturesMap.Remove(creatureEntityProxy.Id);
             _creatureViewModels.Remove(creatureViewModel);
+            creatureViewModel.Dispose();
         }
     }
 }

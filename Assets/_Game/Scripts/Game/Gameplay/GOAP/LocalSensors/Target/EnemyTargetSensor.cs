@@ -1,11 +1,13 @@
 
 using CrashKonijn.Agent.Core;
+using CrashKonijn.Goap.Core;
 using CrashKonijn.Goap.Runtime;
 using UnityEngine;
 
 public class EnemyTargetSensor : LocalTargetSensorBase
 {
     private AgentViewModel _viewModel;
+
     public override void Created()
     {
     }
@@ -16,16 +18,12 @@ public class EnemyTargetSensor : LocalTargetSensorBase
 
     public override ITarget Sense(IActionReceiver agent, IComponentReference references, ITarget existingTarget)
     {
-        _viewModel = references.GetCachedComponent<CreatureBinder>().ViewModel as AgentViewModel;
-        var enemiesMask = _viewModel.Enemies;
+        _viewModel = references.GetCachedComponent<AgentBinder>().ViewModel as AgentViewModel;
 
-        var hit = Physics2D.OverlapCircle(_viewModel.Position.Value, 6f, enemiesMask);
-
-        if (hit == null)
+        if (_viewModel.CurrentTarget == null)
             return null;
 
-        _viewModel.CurrentTarget = hit.GetComponent<CreatureBinder>().ViewModel;
-        return new TransformTarget(hit.transform);
+        return new TransformTarget(_viewModel.CurrentTarget.Transform);
     }
 
 }

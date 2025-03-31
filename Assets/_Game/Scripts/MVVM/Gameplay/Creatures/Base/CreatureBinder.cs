@@ -28,6 +28,7 @@ public abstract class CreatureBinder : MonoBehaviour, IPointerClickHandler
     {
         OnBind(viewModel);
 
+        ViewModel.Transform = transform;
         transform.position = ViewModel.Position.Value;
     }
     protected abstract void OnBind(CreatureViewModel viewModel);

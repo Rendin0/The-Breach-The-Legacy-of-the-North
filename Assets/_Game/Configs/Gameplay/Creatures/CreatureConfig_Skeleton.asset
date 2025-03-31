@@ -15,7 +15,7 @@ MonoBehaviour:
   TypeId: Skeleton
   Stats:
     MaxHealth: 100
-    Health: 10
+    Health: 40
     Speed: 7
     Damage:
       MagicalData: 10

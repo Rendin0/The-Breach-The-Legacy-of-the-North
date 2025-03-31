@@ -60,7 +60,7 @@ public class CmdDamageCreatureHandler : ICommandHandler<CmdDamageCreature>
 
         if (command.Creature is AgentViewModel agent)
         {
-            agent.ThreatMap.Add(command.DamageDealer, threat);
+            agent.ThreatMap[command.DamageDealer] = threat;
         }
     }
 }

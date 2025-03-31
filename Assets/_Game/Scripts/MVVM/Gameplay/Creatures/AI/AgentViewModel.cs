@@ -9,10 +9,12 @@ public abstract class AgentViewModel : CreatureViewModel
 {
     public readonly List<IAbility> Abilities = new();
     public CreatureViewModel CurrentTarget { get; set; }
+
+
     public AgentTypes AgentType => creatureEntity.AgentType;
 
     public ObservableDictionary<CreatureViewModel, float> ThreatMap { get; } = new();
-    private readonly ObservableDictionary<CreatureViewModel, IEnumerator> _threatCoroutines = new();
+    private readonly ObservableDictionary<CreatureViewModel, Coroutine> _threatCoroutines = new();
 
 
     private const float _rememberTime = 5f;
@@ -41,7 +43,7 @@ public abstract class AgentViewModel : CreatureViewModel
         if (_threatCoroutines.TryGetValue(creature, out var coroutine))
             GameEntryPoint.Coroutines.StopCoroutine(coroutine);
 
-        GameEntryPoint.Coroutines.StartCoroutine(ThreatCoroutine(creature));
+        _threatCoroutines[creature] = GameEntryPoint.Coroutines.StartCoroutine(ThreatCoroutine(creature));
     }
 
     private IEnumerator ThreatCoroutine(CreatureViewModel key)
@@ -55,5 +57,13 @@ public abstract class AgentViewModel : CreatureViewModel
         }
 
         ThreatMap.Remove(key);
+        _threatCoroutines.Remove(key);
+    }
+
+    public override void Dispose()
+    {
+        foreach (var coroutine in _threatCoroutines)
+            GameEntryPoint.Coroutines.StopCoroutine(coroutine.Value);
+
     }
 }
