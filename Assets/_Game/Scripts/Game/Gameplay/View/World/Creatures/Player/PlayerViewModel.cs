@@ -13,8 +13,8 @@ public abstract class PlayerViewModel : CreatureViewModel, IControllable
     public readonly List<IAbility> Abilities = new();
     public IAbility AttackAbility { get; protected set; }
 
-    public PlayerViewModel(CreatureEntityProxy creatureEntity, AbilitiesConfig abilitiesConfig)
-        : base(creatureEntity, abilitiesConfig)
+    public PlayerViewModel(CreatureEntityProxy creatureEntity)
+        : base(creatureEntity)
     {
 
     }

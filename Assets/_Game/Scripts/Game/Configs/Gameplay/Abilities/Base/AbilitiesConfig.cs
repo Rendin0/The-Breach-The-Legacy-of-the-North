@@ -5,4 +5,5 @@ using UnityEngine;
 public class AbilitiesConfig : ScriptableObject
 {
     public WarriorAbilitesConfig WarriorAbilitesConfig;
+    public PigAbilitiesConfig PigAbilitiesConfig;
 }

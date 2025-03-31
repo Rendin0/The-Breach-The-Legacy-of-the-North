@@ -13,7 +13,7 @@ public class WarriorViewModel : PlayerViewModel
     
 
     public WarriorViewModel(CreatureEntityProxy creatureEntity, AbilitiesConfig abilitiesConfig) 
-        : base(creatureEntity, abilitiesConfig)
+        : base(creatureEntity)
     {
         foreach (var abilityCfg in abilitiesConfig.WarriorAbilitesConfig.Abilities)
         {

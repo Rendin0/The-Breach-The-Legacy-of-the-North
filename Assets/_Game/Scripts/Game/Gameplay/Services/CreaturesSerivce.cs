@@ -156,7 +156,7 @@ public class CreaturesSerivce
         }
         else
         {
-            var agentViewModel = new AgentViewModel(creatureEntityProxy, _abilitiesConfig);
+            var agentViewModel = new PigAgentViewModel(creatureEntityProxy, _abilitiesConfig);
 
             agentViewModel.CreatureRequests.DeleteRequest.Subscribe(_ =>
             {

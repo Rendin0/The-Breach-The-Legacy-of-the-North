@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f57143a20799924eb53bfe27845764f, type: 3}
   m_Name: WarriorAbilityConfig_Attack
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Attack
   Description: 
   CooldownTime: 0
   Use:

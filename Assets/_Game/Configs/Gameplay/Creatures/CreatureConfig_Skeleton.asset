@@ -28,4 +28,4 @@ MonoBehaviour:
     Stamina: 0
     MaxStamina: 1
   Faction: 1
-  AgentType: 1
+  AgentType: 2

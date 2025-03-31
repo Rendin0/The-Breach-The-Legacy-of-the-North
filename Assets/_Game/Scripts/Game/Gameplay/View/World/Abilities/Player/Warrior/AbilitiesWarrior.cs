@@ -1,56 +1,63 @@
 using UnityEngine;
 
-public static class AbilitiesWarrior
+public class AbilitiesWarrior : Abilities<UtilsAbilitiesWarrior>
 {
-    private static UtilsAbilitiesWarrior _utils;
-    private static CreaturesSerivce _creaturesSerivce;
-
-    public static void Init(CreaturesSerivce creatures)
+    public AbilitiesWarrior(CreaturesSerivce creatures) : base(creatures)
     {
-        _utils = new(creatures);
-        _creaturesSerivce = creatures;
+        utils = new(creatures);
     }
 
+
+    public static void Heal(WarriorViewModel caster, float healPercent)
+    {
+        creaturesSerivce.HealCreature(caster, caster, healPercent * caster.Stats.MaxHealth.Value);
+    }
+
+    // јтака: вычисление направлени€, получение точек пр€моугольника, нанесение урона и создание частицы
     public static void Attack(WarriorViewModel caster, Vector2 mousePosition, Vector2 size)
     {
         Vector2 direction = (mousePosition - caster.Position.Value).normalized;
         var points = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
 
-        var targets = _utils.DamageRectangle(caster, caster.Stats.Damage.Value, points);
-        _utils.CreateRectParticle(size, points, direction);
+        var targets = utils.DamageRectangle(caster, caster.Stats.Damage.Value, points);
+        utils.CreateRectParticle(size, points, direction);
 
+        // «апуск корутины дл€ метки палача на каждой цели
         foreach (var target in targets)
         {
-            GameEntryPoint.Coroutines.StartCoroutine(_utils.ExecutionersMarkCoroutine(caster, target.ViewModel, 5));
+            GameEntryPoint.Coroutines.StartCoroutine(utils.ExecutionersMarkCoroutine(caster, target.ViewModel, 5));
         }
     }
 
+    // ”дар: вычисление направлени€, получение точек пр€моугольника, нанесение урона с множителем и создание частицы
     public static void Slash(WarriorViewModel caster, Vector2 mousePosition, Vector2 size, float damageMultiplier)
     {
         Vector2 direction = (mousePosition - caster.Position.Value).normalized;
         var points = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
 
-        _utils.DamageRectangle(caster, caster.Stats.Damage * damageMultiplier, points);
-        _utils.CreateRectParticle(size, points, direction);
+        utils.DamageRectangle(caster, caster.Stats.Damage * damageMultiplier, points);
+        utils.CreateRectParticle(size, points, direction);
     }
 
+    // –ывок: вычисление направлени€ и запуск корутины дл€ выполнени€ рывка
     public static void Dash(WarriorViewModel caster, Vector2 mousePosition, Vector2 size, float time, float damageMultiplier, float slowPower, float slowDuration)
     {
         Vector2 direction = (mousePosition - caster.Position.Value).normalized;
 
-        GameEntryPoint.Coroutines.StartCoroutine(_utils.DashCoroutine(caster, time, size, direction, damageMultiplier, slowPower, slowDuration));
+        GameEntryPoint.Coroutines.StartCoroutine(utils.DashCoroutine(caster, time, size, direction, damageMultiplier, slowPower, slowDuration));
     }
 
+    // Ќесокрушимость: лечение, добавление эффекта бессмерти€ и оглушение врагов в радиусе
     public static void Unbreakable(WarriorViewModel caster, float healPercent, float immortalityDuration, float stunRadius, float stunDuration)
     {
-        _creaturesSerivce.HealCreature(caster, caster, healPercent * caster.Stats.MaxHealth.Value);
+        creaturesSerivce.HealCreature(caster, caster, healPercent * caster.Stats.MaxHealth.Value);
 
         var immortality = new SEImmortality();
         var tmpEffect = new TemporaryStatusEffect(caster, immortality, immortalityDuration);
         caster.AddStatusEffect(tmpEffect);
 
         // —тан всех врагов в радиусе
-        var hits = _utils.DamageCircle(caster, new(), caster.Position.Value, stunRadius);
+        var hits = utils.DamageCircle(caster, new(), caster.Position.Value, stunRadius);
 
         foreach (var hit in hits)
         {
@@ -59,6 +66,7 @@ public static class AbilitiesWarrior
         }
     }
 
+    // ¬ынослива€ сила: увеличение урона, сопротивлени€ и защиты на определенное врем€
     public static void EnduringPower(WarriorViewModel caster, float damagePercent, float resistance, float defense, float duration)
     {
         var dmgUp = new SEPhysicalDamageChange(damagePercent, true);
@@ -70,9 +78,9 @@ public static class AbilitiesWarrior
         caster.AddStatusEffect(tmpEffect);
 
         // TODO +resistance
-
     }
 
+    // ћетка палача: нанесение урона всем помеченным цел€м
     public static void ExecutionersMark(WarriorViewModel caster, float totalDamage, float duration)
     {
         var war = (WarriorViewModel)caster;
@@ -80,10 +88,11 @@ public static class AbilitiesWarrior
         foreach (var target in war.MarkedTargets)
         {
             target.DynamicStats.MarkCount = 0;
-            target.AddStatusEffect(new SEDot(_creaturesSerivce, caster, totalDamage, duration));
+            target.AddStatusEffect(new SEDot(creaturesSerivce, caster, totalDamage, duration));
         }
     }
 
+    // –азлом земли: оглушение и увеличение получаемого урона дл€ всех врагов в области
     public static void EarthRift(WarriorViewModel caster, Vector2 mousePosition, Vector2 size, float debuffDuration, float damageAmplify)
     {
         Vector2 direction = (mousePosition - caster.Position.Value).normalized;
@@ -91,7 +100,7 @@ public static class AbilitiesWarrior
         var points = MathUtils.GetRectPoints(size, caster.Position.Value, direction);
         var hits = Physics2DUtils.GetColliderHits<CreatureBinder>(points);
 
-        _utils.CreateRectParticle(size, points, direction);
+        utils.CreateRectParticle(size, points, direction);
 
         foreach (var hit in hits)
         {
@@ -102,14 +111,15 @@ public static class AbilitiesWarrior
             hit.ViewModel.AddStatusEffect(stunEffect);
             hit.ViewModel.AddStatusEffect(amplifyEffect);
         }
-
     }
 
+    // ќтложенное возмездие: запуск корутины дл€ выполнени€ отложенного возмезди€
     public static void DelayedReckoning(WarriorViewModel caster, float damageResistancePercent, float damageRadius)
     {
-        GameEntryPoint.Coroutines.StartCoroutine(_utils.DelayedReckoningCoroutine(caster, damageResistancePercent, damageRadius));
+        GameEntryPoint.Coroutines.StartCoroutine(utils.DelayedReckoningCoroutine(caster, damageResistancePercent, damageRadius));
     }
 
+    // Ѕесконечна€ €рость: метод пока не реализован
     public static void InifinteRage(WarriorViewModel caster, float staminaAttackSpeedPercent, float duration)
     {
 

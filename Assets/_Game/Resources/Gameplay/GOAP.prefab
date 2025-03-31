@@ -150,3 +150,4 @@ MonoBehaviour:
   configInitializer: {fileID: 0}
   agentTypeConfigFactories:
   - {fileID: 3875672500212371660}
+  - {fileID: 8278453984590365447}

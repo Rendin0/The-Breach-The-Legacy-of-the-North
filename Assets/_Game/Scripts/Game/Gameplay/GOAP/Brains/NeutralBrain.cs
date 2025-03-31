@@ -5,6 +5,6 @@ public class NeutralBrain : AgentBrain
 
     protected override void OnInit()
     {
-        provider.RequestGoal<IdleGoal>();
+        provider.RequestGoal<KillEnemyGoal>();
     }
 }

@@ -26,7 +26,7 @@ public abstract class CreatureViewModel : IBuffable
     public CreatureRequests CreatureRequests = new();
 
 
-    public CreatureViewModel(CreatureEntityProxy creatureEntity, AbilitiesConfig abilitiesConfig)
+    public CreatureViewModel(CreatureEntityProxy creatureEntity)
     {
         this.creatureEntity = creatureEntity;
 

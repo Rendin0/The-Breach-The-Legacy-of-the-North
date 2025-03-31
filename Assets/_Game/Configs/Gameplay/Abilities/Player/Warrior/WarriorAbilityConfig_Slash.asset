@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f57143a20799924eb53bfe27845764f, type: 3}
   m_Name: WarriorAbilityConfig_Slash
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
+  Name: Slash
+  Description: Slash attaack
   CooldownTime: 4
   Use:
     _PersistentCalls:

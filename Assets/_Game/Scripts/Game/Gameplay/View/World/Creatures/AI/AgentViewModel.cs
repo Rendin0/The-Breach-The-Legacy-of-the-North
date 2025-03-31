@@ -1,27 +1,31 @@
 
+using System.Collections.Generic;
 using UnityEngine;
 
-public class AgentViewModel : CreatureViewModel
+public abstract class AgentViewModel : CreatureViewModel
 {
-    private readonly Ability<AgentViewModel> _attack;
+    public readonly List<IAbility> Abilities = new();
     public CreatureViewModel CurrentTarget { get; set; }
     public AgentTypes AgentType => creatureEntity.AgentType;
 
 
 
-    public AgentViewModel(CreatureEntityProxy creatureEntity, AbilitiesConfig abilitiesConfig) 
-        : base(creatureEntity, abilitiesConfig)
+    public AgentViewModel(CreatureEntityProxy creatureEntity) 
+        : base(creatureEntity)
     {
         //_attack = new(abilitiesConfig.WarriorAbilitesConfig.Attack);
     }
 
-    public bool Attack(Vector2 position)
+    public void UseAbility(int index, Vector2 position)
     {
-        bool result = _attack.Use(this, position);
+        if (index >= Abilities.Count)
+            return;
 
-        if (result)
-            _attack.SetCooldown(DynamicStats.AttackSpeed);
-
-        return result;
+        if (Abilities[index].Use(this, position))
+        {
+            // Перезарядка всем остальным на одну секунду, чтобы не было спама
+            foreach (var ability in Abilities)
+                ability.SetCooldown(1f);
+        }
     }
 }
