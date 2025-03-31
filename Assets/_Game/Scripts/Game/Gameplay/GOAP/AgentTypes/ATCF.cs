@@ -13,15 +13,14 @@ public abstract class ATCF<T> : AgentTypeFactoryBase, IATCF where T : AgentBrain
             {
                 var brain = gameObject.AddComponent<T>();
                 _agentType = brain.AgentType;
-                Destroy(brain);
+                brain.DestroyInAnyMode();
             }
 
             return _agentType;
         }
     }
 
-    // Do not override Create()
-    public override IAgentTypeConfig Create()
+    public sealed override IAgentTypeConfig Create()
     {
         var builder = new AgentTypeBuilder(AgentType);
 

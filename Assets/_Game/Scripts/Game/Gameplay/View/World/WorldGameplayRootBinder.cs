@@ -1,10 +1,7 @@
-using CrashKonijn.Goap.Core;
 using CrashKonijn.Goap.Runtime;
 using ObservableCollections;
 using R3;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -96,7 +93,13 @@ public class WorldGameplayRootBinder : MonoBehaviour
         var prefab = Resources.Load<CreatureBinder>(creaturePrefabPath);
 
         var created = Instantiate(prefab);
-        created.Bind(viewModel, _goap, GetBrain(viewModel.AgentType, created.gameObject));
+        created.Bind(viewModel);
+
+        if (created is AgentBinder agent)
+        {
+            var agentViewModel = viewModel as AgentViewModel;
+            agent.InitGoap(_goap, GetBrain(agentViewModel.AgentType, created.gameObject));
+        }
 
         var layer = LayerMask.NameToLayer(viewModel.Faction.ToString());
         if (layer == -1)

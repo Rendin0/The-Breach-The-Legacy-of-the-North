@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c44b28cbf90be0c418d263a1554783c9, type: 3}
+  m_Script: {fileID: 11500000, guid: c07150ef74c51ca4d9229e74d71ff2f2, type: 3}
   m_Name: AbilitiesConfig
   m_EditorClassIdentifier: 
-  Abilities:
-  - {fileID: 11400000, guid: 64114d996731d0544974eb72aac8e53a, type: 2}
-  - {fileID: 11400000, guid: e34ade198e147204ca5a3fafa9e3197e, type: 2}
-  - {fileID: 11400000, guid: 6c244200eb620764eb302ba365a2d48f, type: 2}
-  - {fileID: 11400000, guid: 707ef8404299db5438fc7c136be04e37, type: 2}
-  - {fileID: 11400000, guid: ded124a1d8c07fd41a1473faf07796f0, type: 2}
-  - {fileID: 11400000, guid: 2817bd4bd01b9024baf9aa4e8cd2f174, type: 2}
-  - {fileID: 11400000, guid: d89623d352b06f34ca26e9b5af58cd51, type: 2}
-  Attack: {fileID: 11400000, guid: 18d1abc960d018d458ba811f66b4c14c, type: 2}
+  WarriorAbilitesConfig:
+    Abilities:
+    - {fileID: 11400000, guid: b6669129419ecc94480d71672af9b95f, type: 2}
+    - {fileID: 11400000, guid: 55f451993ef177647b359523334c773a, type: 2}
+    Attack: {fileID: 11400000, guid: 8626f49de3befde4eb0e90bbf8290299, type: 2}
+  PigAbilitiesConfig:
+    Abilities:
+    - {fileID: 11400000, guid: 2fe1626286be89249ab91f9904c42901, type: 2}
+    - {fileID: 11400000, guid: 6ef1456db2dc988459dd0be69b1b0737, type: 2}

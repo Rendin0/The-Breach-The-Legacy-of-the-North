@@ -1,7 +1,4 @@
-
-using CrashKonijn.Goap.Core;
 using CrashKonijn.Goap.Runtime;
-using UnityEngine;
 
 public class ATCFPeaceful : ATCF<PeacefulBrain>
 {

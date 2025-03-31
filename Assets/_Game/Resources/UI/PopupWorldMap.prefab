@@ -209,8 +209,9 @@ MonoBehaviour:
   _reliefLevel: {fileID: 8409888176906999712}
   _locationLevel: {fileID: 4714595224197848117}
   _townLevel: {fileID: 859321592074867558}
-  _levelsToggleButon: {fileID: 5225561721699673155}
+  _levelsToggleButton: {fileID: 5225561721699673155}
   _locationsLevels: {fileID: 8572012341054438352}
+  Rect: {fileID: 0}
 --- !u!1 &2726229909000897610
 GameObject:
   m_ObjectHideFlags: 0

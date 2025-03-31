@@ -1,4 +1,5 @@
 using R3;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ScreenGameplayViewModel : WindowViewModel
@@ -30,7 +31,7 @@ public class ScreenGameplayViewModel : WindowViewModel
         InputRequests.EscapeRequest.Subscribe(_ => RequestPause(_));
         InputRequests.TabRequest.Subscribe(_ => RequestInventory(_, 0));
         InputRequests.URequest.Subscribe(_ => RequestDevPanel(_));
-        InputRequests.MRequest.Subscribe(_ => RequestWorldMap(_, player));
+        InputRequests.MRequest.Subscribe(_ => RequestWorldMap(_, player.MapState));
         InputRequests.AltRequest.Subscribe(_ => RequestSwitchAbilityBar(_));
 
         AbilitiesBarViewModel = new(player, abilityBindings);
@@ -49,10 +50,10 @@ public class ScreenGameplayViewModel : WindowViewModel
             _uiManager.OpenScreenGameplayPause();
     }
 
-    private void RequestWorldMap(InputAction.CallbackContext context, PlayerViewModel player)
+    private void RequestWorldMap(InputAction.CallbackContext context, ReactiveProperty<(float scale, Vector2 position)> mapState)
     {
         if (context.performed)
-            _uiManager.OpenPopupWorldMap(player);
+            _uiManager.OpenPopupWorldMap(mapState);
     }
 
     private void RequestInventory(InputAction.CallbackContext context, int ownerId)

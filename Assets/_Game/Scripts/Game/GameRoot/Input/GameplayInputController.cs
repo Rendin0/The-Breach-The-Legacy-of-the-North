@@ -51,7 +51,7 @@ public class GameplayInputController : IPlayerActions
     public void OnU(InputAction.CallbackContext context)
     {
         if (context.performed)
-        _inputRequests.URequest.OnNext(context);
+            _inputRequests.URequest.OnNext(context);
     }
 
     public void OnMouse(InputAction.CallbackContext context)

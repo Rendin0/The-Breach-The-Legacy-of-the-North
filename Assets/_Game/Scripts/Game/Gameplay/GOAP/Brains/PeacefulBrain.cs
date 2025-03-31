@@ -1,11 +1,9 @@
 public class PeacefulBrain : AgentBrain
 {
-    public override string AgentType => AgentTypes.PigAgent.ToString();
+    public override string AgentType => AgentTypes.PeacefulAgent.ToString();
 
     protected override void OnInit()
     {
-        provider.AgentType = goap.GetAgentType(AgentType);
-
         provider.RequestGoal<IdleGoal>();
     }
 }

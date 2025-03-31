@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EnemyHealthWorldSensor : LocalWorldSensorBase
 {
-    private CreatureViewModel _viewModel;
+    private AgentViewModel _viewModel;
 
     public override void Created()
     {
@@ -18,14 +18,11 @@ public class EnemyHealthWorldSensor : LocalWorldSensorBase
 
     public override SenseValue Sense(IActionReceiver agent, IComponentReference references)
     {
-        _viewModel ??= references.GetCachedComponent<CreatureBinder>().ViewModel;
-        var enemiesMask = _viewModel.Enemies;
+        _viewModel ??= references.GetCachedComponent<AgentBinder>().ViewModel as AgentViewModel;
 
-        var hit = Physics2D.OverlapCircle(_viewModel.Position.Value, 5f, enemiesMask);
-        if (hit == null)
+        if (_viewModel.CurrentTarget == null)
             return 0;
 
-        _viewModel.CurrentTarget = hit.GetComponent<CreatureBinder>().ViewModel;
         return Mathf.CeilToInt(_viewModel.CurrentTarget.Stats.Health.Value);
     }
 }

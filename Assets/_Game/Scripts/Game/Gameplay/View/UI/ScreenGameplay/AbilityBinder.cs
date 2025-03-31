@@ -14,7 +14,7 @@ public class AbilityBinder : MonoBehaviour, IElementInfoBinder
 
     private readonly CompositeDisposable _subs = new();
 
-    private Ability _origin;
+    private IAbility _origin;
 
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class AbilityBinder : MonoBehaviour, IElementInfoBinder
         _subs.Dispose();
     }
 
-    public void Bind(Ability ability)
+    public void Bind(IAbility ability)
     {
         _origin = ability;
 

@@ -1,6 +1,5 @@
 using CrashKonijn.Agent.Core;
 using CrashKonijn.Agent.Runtime;
-using CrashKonijn.Goap.Runtime;
 using UnityEngine;
 using UnityEngine.AI;
 

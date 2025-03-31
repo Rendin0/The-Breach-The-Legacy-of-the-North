@@ -1,7 +1,6 @@
 
 using CrashKonijn.Goap.Core;
 using CrashKonijn.Goap.Runtime;
-using System;
 
 public class IdleCapabilityFactory : CapabilityFactory
 {

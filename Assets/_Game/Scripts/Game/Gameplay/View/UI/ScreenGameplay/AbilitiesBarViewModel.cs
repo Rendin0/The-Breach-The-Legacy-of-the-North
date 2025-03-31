@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class AbilitiesBarViewModel : IElementInfoViewModel, IDisposable
 {
-    public readonly List<Ability> Abilities = new();
+    public readonly List<IAbility> Abilities = new();
     public readonly List<string> AbilityBindings = new();
 
 
