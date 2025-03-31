@@ -48,7 +48,6 @@ public abstract class AgentViewModel : CreatureViewModel
             ThreatMap[key] -= threat * 0.1f;
         }
 
-
         if (ThreatMap[key] <= 0f)
             ThreatMap.Remove(key);
     }
