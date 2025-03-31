@@ -5,12 +5,16 @@ using UnityEngine;
 public class SEDot : IStatusEffect
 {
     private CreatureViewModel _owner;
+    private readonly CreaturesSerivce _creaturesSerivce;
+    private readonly CreatureViewModel _dealer;
     private readonly float _totalDamage;
     private readonly float _tickSpeed;
     private readonly float _duration;
 
-    public SEDot(float totalDamage, float duration, float tickSpeed = 0.33f)
+    public SEDot(CreaturesSerivce creaturesSerivce, CreatureViewModel dealer, float totalDamage, float duration, float tickSpeed = 0.33f)
     {
+        _dealer = dealer;
+        _creaturesSerivce = creaturesSerivce;
         this._totalDamage = totalDamage;
         this._tickSpeed = tickSpeed;
         this._duration = duration;
@@ -30,7 +34,7 @@ public class SEDot : IStatusEffect
 
         for (int i = 0; i < totalTicks; i++)
         {
-            _owner.Damage(damage);
+            _creaturesSerivce.DamageCreature(_owner, _dealer, damage);
             yield return new WaitForSeconds(_tickSpeed);
         }
 

@@ -3,9 +3,12 @@ using UnityEngine;
 public static class AbilitiesWarrior
 {
     private static UtilsAbilitiesWarrior _utils;
+    private static CreaturesSerivce _creaturesSerivce;
+
     public static void Init(CreaturesSerivce creatures)
     {
         _utils = new(creatures);
+        _creaturesSerivce = creatures;
     }
 
     public static void Attack(WarriorViewModel caster, Vector2 mousePosition, Vector2 size)
@@ -40,7 +43,8 @@ public static class AbilitiesWarrior
 
     public static void Unbreakable(WarriorViewModel caster, float healPercent, float immortalityDuration, float stunRadius, float stunDuration)
     {
-        caster.Heal(healPercent * caster.Stats.MaxHealth.Value);
+        _creaturesSerivce.HealCreature(caster, caster, healPercent * caster.Stats.MaxHealth.Value);
+
         var immortality = new SEImmortality();
         var tmpEffect = new TemporaryStatusEffect(caster, immortality, immortalityDuration);
         caster.AddStatusEffect(tmpEffect);
@@ -76,7 +80,7 @@ public static class AbilitiesWarrior
         foreach (var target in war.MarkedTargets)
         {
             target.DynamicStats.MarkCount = 0;
-            target.AddStatusEffect(new SEDot(totalDamage, duration));
+            target.AddStatusEffect(new SEDot(_creaturesSerivce, caster, totalDamage, duration));
         }
     }
 

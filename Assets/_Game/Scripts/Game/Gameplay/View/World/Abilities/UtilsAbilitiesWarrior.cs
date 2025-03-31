@@ -79,7 +79,7 @@ public class UtilsAbilitiesWarrior
             // Ударило не само себя
             if (hit.ViewModel.CreatureId == caster.CreatureId) continue;
 
-            hit.ViewModel.Damage(damage);
+            _creaturesSerivce.DamageCreature(hit.ViewModel, caster, damage);
             hitsResult.Add(hit);
         }
 
@@ -96,7 +96,7 @@ public class UtilsAbilitiesWarrior
             // Ударило не само себя
             if (hit.ViewModel.CreatureId == caster.CreatureId) continue;
 
-            hit.ViewModel.Damage(damage);
+            _creaturesSerivce.DamageCreature(hit.ViewModel, caster, damage);
             hitsResult.Add(hit);
         }
 

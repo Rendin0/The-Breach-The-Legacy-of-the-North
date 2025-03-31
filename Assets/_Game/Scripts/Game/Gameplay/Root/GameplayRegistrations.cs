@@ -14,7 +14,6 @@ public static class GameplayRegistrations
         var creaturesService = new CreaturesSerivce(gameState.Creatures, gameConfig.CreaturesConfig, gameConfig.AbilitiesConfig, processor);
         var inventoriesService = new InventoriesService(gameState.Inventories, gameConfig.ItemsConfig, processor);
 
-        processor.RegisterHandler(new CmdDamageCreatureHandler(gameState, processor));
         processor.RegisterHandler(new CmdCreateInventoryHandler(gameState, gameConfig.ItemsConfig));
         processor.RegisterHandler(new CmdAddItemHandler(processor, gameConfig.ItemsConfig, inventoriesService));
         processor.RegisterHandler(new CmdAddItemInSlotHandler(gameConfig.ItemsConfig, inventoriesService));
@@ -25,6 +24,10 @@ public static class GameplayRegistrations
         processor.RegisterHandler(new CmdDeleteCreatureHandler(gameState, processor));
         processor.RegisterHandler(new CmdDeleteInventoryHandler(gameState));
         processor.RegisterHandler(new CmdKillCreatureHandler(gameState, processor));
+
+        processor.RegisterHandler(new CmdHealCreatureHandler(gameState, processor));
+        processor.RegisterHandler(new CmdDamageCreatureHandler(gameState, processor));
+
 
         var inputController = sceneContainer.Resolve<GameplayInputController>();
         inputController.Bind(creaturesService.GetPlayer());
