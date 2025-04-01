@@ -88,6 +88,14 @@ public class CreaturesSerivce
         return result;
     }
 
+    public bool AddThreat(CreatureViewModel creature, CreatureViewModel threatDealer, float threat)
+    {
+        var cmd = new CmdAddThreat(creature, threatDealer, threat);
+        var result = _commandProcessor.Process(cmd);
+
+        return result;
+    }
+
     /// <summary>
     /// Создание существа.
     /// </summary>
@@ -165,6 +173,10 @@ public class CreaturesSerivce
             agentViewModel.CreatureRequests.KillRequest.Subscribe(_ =>
             {
                 KillCreature(agentViewModel.CreatureId);
+            });
+            agentViewModel.CreatureRequests.ThreatAddedRequest.Subscribe(pair =>
+            {
+                AddThreat(agentViewModel, pair.ThreatDealer, pair.Threat);
             });
 
             _creaturesMap[agentViewModel.CreatureId] = agentViewModel;

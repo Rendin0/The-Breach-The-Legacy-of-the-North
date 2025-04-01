@@ -10,7 +10,6 @@ public abstract class AgentViewModel : CreatureViewModel
     public readonly List<IAbility> Abilities = new();
     public CreatureViewModel CurrentTarget { get; set; }
 
-
     public AgentTypes AgentType => creatureEntity.AgentType;
 
     public ObservableDictionary<CreatureViewModel, float> ThreatMap { get; } = new();

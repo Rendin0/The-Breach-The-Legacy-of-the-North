@@ -14,7 +14,9 @@ public class CmdDamageCreatureHandler : ICommandHandler<CmdDamageCreature>
     public bool Handle(CmdDamageCreature command)
     {
         float damageResult = CalculateDamage(command);
-        AddThreat(command, damageResult);
+
+        var threatCmd = new CmdAddThreat(command.Creature, command.DamageDealer, damageResult);
+        _commandProcessor.Process(threatCmd);
 
         return damageResult > 0f;
     }
@@ -52,14 +54,6 @@ public class CmdDamageCreatureHandler : ICommandHandler<CmdDamageCreature>
 
         return damageResult;
     }
-    private void AddThreat(CmdDamageCreature command, float damage)
-    {
-        float threat = damage;
 
-        if (command.Creature is AgentViewModel agent)
-        {
-            agent.ThreatMap[command.DamageDealer] = threat;
-        }
-    }
 }
 

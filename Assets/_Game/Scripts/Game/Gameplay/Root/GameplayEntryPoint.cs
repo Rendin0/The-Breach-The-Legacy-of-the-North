@@ -24,6 +24,7 @@ public class GameplayEntryPoint : MonoBehaviour
 
         new AbilitiesWarrior(creaturesSerivce);
         new AbilitiesPig(creaturesSerivce);
+        new AbilitiesHunter(creaturesSerivce);
 
         var inventoriesService = gameplayViewModelsContainer.Resolve<InventoriesService>();
 

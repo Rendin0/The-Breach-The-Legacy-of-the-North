@@ -27,6 +27,7 @@ public static class GameplayRegistrations
 
         processor.RegisterHandler(new CmdHealCreatureHandler(gameState, processor));
         processor.RegisterHandler(new CmdDamageCreatureHandler(gameState, processor));
+        processor.RegisterHandler(new CmdAddThreatHandler());
 
 
         var inputController = sceneContainer.Resolve<GameplayInputController>();

@@ -5,4 +5,5 @@ public class AbilitiesConfig : ScriptableObject
 {
     public WarriorAbilitesConfig WarriorAbilitesConfig;
     public PigAbilitiesConfig PigAbilitiesConfig;
+    public HunterAbilitiesConfig HunterAbilitiesConfig;
 }

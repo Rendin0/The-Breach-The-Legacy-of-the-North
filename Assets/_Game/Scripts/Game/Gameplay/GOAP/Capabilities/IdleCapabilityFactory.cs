@@ -2,9 +2,9 @@
 using CrashKonijn.Goap.Core;
 using CrashKonijn.Goap.Runtime;
 
-public class IdleCapabilityFactory : CapabilityFactory
+public class IdleCapability : CapabilityFactory
 {
-    protected override string CapabilityName => nameof(IdleCapabilityFactory);
+    protected override string CapabilityName => nameof(IdleCapability);
 
     protected override void AddGoals(CapabilityBuilder builder)
     {
