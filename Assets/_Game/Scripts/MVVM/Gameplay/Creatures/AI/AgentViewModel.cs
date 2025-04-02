@@ -21,7 +21,6 @@ public abstract class AgentViewModel : CreatureViewModel
     public AgentViewModel(CreatureEntityProxy creatureEntity)
         : base(creatureEntity)
     {
-        ThreatMap.ObserveAdd().Subscribe(pair => ThreatAdded(pair.Value.Key, pair.Value.Value));
     }
 
     public void UseAbility(int index, Vector2 position)
@@ -37,35 +36,45 @@ public abstract class AgentViewModel : CreatureViewModel
         }
     }
 
-    private void ThreatAdded(CreatureViewModel creature, float threat)
-    {
-        if (_threatCoroutines.TryGetValue(creature, out var coroutine))
-            GameEntryPoint.Coroutines.StopCoroutine(coroutine);
-
-        _threatCoroutines[creature] = GameEntryPoint.Coroutines.StartCoroutine(ThreatCoroutine(creature));
-    }
-
-    private IEnumerator ThreatCoroutine(CreatureViewModel key)
-    {
-        yield return new WaitForSeconds(_rememberTime);
-
-        for (int i = 0; i < 10; i++)
-        {
-            yield return new WaitForSeconds(1f);
-
-            if (!ThreatMap.ContainsKey(key))
-                yield break;
-
-            ThreatMap[key] -= ThreatMap[key] * 0.1f;
-        }
-
-        _threatCoroutines.Remove(key);
-    }
-
     public override void Dispose()
     {
         foreach (var coroutine in _threatCoroutines)
             GameEntryPoint.Coroutines.StopCoroutine(coroutine.Value);
 
     }
+
+    #region Threat
+    public void StartRemoveThreatCoroutine(CreatureViewModel creature)
+    {
+        _threatCoroutines[creature] = GameEntryPoint.Coroutines.StartCoroutine(ThreatCoroutine(creature));
+    }
+
+    public void AbortRemoveThreatCoroutine(CreatureViewModel creature)
+    {
+        if (_threatCoroutines.TryGetValue(creature, out var coroutine))
+        {
+            GameEntryPoint.Coroutines.StopCoroutine(coroutine);
+            _threatCoroutines.Remove(creature);
+        }
+    }
+
+    private IEnumerator ThreatCoroutine(CreatureViewModel key)
+    {
+        yield return new WaitForSeconds(_rememberTime);
+
+        while (ThreatMap[key] >= 0f)
+        {
+            yield return new WaitForSeconds(1f);
+
+            if (!ThreatMap.ContainsKey(key))
+                yield break;
+
+            ThreatMap[key] -= 1f;
+        }
+
+        _threatCoroutines.Remove(key);
+    }
+    #endregion
+
+
 }

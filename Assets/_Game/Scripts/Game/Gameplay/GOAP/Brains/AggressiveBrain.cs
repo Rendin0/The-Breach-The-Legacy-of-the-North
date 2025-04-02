@@ -24,11 +24,21 @@ public class AggressiveBrain : AgentBrain
     {
         _creatureSensor = gameObject.AddComponent<CreatureSensor>();
         _creatureSensor.OnEnemySpotted.Subscribe(c => OnEnemySpotted(c));
+        _creatureSensor.OnEnemyLost.Subscribe(c => OnEnemyLost(c));
+    }
+
+    private void OnEnemyLost(Collider2D collider)
+    {
+        var threatDealer = collider.GetComponent<CreatureBinder>().ViewModel;
+
+        agent.StartRemoveThreatCoroutine(threatDealer);
     }
 
     private void OnEnemySpotted(Collider2D collider)
     {
         var threatDealer = collider.GetComponent<CreatureBinder>().ViewModel;
+
+        agent.AbortRemoveThreatCoroutine(threatDealer);
         agent.CreatureRequests.ThreatAddedRequest.OnNext((threatDealer, 10));
     }
 }

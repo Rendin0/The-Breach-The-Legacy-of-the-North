@@ -8,6 +8,13 @@ public class KillEnemiesCapability : CapabilityFactory
 
     protected override void AddActions(CapabilityBuilder builder)
     {
+        builder.AddAction<RemoveNoThreatsAction>()
+            .AddEffect<EnemiesAmountWorldKey>(EffectType.Decrease)
+            .AddCondition<EnemiesAmountWorldKey>(Comparison.GreaterThan, 0)
+            .AddCondition<NoThreatTargetAmountWorldKey>(Comparison.GreaterThan, 0)
+            .SetRequiresTarget(false)
+            .SetBaseCost(0);
+
         builder.AddAction<RemoveTargetAction>()
             .AddEffect<EnemiesAmountWorldKey>(EffectType.Decrease)
             .AddCondition<EnemyHealthWorldKey>(Comparison.SmallerThanOrEqual, 0)
@@ -28,6 +35,7 @@ public class KillEnemiesCapability : CapabilityFactory
             .AddEffect<EnemyHealthWorldKey>(EffectType.Decrease)
             .AddCondition<EnemyHealthWorldKey>(Comparison.GreaterThan, 0) 
             .AddCondition<HaveTargetWorldKey>(Comparison.GreaterThan, 0)
+            .AddCondition<NoThreatTargetAmountWorldKey>(Comparison.SmallerThanOrEqual, 0)
             .SetBaseCost(1)
             .SetStoppingDistance(5f);
     }
@@ -52,5 +60,8 @@ public class KillEnemiesCapability : CapabilityFactory
 
         builder.AddWorldSensor<EnemiesAmountWorldSensor>()
             .SetKey<EnemiesAmountWorldKey>();
+
+        builder.AddWorldSensor<NoThreatTargetAmountWorldSensor>()
+            .SetKey<NoThreatTargetAmountWorldKey>();
     }
 }

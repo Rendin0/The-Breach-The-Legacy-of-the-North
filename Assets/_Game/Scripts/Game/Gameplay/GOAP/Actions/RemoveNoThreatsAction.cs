@@ -1,26 +1,28 @@
-using System.Linq;
+
 using CrashKonijn.Agent.Core;
 using CrashKonijn.Goap.Runtime;
+using System.Linq;
 
-public class SetTargetEnemyAction : GoapActionBase<SetTargetEnemyAction.Data>
+public class RemoveNoThreatsAction : GoapActionBase<RemoveNoThreatsAction.Data>
 {
     public override void Start(IMonoAgent agent, Data data)
     {
         data.ViewModel = agent.GetComponent<AgentBinder>().ViewModel as AgentViewModel;
-
     }
 
     public override IActionRunState Perform(IMonoAgent agent, Data data, IActionContext context)
     {
-        var pair = data.ViewModel.ThreatMap.OrderByDescending(pair => pair.Value).First();
-        data.ViewModel.CurrentTarget = pair.Key;
+        data.ViewModel.ThreatMap
+            .Where(x => x.Value <= 0).ToList()
+            .ForEach(x => data.ViewModel.ThreatMap
+            .Remove(x.Key));
 
         return ActionRunState.Completed;
     }
 
-
-
     public class Data : ActionData
     {
+
     }
 }
+

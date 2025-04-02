@@ -4,8 +4,6 @@ using CrashKonijn.Goap.Runtime;
 
 public class EnemyTargetSensor : LocalTargetSensorBase
 {
-    private AgentViewModel _viewModel;
-
     public override void Created()
     {
     }
@@ -16,12 +14,12 @@ public class EnemyTargetSensor : LocalTargetSensorBase
 
     public override ITarget Sense(IActionReceiver agent, IComponentReference references, ITarget existingTarget)
     {
-        _viewModel = references.GetCachedComponent<AgentBinder>().ViewModel as AgentViewModel;
+        var viewModel = references.GetCachedComponent<AgentBinder>().ViewModel as AgentViewModel;
 
-        if (_viewModel.CurrentTarget == null)
+        if (viewModel.CurrentTarget == null)
             return null;
 
-        return new TransformTarget(_viewModel.CurrentTarget.Transform);
+        return new TransformTarget(viewModel.CurrentTarget.Transform);
     }
 
 }

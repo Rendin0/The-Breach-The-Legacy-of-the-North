@@ -20,7 +20,6 @@ public class RemoveTargetAction : GoapActionBase<RemoveTargetAction.Data>
 
     public class Data : ActionData
     {
-        public AgentViewModel ViewModel { get; set; }
     }
 
 }
