@@ -55,7 +55,6 @@ public abstract class AgentViewModel : CreatureViewModel
             ThreatMap[key] -= ThreatMap[key] * 0.1f;
         }
 
-        ThreatMap.Remove(key);
         _threatCoroutines.Remove(key);
     }
 

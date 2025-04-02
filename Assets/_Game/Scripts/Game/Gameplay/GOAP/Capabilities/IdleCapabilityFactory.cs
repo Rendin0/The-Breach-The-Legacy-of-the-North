@@ -10,7 +10,7 @@ public class IdleCapability : CapabilityFactory
     {
         builder.AddGoal<IdleGoal>()
             .AddCondition<IsIdleWorldKey>(Comparison.GreaterThanOrEqual, 1)
-            .SetBaseCost(2);
+            .SetBaseCost(8);
     }
 
     protected override void AddActions(CapabilityBuilder builder)

@@ -15,19 +15,16 @@ public class NeutralBrain : AgentBrain
 
     private void ThreatChanged(CreatureViewModel key, float value)
     {
-        ResolveCurrentTarget();
     }
 
     private void ThreatAdded(CreatureViewModel creature, float threat)
     {
-        ResolveCurrentTarget();
-
         agentBehaviour.StopAction();
         provider.RequestGoal<KillEnemyGoal>();
     }
 
     private void ThreatRemoved(CreatureViewModel creature, float threat)
     {
-        ResolveCurrentTarget();
+
     }
 }

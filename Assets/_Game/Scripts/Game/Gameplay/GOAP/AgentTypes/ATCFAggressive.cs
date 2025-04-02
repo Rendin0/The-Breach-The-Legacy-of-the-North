@@ -6,6 +6,6 @@ public class ATCFAggressive : ATCF<AggressiveBrain>
     public override void OnCreate(AgentTypeBuilder builder)
     {
         builder.AddCapability<IdleCapability>();
-        builder.AddCapability<KillEnemyCapability>();
+        builder.AddCapability<KillEnemiesCapability>();
     }
 }

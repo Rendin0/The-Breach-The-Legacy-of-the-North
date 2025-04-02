@@ -1,3 +1,4 @@
+using System.Linq;
 using CrashKonijn.Agent.Runtime;
 using CrashKonijn.Goap.Runtime;
 using UnityEngine;
@@ -34,17 +35,7 @@ public abstract class AgentBrain : MonoBehaviour
             return;
         }
 
-        var enumerator = agent.ThreatMap.GetEnumerator();
-        enumerator.MoveNext();
-        var maxThreat = enumerator.Current;
-
-        foreach (var threat in agent.ThreatMap)
-        {
-            if (threat.Value > maxThreat.Value)
-                maxThreat = threat;
-        }
-
-        agent.CurrentTarget = maxThreat.Key;
+        agent.CurrentTarget = agent.ThreatMap.OrderByDescending(x => x.Value).First().Key;
     }
 
     protected abstract void OnInit();

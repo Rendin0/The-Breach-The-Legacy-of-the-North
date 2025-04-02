@@ -21,7 +21,7 @@ public class EnemyHealthWorldSensor : LocalWorldSensorBase
         _viewModel ??= references.GetCachedComponent<AgentBinder>().ViewModel as AgentViewModel;
 
         if (_viewModel.CurrentTarget == null)
-            return 0;
+            return false;
 
         return Mathf.CeilToInt(_viewModel.CurrentTarget.Stats.Health.Value);
     }
