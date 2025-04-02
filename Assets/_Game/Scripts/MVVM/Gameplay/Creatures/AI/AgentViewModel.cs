@@ -52,6 +52,10 @@ public abstract class AgentViewModel : CreatureViewModel
         for (int i = 0; i < 10; i++)
         {
             yield return new WaitForSeconds(1f);
+
+            if (!ThreatMap.ContainsKey(key))
+                yield break;
+
             ThreatMap[key] -= ThreatMap[key] * 0.1f;
         }
 

@@ -8,23 +8,7 @@ public class NeutralBrain : AgentBrain
     protected override void OnInit()
     {
         provider.RequestGoal<IdleGoal>();
-        agent.ThreatMap.ObserveAdd().Subscribe(pair => ThreatAdded(pair.Value.Key, pair.Value.Value));
-        agent.ThreatMap.ObserveRemove().Subscribe(pair => ThreatRemoved(pair.Value.Key, pair.Value.Value));
-        agent.ThreatMap.ObserveChanged().Subscribe(pair => ThreatChanged(pair.NewItem.Key, pair.NewItem.Value));
-    }
-
-    private void ThreatChanged(CreatureViewModel key, float value)
-    {
-    }
-
-    private void ThreatAdded(CreatureViewModel creature, float threat)
-    {
-        agentBehaviour.StopAction();
-        provider.RequestGoal<KillEnemyGoal>();
-    }
-
-    private void ThreatRemoved(CreatureViewModel creature, float threat)
-    {
-
+        agent.ThreatMap.ObserveAdd().Subscribe(_ => ResolveCurrentGoal());
+        agent.ThreatMap.ObserveRemove().Subscribe(_ => ResolveCurrentGoal());
     }
 }

@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TypeId: Hunter
   Stats:
-    MaxHealth: 10
-    Health: 10
+    MaxHealth: 100
+    Health: 100
     Speed: 10
     Damage:
       MagicalData: 0.1
       PhysicalData: 0.1
-    Immortal: 0
+    Immortal: 1
     Resistance: 0
     Defense: 0
     AttackSpeed: 10

@@ -34,7 +34,7 @@ public class KillEnemiesCapability : CapabilityFactory
 
     protected override void AddGoals(CapabilityBuilder builder)
     {
-        builder.AddGoal<KillEnemyGoal>()
+        builder.AddGoal<KillEnemiesGoal>()
             .AddCondition<EnemiesAmountWorldKey>(Comparison.SmallerThanOrEqual, 0)
             .SetBaseCost(2);
     }
