@@ -39,22 +39,14 @@ public class KillEnemiesCapability : CapabilityFactory
             .SetBaseCost(1)
             .SetStoppingDistance(5f);
 
-        builder.AddAction<HealSelfAction>()
-            .SetTarget<SafePositionTargetKey>()
-            .SetBaseCost(0)
-            .AddEffect<SelfHelathPercentWorldKey>(EffectType.Increase)
-            .AddCondition<SelfHelathPercentWorldKey>(Comparison.SmallerThanOrEqual, 20);
     }
 
     protected override void AddGoals(CapabilityBuilder builder)
     {
         builder.AddGoal<KillEnemiesGoal>()
             .AddCondition<EnemiesAmountWorldKey>(Comparison.SmallerThanOrEqual, 0)
-            .SetBaseCost(4);
+            .SetBaseCost(20);
 
-        builder.AddGoal<SustainSelfGoal>()
-            .AddCondition<SelfHelathPercentWorldKey>(Comparison.GreaterThanOrEqual, 40)
-            .SetBaseCost(2);
     }
 
     protected override void AddSensors(CapabilityBuilder builder)
@@ -74,10 +66,5 @@ public class KillEnemiesCapability : CapabilityFactory
         builder.AddWorldSensor<NoThreatTargetAmountWorldSensor>()
             .SetKey<NoThreatTargetAmountWorldKey>();
 
-        builder.AddWorldSensor<SelfHelathPercentWorldSensor>()
-            .SetKey<SelfHelathPercentWorldKey>();
-
-        builder.AddTargetSensor<SafePositionTargetSensor>()
-            .SetTarget<SafePositionTargetKey>();
     }
 }

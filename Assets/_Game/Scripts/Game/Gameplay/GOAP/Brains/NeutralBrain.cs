@@ -11,10 +11,10 @@ public class NeutralBrain : AgentBrain
 
     protected override void OnInit()
     {
-        provider.RequestGoal<IdleGoal>();
-        agent.ThreatMap.ObserveAdd().Subscribe(_ => ResolveCurrentGoal());
-        agent.ThreatMap.ObserveRemove().Subscribe(_ => ResolveCurrentGoal());
-        agent.Stats.Health.Subscribe(_ => ResolveCurrentGoal());
+        provider.RequestGoal<KillEnemiesGoal, IdleGoal>();
+        //agent.ThreatMap.ObserveAdd().Subscribe(_ => ResolveCurrentGoal());
+        //agent.ThreatMap.ObserveRemove().Subscribe(_ => ResolveCurrentGoal());
+        //agent.Stats.Health.Subscribe(_ => ResolveCurrentGoal());
 
         AddCreatureSensor();
     }

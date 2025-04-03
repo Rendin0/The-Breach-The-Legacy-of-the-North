@@ -15,7 +15,7 @@ public class AggressiveBrain : AgentBrain
     {
         AddCreatureSensor();
 
-        provider.RequestGoal<IdleGoal>();
+        provider.RequestGoal<SustainSelfGoal, KillEnemiesGoal, IdleGoal>();
 
         AddGoalListeners();
     }
@@ -23,9 +23,9 @@ public class AggressiveBrain : AgentBrain
     #region Listeners
     private void AddGoalListeners()
     {
-        agent.ThreatMap.ObserveAdd().Subscribe(_ => ResolveCurrentGoal());
-        agent.ThreatMap.ObserveRemove().Subscribe(_ => ResolveCurrentGoal());
-        agent.Stats.Health.Subscribe(_ => ResolveCurrentGoal());
+        //agent.ThreatMap.ObserveAdd().Subscribe(_ => ResolveCurrentGoal());
+        //agent.ThreatMap.ObserveRemove().Subscribe(_ => ResolveCurrentGoal());
+        //agent.Stats.Health.Subscribe(_ => ResolveCurrentGoal());
     }
 
     private void AddCreatureSensor()

@@ -7,5 +7,6 @@ public class ATCFAggressive : ATCF<AggressiveBrain>
     {
         builder.AddCapability<IdleCapability>();
         builder.AddCapability<KillEnemiesCapability>();
+        builder.AddCapability<SelfSustainCapability>();
     }
 }
