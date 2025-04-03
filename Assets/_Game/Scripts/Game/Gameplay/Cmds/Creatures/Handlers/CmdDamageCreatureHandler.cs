@@ -15,7 +15,11 @@ public class CmdDamageCreatureHandler : ICommandHandler<CmdDamageCreature>
     {
         float damageResult = CalculateDamage(command);
 
-        var threatCmd = new CmdAddThreat(command.Creature, command.DamageDealer, damageResult);
+        float threatAmount = damageResult <= 0 ?
+            command.Damage.MagicalData + command.Damage.PhysicalData 
+            : damageResult;
+
+        var threatCmd = new CmdAddThreat(command.Creature, command.DamageDealer, threatAmount);
         _commandProcessor.Process(threatCmd);
 
         return damageResult > 0f;

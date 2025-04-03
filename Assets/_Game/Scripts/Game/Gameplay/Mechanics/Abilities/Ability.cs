@@ -3,7 +3,7 @@ using R3;
 using System.Collections;
 using UnityEngine;
 
-public class Ability<T> : IElementInfoViewModel, IAbility where T : CreatureViewModel
+public class Ability<T> : IAbility where T : CreatureViewModel
 {
     public readonly string Name;
 

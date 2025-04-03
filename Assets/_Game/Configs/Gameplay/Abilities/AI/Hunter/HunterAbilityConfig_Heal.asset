@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ef0352317b08f2438431e605f4453b4, type: 3}
-  m_Name: HunterAbilityConfig_Attack
+  m_Name: HunterAbilityConfig_Heal
   m_EditorClassIdentifier: 
-  Name: Attack
+  Name: Heal
   Description: 
-  CooldownTime: 0
+  CooldownTime: 10
   Use:
     _PersistentCalls:
     - _Target: {fileID: 0}
       _MemberName: AbilitiesHunter, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null.Attack
+        PublicKeyToken=null.Heal
       _PersistentArguments:
       - _Type: 14
         _Int: 0
@@ -30,19 +30,11 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
-      - _Type: 14
-        _Int: 1
-        _String: 
-        _X: 6
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-      - _Type: 6
+      - _Type: 5
         _Int: 0
         _String: 
-        _X: 2
-        _Y: 2
+        _X: 0.5
+        _Y: 0
         _Z: 0
         _W: 0
         _Object: {fileID: 0}

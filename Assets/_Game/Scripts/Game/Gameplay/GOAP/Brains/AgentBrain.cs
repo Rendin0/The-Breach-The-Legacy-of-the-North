@@ -23,18 +23,5 @@ public abstract class AgentBrain : MonoBehaviour
         OnInit();
     }
 
-    protected void ResolveCurrentGoal()
-    {
-        agentBehaviour.StopAction();
-        
-        if (agent.ThreatMap.Count == 0)
-        {
-            provider.RequestGoal<IdleGoal>();
-            return;
-        }
-
-        provider.RequestGoal<KillEnemiesGoal>();
-    }
-
     protected abstract void OnInit();
 }

@@ -17,16 +17,26 @@ public class AggressiveBrain : AgentBrain
 
         provider.RequestGoal<IdleGoal>();
 
+        AddGoalListeners();
+    }
+
+    #region Listeners
+    private void AddGoalListeners()
+    {
         agent.ThreatMap.ObserveAdd().Subscribe(_ => ResolveCurrentGoal());
         agent.ThreatMap.ObserveRemove().Subscribe(_ => ResolveCurrentGoal());
+        agent.Stats.Health.Subscribe(_ => ResolveCurrentGoal());
     }
+
     private void AddCreatureSensor()
     {
         _creatureSensor = gameObject.AddComponent<CreatureSensor>();
         _creatureSensor.OnEnemySpotted.Subscribe(c => OnEnemySpotted(c));
         _creatureSensor.OnEnemyLost.Subscribe(c => OnEnemyLost(c));
     }
+    #endregion
 
+    #region Events
     private void OnEnemyLost(Collider2D collider)
     {
         var threatDealer = collider.GetComponent<CreatureBinder>().ViewModel;
@@ -40,5 +50,28 @@ public class AggressiveBrain : AgentBrain
 
         agent.AbortRemoveThreatCoroutine(threatDealer);
         agent.CreatureRequests.ThreatAddedRequest.OnNext((threatDealer, 10));
+    }
+    #endregion
+
+
+    protected void ResolveCurrentGoal()
+    {
+        agentBehaviour.StopAction();
+
+        var healthPercent = agent.Stats.Health.Value / agent.Stats.MaxHealth.Value;
+
+        if (healthPercent <= .2f)
+        {
+            provider.RequestGoal<SustainSelfGoal>();
+            return;
+        }
+
+        if (agent.ThreatMap.Count == 0)
+        {
+            provider.RequestGoal<IdleGoal>();
+            return;
+        }
+
+        provider.RequestGoal<KillEnemiesGoal>();
     }
 }

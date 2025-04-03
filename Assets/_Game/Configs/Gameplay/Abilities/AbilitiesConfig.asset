@@ -18,6 +18,12 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 55f451993ef177647b359523334c773a, type: 2}
     Attack: {fileID: 11400000, guid: 8626f49de3befde4eb0e90bbf8290299, type: 2}
   PigAbilitiesConfig:
-    Abilities:
+    Attacks:
     - {fileID: 11400000, guid: 2fe1626286be89249ab91f9904c42901, type: 2}
     - {fileID: 11400000, guid: 6ef1456db2dc988459dd0be69b1b0737, type: 2}
+    Heals: []
+  HunterAbilitiesConfig:
+    Attacks:
+    - {fileID: 11400000, guid: 1ae6eb6710cfb174a8de92c5e2abda68, type: 2}
+    Heals:
+    - {fileID: 11400000, guid: 1bdb5f23f419c2e4287a37726a81784a, type: 2}

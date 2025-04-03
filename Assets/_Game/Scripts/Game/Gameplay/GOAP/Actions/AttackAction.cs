@@ -23,9 +23,9 @@ public class AttackAction : GoapActionBase<AttackAction.Data>
 
         if (inRange)
         {
-            int randomAbility = Random.Range(0, data.ViewModel.Abilities.Count);
+            int randomAbility = Random.Range(0, data.ViewModel.Attacks.Count);
 
-            data.ViewModel.UseAbility(randomAbility, data.ViewModel.CurrentTarget.Position.Value);
+            data.ViewModel.UseAttack(randomAbility, data.ViewModel.CurrentTarget.Position.Value);
         }
 
 

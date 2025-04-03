@@ -2,11 +2,10 @@
 using CrashKonijn.Agent.Core;
 using CrashKonijn.Goap.Core;
 using CrashKonijn.Goap.Runtime;
-using System.Linq;
+using UnityEngine;
 
-public class NoThreatTargetAmountWorldSensor : LocalWorldSensorBase
+public class SelfHelathPercentWorldSensor : LocalWorldSensorBase
 {
-    public override ISensorTimer Timer => SensorTimer.Interval(1f);
     public override void Created()
     {
     }
@@ -19,8 +18,6 @@ public class NoThreatTargetAmountWorldSensor : LocalWorldSensorBase
     {
         var viewModel = references.GetCachedComponent<AgentBinder>().ViewModel as AgentViewModel;
 
-        var noThreat = viewModel.ThreatMap.Where(pair => pair.Value <= 0f).ToList();
-
-        return new SenseValue(noThreat.Count);
+        return Mathf.CeilToInt(viewModel.Stats.Health.Value / viewModel.Stats.MaxHealth.Value * 100f);
     }
 }
