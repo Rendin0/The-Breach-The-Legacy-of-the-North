@@ -1,6 +1,6 @@
-using System.Linq;
 using CrashKonijn.Agent.Core;
 using CrashKonijn.Goap.Runtime;
+using System.Linq;
 
 public class SetTargetEnemyAction : GoapActionBase<SetTargetEnemyAction.Data>
 {

@@ -21,7 +21,7 @@ public class KillEnemiesCapability : CapabilityFactory
             .AddCondition<HaveTargetWorldKey>(Comparison.GreaterThan, 0)
             .SetRequiresTarget(false)
             .SetBaseCost(0);
-        
+
         builder.AddAction<SetTargetEnemyAction>()
             .AddEffect<HaveTargetWorldKey>(EffectType.Increase)
             .SetBaseCost(3)
@@ -33,7 +33,7 @@ public class KillEnemiesCapability : CapabilityFactory
         builder.AddAction<AttackAction>()
             .SetTarget<EnemyTargetKey>()
             .AddEffect<EnemyHealthWorldKey>(EffectType.Decrease)
-            .AddCondition<EnemyHealthWorldKey>(Comparison.GreaterThan, 0) 
+            .AddCondition<EnemyHealthWorldKey>(Comparison.GreaterThan, 0)
             .AddCondition<HaveTargetWorldKey>(Comparison.GreaterThan, 0)
             .AddCondition<NoThreatTargetAmountWorldKey>(Comparison.SmallerThanOrEqual, 0)
             .SetBaseCost(1)

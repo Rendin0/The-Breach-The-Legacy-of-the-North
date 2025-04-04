@@ -1,9 +1,6 @@
-using CrashKonijn.Agent.Runtime;
-using R3;
-using System;
-using UnityEditor.VersionControl;
-using UnityEngine;
 using ObservableCollections;
+using R3;
+using UnityEngine;
 
 public class AggressiveBrain : AgentBrain
 {

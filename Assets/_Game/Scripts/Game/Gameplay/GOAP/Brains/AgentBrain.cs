@@ -1,6 +1,4 @@
-using System.Linq;
 using CrashKonijn.Agent.Runtime;
-using CrashKonijn.Goap.Core;
 using CrashKonijn.Goap.Runtime;
 using UnityEngine;
 

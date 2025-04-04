@@ -1,7 +1,6 @@
 
 using CrashKonijn.Agent.Core;
 using CrashKonijn.Goap.Runtime;
-using UnityEngine;
 
 public class HealSelfAction : GoapActionBase<HealSelfAction.Data>
 {

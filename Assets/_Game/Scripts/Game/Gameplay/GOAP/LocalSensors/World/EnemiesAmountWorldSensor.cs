@@ -2,7 +2,6 @@
 using CrashKonijn.Agent.Core;
 using CrashKonijn.Goap.Core;
 using CrashKonijn.Goap.Runtime;
-using UnityEngine;
 
 public class EnemiesAmountWorldSensor : LocalWorldSensorBase
 {
