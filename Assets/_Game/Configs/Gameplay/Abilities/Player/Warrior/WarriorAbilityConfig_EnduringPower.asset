@@ -10,16 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f57143a20799924eb53bfe27845764f, type: 3}
-  m_Name: WarriorAbilityConfig_Heal
+  m_Name: WarriorAbilityConfig_EnduringPower
   m_EditorClassIdentifier: 
-  Name: Heal
-  Description: Full heal
-  CooldownTime: 0
+  Name: EnduringPower
+  Description: "\u0413\u0435\u0440\u043E\u0439 \u043F\u043E\u0432\u044B\u0448\u0430\u0435\u0442
+    \u0441\u0432\u043E\u0439 \u043F\u043E\u043A\u0430\u0437\u0430\u0442\u0435\u043B\u044C
+    \u0430\u0442\u0430\u043A\u0438 \u043D\u0430 200%, \u0437\u0430\u0449\u0438\u0442\u0443
+    \u043D\u0430 20."
+  CooldownTime: 4
   Use:
     _PersistentCalls:
     - _Target: {fileID: 0}
       _MemberName: AbilitiesWarrior, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null.Heal
+        PublicKeyToken=null.EnduringPower
       _PersistentArguments:
       - _Type: 14
         _Int: 0
@@ -33,7 +36,31 @@ MonoBehaviour:
       - _Type: 5
         _Int: 0
         _String: 
-        _X: 1
+        _X: 2
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 20
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 2
         _Y: 0
         _Z: 0
         _W: 0
