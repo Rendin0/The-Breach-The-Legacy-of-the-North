@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 202a55f726c2bb34a9176916b42e9134
+guid: 3786434149c65b741acee936ae063e77
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2197546839168488517
-    second: mapsmenu_0
+      213: 1030051057760002930
+    second: mapsmenu (2)_0
   - first:
-      213: -4313233277556812513
-    second: mapsmenu_1
+      213: 18659450478069618
+    second: mapsmenu (2)_1
   - first:
-      213: 3555913598458672332
-    second: mapsmenu_2
+      213: -340564740565304244
+    second: mapsmenu (2)_2
   - first:
-      213: 8953545635872416808
-    second: mapsmenu_3
+      213: -5216289360953897708
+    second: mapsmenu (2)_3
   - first:
-      213: 2268053380109996862
-    second: mapsmenu_4
+      213: 1920907796038544084
+    second: mapsmenu (2)_4
   - first:
-      213: 9015598057113454151
-    second: mapsmenu_5
+      213: -1196273694165591548
+    second: mapsmenu (2)_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -118,10 +118,10 @@ TextureImporter:
       name: MapMenu
       rect:
         serializedVersion: 2
-        x: 59
-        y: 22
-        width: 382
-        height: 166
+        x: 38
+        y: 14
+        width: 385
+        height: 203
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,96 +130,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5449be505314f7e10800000000000000
-      internalID: 2197546839168488517
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mapsmenu_2
-      rect:
-        serializedVersion: 2
-        x: 453
-        y: 102
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cc43c18e394295130800000000000000
-      internalID: 3555913598458672332
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mapsmenu_3
-      rect:
-        serializedVersion: 2
-        x: 464
-        y: 102
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 824ac626152614c70800000000000000
-      internalID: 8953545635872416808
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mapsmenu_4
-      rect:
-        serializedVersion: 2
-        x: 475
-        y: 102
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e339415588eb97f10800000000000000
-      internalID: 2268053380109996862
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mapsmenu_5
-      rect:
-        serializedVersion: 2
-        x: 486
-        y: 102
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 74603ff8aa6dd1d70800000000000000
-      internalID: 9015598057113454151
+      spriteID: 273ec46caf97b4e00800000000000000
+      internalID: 1030051057760002930
       vertices: []
       indices: 
       edges: []
@@ -228,7 +140,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 92aa7d99d120f414da92ec7e7e8c9e68
     internalID: 0
     vertices: []
     indices: 
@@ -238,12 +150,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MapMenu: 2197546839168488517
-      mapsmenu_1: -4313233277556812513
-      mapsmenu_2: 3555913598458672332
-      mapsmenu_3: 8953545635872416808
-      mapsmenu_4: 2268053380109996862
-      mapsmenu_5: 9015598057113454151
+      MapMenu: 1030051057760002930
+      mapsmenu (2)_1: 18659450478069618
+      mapsmenu (2)_2: -340564740565304244
+      mapsmenu (2)_3: -5216289360953897708
+      mapsmenu (2)_4: 1920907796038544084
+      mapsmenu (2)_5: -1196273694165591548
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
