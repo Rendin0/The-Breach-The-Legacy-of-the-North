@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TypeId: Skeleton
   Stats:
-    MaxHealth: 10000
-    Health: 10000
+    MaxHealth: 100
+    Health: 100
     Speed: 3
     Damage:
       MagicalData: 5
@@ -28,4 +28,4 @@ MonoBehaviour:
     Stamina: 0
     MaxStamina: 1
   Faction: 1
-  AgentType: 3
+  AgentType: 2
