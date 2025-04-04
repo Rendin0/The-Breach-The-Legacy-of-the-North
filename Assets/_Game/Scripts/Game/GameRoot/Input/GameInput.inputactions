@@ -438,6 +438,28 @@
                 },
                 {
                     "name": "",
+                    "id": "5dba22d6-494b-4ec0-8a59-e985b7fc8de6",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Abilities",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a7cf38a3-168f-48fd-bbfc-955b88c5e44d",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Abilities",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "7224feba-3c52-4c92-a9c6-784c688e4864",
                     "path": "<Keyboard>/leftAlt",
                     "interactions": "",
