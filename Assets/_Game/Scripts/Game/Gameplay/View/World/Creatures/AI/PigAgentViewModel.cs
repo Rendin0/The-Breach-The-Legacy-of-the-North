@@ -4,9 +4,7 @@ public class PigAgentViewModel : AgentViewModel
     public PigAgentViewModel(CreatureEntityProxy creatureEntity, AbilitiesConfig abilitiesConfig)
         : base(creatureEntity)
     {
-        foreach (var abilityCfg in abilitiesConfig.PigAbilitiesConfig.Abilities)
-        {
-            Abilities.Add(new Ability<PigAgentViewModel>(abilityCfg));
-        }
+        abilitiesConfig.PigAbilitiesConfig.Attacks.ForEach(attack => Attacks.Add(new Ability<PigAgentViewModel>(attack)));
+        abilitiesConfig.PigAbilitiesConfig.Heals.ForEach(heal => Heals.Add(new Ability<PigAgentViewModel>(heal)));
     }
 }

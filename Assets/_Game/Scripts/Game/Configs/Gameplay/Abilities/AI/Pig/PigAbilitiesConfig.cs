@@ -4,5 +4,7 @@ using System.Collections.Generic;
 [Serializable]
 public class PigAbilitiesConfig
 {
-    public List<PigAbilityConfig> Abilities;
+    public List<PigAbilityConfig> Attacks;
+    public List<PigAbilityConfig> Heals;
+
 }

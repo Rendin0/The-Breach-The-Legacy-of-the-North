@@ -15,11 +15,11 @@ MonoBehaviour:
   TypeId: Skeleton
   Stats:
     MaxHealth: 100
-    Health: 40
-    Speed: 7
+    Health: 100
+    Speed: 3
     Damage:
-      MagicalData: 10
-      PhysicalData: 10
+      MagicalData: 5
+      PhysicalData: 5
     Immortal: 0
     Resistance: 0
     Defense: 36
@@ -28,4 +28,4 @@ MonoBehaviour:
     Stamina: 0
     MaxStamina: 1
   Faction: 1
-  AgentType: 3
+  AgentType: 2

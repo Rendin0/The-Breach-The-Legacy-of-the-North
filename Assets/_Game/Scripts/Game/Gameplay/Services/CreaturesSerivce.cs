@@ -164,7 +164,12 @@ public class CreaturesSerivce
         }
         else
         {
-            var agentViewModel = new PigAgentViewModel(creatureEntityProxy, _abilitiesConfig);
+            AgentViewModel agentViewModel = creatureEntityProxy.TypeId switch
+            {
+                CreaturesTypes.Hunter => new HunterAgentViewModel(creatureEntityProxy, _abilitiesConfig),
+                _ => new PigAgentViewModel(creatureEntityProxy, _abilitiesConfig)
+            };
+
 
             agentViewModel.CreatureRequests.DeleteRequest.Subscribe(_ =>
             {

@@ -1,33 +1,54 @@
 using ObservableCollections;
 using R3;
+using UnityEngine;
 
 public class NeutralBrain : AgentBrain
 {
+    private CreatureSensor _creatureSensor;
+
     public override string AgentType => AgentTypes.NeutralAgent.ToString();
 
     protected override void OnInit()
     {
-        provider.RequestGoal<IdleGoal>();
-        agent.ThreatMap.ObserveAdd().Subscribe(pair => ThreatAdded(pair.Value.Key, pair.Value.Value));
-        agent.ThreatMap.ObserveRemove().Subscribe(pair => ThreatRemoved(pair.Value.Key, pair.Value.Value));
-        agent.ThreatMap.ObserveChanged().Subscribe(pair => ThreatChanged(pair.NewItem.Key, pair.NewItem.Value));
+        provider.RequestGoal<KillEnemiesGoal, IdleGoal>();
+        agent.ThreatMap.ObserveAdd().Subscribe(_ => ResolveCurrentGoal());
+        agent.ThreatMap.ObserveRemove().Subscribe(_ => ResolveCurrentGoal());
+        agent.Stats.Health.Subscribe(_ => ResolveCurrentGoal());
+
+        AddCreatureSensor();
     }
 
-    private void ThreatChanged(CreatureViewModel key, float value)
+    private void AddCreatureSensor()
     {
-        ResolveCurrentTarget();
+        _creatureSensor = gameObject.AddComponent<CreatureSensor>();
+        _creatureSensor.OnEnemySpotted.Subscribe(c => OnEnemySpotted(c));
+        _creatureSensor.OnEnemyLost.Subscribe(c => OnEnemyLost(c));
     }
 
-    private void ThreatAdded(CreatureViewModel creature, float threat)
+    private void OnEnemySpotted(Collider2D collider)
     {
-        ResolveCurrentTarget();
+        var threatDealer = collider.GetComponent<CreatureBinder>().ViewModel;
 
+        agent.AbortRemoveThreatCoroutine(threatDealer);
+    }
+
+    private void OnEnemyLost(Collider2D collider)
+    {
+        var threatDealer = collider.GetComponent<CreatureBinder>().ViewModel;
+
+        agent.StartRemoveThreatCoroutine(threatDealer);
+    }
+
+    protected void ResolveCurrentGoal()
+    {
         agentBehaviour.StopAction();
-        provider.RequestGoal<KillEnemyGoal>();
-    }
 
-    private void ThreatRemoved(CreatureViewModel creature, float threat)
-    {
-        ResolveCurrentTarget();
+        if (agent.ThreatMap.Count == 0)
+        {
+            provider.RequestGoal<IdleGoal>();
+            return;
+        }
+
+        provider.RequestGoal<KillEnemiesGoal>();
     }
 }

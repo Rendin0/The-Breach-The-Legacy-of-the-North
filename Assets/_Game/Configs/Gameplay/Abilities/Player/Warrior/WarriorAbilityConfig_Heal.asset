@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WarriorAbilityConfig_Heal
   m_EditorClassIdentifier: 
   Name: Heal
-  Description: 
+  Description: Full heal
   CooldownTime: 0
   Use:
     _PersistentCalls:

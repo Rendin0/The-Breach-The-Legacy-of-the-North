@@ -12,10 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef0352317b08f2438431e605f4453b4, type: 3}
   m_Name: HunterAbilityConfig_Attack
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Attack
   Description: 
   CooldownTime: 0
   Use:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 0}
+      _MemberName: AbilitiesHunter, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null.Attack
+      _PersistentArguments:
+      - _Type: 14
+        _Int: 0
+        _String: HunterAgentViewModel, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 14
+        _Int: 1
+        _String: 
+        _X: 6
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 6
+        _Int: 0
+        _String: 
+        _X: 2
+        _Y: 2
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   Requirement:
     _PersistentCalls: []

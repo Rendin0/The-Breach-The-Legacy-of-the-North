@@ -8,12 +8,14 @@ public class CmdAddThreatHandler : ICommandHandler<CmdAddThreat>
 
     private bool AddThreat(CreatureViewModel creature, CreatureViewModel threatDealer, float threat)
     {
-        if (creature is AgentViewModel agent)
-        {
-            agent.ThreatMap[threatDealer] = threat;
-            return true;
-        }
+        if (creature is not AgentViewModel agent)
+            return false;
 
-        return false;
+        if (agent.ThreatMap.ContainsKey(threatDealer))
+            agent.ThreatMap[threatDealer] += threat;
+        else
+            agent.ThreatMap[threatDealer] = threat;
+
+        return true;
     }
 }

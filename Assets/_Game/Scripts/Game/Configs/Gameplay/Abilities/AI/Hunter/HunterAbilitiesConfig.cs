@@ -5,5 +5,6 @@ using System.Collections.Generic;
 [Serializable]
 public class HunterAbilitiesConfig
 {
-    public List<HunterAbilityConfig> Abilities;
+    public List<HunterAbilityConfig> Attacks;
+    public List<HunterAbilityConfig> Heals;
 }

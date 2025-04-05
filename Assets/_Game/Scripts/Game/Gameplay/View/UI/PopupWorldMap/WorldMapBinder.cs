@@ -145,7 +145,7 @@ public class WorldMapBinder : MonoBehaviour, IDraggable, IPointerEnterHandler, I
         Vector2 maxAllowedDistance = (Rect.rect.size / 2f * Rect.localScale.x * _canvas.scaleFactor) - (Rect.rect.size / 2f * _canvas.scaleFactor);
 
         // Вычисляем расстояние, на которое нужно переместить карту, чтобы она оставалась в пределах границ
-        Vector2 distanceToMove = distanceToEdge.Abs() - maxAllowedDistance;
+        Vector2 distanceToMove = new Vector2(Mathf.Abs(distanceToEdge.x), Mathf.Abs(distanceToEdge.y)) - maxAllowedDistance;
 
         // Определяем направление перемещения карты
         Vector2 moveDirrection = new Vector2(distanceToEdge.normalized.x, 0f).normalized + new Vector2(0f, distanceToEdge.normalized.y).normalized;
