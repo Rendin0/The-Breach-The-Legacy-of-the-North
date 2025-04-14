@@ -145,7 +145,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u0433\u0433\u043F\u0435\u0440\u04411_0"
+      name: WalkDown1
       rect:
         serializedVersion: 2
         x: 0
@@ -153,7 +153,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -167,7 +167,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0433\u0433\u043F\u0435\u0440\u04411_1"
+      name: WalkLeft1
       rect:
         serializedVersion: 2
         x: 48
@@ -175,7 +175,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -189,7 +189,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0433\u0433\u043F\u0435\u0440\u04411_2"
+      name: WalkRight1
       rect:
         serializedVersion: 2
         x: 96
@@ -197,7 +197,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -211,7 +211,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0433\u0433\u043F\u0435\u0440\u04411_3"
+      name: WalkUp1
       rect:
         serializedVersion: 2
         x: 144
@@ -219,7 +219,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -233,7 +233,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0433\u0433\u043F\u0435\u0440\u04411_4"
+      name: WalkDown2
       rect:
         serializedVersion: 2
         x: 0
@@ -241,7 +241,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -255,7 +255,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0433\u0433\u043F\u0435\u0440\u04411_5"
+      name: WalkLeft2
       rect:
         serializedVersion: 2
         x: 48
@@ -263,7 +263,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -277,7 +277,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0433\u0433\u043F\u0435\u0440\u04411_6"
+      name: WalkRight2
       rect:
         serializedVersion: 2
         x: 96
@@ -285,7 +285,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -299,7 +299,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0433\u0433\u043F\u0435\u0440\u04411_7"
+      name: WalkUp2
       rect:
         serializedVersion: 2
         x: 144
@@ -307,7 +307,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -321,7 +321,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0433\u0433\u043F\u0435\u0440\u04411_8"
+      name: WalkDown3
       rect:
         serializedVersion: 2
         x: 0
@@ -329,7 +329,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -343,7 +343,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0433\u0433\u043F\u0435\u0440\u04411_9"
+      name: WalkLeft3
       rect:
         serializedVersion: 2
         x: 48
@@ -351,7 +351,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -365,7 +365,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0433\u0433\u043F\u0435\u0440\u04411_10"
+      name: WalkRight3
       rect:
         serializedVersion: 2
         x: 96
@@ -373,7 +373,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -387,7 +387,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0433\u0433\u043F\u0435\u0440\u04411_11"
+      name: WalkUp3
       rect:
         serializedVersion: 2
         x: 144
@@ -395,7 +395,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -409,7 +409,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0433\u0433\u043F\u0435\u0440\u04411_12"
+      name: WalkDown4
       rect:
         serializedVersion: 2
         x: 0
@@ -417,7 +417,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -431,7 +431,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0433\u0433\u043F\u0435\u0440\u04411_13"
+      name: WalkLeft4
       rect:
         serializedVersion: 2
         x: 48
@@ -439,7 +439,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -453,7 +453,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0433\u0433\u043F\u0435\u0440\u04411_14"
+      name: WalkRight4
       rect:
         serializedVersion: 2
         x: 96
@@ -461,7 +461,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -475,7 +475,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0433\u0433\u043F\u0435\u0440\u04411_15"
+      name: WalkUp4
       rect:
         serializedVersion: 2
         x: 144
@@ -483,7 +483,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -510,22 +510,22 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\u0433\u0433\u043F\u0435\u0440\u04411_0": 2663961250581927231
-      "\u0433\u0433\u043F\u0435\u0440\u04411_1": 3925095956309443033
-      "\u0433\u0433\u043F\u0435\u0440\u04411_10": 1075885442891115395
-      "\u0433\u0433\u043F\u0435\u0440\u04411_11": 4237591431334933330
-      "\u0433\u0433\u043F\u0435\u0440\u04411_12": 9040610693193818843
-      "\u0433\u0433\u043F\u0435\u0440\u04411_13": 717917345232571311
-      "\u0433\u0433\u043F\u0435\u0440\u04411_14": -2729224102799033908
-      "\u0433\u0433\u043F\u0435\u0440\u04411_15": 4189775408428144186
-      "\u0433\u0433\u043F\u0435\u0440\u04411_2": -2863432836952935045
-      "\u0433\u0433\u043F\u0435\u0440\u04411_3": -8817243420856370881
-      "\u0433\u0433\u043F\u0435\u0440\u04411_4": -160707577780234773
-      "\u0433\u0433\u043F\u0435\u0440\u04411_5": 6582003796535173574
-      "\u0433\u0433\u043F\u0435\u0440\u04411_6": -1199329431665726715
-      "\u0433\u0433\u043F\u0435\u0440\u04411_7": 1325025598739422445
-      "\u0433\u0433\u043F\u0435\u0440\u04411_8": -3928557923454177087
-      "\u0433\u0433\u043F\u0435\u0440\u04411_9": 8283775939905920649
+      WalkDown1: 2663961250581927231
+      WalkDown2: -160707577780234773
+      WalkDown3: -3928557923454177087
+      WalkDown4: 9040610693193818843
+      WalkLeft1: 3925095956309443033
+      WalkLeft2: 6582003796535173574
+      WalkLeft3: 8283775939905920649
+      WalkLeft4: 717917345232571311
+      WalkRight1: -2863432836952935045
+      WalkRight2: -1199329431665726715
+      WalkRight3: 1075885442891115395
+      WalkRight4: -2729224102799033908
+      WalkUp1: -8817243420856370881
+      WalkUp2: 1325025598739422445
+      WalkUp3: 4237591431334933330
+      WalkUp4: 4189775408428144186
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
