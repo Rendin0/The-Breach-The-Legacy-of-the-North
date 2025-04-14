@@ -17,8 +17,12 @@ public class TransparentTilemap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Т.к. коллизия просчитывается не с самим объектом, а с его тенью, то
+        // необходимо получить родительский объект
+        var parrentCollider = collision.transform.parent.GetComponent<Collider2D>();
+
         // Скрытие объекта, если коллизия с игроком
-        if (LayerMask.LayerToName(collision.gameObject.layer) == Factions.Player.ToString())
+        if (LayerMask.LayerToName(parrentCollider.gameObject.layer) == Factions.Player.ToString())
         {
             ToggleTransparency();
         }
@@ -26,7 +30,11 @@ public class TransparentTilemap : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (LayerMask.LayerToName(collision.gameObject.layer) == Factions.Player.ToString())
+        // Т.к. коллизия просчитывается не с самим объектом, а с его тенью, то
+        // необходимо получить родительский объект
+        var parrentCollider = collision.transform.parent.GetComponent<Collider2D>();
+
+        if (LayerMask.LayerToName(parrentCollider.gameObject.layer) == Factions.Player.ToString())
         {
             ToggleTransparency();
         }
