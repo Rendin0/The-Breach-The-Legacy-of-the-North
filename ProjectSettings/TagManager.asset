@@ -47,8 +47,11 @@ TagManager:
   - name: Objects
     uniqueID: 1743440771
     locked: 0
-  - name: Roofs
+  - name: Walls
     uniqueID: 2911981639
+    locked: 0
+  - name: Roofs
+    uniqueID: 979082519
     locked: 0
   m_RenderingLayers:
   - Default
