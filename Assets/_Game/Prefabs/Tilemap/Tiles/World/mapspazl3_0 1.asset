@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: "\u0433\u0433\u043F\u0435\u0440\u04411_3"
+  m_Name: mapspazl3_0 1
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -8817243420856370881, guid: be2500ccde5a4434d8a550d2cf5fd5bd, type: 3}
+  m_Sprite: {fileID: -2817680275986888634, guid: a202c3d6a80d8674eb3acf2cdce94124, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
