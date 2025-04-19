@@ -16,7 +16,7 @@ MonoBehaviour:
   Stats:
     MaxHealth: 100
     Health: 100
-    Speed: 10
+    Speed: 2
     Damage:
       MagicalData: 0
       PhysicalData: 10
